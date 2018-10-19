@@ -1,0 +1,262 @@
+/*******************************************/
+/*This is the main stylesheet***/
+/******************************************/
+
+@tailwind preflight;
+@tailwind utilities;
+
+/****SCROLLBAR*****/
+
+/******MIXINS*******/
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+// Block Element
+// @access public
+// @param {String} $element - Element's name
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+// Block Modifier
+// @access public
+// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+
+/* CUSTOM FONTS */
+/*********************/
+
+@font-face {
+  font-family: 'Hominis', Arial;
+  src: url('../static/fonts/Hominis/Hominis.ttf'),
+	     url('../static/fonts/Hominis/HOMINIS-webfont.woff') format('woff'),
+	     url('../static/fonts/Hominis/HOMINIS-webfont.ttf') format('truetype');
+}
+
+/* CUSTOM CSS */
+.body, html {
+  font-family: arial;  
+  color: #252525;
+}
+
+a {
+  color: #000000; 
+  text-decoration: none;
+}
+
+li {
+  list-style: none;  
+}
+
+.bgImg {
+  background: url("../static/imgs/world-map.svg") no-repeat;
+  width: 100vw;
+  height: 100vh;
+  background-position: center;
+  background-size: contain;  
+}
+
+.path{  
+  fill: none;
+  stroke: rgba(97, 97, 97, 0.8);
+  stroke-linecap: square;
+  stroke-miterlimit: 10;
+  stroke-width: 8;
+}
+
+@keyframes dash {
+  to {stroke-dashoffset:0}  
+}
+
+.marker {
+  animation: move 20s linear forwards;
+}
+
+@keyframes move {
+  from {
+    offset-distance: 0%;
+  }
+  to {
+    offset-distance: 100%;
+  }
+  0% {
+    opacity: 0;
+    transform: scale(0.02) translateX(-50px) translateY(-250px);
+  }
+  6%{
+    opacity: 1;
+    transform: scale(0.08) translateX(-50px) translateY(-250px);
+  }
+  94% {
+    opacity: 1;
+    transform: scale(0.08) translateX(-50px) translateY(-250px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.02) translateX(-50px) translateY(-250px);
+  }
+}
+
+
+.icon-plane {
+  width: 100px;
+  height: 100px;
+}
+
+
+.imgs-home {
+  width: 500px;
+  height: auto;
+}
+
+.main-message {
+  left: calc(50% - 275px);
+  top: calc(100% - 65%);
+  padding: 20px;
+}
+
+.title-text-smaller {
+  padding-top: 15px;
+  text-align: center;
+  padding-left: 210px;
+  font-size: 40px;
+  position: absolute;
+  left: 18%;
+  z-index: 55;
+  top: 12%;
+}
+
+.title-text-bigger {
+  font-size: 110px;
+  position: absolute;
+  left: 20%;
+  z-index: 55;
+  top: 20%;
+  font-weight: normal;
+  letter-spacing: 20px;
+  font-family: 'Hominis', Arial;
+  text-transform: uppercase;
+}
+
+.link-title {
+  text-align: center;
+  font-size: 30px;
+  display: block; 
+  text-decoration: underline;
+}
+
+.animation-left {
+  transform: translateX(0vw);
+  transition: all 0.5s ease;
+  position: absolute;
+  width: 95vw;
+  z-index: 30;
+}
+
+.animation-right {
+  transform: translateX(-45vw);
+  transition: all 0.5s ease;
+  position: absolute;
+  width: 94vw;
+  z-index: 30;  
+}
+
+.button-index {
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #cecece;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.step-title {
+  font-size: 50px;
+}
+
+.step-subtitle {
+  font-size: 25px;
+}
+
+.bar-left {
+  background: #73642a;
+  border-right: 2px solid #000000;  
+}
+
+.text-container-left {
+  padding: 15px 50px;
+  // text-align: left;
+  
+  
+}
+
+.bar-right {
+  width: 10%;
+  height: 100vh;
+  float: right;
+  padding: 30px;
+  background: #4d714d;
+  border-left: 2px solid #000;
+}
+
+.text-container-right {
+  padding: 15px 50px;
+  
+}
+
+
+.current-step {
+  display: inline-flex;
+  font-size: 40px;
+  text-decoration: none;
+}
+
+.step-img {
+  width: auto;
+}
+
+.sidebar-links {
+  text-decoration: none;
+  font-size: 18px;
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.sidebar-links:hover {
+  transform: scale(1.25);
+  font-size: 22px;
+  transition: all 0.5s ease;
+}
+
+.info-popup {
+  width: 400px;
+  box-shadow: 0px 0px 7px #13111136;
+  height: 500px;
+  left: calc(35% - 435px);
+  top: calc(35% - 0px);
+  border-radius: 1%;
+  background: #fff98f;
+}
+
+.info-landmark {  
+  width: 300px;
+  position: absolute;
+  left: -150px;
+  top: -66px;
+}
+
+.arrow-down {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid #a09811;
+}
