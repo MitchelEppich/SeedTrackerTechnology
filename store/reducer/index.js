@@ -19,7 +19,7 @@ const initialState = {
   [
     {
       name: "Spain",
-      anchor: [50.08,-22.81],
+      anchor: [41.24,-4.39],
       description: {
         germination: {
           "30" : "91%",
@@ -43,7 +43,7 @@ const initialState = {
     },
     {
       name: "Crop King Seeds",
-      anchor: [29.25,-13.14],
+      anchor: [49.268,-122.981],
       description: {
         germination: {
           "30" : "91%",
@@ -66,8 +66,8 @@ const initialState = {
       }    
     },
     {
-      name: "YOU",
-      anchor: [19.514, 49.043],
+      name: "You",
+      anchor: [41.05,-75.41],
       description: {
         germination: {
           "30" : "91%",
@@ -89,11 +89,11 @@ const initialState = {
         }
       }    
     },
-    {
-      name: "YOU",
-      anchor: [19.514, 49.043],
-      description: undefined
-    },
+    // {
+    //   name: "YOU",
+    //   anchor: [19.514, 49.043],
+    //   description: undefined
+    // },
     {
       name: "NULL",
       anchor: [null,null]
@@ -112,8 +112,7 @@ const indexReducer = (state = initialState, action) => {
         searched:  action.value,
         navbarSearch: state.trackNumber
       });
-    case actionTypes.TOGGLE_INFO_SECTION: 
-    console.log("NOOOO")
+    case actionTypes.TOGGLE_INFO_SECTION:    
       return updateObject(state, {  
         currentInformation: action.index,      // ! to toggle the state
       });
@@ -121,6 +120,11 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, {  
         currentLocation: action.index    
       });  
+      case actionTypes.CLOSE_ALL:  
+      return updateObject(state, {   
+        currentInformation: false,
+        currentLocation: false       
+      });
    
     default:
       return state;

@@ -39,7 +39,9 @@ class Index extends Component {
         toggleLandmarks={this.props.toggleLandmarks}
         currentLocation={this.props.currentLocation}
         currentInformation={this.props.currentInformation}
-        />
+        closeAllHandler={this.props.closeAllHandler}
+        closeAll={this.props.closeAll}
+        /> 
         {/* <Controls/> */}
             
     
@@ -58,8 +60,18 @@ const mapDispatchToProps = dispatch => {
   return {
     trackNumber: (val) => dispatch(actions.trackNumber(val)),
     search: (val) => dispatch(actions.search(val)),
-    toggleInfoSection: (index) => dispatch(actions.toggleInfoSection(index)),
-    toggleLandmarks: (index) => dispatch(actions.toggleLandmarks(index)),
+    toggleInfoSection: (index) => {
+      dispatch(actions.toggleInfoSection(index))      
+    },
+    toggleLandmarks: (index) => {
+      dispatch(actions.toggleLandmarks(index))
+     
+    },
+    closeAllHandler : input => {  
+      dispatch(actions.closeAll(input));
+      dispatch(actions.toggleInfoSection(input)),
+      dispatch(actions.toggleLandmarks(input))
+    }
 
 
   };

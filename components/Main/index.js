@@ -12,9 +12,7 @@ import InfoSection from "../Main/InfoSection"
 
 library.add(faPlus, faMinus);
 
-
-
-const Main = props => {  
+const Main = props => {    
 
 let markers = props.locations
     const showMarkers = markers.map((marker, index) => {
@@ -22,13 +20,13 @@ let markers = props.locations
         // console.log("MARKER", marker)
         return (
             <Overlay
-                key={index}
+                key={index}                
                 anchor={marker.anchor} 
                 payload={index}>
                 <div 
-                onMouseOver={() => {      
-                    console.log(props.currentInformation)             
-                    props.toggleLandmarks(index)                    
+                onMouseOver={() => {
+                    props.toggleLandmarks(index)  
+                                      
                 }}
                 onMouseOut={() => {                    
                     props.toggleLandmarks(-1)
@@ -36,6 +34,7 @@ let markers = props.locations
                 onClick={()=>{
                     if (marker.description) 
                         props.toggleInfoSection(props.currentInformation == index ? -1 : index)
+                        
                 }}
                 style={{
                     position: 'absolute',
@@ -46,14 +45,18 @@ let markers = props.locations
                     borderRadius: "50%",
                     transform: "translateX(-12.5px) translateY(-12.5px)",
                     cursor: "pointer"
-                    }}>                    
+                }}> {/* just to test */}
+                <span 
+                className="text-center mt-1 w-6 absolute text-semi-transparent font-bold">
+                    {index} 
+                </span>        
                 </div>
                 {props.currentLocation == index ? 
                 (
                     <div className="info-landmark">                     
-                      <h2 className="text-almost-brown font-bold bg-yellow text-center p-2">{marker.name}</h2>
-                        
-                                         
+                      <h3 className="text-almost-brown font-bold bg-yellow text-center p-2">
+                        {marker.name}
+                      </h3>                 
                       <div className="mx-auto arrow-down" />
                     </div>
                   ) : null}
@@ -74,27 +77,37 @@ let markers = props.locations
         }}
         >        
             <Map 
-            limitBounds='edge' 
-            defaultCenter={[0, 0]}
-            // defaultCenter={[45.21, -82.27]}
-             zoom={4} maxZoom={7} minZoom={3}
+                limitBounds='edge'
+                animateMaxScreens={7}  
+                center={props.currentInformation != -1 ? props.locations[props.currentInformation].anchor : [47.81,-54.14]}                
+                zoom={props.currentInformation != -1 ? 5 : 4} 
+                maxZoom={10} 
+                minZoom={3}
               >
                 {showMarkers} 
+
                 <Line coordsArray={ markers.map(marker => marker.anchor) } />    
 
             </Map>
             {props.currentInformation != -1 ? <InfoSection {...props} /> : null }
             
-
-            {/* <div className="absolute pin-b pin-l">           
-                {Object.keys(markers).map(key => (
-                    <button key={key} onClick={() => updateValues({ center: markers[key][0], zoom: markers[key][1] })}>{markers[key]}</button>
+        
+            <div className="absolute pin-b pin-l">           
+                {Object.keys(props.locations).map(key => (
+                    <button 
+                        className="bg-yellow m-2 p-2 text-almost-brown" 
+                        key={key} 
+                        onClick={() => {    
+                            props.toggleInfoSection(props.currentInformation == key ? -1 : key) }}
+                        >
+                        {props.locations[key].name}                        
+                    </button>
                 ))}
-            </div> */}
+            </div>
             
             <HomeTracker />
         </div>
     )
 }
 
-export default Main;
+export default Main

@@ -23,6 +23,7 @@ const actionTypes = {
   SEARCH:"SEARCH",
   TOGGLE_INFO_SECTION: "TOGGLE_INFO_SECTION",
   TOGGLE_LANDMARKS: "TOGGLE_LANDMARKS",
+  CLOSE_ALL: "CLOSE ALL",
 };
 
 const actions = {
@@ -55,6 +56,12 @@ const actions = {
       type: actionTypes.TOGGLE_LANDMARKS,
       index: index
     }
+  },
+  closeAll: input => {    
+    return {
+      type: actionTypes.CLOSE_ALL,
+      input: input
+    };
   },
 
 };

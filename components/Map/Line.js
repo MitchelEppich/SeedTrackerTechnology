@@ -1,9 +1,10 @@
 import React from "react"
 
-const Line = ({ mapState: { width, height, zoom }, latLngToPixel, coordsArray, }) => {
-    if (coordsArray.length < 2) {
+const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, setCenterZoomTarget, coordsArray, }) => {
+      if (coordsArray.length < 2) {
       return null
     }
+    
 
     let pixel = latLngToPixel(coordsArray[0])
     let path = ""
@@ -19,7 +20,7 @@ const Line = ({ mapState: { width, height, zoom }, latLngToPixel, coordsArray, }
       pixel = pixel2
     }
     let adjust = zoom == 4 ? 2500 : 500 + (2000 * ( Math.pow(2, zoom - 4)))
-
+    
     let pathObj = 
     <g>
           {/* The path */}
