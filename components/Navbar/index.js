@@ -8,28 +8,15 @@ const Navbar = props => {
                 <a onClick={()=>{                  
                 }}><h1 className="text-almost-brown p-2">STT</h1></a>
             </div>
-            <div className="inline-flex">
-                <input 
-                className="h-10 w-searchBar border-2 border-light-brown p-2" 
-                placeholder="Track Number.. #8454d91Xcdx"
-                defaultValue={props.searched ? props.navbarSearch : "" }
-                onChange={e => {
-                    let input = e.target.value;
-                    console.log(input)
-                    if (input.length != 0) {
-                      props.trackNumber(e.target.value, 12);                      
-                    }
-                  }}
+            <div className="inline-flex ml-32">
+            <ul className="inline-flex">
+                <li className="p-2 ml-2 text-almost-brown hover:bg-almost-brown hover:text-black font-bold uppercase cursor-pointer">About</li>
+                <li className="p-2 ml-2 text-almost-brown hover:bg-almost-brown hover:text-black font-bold uppercase cursor-pointer">How To Use</li>
+                <li className="p-2 ml-2 text-almost-brown hover:bg-almost-brown hover:text-black font-bold uppercase cursor-pointer">STT</li>
+            </ul>
                 
-                />
             </div>
-            <div className="inline-flex">
-                <button 
-                className="h-10 bg-yellow-light text-almost-brown text-lg border border-1 border-light-brown px-6 ml-4 font-bold"
-                onClick={()=> {
-                    props.toggleInfoSection()  
-                }}>Search</button>
-            </div>
+            
 
             
             

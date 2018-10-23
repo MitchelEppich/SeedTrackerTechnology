@@ -6,11 +6,13 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 library.add(faTimes);
 
 
-const InfoSection = props => {  
-    let marker = props.locations[props.currentInformation]    
-    if (!marker) return <div></div>
-       return (
-        <div className="absolute info-popup pin-b pin-l z-50 p-2">
+const InfoSection = props => {     
+
+    let marker = props.locations[props.currentInformation] 
+    if (marker == null) return <div></div>
+
+            return (
+                <div className="absolute info-popup pin-b pin-l z-50 p-2">
             <div className="flex mb-2">                
                 <span className="w-1/3" >
                     <img style={{borderRadius:"2%", height:"120px"}} className="p-2" src={marker.description.imageUrl}/>
@@ -44,7 +46,8 @@ const InfoSection = props => {
                 </div>   
             </div>
         </div>
-    )
+            )
+    
 }
 
 

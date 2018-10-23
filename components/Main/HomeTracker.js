@@ -38,6 +38,15 @@ const HomeTracker = props => {
                         onClick={()=> {
                             console.log("Track Number: " + searched.value);
                             props.search("true");
+                            props.setLocations([
+                                props.landmarks.spain,
+                                props.landmarks.cks,
+                                {
+                                    name: 'You',
+                                    anchor: [43.30, 10.00]
+                                },
+                                { anchor: [null, null] }
+                            ])
                         }}>Search 
                         </button>
                     </div>

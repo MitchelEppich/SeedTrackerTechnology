@@ -3,21 +3,23 @@ import HomeTracker from "../Main/HomeTracker"
 import ReactDOM from 'react-dom';
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMinus, faInfo, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import Map from 'pigeon-maps'
 import Marker from 'pigeon-marker/react'
 import Overlay from 'pigeon-overlay'
 import Line from "../Map/Line"
 import InfoSection from "../Main/InfoSection"
 
-library.add(faPlus, faMinus);
+library.add(faPlus, faMinus, faInfo);
 
 const Main = props => {    
 
 let markers = props.locations
-    const showMarkers = markers.map((marker, index) => {
+
+    const showMarkers = markers != null ? 
+    markers.map((marker, index) => {
         if (index == markers.length - 1) return null
-        // console.log("MARKER", marker)
+
         return (
             <Overlay
                 key={index}                
@@ -45,11 +47,8 @@ let markers = props.locations
                     borderRadius: "50%",
                     transform: "translateX(-12.5px) translateY(-12.5px)",
                     cursor: "pointer"
-                }}> {/* just to test */}
-                <span 
-                className="text-center mt-1 w-6 absolute text-semi-transparent font-bold">
-                    {index} 
-                </span>        
+                }}> 
+                       
                 </div>
                 {props.currentLocation == index ? 
                 (
@@ -62,20 +61,50 @@ let markers = props.locations
                   ) : null}
             </Overlay>
         )
-    })
+    }) : null;
 
 
 
     
     return (
         <div 
-        style={{
-            width: "100vw",
+        style={{            
             height: "100vh",
             overflowY: "hidden",
-            overflowX: "hidden"            
+            overflowX: "hidden",   
+            position: "relative"         
         }}
         >        
+            {props.searched ? <div className="inline-flex absolute">
+                                <input 
+                                    className="h-10 w-searchBar inline-flex  border-2 border-light-brown p-2  z-50 ml-4 mt-4" 
+                                    placeholder="Track Number.. #8454d91Xcdx"
+                                    id="searchvalue"
+                                    defaultValue={props.searched ? props.navbarSearch : "" }
+                                    onChange={e => {
+                                        let input = e.target.value;
+                                        console.log(input)
+                                        if (input.length != 0) {
+                                        props.trackNumber(e.target.value, 12);                      
+                                        }
+                                    }}
+                                />
+                                <button 
+                                    className="h-10 bg-yellow-light inline-flex z-50 ml-4 mt-4 text-almost-brown text-lg border border-1 border-light-brown px-6 font-bold"
+                                    onChange={e => {
+                                        let input = e.target.value;
+                                        console.log(input)
+                                        if (input.length != 0) {
+                                        props.trackNumber(e.target.value, 12);                      
+                                        }
+                                    }}
+                                    onClick={e => {
+                                        let searchvalue = document.querySelector('#searchvalue') 
+                                        console.log("Searched Value: ", searchvalue.value)                                        
+                                    }}>Search
+                                </button>                
+                </div> : <div />}
+
             <Map 
                 limitBounds='edge'
                 animateMaxScreens={7}  
@@ -86,13 +115,37 @@ let markers = props.locations
               >
                 {showMarkers} 
 
-                <Line coordsArray={ markers.map(marker => marker.anchor) } />    
+                {markers != null ? <Line coordsArray={ markers.map(marker => marker.anchor) } /> : null}    
 
             </Map>
             {props.currentInformation != -1 ? <InfoSection {...props} /> : null }
+           
+
+            <div className="absolute pin-b pin-l mb-4 ml-4"> 
+                <div className="inline-flex h-16">
+                    <FontAwesomeIcon 
+                        icon={faInfoCircle} 
+                        className="fa-2x h-16 text-black cursor-pointer mr-2 "
+                        onClick={()=> {   
+                            props.toggleCopyright()
+                       }}/>                
+                    
+                    {props.showCopyright == true ?     
+                    <div className="inline-flex h-16">
+                        <div className="ml-0 mt-5 arrow-left" /> 
+                         <div className="bg-yellow w-300 h-16"> 
+                         
+                            <h4 className="text-center p-6 ml-4 text-almost-brown">
+                            Copyright 2018 - SST
+                            </h4>   
+                        </div>
+                    </div>
+                     : <div/> }
+                </div>
+            </div>
             
         
-            <div className="absolute pin-b pin-l">           
+            {/* <div className="absolute pin-b pin-l">           
                 {Object.keys(props.locations).map(key => (
                     <button 
                         className="bg-yellow m-2 p-2 text-almost-brown" 
@@ -103,7 +156,7 @@ let markers = props.locations
                         {props.locations[key].name}                        
                     </button>
                 ))}
-            </div>
+            </div> */}
             
             <HomeTracker />
         </div>

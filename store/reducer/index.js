@@ -15,9 +15,9 @@ const initialState = {
   navbarSearch: null,
   currentLocation: -1,
   currentInformation: -1,
-  locations: 
-  [
-    {
+  showCopyright: false,
+  landmarks: {
+    "spain": {
       name: "Spain",
       anchor: [41.24,-4.39],
       description: {
@@ -41,7 +41,7 @@ const initialState = {
         }
       }
     },
-    {
+    "cks": {
       name: "Crop King Seeds",
       anchor: [49.268,-122.981],
       description: {
@@ -63,47 +63,36 @@ const initialState = {
           "twitter" : "http://www.instagram.com",
           "instagram": "http://www.instagram.com"
         }
-      }    
+      }
     },
-    {
-      name: "You",
-      anchor: [41.05,-75.41],
-      description: {
-        germination: {
-          "30" : "91%",
-          "45" : "89%",
-          "house" : "94%"
-        },
-        dates: {
-          "depart" : "Jun 9",
-          "harvest" : "Aug 1",
-          "package" : "Aug 2",
-          "ship" : "Aug 9"
-        },
-        imageUrl: "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "",
-        socials: {
-          "facebook" : "http://www.instagram.com",
-          "twitter" : "http://www.instagram.com",
-          "instagram": "http://www.instagram.com"
-        }
-      }    
+    "swg": {
+      anchor: [49.2687,-123.2428]
     },
-    // {
-    //   name: "YOU",
-    //   anchor: [19.514, 49.043],
-    //   description: undefined
-    // },
-    {
-      name: "NULL",
-      anchor: [null,null]
+    "mjsc.ca": {
+      anchor: [49.1887,-123.0812]
     },
-  ],
+    "mjsc.com": {
+      anchor: [49.1887,-123.0812]
+    },
+    "mjg": {
+      anchor: [49.2332,-122.9931]
+    },
+    "bvr": {
+      anchor: [49.29173,-123.13522]
+    },
+    "snm": {
+      anchor: [49.2775,-123.0440]
+    },
+    "sfw": {
+      anchor: [49.27280,-123.15233]
+    },
+  },
+  locations: null,
 }
 
 const indexReducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.TRACK_NUMBER:    
+    case actionTypes.TRACK_NUMBER:   
       return updateObject(state, {
         trackNumber:  action.number
       });
@@ -120,10 +109,18 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, {  
         currentLocation: action.index    
       });  
-      case actionTypes.CLOSE_ALL:  
+    case actionTypes.TOGGLE_COPYRIGHT: 
+      return updateObject(state, {  
+        showCopyright: !state.showCopyright    
+      });     
+    case actionTypes.CLOSE_ALL:  
       return updateObject(state, {   
-        currentInformation: false,
-        currentLocation: false       
+        currentInformation: -1,
+        currentLocation: -1       
+      });
+    case actionTypes.SET_LOCATIONS:  
+      return updateObject(state, {   
+        locations: action.input       
       });
    
     default:

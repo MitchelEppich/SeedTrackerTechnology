@@ -24,6 +24,8 @@ const actionTypes = {
   TOGGLE_INFO_SECTION: "TOGGLE_INFO_SECTION",
   TOGGLE_LANDMARKS: "TOGGLE_LANDMARKS",
   CLOSE_ALL: "CLOSE ALL",
+  SET_LOCATIONS: "SET_LOCATIONS",
+  TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT", 
 };
 
 const actions = {
@@ -57,9 +59,20 @@ const actions = {
       index: index
     }
   },
+  toggleCopyright: () => {  
+    return {
+      type: actionTypes.TOGGLE_COPYRIGHT      
+    }
+  },  
   closeAll: input => {    
     return {
       type: actionTypes.CLOSE_ALL,
+      input: input
+    };
+  },
+  setLocations: input => {   
+    return {
+      type: actionTypes.SET_LOCATIONS,
       input: input
     };
   },

@@ -21,19 +21,9 @@ class Index extends Component {
 
   render() {   
         return (
-      <Layout>  
-        <Navbar 
-        trackNumber={this.props.trackNumber}
-        search={this.props.search}
-        navbarSearch={this.props.navbarSearch}
-        searched={this.props.searched}
-        toggleInfoSection={this.props.toggleInfoSection}
-        showInfoSection={this.props.showInfoSection}
-        /> 
-        <Video />
-        <About />      
-        {/* <Main 
-        
+      <Layout>       
+
+        <Main         
         trackNumber={this.props.trackNumber}
         search={this.props.search}
         navbarSearch={this.props.navbarSearch}
@@ -44,12 +34,12 @@ class Index extends Component {
         currentLocation={this.props.currentLocation}
         currentInformation={this.props.currentInformation}
         closeAllHandler={this.props.closeAllHandler}
-        closeAll={this.props.closeAll}
-        
-        /> 
-        <Controls/>
-            
-    
+        closeAll={this.props.closeAll}    
+        toggleCopyright={this.props.toggleCopyright} 
+        showCopyright={this.props.showCopyright} 
+           
+        />     
+                
         <HomeTracker 
         trackNumber={this.props.trackNumber}
         search={this.props.search}
@@ -57,11 +47,10 @@ class Index extends Component {
         searched={this.props.searched}
         setLocations={this.props.setLocations}
         landmarks={this.props.landmarks}
-        />                     */}
-
-        <iframe className="pin w-full" style={{
-          height: "902px"
-        }} src="http://localhost:3000/stt"></iframe>         
+        toggleCopyright={this.props.toggleCopyright}
+        showCopyright={this.props.showCopyright}
+        
+        />                 
       </Layout>
     );
   }
@@ -77,12 +66,9 @@ const mapDispatchToProps = dispatch => {
     toggleLandmarks: (index) => {
       dispatch(actions.toggleLandmarks(index))     
     },
-    toggleCopyright: (index) => {
-      dispatch(actions.toggleCopyright(index))     
-    },
-  //   showCopyrightInfo: (index) => {      
-  //     dispatch(actions.showCopyrightInfo(index)) 
-  // },
+    toggleCopyright: () => {
+        dispatch(actions.toggleCopyright())     
+    },    
     closeAllHandler : input => {  
       dispatch(actions.closeAll(input));
     },

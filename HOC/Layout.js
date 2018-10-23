@@ -27,7 +27,7 @@ class Layout extends Component {
 
   render() {
     return (
-      <div>
+      <div className="w-full">
          {this.props.children}           
       </div>
     );
