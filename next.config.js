@@ -21,14 +21,14 @@ module.exports = withSass({
           test: /\.css$/,
           use: ['css-loader']
         }, {
-          test: /\.(png|woff|woff2|eot|ttf|svg|gif|jpg)$/,
+          test: /\.(png|woff|woff2|eot|otf|ttf|svg|gif|jpg)$/,
           loader: 'file-loader',
           options: {
             publicPath: '/_next/static/',
             outputPath: "static/"
           }
         }, {
-          test: /\.(png|woff|woff2|eot|ttf|svg|gif|jpg)$/,
+          test: /\.(png|woff|woff2|eot|otf|ttf|svg|gif|jpg)$/,
           loader: 'file-loader',
           options: {
             publicPath: '/_next/static/img/',

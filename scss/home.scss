@@ -35,17 +35,23 @@
 /* CUSTOM FONTS */
 /*********************/
 
-// @font-face {
-//   font-family: 'Novecentowide-DemiBold', arial;
-//   src: url('../static/fonts/Novecentowide/Novecentowide-DemiBold.eot') format('embedded-opentype'),
-//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.otf') format('opentype'),
-//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.ttf') format('truetype'),
-//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.svg#Novecentowide-DemiBold.svg') format('svg');
-//       }
+@font-face {
+  font-family: 'Novecentowide-DemiBold', arial;
+  src: url('../static/fonts/Novecentowide/Novecentowide-DemiBold.eot') format('embedded-opentype'),
+       url('../static/fonts/Novecentowide/Novecentowide-DemiBold.otf') format('opentype'),
+       url('../static/fonts/Novecentowide/Novecentowide-DemiBold.ttf') format('truetype')
+  }
+
+  @font-face {
+    font-family: 'DINPro-Medium';
+    src: url('../static/fonts/DINPro-Medium/DINPro-Medium.eot') format('embedded-opentype'),
+          url('../static/fonts/DINPro-Medium/DINPro-Medium.otf') format('opentype'),
+          url('../static/fonts/DINPro-Medium/DINPro-Medium.ttf') format('truetype')
+  }
 
 /* CUSTOM CSS */
 .body, html {
-  font-family: 'Arial';  
+  font-family: 'DINPro-Medium', arial;  
   color: #252525;
   padding: 0;
   margin: 0;
@@ -58,16 +64,24 @@ a {
 
 li {
   list-style: none;  
-  transition: all 0.5s ease;
+  transition: all .5s cubic-bezier(0.87, 0.52, 0, 0.52);
 }
 
 // .menu-mobile {
 
 // }
 
-// .menu-item { 
-// }
 
+.menu-item  {  
+  transform: scale(1);
+  transition: all 0.35s ease;
+}
+
+.menu-item:hover {
+  transform: scale(1.06);
+  transition: all 0.3s ease;
+  color: #696202;
+}
 
 
 .path{  

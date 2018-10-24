@@ -19,7 +19,7 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, setCent
       }
       pixel = pixel2
     }
-    let adjust = zoom == 4 ? 2500 : 500 + (2000 * ( Math.pow(2, zoom - 4)))
+    let adjust = zoom == 4 ? 2900 : 500 + (2000 * ( Math.pow(2, zoom - 4)))
     
     let pathObj = 
     <g>

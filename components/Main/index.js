@@ -124,20 +124,18 @@ let markers = props.locations
             {props.currentInformation != -1 ? <InfoSection {...props} /> : null }
            
 
-            <div className="absolute pin-b pin-r mb-4 mr-4"> 
+            <div className="absolute inline-flex pin-b pin-r mb-4 mr-4"> 
                 <div className="inline-flex h-12">
                 {props.showCopyright == true ?     
-                    <div className="inline-flex h-12">
-                        
-                         <div className="bg-navy-blue w-200 h-12"> 
-                         
+                    <div className="inline-flex">                        
+                         <div className="bg-navy-blue w-200 h-12">                          
                             <h4 className="text-center p-2 py-5 mr-1 text-xs text-white">
                             © Copyright 2018 | SST 
                             </h4>   
                         </div>
-                        <div className="ml-0 arrow-right"> </div>
+                        <div className="arrow-right"></div>
                     </div>
-                     : <div/>}
+                     : <div className="inline-flex h-12"/>}
                     <FontAwesomeIcon 
                         icon={faInfoCircle} 
                         className="fa-2x h-12 text-navy-blue cursor-pointer"
