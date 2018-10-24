@@ -26,6 +26,7 @@ const actionTypes = {
   CLOSE_ALL: "CLOSE ALL",
   SET_LOCATIONS: "SET_LOCATIONS",
   TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT", 
+  TOGGLE_MENU: "TOGGLE_MENU",
 };
 
 const actions = {
@@ -62,6 +63,11 @@ const actions = {
   toggleCopyright: () => {  
     return {
       type: actionTypes.TOGGLE_COPYRIGHT      
+    }
+  },  
+  toggleMenu: () => {  
+    return {
+      type: actionTypes.TOGGLE_MENU      
     }
   },  
   closeAll: input => {    

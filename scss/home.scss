@@ -35,16 +35,17 @@
 /* CUSTOM FONTS */
 /*********************/
 
-@font-face {
-  font-family: 'Hominis', Arial;
-  src: url('../static/fonts/Hominis/Hominis.ttf'),
-	     url('../static/fonts/Hominis/HOMINIS-webfont.woff') format('woff'),
-	     url('../static/fonts/Hominis/HOMINIS-webfont.ttf') format('truetype');
-}
+// @font-face {
+//   font-family: 'Novecentowide-DemiBold', arial;
+//   src: url('../static/fonts/Novecentowide/Novecentowide-DemiBold.eot') format('embedded-opentype'),
+//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.otf') format('opentype'),
+//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.ttf') format('truetype'),
+//        url('../static/fonts/Novecentowide/Novecentowide-DemiBold.svg#Novecentowide-DemiBold.svg') format('svg');
+//       }
 
 /* CUSTOM CSS */
 .body, html {
-  font-family: arial;  
+  font-family: 'Arial';  
   color: #252525;
   padding: 0;
   margin: 0;
@@ -57,22 +58,24 @@ a {
 
 li {
   list-style: none;  
+  transition: all 0.5s ease;
 }
 
-.bgImg {
-  background: url("../static/imgs/world-map.svg") no-repeat;
-  width: 100vw;
-  height: 100vh;
-  background-position: center;
-  background-size: contain;  
-}
+// .menu-mobile {
+
+// }
+
+// .menu-item { 
+// }
+
+
 
 .path{  
   fill: none;
-  stroke: rgba(97, 97, 97, 0.8);
-  stroke-linecap: square;
-  stroke-miterlimit: 10;
-  stroke-width: 8;
+  stroke: rgba(21, 34, 45, 0.761);
+  stroke-linecap: butt;
+  stroke-miterlimit: 6;
+  stroke-width: 6px;
 }
 
 @keyframes dash {
@@ -127,41 +130,19 @@ li {
 }
 
 .about-section {
-  background: #212121;
+  background: #031a28;
   padding: 120px 5px;
   text-align: center;
 }
 
 .overlay {
   background: rgba(0, 0, 0, 0.65);
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   float: left;
   overflow: hidden;
 }
 
-.title-text-smaller {
-  padding-top: 15px;
-  text-align: center;
-  padding-left: 210px;
-  font-size: 40px;
-  position: absolute;
-  left: 18%;
-  z-index: 55;
-  top: 12%;
-}
-
-.title-text-bigger {
-  font-size: 110px;
-  position: absolute;
-  left: 20%;
-  z-index: 55;
-  top: 20%;
-  font-weight: normal;
-  letter-spacing: 20px;
-  font-family: 'Hominis', Arial;
-  text-transform: uppercase;
-}
 
 .link-title {
   text-align: center;
@@ -170,21 +151,6 @@ li {
   text-decoration: underline;
 }
 
-.animation-left {
-  transform: translateX(0vw);
-  transition: all 0.5s ease;
-  position: absolute;
-  width: 95vw;
-  z-index: 30;
-}
-
-.animation-right {
-  transform: translateX(-45vw);
-  transition: all 0.5s ease;
-  position: absolute;
-  width: 94vw;
-  z-index: 30;  
-}
 
 .button-index {
   bottom: 0;
@@ -194,79 +160,44 @@ li {
   text-transform: uppercase;
 }
 
-.step-title {
-  font-size: 50px;
-}
-
-.step-subtitle {
-  font-size: 25px;
-}
-
-.bar-left {
-  background: #73642a;
-  border-right: 2px solid #000000;  
-}
-
-.text-container-left {
-  padding: 15px 50px;
-  // text-align: left;
-  
-  
-}
-
-.bar-right {
-  width: 10%;
-  height: 100vh;
-  float: right;
-  padding: 30px;
-  background: #4d714d;
-  border-left: 2px solid #000;
-}
-
-.text-container-right {
-  padding: 15px 50px;
-  
-}
-
-
-.current-step {
-  display: inline-flex;
-  font-size: 40px;
-  text-decoration: none;
-}
-
-.step-img {
-  width: auto;
-}
-
-.sidebar-links {
-  text-decoration: none;
-  font-size: 18px;
+.animate-icons {  
   transform: scale(1);
   transition: all 0.5s ease;
 }
 
-.sidebar-links:hover {
-  transform: scale(1.25);
-  font-size: 22px;
+.animate-icons:hover {
+  transform: scale(1.15);
   transition: all 0.5s ease;
+}
+
+.total-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.h1-title {
+  font-size: 40px;
+  color: #b1e21f17;
+  font-weight: 600;
+  text-shadow: 0px 0px 17px rgba(253, 253, 253, 0.32);
 }
 
 .info-popup {
   width: 400px;
   box-shadow: 0px 0px 7px #13111136;
   height: 500px;
-  left: calc(22% - 300px);
+  left: calc(1% - 0px);
   top: calc(43% - 0px);
   border-radius: 1%;
   background: #f9f9f9;
 }
 
 .info-landmark {  
-  width: 270px;
+  width: 220px;
   position: absolute;
-  left: -135px;
-  top: -66px;
+  left: -110px;
+  top: -60px;
 }
 
 .arrow-down {
@@ -277,10 +208,11 @@ li {
   border-top: 15px solid #aca40c;
 }
 
-.arrow-left {
-  width: 0;
-  height: 0;
-  border-bottom: 10px solid rgba(255, 255, 255, 0);
-  border-right: 15px solid #a99f07;
-  border-top: 15px solid rgba(255, 255, 255, 0);
+.arrow-right {
+  width: 0px;
+  height: 25px;
+  margin-top: 12px;
+  border-bottom: 13px solid rgba(62, 20, 20, 0);
+  border-left: 11px solid #031a2894;
+  border-top: 13px solid rgba(62, 20, 20, 0);
 }

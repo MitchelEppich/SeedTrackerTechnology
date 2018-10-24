@@ -29,6 +29,8 @@ class Index extends Component {
         searched={this.props.searched}
         toggleInfoSection={this.props.toggleInfoSection}
         showInfoSection={this.props.showInfoSection}
+        showMenuCollapsed={this.props.showMenuCollapsed}
+        toggleMenu={this.props.toggleMenu}
         /> 
         <Video />
         <About />      
@@ -59,9 +61,9 @@ class Index extends Component {
         landmarks={this.props.landmarks}
         />                     */}
 
-        <iframe className="pin w-full" style={{
+        <iframe id="stt" className="pin w-full" style={{
           height: "902px"
-        }} src="http://localhost:3000/stt"></iframe>         
+        }} src={`http://192.168.0.27:3000/stt`}></iframe>      
       </Layout>
     );
   }
@@ -79,6 +81,9 @@ const mapDispatchToProps = dispatch => {
     },
     toggleCopyright: (index) => {
       dispatch(actions.toggleCopyright(index))     
+    },
+    toggleMenu: (index) => {
+      dispatch(actions.toggleMenu(index))
     },
   //   showCopyrightInfo: (index) => {      
   //     dispatch(actions.showCopyrightInfo(index)) 

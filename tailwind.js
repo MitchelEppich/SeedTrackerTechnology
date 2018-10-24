@@ -80,7 +80,7 @@ let colors = {
   "yellow-darkest": "#453411",
   "yellow-darker": "#684f1d",
   "yellow-dark": "#f2d024",
-  yellow: "#fbed08",
+  yellow: "#fff200",
   "yellow-light": "#fff382",
   "yellow-lighter": "#fff9c2",
   "yellow-lightest": "#fcfbeb",
@@ -108,6 +108,11 @@ let colors = {
   "blue-light": "#6cb2eb",
   "blue-lighter": "#bcdefa",
   "blue-lightest": "#eff8ff",
+
+  "navy-blue": "#031a28",
+  "transparent-blue": "rgba(3, 26, 40, 0.5)",
+  "light-blue": "#677075",
+  "light-navy": "#152431",
 
   "indigo-darkest": "#191e38",
   "indigo-darker": "#2f365f",
@@ -170,10 +175,16 @@ module.exports = {
   */
 
   screens: {
-    sm: "576px",
-    md: "768px",
-    lg: "992px",
-    xl: "1200px"
+    // xs: "140px",
+    // sm: "576px",
+    // md: "768px",
+    // lg: "992px",
+    // xl: "1200px"
+    sm: { min: "200px", max: "767px" },
+    md: { min: "768px", max: "991px" },
+    lg: { min: "992px", max: "1249px" },
+    xl: { min: "1250px", max: "1599px" },
+    xxl: { min: "1600px", max: "2399px" },
   },
 
   /*
@@ -502,6 +513,7 @@ module.exports = {
     "300": "300px",
     "400": "400px",
     "logo": "100px",
+    "container": "1080px",
     "searchBar": "390px",
     "mainCard": "550px",
     "uploadButton": "320px",
@@ -540,6 +552,7 @@ module.exports = {
     "10": "2.5rem",
     "12": "3rem",
     "16": "4rem",
+    "20": "5rem",
     "24": "6rem",
     "32": "8rem",
     "40": "10rem",
@@ -550,6 +563,7 @@ module.exports = {
     "300": "300px",
     "400": "400px",    
     "650": "650px",
+    "halfscreen": "940px",
     full: "100%",
     screen: "100vh",
     uploader: "400px",

@@ -53,7 +53,7 @@ let markers = props.locations
                 {props.currentLocation == index ? 
                 (
                     <div className="info-landmark">                     
-                      <h3 className="text-almost-brown font-bold bg-yellow text-center p-2">
+                      <h3 className="text-navy-blue font-bold bg-yellow text-center p-2">
                         {marker.name}
                       </h3>                 
                       <div className="mx-auto arrow-down" />
@@ -75,9 +75,9 @@ let markers = props.locations
             position: "relative"         
         }}
         >        
-            {props.searched ? <div className="inline-flex absolute">
+            {props.searched ? <div className="inline-flex mt-8 absolute">
                                 <input 
-                                    className="h-10 w-searchBar inline-flex  border-2 border-light-brown p-2  z-50 ml-4 mt-4" 
+                                    className="h-10 w-searchBar inline-flex border-2 border-light-blue p-2  z-50 ml-4" 
                                     placeholder="Track Number.. #8454d91Xcdx"
                                     id="searchvalue"
                                     defaultValue={props.searched ? props.navbarSearch : "" }
@@ -90,7 +90,7 @@ let markers = props.locations
                                     }}
                                 />
                                 <button 
-                                    className="h-10 bg-yellow-light inline-flex z-50 ml-4 mt-4 text-almost-brown text-lg border border-1 border-light-brown px-6 font-bold"
+                                    className="h-10 bg-navy-blue inline-flex z-50 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold"
                                     onChange={e => {
                                         let input = e.target.value;
                                         console.log(input)
@@ -107,11 +107,14 @@ let markers = props.locations
 
             <Map 
                 limitBounds='edge'
-                animateMaxScreens={7}  
+                // animateMaxScreens={7}  
                 center={props.currentInformation != -1 ? props.locations[props.currentInformation].anchor : [47.81,-54.14]}                
                 zoom={props.currentInformation != -1 ? 5 : 4} 
                 maxZoom={10} 
                 minZoom={3}
+                twoFingerDrag={true}
+                metaWheelZoom={true}
+                metaWheelZoomWarning={"Keep Pressing Window or CMD button to Scroll"}
               >
                 {showMarkers} 
 
@@ -121,30 +124,44 @@ let markers = props.locations
             {props.currentInformation != -1 ? <InfoSection {...props} /> : null }
            
 
-            <div className="absolute pin-b pin-l mb-4 ml-4"> 
-                <div className="inline-flex h-16">
+            <div className="absolute pin-b pin-r mb-4 mr-4"> 
+                <div className="inline-flex h-12">
+                {props.showCopyright == true ?     
+                    <div className="inline-flex h-12">
+                        
+                         <div className="bg-navy-blue w-200 h-12"> 
+                         
+                            <h4 className="text-center p-2 py-5 mr-1 text-xs text-white">
+                            © Copyright 2018 | SST 
+                            </h4>   
+                        </div>
+                        <div className="ml-0 arrow-right"> </div>
+                    </div>
+                     : <div/>}
                     <FontAwesomeIcon 
                         icon={faInfoCircle} 
-                        className="fa-2x h-16 text-black cursor-pointer mr-2 "
+                        className="fa-2x h-12 text-navy-blue cursor-pointer"
                         onClick={()=> {   
                             props.toggleCopyright()
                        }}/>                
                     
-                    {props.showCopyright == true ?     
-                    <div className="inline-flex h-16">
-                        <div className="ml-0 mt-5 arrow-left" /> 
-                         <div className="bg-yellow w-300 h-16"> 
+                    {/* // {props.showCopyright == true ?      */}
+                    {/* // <div className="inline-flex h-12">
+                    //     <div className="ml-0 arrow-right" /> 
+                    //      <div className="bg-navy-blue w-200 h-12"> 
                          
-                            <h4 className="text-center p-6 ml-4 text-almost-brown">
-                            Copyright 2018 - SST
-                            </h4>   
-                        </div>
-                    </div>
-                     : <div/> }
+                    //         <h4 className="text-center p-2 py-5 ml-1 text-xs text-white">
+                    //         © Copyright 2018 | SST 
+                    //         </h4>   
+                    //     </div>
+                    // </div>
+                    //  : <div/>  */}
                 </div>
             </div>
             
-        
+
+            {/* LOCATION BUTTONS TO NAVIGATE */}
+
             {/* <div className="absolute pin-b pin-l">           
                 {Object.keys(props.locations).map(key => (
                     <button 

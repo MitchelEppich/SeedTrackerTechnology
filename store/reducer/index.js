@@ -16,6 +16,7 @@ const initialState = {
   currentLocation: -1,
   currentInformation: -1,
   showCopyright: false,
+  showMenuCollapsed: false,
   landmarks: {
     "spain": {
       name: "Spain",
@@ -112,7 +113,11 @@ const indexReducer = (state = initialState, action) => {
     case actionTypes.TOGGLE_COPYRIGHT: 
       return updateObject(state, {  
         showCopyright: !state.showCopyright    
-      });     
+      }); 
+    case actionTypes.TOGGLE_MENU: 
+      return updateObject(state, {  
+        showMenuCollapsed: !state.showMenuCollapsed    
+      });         
     case actionTypes.CLOSE_ALL:  
       return updateObject(state, {   
         currentInformation: -1,

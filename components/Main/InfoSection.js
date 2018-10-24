@@ -19,7 +19,7 @@ const InfoSection = props => {
                 </span>
                 <h2 className="w-2/3 text-black p-2 text-center">{marker.name}</h2>
                 <div
-                    className="cursor-pointer text-center h-10 w-10 pt-2 hover:bg-almost-brown float-right"
+                    className="cursor-pointer text-center h-10 w-10 pt-2 hover:bg-navy-blue hover:text-white float-right"
                     onClick={() => {                    
                         props.closeAllHandler();
                     }}

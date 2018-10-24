@@ -20,37 +20,34 @@ class Index extends Component {
   }
 
   render() {   
-        return (
-      <Layout>       
-
+    return (
+      <Layout>
         <Main         
-        trackNumber={this.props.trackNumber}
-        search={this.props.search}
-        navbarSearch={this.props.navbarSearch}
-        searched={this.props.searched}
-        toggleInfoSection={this.props.toggleInfoSection}        
-        locations={this.props.locations}        
-        toggleLandmarks={this.props.toggleLandmarks}
-        currentLocation={this.props.currentLocation}
-        currentInformation={this.props.currentInformation}
-        closeAllHandler={this.props.closeAllHandler}
-        closeAll={this.props.closeAll}    
-        toggleCopyright={this.props.toggleCopyright} 
-        showCopyright={this.props.showCopyright} 
-           
+          trackNumber={this.props.trackNumber}
+          search={this.props.search}
+          navbarSearch={this.props.navbarSearch}
+          searched={this.props.searched}
+          toggleInfoSection={this.props.toggleInfoSection}        
+          locations={this.props.locations}        
+          toggleLandmarks={this.props.toggleLandmarks}
+          currentLocation={this.props.currentLocation}
+          currentInformation={this.props.currentInformation}
+          closeAllHandler={this.props.closeAllHandler}
+          closeAll={this.props.closeAll}    
+          toggleCopyright={this.props.toggleCopyright} 
+          showCopyright={this.props.showCopyright} 
         />     
                 
         <HomeTracker 
-        trackNumber={this.props.trackNumber}
-        search={this.props.search}
-        navbarSearch={this.props.navbarSearch}
-        searched={this.props.searched}
-        setLocations={this.props.setLocations}
-        landmarks={this.props.landmarks}
-        toggleCopyright={this.props.toggleCopyright}
-        showCopyright={this.props.showCopyright}
-        
-        />                 
+          trackNumber={this.props.trackNumber}
+          search={this.props.search}
+          navbarSearch={this.props.navbarSearch}
+          searched={this.props.searched}
+          setLocations={this.props.setLocations}
+          landmarks={this.props.landmarks}
+          toggleCopyright={this.props.toggleCopyright}
+          showCopyright={this.props.showCopyright}
+        />                    
       </Layout>
     );
   }

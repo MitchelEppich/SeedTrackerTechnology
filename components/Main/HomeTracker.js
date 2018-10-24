@@ -10,8 +10,8 @@ const HomeTracker = props => {
             className="w-mainCard absolute text-center rounded-lg main-message bg-yellow"
             ref={(searchPanel)=>{searchSection=searchPanel}}            
             >
-                <h3 className="text-xxl">Welcome to</h3>
-                <h2 className="text-xxxl">Seed Tracker Technology</h2>
+                
+                <h2 className="text-xxxl">Track your Seed</h2>
                 <p className="p-4 text-xl">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. </p>
                 <div className="w-full pb-8">
                     <div className="inline-flex">
