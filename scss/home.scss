@@ -97,7 +97,7 @@ li {
 }
 
 .marker {
-  animation: move 20s linear forwards;
+  animation: move 10s linear forwards;
 }
 
 @keyframes move {
@@ -141,6 +141,8 @@ li {
   left: calc(50% - 275px);
   top: calc(100% - 65%);
   padding: 20px;
+  background: #031a28;
+  color: white;
 }
 
 .about-section {

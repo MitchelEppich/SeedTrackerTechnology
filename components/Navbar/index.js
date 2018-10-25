@@ -2,6 +2,7 @@ import React from "react"
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AnchorLink from 'react-anchor-link-smooth-scroll'
 
 library.add(faBars);
 
@@ -32,19 +33,27 @@ const Navbar = props => {
     return (
         <div className="w-full h-20 bg-yellow pin-t flex flex-wrap items-center shadow-md fixed z-50">
             <div className="inline-flex w-1/3 sm:w-1/2 pl-8 sm:pl-2 sm:ml-0">
-                {/* <a href="/">
-                    <img className="p-2 cursor-pointer"  src="../../static/imgs/logo.png"/>
-                </a> */}
                 <a href="/">
-                    <img className="p-2 shadow cursor-pointer"  src="../../static/imgs/logo2.png"/>
+                    <img className="p-2 cursor-pointer"  src="../../static/imgs/logo.png"/>
                 </a>
+                {/* <a href="/">
+                    <img className="p-2 shadow cursor-pointer"  src="../../static/imgs/logo2.png"/>
+                </a> */}
             </div> 
             <div className="inline-flex justify-end w-2/3 pr-8 pin-r sm:hidden xs:hidden">
-                <ul className="inline-flex justify-end">
-                    <a href="#"><li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">Home</li></a>
-                    <a href="#about"><li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">About</li></a>
-                    <a href="#"><li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">How To Use</li></a>
-                    <a href="#stt"><li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">STT</li></a>
+                <ul className="inline-flex justify-end">                    
+                    <li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">
+                        <AnchorLink href='#video'>Home</AnchorLink>
+                    </li>                    
+                    <li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">
+                        <AnchorLink href='#about'>About</AnchorLink>
+                    </li>
+                    <li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">
+                        <AnchorLink href='#video'>How To Use</AnchorLink>
+                    </li>
+                    <li className="menu-item p-4 xs:p-2 sm:p-2 ml-2 text-navy-blue  hover:text-grey font-bold uppercase cursor-pointer">
+                        <AnchorLink href='#stt'>STT</AnchorLink>
+                    </li>
                 </ul>   
             </div> 
             

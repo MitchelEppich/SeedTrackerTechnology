@@ -5,10 +5,11 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus, faInfo, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import Map from 'pigeon-maps'
-import Marker from 'pigeon-marker/react'
+// import Marker from 'pigeon-marker/react'
 import Overlay from 'pigeon-overlay'
 import Line from "../Map/Line"
 import InfoSection from "../Main/InfoSection"
+
 
 library.add(faPlus, faMinus, faInfo);
 
@@ -21,7 +22,7 @@ let markers = props.locations
         if (index == markers.length - 1) return null
 
         return (
-            <Overlay
+            <Overlay            
                 key={index}                
                 anchor={marker.anchor} 
                 payload={index}>
@@ -90,7 +91,8 @@ let markers = props.locations
                                     }}
                                 />
                                 <button 
-                                    className="h-10 bg-navy-blue inline-flex z-50 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold"
+                                    style={{transition: 'all 0.5s ease'}}
+                                    className="h-10 bg-navy-blue inline-flex z-50 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-light-blue"
                                     onChange={e => {
                                         let input = e.target.value;
                                         console.log(input)
@@ -106,16 +108,16 @@ let markers = props.locations
                 </div> : <div />}
 
             <Map 
-                limitBounds='edge'
-                // animateMaxScreens={7}  
-                center={props.currentInformation != -1 ? props.locations[props.currentInformation].anchor : [47.81,-54.14]}                
-                zoom={props.currentInformation != -1 ? 5 : 4} 
-                maxZoom={10} 
-                minZoom={3}
-                twoFingerDrag={true}
+                limitBounds='edge'    
+                animateMaxScreens={9}            
+                center={props.currentInformation != -1 ? props.locations[props.currentInformation].anchor : [47.81,-50.14]}         
+                zoom={props.currentInformation != -1 ? 7 : 4} 
+                maxZoom={11} 
+                minZoom={3}               
                 metaWheelZoom={true}
                 metaWheelZoomWarning={"Keep Pressing Window or CMD button to Scroll"}
               >
+            
                 {showMarkers} 
 
                 {markers != null ? <Line coordsArray={ markers.map(marker => marker.anchor) } /> : null}    
@@ -126,41 +128,29 @@ let markers = props.locations
 
             <div className="absolute inline-flex pin-b pin-r mb-4 mr-4"> 
                 <div className="inline-flex h-12">
-                {props.showCopyright == true ?     
+                    {props.showCopyright == true ?     
+                    
                     <div className="inline-flex">                        
-                         <div className="bg-navy-blue w-200 h-12">                          
-                            <h4 className="text-center p-2 py-5 mr-1 text-xs text-white">
-                            © Copyright 2018 | SST 
-                            </h4>   
+                        <div className="bg-navy-blue w-200 h-12"> 
+                            <h4 className="text-center p-2 py-5 mr-1 text-xs text-white">© Copyright 2018 | SST</h4>   
                         </div>
                         <div className="arrow-right"></div>
                     </div>
-                     : <div className="inline-flex h-12"/>}
+                     : 
+                     <div className="inline-flex h-12"/>
+                     }
                     <FontAwesomeIcon 
                         icon={faInfoCircle} 
                         className="fa-2x h-12 text-navy-blue cursor-pointer"
                         onClick={()=> {   
                             props.toggleCopyright()
-                       }}/>                
-                    
-                    {/* // {props.showCopyright == true ?      */}
-                    {/* // <div className="inline-flex h-12">
-                    //     <div className="ml-0 arrow-right" /> 
-                    //      <div className="bg-navy-blue w-200 h-12"> 
-                         
-                    //         <h4 className="text-center p-2 py-5 ml-1 text-xs text-white">
-                    //         © Copyright 2018 | SST 
-                    //         </h4>   
-                    //     </div>
-                    // </div>
-                    //  : <div/>  */}
+                       }}/>     
                 </div>
             </div>
             
 
-            {/* LOCATION BUTTONS TO NAVIGATE */}
-
-            {/* <div className="absolute pin-b pin-l">           
+            {/* LOCATION BUTTONS TO NAVIGATE 
+             <div className="absolute pin-b pin-l">           
                 {Object.keys(props.locations).map(key => (
                     <button 
                         className="bg-yellow m-2 p-2 text-almost-brown" 

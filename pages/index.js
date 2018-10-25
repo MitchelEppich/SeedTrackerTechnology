@@ -15,22 +15,23 @@ import Video from "../components/Video"
 import About from "../components/Main/About"
 
 
+
 class Index extends Component {
   componentDidMount() {
   }
 
   render() {   
         return (
-      <Layout>  
+      <Layout>          
         <Navbar 
-        trackNumber={this.props.trackNumber}
-        search={this.props.search}
-        navbarSearch={this.props.navbarSearch}
-        searched={this.props.searched}
-        toggleInfoSection={this.props.toggleInfoSection}
-        showInfoSection={this.props.showInfoSection}
-        showMenuCollapsed={this.props.showMenuCollapsed}
-        toggleMenu={this.props.toggleMenu}
+          trackNumber={this.props.trackNumber}
+          search={this.props.search}
+          navbarSearch={this.props.navbarSearch}
+          searched={this.props.searched}
+          toggleInfoSection={this.props.toggleInfoSection}
+          showInfoSection={this.props.showInfoSection}
+          showMenuCollapsed={this.props.showMenuCollapsed}
+          toggleMenu={this.props.toggleMenu}
         /> 
         <Video />
         <About />      
@@ -84,10 +85,7 @@ const mapDispatchToProps = dispatch => {
     },
     toggleMenu: (index) => {
       dispatch(actions.toggleMenu(index))
-    },
-  //   showCopyrightInfo: (index) => {      
-  //     dispatch(actions.showCopyrightInfo(index)) 
-  // },
+    },  
     closeAllHandler : input => {  
       dispatch(actions.closeAll(input));
     },
