@@ -11,82 +11,89 @@ import { HttpLink } from "apollo-link-http";
 import fetch from "node-fetch";
 
 // const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
-// const uri = "http://localhost:3000/graphql";
 // const uri = "http://192.168.0.43:3000/graphql";
-const uri = "http://192.168.0.27:3000/graphql";
 
-const imports = {
-};
+const uri = "http://localhost:3000/graphql";
+
+// const uri = "http://192.168.0.27:3000/graphql";
+
+const imports = {};
 
 const actionTypes = {
-  TRACK_NUMBER:"TRACK_NUMBER",
-  SEARCH:"SEARCH",
+  TRACK_NUMBER: "TRACK_NUMBER",
+  SEARCH: "SEARCH",
   TOGGLE_INFO_SECTION: "TOGGLE_INFO_SECTION",
   TOGGLE_LANDMARKS: "TOGGLE_LANDMARKS",
   CLOSE_ALL: "CLOSE ALL",
   SET_LOCATIONS: "SET_LOCATIONS",
-  TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT", 
+  TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT",
   TOGGLE_MENU: "TOGGLE_MENU",
+  SET_CONTEXT: "SET_CONTEXT",
+  SET_EMAIL: "SET_EMAIL"
 };
 
 const actions = {
-  // shiftPosition: (position) => {    
+  // shiftPosition: (position) => {
   //   return {
   //     type: actionTypes.SHIFT_POSITION,
   //     position: position
-  //   }  
+  //   }
   // },
-  trackNumber: (number) => {
+  trackNumber: number => {
     return {
       type: actionTypes.TRACK_NUMBER,
       number: number
-    }
+    };
   },
-  search: (value) => {   
+  search: value => {
     return {
       type: actionTypes.SEARCH,
       value: value
-    }
+    };
   },
-  toggleInfoSection: (index) => {  
+  setContext: input => {
+    return { type: actionTypes.SET_CONTEXT, input: input };
+  },
+  setEmail: input => {
+    return { type: actionTypes.SET_EMAIL, input: input };
+  },
+  toggleInfoSection: index => {
     return {
       type: actionTypes.TOGGLE_INFO_SECTION,
       index: index
-    }
+    };
   },
-  toggleLandmarks: (index) => {  
+  toggleLandmarks: index => {
     return {
       type: actionTypes.TOGGLE_LANDMARKS,
       index: index
-    }
+    };
   },
-  toggleCopyright: () => {  
+  toggleCopyright: () => {
     return {
-      type: actionTypes.TOGGLE_COPYRIGHT      
-    }
-  },  
-  toggleMenu: () => {  
+      type: actionTypes.TOGGLE_COPYRIGHT
+    };
+  },
+  toggleMenu: () => {
     return {
-      type: actionTypes.TOGGLE_MENU      
-    }
-  },  
-  closeAll: input => {    
+      type: actionTypes.TOGGLE_MENU
+    };
+  },
+  closeAll: input => {
     return {
       type: actionTypes.CLOSE_ALL,
       input: input
     };
   },
-  setLocations: input => {   
+  setLocations: input => {
     return {
       type: actionTypes.SET_LOCATIONS,
       input: input
     };
-  },
-
+  }
 };
 
-const query = {
-};
+const query = {};
 
 const mutation = {};
 
