@@ -26,8 +26,8 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
     let adjust = zoom == 4 ? 2900 : 500 + (2000 * ( Math.pow(2, zoom - 4)))
     
     
-
-    console.log("TOTAL LENGHT: ", ((coordsArray[0][0]) + (coordsArray[1][0]) + (coordsArray[2][0]) ), ((coordsArray[0][0]) + (coordsArray[1][1]) + (coordsArray[2][1]) ), "FIRST PART", coordsArray[0][0], "SECOND PART", coordsArray[1][0], "LAST PART", coordsArray[2][0]  )
+    //TRYING TO FIND THE TOTAL LENGHT
+    // console.log("TOTAL LENGHT: ", ((coordsArray[0][0]) + (coordsArray[1][0]) + (coordsArray[2][0]) ), ((coordsArray[0][0]) + (coordsArray[1][1]) + (coordsArray[2][1]) ), "FIRST PART", coordsArray[0][0], "SECOND PART", coordsArray[1][0], "LAST PART", coordsArray[2][0]  )
 
 
     let pathObj = 

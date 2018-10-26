@@ -114,7 +114,7 @@ let markers = props.locations
                 limitBounds='edge'    
                 animateMaxScreens={9}            
                 center={props.currentInformation != -1 ? props.locations[props.currentInformation].anchor : [47.81,-50.14]}         
-                zoom={props.currentInformation != -1 ? 7 : 4} 
+                zoom={props.currentInformation != -1 ? 6: 4} 
                 maxZoom={11} 
                 minZoom={3}               
                 metaWheelZoom={true}
@@ -151,19 +151,27 @@ let markers = props.locations
                 </div>
             </div>
 
-            {/* LOCATION BUTTONS TO NAVIGATE 
-             <div className="absolute pin-b pin-l">           
-                {Object.keys(props.locations).map(key => (
+            
+             <div className="absolute pin-b pin-l ml-2">           
+                {
+                    props.locations ? 
+                        
+                    
+                Object.keys(props.locations).filter(key => {
+                    if (key >= props.locations.length - 2) return false;
+                    return true;
+                }).map(key => (
                     <button 
-                        className="bg-yellow m-2 p-2 text-almost-brown" 
+                        style={{transition: "all 0.5s ease"}}
+                        className="bg-grey-darkest m-2 p-2 text-white hover:bg-grey-light hover:text-grey-darkest active:bg-green active:text-white" 
                         key={key} 
                         onClick={() => {    
                             props.toggleInfoSection(props.currentInformation == key ? -1 : key) }}
                         >
                         {props.locations[key].name}                        
                     </button>
-                ))}
-            </div> */}
+                )) : null}
+            </div> 
             
             <HomeTracker />
         </div>

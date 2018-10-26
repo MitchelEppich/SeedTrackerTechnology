@@ -22,7 +22,8 @@ class Index extends Component {
 
   render() {   
         return (
-      <Layout>          
+      <Layout>    
+
         <Navbar 
           trackNumber={this.props.trackNumber}
           search={this.props.search}
@@ -33,8 +34,11 @@ class Index extends Component {
           showMenuCollapsed={this.props.showMenuCollapsed}
           toggleMenu={this.props.toggleMenu}
         /> 
+
         <Video />
+
         <About />  
+
         <HomeTracker 
         trackNumber={this.props.trackNumber}
         search={this.props.search}
@@ -42,27 +46,27 @@ class Index extends Component {
         searched={this.props.searched}
         setLocations={this.props.setLocations}
         landmarks={this.props.landmarks}
+        toggleCopyright={this.props.toggleCopyright}
+        showCopyright={this.props.showCopyright}
         />     
-        <Main 
-        
+
+        <Main         
         trackNumber={this.props.trackNumber}
         search={this.props.search}
         navbarSearch={this.props.navbarSearch}
         searched={this.props.searched}
         toggleInfoSection={this.props.toggleInfoSection}        
-        locations={this.props.locations}        
+        locations={this.props.locations} 
+        landmarks={this.props.landmarks}       
         toggleLandmarks={this.props.toggleLandmarks}
         currentLocation={this.props.currentLocation}
         currentInformation={this.props.currentInformation}
         closeAllHandler={this.props.closeAllHandler}
         closeAll={this.props.closeAll}
-        
+        toggleCopyright={this.props.toggleCopyright}
+        showCopyright={this.props.showCopyright}        
         /> 
     
-            
-    
-                          
-
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
           width: '99vw'
@@ -74,8 +78,12 @@ class Index extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    trackNumber: (val) => dispatch(actions.trackNumber(val)),
-    search: (val) => dispatch(actions.search(val)),
+    trackNumber: (val) => {
+      dispatch(actions.trackNumber(val))
+    },
+    search: (val) => {
+      dispatch(actions.search(val))
+    },
     toggleInfoSection: (index) => {
       dispatch(actions.toggleInfoSection(index))      
     },
