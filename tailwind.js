@@ -52,7 +52,7 @@ let colors = {
   "almost-black": "rgba(0,0,0,0.9)",
 
   black: "#000",
-  "grey-darkest": "#3d4852",
+  "grey-darkest": "#383838",
   "grey-darker": "#606f7b",
   "grey-dark": "#8795a1",
   grey: "#202020",

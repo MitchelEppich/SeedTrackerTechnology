@@ -34,8 +34,16 @@ class Index extends Component {
           toggleMenu={this.props.toggleMenu}
         /> 
         <Video />
-        <About />      
-        {/* <Main 
+        <About />  
+        <HomeTracker 
+        trackNumber={this.props.trackNumber}
+        search={this.props.search}
+        navbarSearch={this.props.navbarSearch}
+        searched={this.props.searched}
+        setLocations={this.props.setLocations}
+        landmarks={this.props.landmarks}
+        />     
+        <Main 
         
         trackNumber={this.props.trackNumber}
         search={this.props.search}
@@ -50,21 +58,15 @@ class Index extends Component {
         closeAll={this.props.closeAll}
         
         /> 
-        <Controls/>
+    
             
     
-        <HomeTracker 
-        trackNumber={this.props.trackNumber}
-        search={this.props.search}
-        navbarSearch={this.props.navbarSearch}
-        searched={this.props.searched}
-        setLocations={this.props.setLocations}
-        landmarks={this.props.landmarks}
-        />                     */}
+                          
 
-        <iframe id="stt" className="pin w-full" style={{
-          height: "902px"
-        }} src={`http://192.168.0.27:3000/stt`}></iframe>      
+        {/* <iframe id="stt" className="pin" style={{
+          height: "90vh",
+          width: '99vw'
+        }} src={`http://192.168.0.27:3000/stt`}></iframe>       */}
       </Layout>
     );
   }

@@ -13,7 +13,7 @@ import fetch from "node-fetch";
 // const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
 // const uri = "http://localhost:3000/graphql";
 // const uri = "http://192.168.0.43:3000/graphql";
-const uri = "http://localhost:3000/graphql";
+const uri = "http://192.168.0.27:3000/graphql";
 
 const imports = {
 };

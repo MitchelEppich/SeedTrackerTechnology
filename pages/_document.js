@@ -19,14 +19,6 @@ export default class MyDocument extends Document {
             content="initial-scale=1.0, width=device-width"
             key="viewport"
           />
-          <link
-            href="https://fonts.googleapis.com/css?family=Lato:100,300"
-            rel="stylesheet"
-          />
-          <link
-            href="../static/fonts/Hominis/stylesheet.css"
-            rel="stylesheet"
-          />
           <link rel="stylesheet" href="/_next/static/style.css" />
          
         </Head>

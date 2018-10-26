@@ -39,22 +39,24 @@ let markers = props.locations
                         props.toggleInfoSection(props.currentInformation == index ? -1 : index)
                         
                 }}
-                style={{
-                    position: 'absolute',
-                    backgroundColor: "#ac3130",
-                    boxShadow: "rgba(0, 0, 0, 0.73) 1px 1px 5px",
-                    width: "25px",
-                    height: "25px",
-                    borderRadius: "50%",
-                    transform: "translateX(-12.5px) translateY(-12.5px)",
-                    cursor: "pointer"
-                }}> 
+                className="landmark-points"
+                // style={{ 
+                //     position: 'absolute',
+                //     backgroundColor: "#383838",
+                //     boxShadow: "rgba(0, 0, 0, 0.73) 1px 1px 5px",
+                //     width: "25px",
+                //     height: "25px",
+                //     borderRadius: "50%",
+                //     transform: "translateX(-12.5px) translateY(-12.5px)",
+                //     cursor: "pointer"
+                // }}
+                > 
                        
                 </div>
                 {props.currentLocation == index ? 
                 (
                     <div className="info-landmark">                     
-                      <h3 className="text-navy-blue font-bold bg-yellow text-center p-2">
+                      <h3 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
                         {marker.name}
                       </h3>                 
                       <div className="mx-auto arrow-down" />
@@ -68,7 +70,8 @@ let markers = props.locations
 
     
     return (
-        <div 
+        <div
+        id="stt" 
         style={{            
             height: "100vh",
             overflowY: "hidden",
@@ -76,9 +79,9 @@ let markers = props.locations
             position: "relative"         
         }}
         >        
-            {props.searched ? <div className="inline-flex mt-8 absolute">
+            {props.searched ? <div className="inline-flex mt-24 absolute">
                                 <input 
-                                    className="h-10 w-searchBar inline-flex border-2 border-light-blue p-2  z-50 ml-4" 
+                                    className="h-10 w-searchBar sm:w-200 md:w-300 inline-flex border-2 border-light-blue p-2 z-50 ml-4" 
                                     placeholder="Track Number.. #8454d91Xcdx"
                                     id="searchvalue"
                                     defaultValue={props.searched ? props.navbarSearch : "" }
@@ -92,7 +95,7 @@ let markers = props.locations
                                 />
                                 <button 
                                     style={{transition: 'all 0.5s ease'}}
-                                    className="h-10 bg-navy-blue inline-flex z-50 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-light-blue"
+                                    className="h-10 bg-grey-darkest inline-flex z-50 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border uppercase"
                                     onChange={e => {
                                         let input = e.target.value;
                                         console.log(input)
@@ -126,13 +129,13 @@ let markers = props.locations
             {props.currentInformation != -1 ? <InfoSection {...props} /> : null }
            
 
-            <div className="absolute inline-flex pin-b pin-r mb-4 mr-4"> 
+            <div className="absolute inline-flex pin-b pin-r mb-6 mr-4"> 
                 <div className="inline-flex h-12">
                     {props.showCopyright == true ?     
                     
                     <div className="inline-flex">                        
-                        <div className="bg-navy-blue w-200 h-12"> 
-                            <h4 className="text-center p-2 py-5 mr-1 text-xs text-white">© Copyright 2018 | SST</h4>   
+                        <div className="bg-grey-darkest w-200 h-12"> 
+                            <h4 className="text-center p-2 py-4 mr-1 text-sm text-white">© Copyright 2018 | SST</h4>   
                         </div>
                         <div className="arrow-right"></div>
                     </div>
@@ -141,13 +144,12 @@ let markers = props.locations
                      }
                     <FontAwesomeIcon 
                         icon={faInfoCircle} 
-                        className="fa-2x h-12 text-navy-blue cursor-pointer"
+                        className="fa-2x h-12 text-grey-darkest cursor-pointer"
                         onClick={()=> {   
                             props.toggleCopyright()
                        }}/>     
                 </div>
             </div>
-            
 
             {/* LOCATION BUTTONS TO NAVIGATE 
              <div className="absolute pin-b pin-l">           

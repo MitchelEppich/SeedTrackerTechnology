@@ -4,6 +4,7 @@ const withSass = require("@zeit/next-sass");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 const { ANALYZE } = process.env;
 
+
 module.exports = withSass({
   cssModules: false,
   webpack(config, ANALYSE){
@@ -21,17 +22,10 @@ module.exports = withSass({
           test: /\.css$/,
           use: ['css-loader']
         }, {
-          test: /\.(png|woff|woff2|eot|otf|ttf|svg|gif|jpg)$/,
+          test: /\.(png|woff|woff2|eot|ttf|svg|gif|jpg)$/,
           loader: 'file-loader',
           options: {
             publicPath: '/_next/static/',
-            outputPath: "static/"
-          }
-        }, {
-          test: /\.(png|woff|woff2|eot|otf|ttf|svg|gif|jpg)$/,
-          loader: 'file-loader',
-          options: {
-            publicPath: '/_next/static/img/',
             outputPath: "static/"
           }
         }
@@ -40,3 +34,4 @@ module.exports = withSass({
     return config;
   }
 });
+
