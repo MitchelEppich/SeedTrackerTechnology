@@ -34,13 +34,13 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
     <g>
           {/* The path */}
           <path 
+            fill="transparent" 
             className="path"
             d={path} 
             style={{
               animation: `dash ${10}s linear forwards`,
               strokeDasharray: adjust,
-              strokeDashoffset: adjust,
-              motionPath: `path('${path}')`,
+              strokeDashoffset: adjust,             
            
              }}>
           </path>
@@ -53,10 +53,10 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
           style={{
             motionPath: `path('${path}')`,
             offsetPath: `path('${path}')`,
-            animation: `move ${10}s linear forwards`,
+            animation: `move ${6}s linear forwards`,
             transform:"scale(0.06) translateX(-50px) translateY(-250px)",          
            }}>
-        </path>        
+        </path>              
     
     </g>
 

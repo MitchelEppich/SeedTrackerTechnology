@@ -67,24 +67,31 @@ const initialState = {
       }
     },
     "swg": {
+       name: "Crop King Seeds",
       anchor: [49.2687,-123.2428]
     },
     "mjsc.ca": {
+       name: "Crop King Seeds",
       anchor: [49.1887,-123.0812]
     },
     "mjsc.com": {
+       name: "Crop King Seeds",
       anchor: [49.1887,-123.0812]
     },
     "mjg": {
+       name: "Crop King Seeds",
       anchor: [49.2332,-122.9931]
     },
     "bvr": {
+       name: "Beaver Seeds",
       anchor: [49.29173,-123.13522]
     },
     "snm": {
+       name: "Sonoma Seeds",
       anchor: [49.2775,-123.0440]
     },
     "sfw": {
+       name: "Star Flower Seeds",
       anchor: [49.27280,-123.15233]
     },
   },

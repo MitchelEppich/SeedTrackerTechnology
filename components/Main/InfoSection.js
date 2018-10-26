@@ -13,12 +13,14 @@ const InfoSection = props => {
     if (marker == null) return <div></div>
 
             return (
-                <div className="absolute bg-yellow info-popup pin-b pin-l z-50 p-2">
+                <div 
+                style={{borderRadius:"2%"}}
+                className="absolute bg-yellow w-400 pin-b pin-l mb-12 ml-2 z-50 p-2 sm:w-300">
             <div className="flex mb-2">                
                 <span className="w-1/3" >
-                    <img style={{borderRadius:"2%", height:"120px", width:"120px"}} className="p-2" src={marker.description.imageUrl}/>
+                    <img style={{borderRadius:"2%"}} className="p-2 sm:w-24 sm:h-24" src={marker.description.imageUrl}/>
                 </span>
-                <h2 className="w-2/3 text-navy-blue p-2 text-center">{marker.name}</h2>
+                <h2 className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">{marker.name}</h2>
                 <div
                     className="cursor-pointer text-center h-10 w-10 pt-2 hover:bg-grey-darkest hover:text-white float-right"
                     onClick={() => {                    
