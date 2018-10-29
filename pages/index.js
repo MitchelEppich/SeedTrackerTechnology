@@ -21,10 +21,6 @@ class Index extends Component {
     return (
       <Layout>
         <Navbar
-          trackNumber={this.props.trackNumber}
-          search={this.props.search}
-          navbarSearch={this.props.navbarSearch}
-          searched={this.props.searched}
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
           showMenuCollapsed={this.props.showMenuCollapsed}
@@ -38,7 +34,7 @@ class Index extends Component {
         <HomeTracker
           trackNumber={this.props.trackNumber}
           search={this.props.search}
-          navbarSearch={this.props.navbarSearch}
+          number={this.props.number}
           searched={this.props.searched}
           setLocations={this.props.setLocations}
           landmarks={this.props.landmarks}
@@ -48,12 +44,14 @@ class Index extends Component {
           context={this.props.context}
           setEmail={this.props.setEmail}
           email={this.props.email}
+          checkEntry={this.props.checkEntry}
         />
 
         <Main
+          {...this.props}
           trackNumber={this.props.trackNumber}
           search={this.props.search}
-          navbarSearch={this.props.navbarSearch}
+          number={this.props.number}
           searched={this.props.searched}
           toggleInfoSection={this.props.toggleInfoSection}
           locations={this.props.locations}
@@ -65,6 +63,7 @@ class Index extends Component {
           closeAll={this.props.closeAll}
           toggleCopyright={this.props.toggleCopyright}
           showCopyright={this.props.showCopyright}
+          seed={this.props.seed}
         />
 
         {/* <iframe id="stt" className="pin" style={{
@@ -107,6 +106,9 @@ const mapDispatchToProps = dispatch => {
     },
     setEmail: input => {
       dispatch(actions.setEmail(input));
+    },
+    checkEntry: input => {
+      dispatch(actions.checkEntry(input));
     }
   };
 };

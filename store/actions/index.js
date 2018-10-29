@@ -29,7 +29,9 @@ const actionTypes = {
   TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT",
   TOGGLE_MENU: "TOGGLE_MENU",
   SET_CONTEXT: "SET_CONTEXT",
-  SET_EMAIL: "SET_EMAIL"
+  SET_EMAIL: "SET_EMAIL",
+  RECORD_ENTRY: "RECORD_ENTRY",
+  CHECK_ENTRY: "CHECK_ENTRY"
 };
 
 const actions = {
@@ -90,12 +92,80 @@ const actions = {
       type: actionTypes.SET_LOCATIONS,
       input: input
     };
+  },
+  checkEntry: input => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: query.getEntry,
+        variables: { number: input.number }
+      };
+
+      makePromise(execute(link, operation))
+        .then(data => {
+          let entry = data.data.entry;
+          if (entry == null) {
+            dispatch(actions.recordEntry(input));
+          } else {
+            dispatch({
+              type: actionTypes.CHECK_ENTRY,
+              entry: entry,
+              seed: entry._id
+            });
+          }
+        })
+        .catch(error => console.log(error));
+    };
+  },
+  recordEntry: input => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: mutation.recordEntry,
+        variables: { ...input }
+      };
+
+      makePromise(execute(link, operation))
+        .then(data => {
+          dispatch({
+            type: actionTypes.RECORD_ENTRY,
+            seed: data.data.createEntry._id
+          });
+        })
+        .catch(error => console.log(error));
+    };
   }
 };
 
-const query = {};
+const query = {
+  getEntry: gql`
+    query($number: Int!) {
+      entry(input: { number: $number }) {
+        _id
+        email
+        number
+        context
+        createdAt
+      }
+    }
+  `
+};
 
-const mutation = {};
+const mutation = {
+  recordEntry: gql`
+    mutation($email: String!, $number: Int!, $context: Int!) {
+      createEntry(
+        input: { email: $email, number: $number, context: $context }
+      ) {
+        _id
+        email
+        number
+        context
+        createdAt
+      }
+    }
+  `
+};
 
 export default {
   // TYPES

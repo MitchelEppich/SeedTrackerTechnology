@@ -10,9 +10,8 @@ import { combineReducers } from "redux";
 import { updateObject } from "../utility";
 
 const initialState = {
-  trackNumber: null,
   searched: false,
-  navbarSearch: null,
+  number: null,
   currentLocation: -1,
   currentInformation: -1,
   showCopyright: false,
@@ -99,19 +98,17 @@ const initialState = {
   },
   locations: null,
   context: null,
-  email: null
+  email: null,
+  seed: null
 };
 
 const indexReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TRACK_NUMBER:
-      return updateObject(state, {
-        trackNumber: action.number
-      });
+      return updateObject(state, { number: action.number });
     case actionTypes.SEARCH:
       return updateObject(state, {
-        searched: action.value,
-        navbarSearch: state.trackNumber
+        searched: action.value
       });
     case actionTypes.TOGGLE_INFO_SECTION:
       return updateObject(state, {
@@ -142,6 +139,16 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, { context: action.input });
     case actionTypes.SET_EMAIL:
       return updateObject(state, { email: action.input });
+    case actionTypes.CHECK_ENTRY:
+      console.log("ENTRY EXISTS", action);
+      return updateObject(state, {
+        email: action.entry.email,
+        trackNumber: action.entry.number,
+        context: action.entry.context,
+        seed: action.seed
+      });
+    case actionTypes.RECORD_ENTRY:
+      return updateObject(state, { seed: action.seed });
 
     default:
       return state;

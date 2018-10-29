@@ -1,10 +1,11 @@
-
+const EntryResolvers = require("./entry");
 
 const resolvers = {
   Query: {
-    sendString:(_, args) => {
-      return args;
-    }
+    ...EntryResolvers.Query
+  },
+  Mutation: {
+    ...EntryResolvers.Mutation
   }
 };
 

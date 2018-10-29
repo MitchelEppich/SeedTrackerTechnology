@@ -44,9 +44,9 @@ const HomeTracker = props => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={props.context == "store"}
+                    checked={props.context == 0}
                     onClick={() => {
-                      props.setContext("store");
+                      props.setContext(0);
                     }}
                   />
                   Store
@@ -57,9 +57,9 @@ const HomeTracker = props => {
                   <input
                     type="checkbox"
                     className="checkbox"
-                    checked={props.context == "retail"}
+                    checked={props.context == 1}
                     onClick={() => {
-                      props.setContext("retail");
+                      props.setContext(1);
                     }}
                   />
                   Retail
@@ -85,13 +85,12 @@ const HomeTracker = props => {
                 placeholder="youremail@mail.ca"
                 type="email"
                 aria-label="Enter in your email"
-                defaultValue={props.searched ? props.navbarSearch : ""}
+                defaultValue={props.searched ? props.number : ""}
                 id="email"
                 name="email"
                 onChange={e => {
                   let input = e.target.value;
                   if (input.length != 0) {
-                    console.log(input);
                     props.setEmail(input);
                   }
                 }}
@@ -116,7 +115,7 @@ const HomeTracker = props => {
                 placeholder="Insert here your code: #8454d91"
                 type="search"
                 aria-label="Search through site content"
-                defaultValue={props.searched ? props.navbarSearch : ""}
+                defaultValue={props.searched ? props.number : ""}
                 id="search"
                 ref={search => {
                   searched = search;
@@ -135,8 +134,11 @@ const HomeTracker = props => {
                 style={{ transition: "all 0.5s ease" }}
                 className="h-10 bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 ml-1 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border sm:w-full md:w-full"
                 onClick={() => {
-                  console.log(props.email, props.context, props.searched.value);
-                  console.log("Track Number: " + searched.value);
+                  props.checkEntry({
+                    email: props.email,
+                    context: props.context,
+                    number: searched.value
+                  });
                   props.search("true");
                   props.setLocations([
                     props.landmarks.spain,
