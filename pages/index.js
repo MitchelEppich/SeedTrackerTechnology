@@ -32,6 +32,7 @@ class Index extends Component {
         <About />
 
         <HomeTracker
+        {...this.props}
           trackNumber={this.props.trackNumber}
           search={this.props.search}
           number={this.props.number}
@@ -45,6 +46,8 @@ class Index extends Component {
           setEmail={this.props.setEmail}
           email={this.props.email}
           checkEntry={this.props.checkEntry}
+          closeAllHandler={this.props.closeAllHandler}          
+          toggleLandmarks={this.props.toggleLandmarks}
         />
 
         <Main

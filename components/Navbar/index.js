@@ -24,12 +24,9 @@ const Navbar = props => {
 
   return (
     <div className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50">
-      <div className="inline-flex w-1/3 sm:w-1/2 pl-8 sm:pl-2 sm:ml-0">
-        {/* <a href="/">
-                    <img className="p-2 cursor-pointer"  src="../../static/imgs/logo.png"/>
-                </a> */}
+      <div className="inline-flex w-1/3 sm:w-2/3 pl-8 sm:pl-2 sm:ml-0">       
         <a href="/">
-          <img // style={{borderRadius: '9px'}}
+          <img 
             className="cursor-pointer "
             src="../../static/imgs/logo2.png"
           />
@@ -59,8 +56,9 @@ const Navbar = props => {
           </li>
         </ul>
       </div>
-
-      <div className="w-1/2 float-right pin-t pin-r pr-4 xxl:hidden md:hidden  xl:hidden lg:hidden">
+                
+      {/* TOGGLE MOBILE MENU  */}
+      <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden md:hidden  xl:hidden lg:hidden">
         <span
           className="float-right cursor-pointer bg-navbar p-2 pin-t pin-r "
           onClick={() => {
@@ -76,13 +74,13 @@ const Navbar = props => {
       {props.showMenuCollapsed == true ? (
         <div
           style={styleDropMenu}
-          className="absolute pin-t mt-20 bg-yellow xxl:hidden xl:hidden lg:hidden md:hidden w-full"
+          className="absolute pin-t mt-20 bg-grey-darkest xxl:hidden xl:hidden lg:hidden md:hidden w-full"
         >
           <ul className="w-full mt-2  ml-0 pl-0">
             <AnchorLink className="text-white" href="#video">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-yellow hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 Home
               </li>
@@ -90,7 +88,7 @@ const Navbar = props => {
             <AnchorLink className="text-white" href="#about">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-yellow hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 About
               </li>
@@ -98,7 +96,7 @@ const Navbar = props => {
             <AnchorLink className="text-white" href="#video">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-yellow hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 How To Use
               </li>
@@ -106,7 +104,7 @@ const Navbar = props => {
             <AnchorLink className="text-white" href="#stt">
               <li
                 style={{ display: "block" }}
-                className="text-white mt-1 p-4 text-center bg-yellow hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 STT
               </li>
@@ -116,6 +114,7 @@ const Navbar = props => {
       ) : (
         <div />
       )}
+      {/* END TOGGLE MOBILE MENU */}
     </div>
   );
 };

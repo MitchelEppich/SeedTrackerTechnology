@@ -20,49 +20,36 @@ const initialState = {
     spain: {
       name: "Spain",
       anchor: [41.24, -4.39],
-      description: {
-        germination: {
-          "30": "91%",
-          "45": "89%",
-          house: "94%"
-        },
+      type: "producer",
+      description: {       
         dates: {
           depart: "Jun 9",
-          harvest: "Aug 1",
-          package: "Aug 2",
-          ship: "Aug 9"
+          harvest: "Aug 1",          
+        },       
+        facts: {
+          origin: "Madrid, Spain",
+          effects: "Indica strains are believed to be physically sedating, perfect for relaxing with a movie or as a nightcap before bed.",
+          potency: "90%",
         },
         imageUrl:
-          "https://tokesignals.com/wp-content/uploads/2014/05/original-5.jpg",
-        website: "https://www.tilray.com/",
-        socials: {
-          facebook: "http://www.instagram.com",
-          twitter: "http://www.instagram.com",
-          instagram: "http://www.instagram.com"
-        }
+          "https://timedotcom.files.wordpress.com/2014/10/charlottes-web-pot-weed-farm-colorado-4.jpg",        
       }
     },
     cks: {
       name: "Crop King Seeds",
       anchor: [49.268, -122.981],
-      description: {
-        germination: {
-          "30": "91%",
-          "45": "89%",
-          house: "94%"
-        },
-        dates: {
-          depart: "Jun 9",
-          harvest: "Aug 1",
+      type: "company",
+      description: {        
+        dates: {        
           package: "Aug 2",
           ship: "Aug 9"
-        },
+        },        
         imageUrl:
           "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "",
+        website: "http://www.cropkingseeds.com",
         socials: {
-          facebook: "http://www.instagram.com",
-          twitter: "http://www.instagram.com",
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
           instagram: "http://www.instagram.com"
         }
       }
@@ -94,10 +81,30 @@ const initialState = {
     sfw: {
       name: "Star Flower Seeds",
       anchor: [49.2728, -123.15233]
-    }
+    },
+    you: {
+      name: "YOU",
+      anchor: [-23.080,-50.449],
+      // anchor: [43.8, -101.8],
+      type: "consumer",
+      description: {        
+        address: {
+          street: "Hastings St",          
+          city: "Vancouver, BC"
+        },
+        imageUrl:
+          "http://1.bp.blogspot.com/_BaxMlnoKZyY/SXLzZU-fYoI/AAAAAAAABY0/3UmZzmZRpEk/s320/funny-dogs-smoking-cigarette.jpg",
+        email: "doggyhemp@smoke.com",     
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
+    },
   },
   locations: null,
-  context: null,
+  context: 0,
   email: null,
   seed: null
 };
@@ -112,7 +119,7 @@ const indexReducer = (state = initialState, action) => {
       });
     case actionTypes.TOGGLE_INFO_SECTION:
       return updateObject(state, {
-        currentInformation: action.index // ! to toggle the state
+        currentInformation: action.index 
       });
     case actionTypes.TOGGLE_LANDMARKS:
       return updateObject(state, {
@@ -129,7 +136,8 @@ const indexReducer = (state = initialState, action) => {
     case actionTypes.CLOSE_ALL:
       return updateObject(state, {
         currentInformation: -1,
-        currentLocation: -1
+        currentLocation: -1,
+        searched: true
       });
     case actionTypes.SET_LOCATIONS:
       return updateObject(state, {

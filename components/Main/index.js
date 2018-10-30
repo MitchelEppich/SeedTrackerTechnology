@@ -35,12 +35,12 @@ const Main = props => {
                   props.toggleLandmarks(-1);
                 }}
                 onClick={() => {
-                  console.log(
-                    props.seed,
-                    props.email,
-                    props.number,
-                    props.context
-                  );
+                  // console.log(
+                  //   props.seed,
+                  //   props.email,
+                  //   props.number,
+                  //   props.context
+                  // );
                   if (marker.description)
                     props.toggleInfoSection(
                       props.currentInformation == index ? -1 : index
@@ -88,35 +88,16 @@ const Main = props => {
       }}
     >
       {props.searched ? (
-        <div className="inline-flex mt-24 absolute">
-          <input
-            className="h-10 w-searchBar sm:w-200 md:w-300 inline-flex border-2 border-light-blue p-2 z-40 ml-4"
-            placeholder="Track Number.. #8454d91Xcdx"
-            id="searchvalue"
-            defaultValue={props.searched ? props.number : ""}
-            onChange={e => {
-              let input = e.target.value;
-              console.log(input);
-              if (input.length != 0) {
-                props.trackNumber(e.target.value, 12);
-              }
-            }}
-          />
+        <div className="inline-flex mt-24 absolute">          
           <button
             style={{ transition: "all 0.5s ease" }}
-            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border uppercase"
-            onChange={e => {
-              let input = e.target.value;
-              console.log(input);
-              if (input.length != 0) {
-                props.trackNumber(e.target.value, 12);
-              }
-            }}
-            onClick={() => {
-              console.log("REMOVE ME");
+            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border uppercase"          
+            onClick={() => { 
+              props.closeAllHandler();
+              props.search(false) 
             }}
           >
-            Search
+            Search Again
           </button>
         </div>
       ) : (
@@ -130,9 +111,9 @@ const Main = props => {
         center={
           props.currentInformation != -1
             ? props.locations[props.currentInformation].anchor
-            : [38.927, -90.877]
+            : [38.927, -6.877]
         }
-        zoom={props.currentInformation != -1 ? 6 : 4}
+        zoom={props.currentInformation != -1 ? 7 : 3}
         maxZoom={11}
         minZoom={3}
         metaWheelZoom={true}
@@ -145,8 +126,14 @@ const Main = props => {
         ) : null}
       </Map>
 
+
       {/* SHOW INFO SECTION */}
-      {props.currentInformation != -1 ? <InfoSection {...props} /> : null}
+      {props.currentInformation != -1 
+      ? 
+      <InfoSection {...props} /> 
+      : null
+      }
+
 
       {/* COPYRIGHT ICON */}
       <div className="absolute inline-flex pin-b pin-r mb-6 mr-4">
@@ -178,7 +165,7 @@ const Main = props => {
         {props.locations
           ? Object.keys(props.locations)
               .filter(key => {
-                if (key >= props.locations.length - 2) return false;
+                if (key >= props.locations.length - 1) return false;
                 return true;
               })
               .map(key => {
@@ -201,8 +188,8 @@ const Main = props => {
               })
           : null}
       </div>
-
-      <HomeTracker />
+  
+      
     </div>
   );
 };

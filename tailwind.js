@@ -48,6 +48,7 @@ let colors = {
   "dark-grey": "#252525",
   transparent: "transparent",
   "semi-transparent": "rgba(250, 250, 250, 0.2)",
+  "almost-transparent": "rgba(30, 30, 30, 0.5)",
   "almost-white": "rgba(255, 255, 255, 0.7)",
   "almost-black": "rgba(0,0,0,0.9)",
 
@@ -61,7 +62,7 @@ let colors = {
   "grey-lightest": "#f8fafc",
   white: "#ffffff",
 
-  navbar: "#222222ed",
+  navbar: "rgba(34, 34, 34, 0.93)",
 
   "red-darkest": "#3b0d0c",
   "red-darker": "#621b18",
@@ -272,6 +273,7 @@ module.exports = {
     xl: "1.25rem", // 20px
     xxl: "2rem",
     xxxl: "2.5rem",
+    big: "3rem",
     "2xl": "1.5rem", // 24px
     "3xl": "1.875rem", // 30px
     "4xl": "3.5rem", // 36px
@@ -514,6 +516,7 @@ module.exports = {
     "200": "200px",
     "300": "300px",
     "400": "400px",
+    "450": "450px",
     "550": "550px",
     logo: "100px",
     container: "1080px",
@@ -565,6 +568,7 @@ module.exports = {
     "200": "200px",
     "300": "300px",
     "400": "400px",
+    "450": "450px",
     "650": "650px",
     halfscreen: "940px",
     full: "100%",
@@ -611,6 +615,7 @@ module.exports = {
   minHeight: {
     "0": "0",
     full: "100%",
+    card: '500px',
     screen: "100vh"
   },
 
@@ -694,6 +699,10 @@ module.exports = {
     "20": "5rem",
     "24": "6rem",
     "32": "8rem",
+    "40": "10rem",
+    "48": "12rem",
+    "52": "13rem",
+    "64": "16rem",
     videoPlayerPadding: "27rem",
     "1/2": "50%",
     "1/2sc": "calc(50vh)",

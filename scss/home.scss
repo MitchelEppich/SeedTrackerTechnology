@@ -72,28 +72,28 @@ li {
   transition: all 0.5s cubic-bezier(0.87, 0.52, 0, 0.52);
 }
 
-// .menu-mobile {
+// HIDE NUMBER INPUT SPINNERS
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+-webkit-appearance: none;
+margin: 0;
+}
 
-// }
-
-.menu-item {
-  // transform: scale(1);
+.menu-item { 
   transition: all 0.35s ease;
   font-size: 20px;
   font-family: "Novecentowide-DemiBold";
 }
 
 .menu-item:hover {
-  // transform: scale(1.06);
   transition: all 0.3s ease;
   color: #616161;
 }
 
 .path {
-  fill: none;
-  stroke: rgba(21, 34, 45, 0.761);
+  fill: none;  
   stroke-linecap: butt;
-  stroke-miterlimit: 6;
+  stroke-miterlimit: 1;
   stroke-width: 6px;
 }
 
