@@ -207,6 +207,16 @@ margin: 0;
   transition: all 0.5s ease;
 }
 
+.animate-text {
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.animate-text:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+}
+
 .total-center {
   display: flex;
   justify-content: center;

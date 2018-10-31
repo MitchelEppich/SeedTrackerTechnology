@@ -32,7 +32,7 @@ const initialState = {
           potency: "90%",
         },
         imageUrl:
-          "https://timedotcom.files.wordpress.com/2014/10/charlottes-web-pot-weed-farm-colorado-4.jpg",        
+          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",        
       }
     },
     cks: {
@@ -84,8 +84,8 @@ const initialState = {
     },
     you: {
       name: "YOU",
-      anchor: [-23.080,-50.449],
-      // anchor: [43.8, -101.8],
+      // anchor: [-23.080,-50.449],
+      anchor: [43.8, -101.8],
       type: "consumer",
       description: {        
         address: {

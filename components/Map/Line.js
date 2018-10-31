@@ -25,9 +25,7 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
     //TRYING TO FIND THE TOTAL LENGHT
     // console.log("TOTAL LENGHT: ", ((coordsArray[0][0]) + (coordsArray[1][0]) + (coordsArray[2][0]) ), ((coordsArray[0][0]) + (coordsArray[1][1]) + (coordsArray[2][1]) ), "FIRST PART", coordsArray[0][0], "SECOND PART", coordsArray[1][0], "LAST PART", coordsArray[2][0]  )
 
-    console.log(zoom)
-
-    
+        
     let pathObj = 
     <g>
           {/* The path */}
@@ -53,9 +51,8 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
               strokeDasharray: adjust,
               strokeDashoffset: adjust,  
               stroke: 'rgba(21, 34, 45, 0.761)',    
-              strokeWidth: '6px',              
-              motionPath: `path('${path}')`,                                   
-           
+              strokeWidth: '5px',              
+              // motionPath: `path('${path}')`, 
              }}>
           </path>
 
@@ -67,7 +64,7 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
           style={{
             motionPath: `path('${path}')`,
             offsetPath: `path('${path}')`,            
-            animation: `move ${4}s linear forwards`,
+            animation: `move ${3}s linear forwards`,
             transform:"scale(0.06) translateX(-50px) translateY(-250px)",          
            }}>
         </path>              

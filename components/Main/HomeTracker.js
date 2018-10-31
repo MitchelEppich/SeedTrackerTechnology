@@ -92,7 +92,7 @@ const HomeTracker = props => {
                       name: "null",
                       anchor: [null, null],
                       imageUrl:
-                     "https://tokesignals.com/wp-content/uploads/2014/05/original-5.jpg",
+                     "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",
                     }
                   ]);
                 }}>

@@ -25,6 +25,8 @@ const InfoSection = props => {
         >
         <div className="flex mb-2">
             <span className="w-1/3 sm:w-1/2">
+            
+            {/*  {props.currentInformation == 1 || props.currentInformation == 2 ?  */}
             <img
                 style={{
                     borderRadius: "15px",
@@ -33,26 +35,27 @@ const InfoSection = props => {
                 }}
                 className="p-2 sm:w-24 sm:h-24"
                 src={marker.description.imageUrl}
-            />
+            /> 
+            {/* // : null} */}
             </span>
             {props.currentInformation == 0 ? 
             <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-                <h5 className="text-navy-blue  sm:text-lg text-center">Producer:</h5>
-                <h2 className="text-navy-blue sm:text-lg text-center">
+                <h5 className="text-navy-blue sm:text-lg text-center">Producer:</h5>
+                <h2 className="text-navy-blue sm:text-lg text-center animate-text">
                 {marker.name}
                 </h2>
             </span> : null}
             {props.currentInformation == 1 ? 
             <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-                <h5 className="text-navy-blue  sm:text-lg text-center">Company:</h5>
-                <h2 className="text-navy-blue sm:text-lg text-center">
+                <h5 className="text-navy-blue sm:text-lg text-center">Company:</h5>
+                <h2 className="text-navy-blue sm:text-lg text-center animate-text">
                 {marker.name}
                 </h2>
             </span> : null}
             {props.currentInformation == 2 ? 
             <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-                <h5 className="text-navy-blue  sm:text-lg text-center">Destination:</h5>
-                <h2 className="text-navy-blue sm:text-lg text-center">
+                <h5 className="text-navy-blue sm:text-lg text-center">Destination:</h5>
+                <h2 className="text-navy-blue sm:text-lg text-center animate-text">
                 {marker.name}
                 </h2>
             </span> : null}
@@ -72,16 +75,16 @@ const InfoSection = props => {
         
             {props.currentInformation == 0 ? 
             <div className="pb-1 pt-1">
-                <h3 className="pb-1 px-0">Details:</h3>
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Details:</h3>
+                <p className="font-bold">
                     Departure Date:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.dates["depart"]}
                     </span>{" "}
                 </p>
-                <p>
+                <p className="font-bold">
                     Harvest Date:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.dates["harvest"]}
                     </span>{" "}
                 </p>            
@@ -90,16 +93,16 @@ const InfoSection = props => {
 
             {props.currentInformation == 1 ?  
             <div className="pb-1 pt-1">
-                <h3 className="pb-1 px-0">Details:</h3>           
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Details:</h3>           
+                <p className="  font-bold">
                     Package Date:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.dates["package"]}
                     </span>
                 </p>
-                <p>
+                <p className="  font-bold">
                     Ship Date:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     Approx {marker.description.dates["ship"]}
                     </span>
                 </p>
@@ -108,17 +111,17 @@ const InfoSection = props => {
 
             {props.currentInformation == 2 ?  
             <div className="pb-1 pt-1">
-                <h3 className="pb-1 px-0">Your Details:</h3>           
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Your Details:</h3>           
+                <p className="font-bold">
                     Address:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.address.street},{" "} 
                     {marker.description.address.city}
                     </span>
                 </p>
-                <p>
+                <p className="font-bold">
                     Email:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.email}
                     </span>
                 </p>                
@@ -130,38 +133,38 @@ const InfoSection = props => {
             />
             {props.currentInformation == 0 ?  
             <div className="pb-1 pt-1">
-                <h3 className="pb-1 px-0">Germination Tests:</h3>
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Germination Tests:</h3>
+                <p className="font-bold">
                     30 days:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
                     </span>
                 </p>
-                <p>
+                <p className="font-bold">
                     45 days:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
                     </span>
                 </p>           
                 <hr
                 style={{ backgroundColor: "rgba(21, 21, 21, 0.31)", height: "2px" }}
                 /> 
-                <h3 className="pb-1 px-0">Facts on Seeds:</h3>
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
+                <p className="font-bold">
                     Origin:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.facts.origin}
                     </span>
                 </p>
-                <p>
+                <p className="font-bold">
                     Effects:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {marker.description.facts.effects}
                     </span>
                 </p>
-                <p>
+                <p className="font-bold">
                     Potency:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {`${rand.floatBetween(84, 93).toFixed(1)}%`}
                     </span>
                 </p>
@@ -169,29 +172,29 @@ const InfoSection = props => {
 
             {props.currentInformation == 1 ?  
             <div className="pb-1 pt-1">
-                <h3 className="pb-1 px-0">Germination Tests:</h3>            
-                <p>
+                <h3 className="pb-1 px-0 uppercase">Germination Tests:</h3>            
+                <p className="font-bold">
                     In house:{" "}
-                    <span className="italic font-bold">
+                    <span className="font-normal">
                     {`${rand.floatBetween(84, 95).toFixed(1)}%`}
                     </span>
                 </p>  
                 <hr
                 style={{ backgroundColor: "rgba(21, 21, 21, 0.31)", height: "2px" }}
                 /> 
-                <h3 className="pb-1 px-0">Social Media:</h3>
+                <h3 className="pb-1 px-0 uppercase">Social Media:</h3>
                 <p>
-                    <a className="italic font-bold text-grey-darkest" 
+                    <a className="font-bold text-grey-darkest" 
                     href={marker.description.socials.facebook}>Facebook{" "}
                     </a>                 
                 </p>
                  <p>
-                    <a className="italic font-bold text-grey-darkest" 
+                    <a className="font-bold text-grey-darkest" 
                     href={marker.description.socials.twitter}> Twitter{" "}
                     </a>  
                 </p>
                 <p>
-                    <a className="italic font-bold text-grey-darkest" 
+                    <a className="font-bold text-grey-darkest" 
                     href={marker.description.socials.instagram}> Instagram{" "}
                     </a>  
                 </p> 
@@ -199,19 +202,19 @@ const InfoSection = props => {
 
             {props.currentInformation == 2 ?  
             <div className="pb-1 pt-1">
-            <h3 className="pb-1 px-0">Your Social Media:</h3>
+            <h3 className="pb-1 px-0 uppercase">Your Social Media:</h3>
             <p>
-                <a className="italic font-bold text-grey-darkest" 
+                <a className="font-bold text-grey-darkest" 
                 href={marker.description.socials.facebook}>Facebook{" "}
                 </a>                 
             </p>
             <p>
-                <a className="italic font-bold text-grey-darkest" 
+                <a className="font-bold text-grey-darkest" 
                 href={marker.description.socials.twitter}> Twitter{" "}
                 </a>  
             </p>
             <p>
-                <a className="italic font-bold text-grey-darkest" 
+                <a className="font-bold text-grey-darkest" 
                 href={marker.description.socials.instagram}> Instagram{" "}
                 </a>  
             </p>            
