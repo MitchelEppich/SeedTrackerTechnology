@@ -13,31 +13,22 @@ import DevTools from "../store/DevTools";
 import { connect } from "react-redux";
 import actions from "../store/actions";
 
-
 class Layout extends Component {
-  componentDidMount() {
-    
-  }
+  componentDidMount() {}
 
-  componentDidUpdate() {
-  
-  }
-
-  
+  componentDidUpdate() {}
 
   render() {
     return (
-      <div className="w-full">
-         {this.props.children}           
+      <div className="w-full" id="layout">
+        {this.props.children}
       </div>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    
-  };
+  return {};
 };
 
 export default connect(

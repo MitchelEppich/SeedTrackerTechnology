@@ -14,6 +14,8 @@ import HomeTracker from "../components/Main/HomeTracker";
 import Video from "../components/Video";
 import About from "../components/Main/About";
 
+import html2canvas from "html2canvas";
+
 class Index extends Component {
   componentDidMount() {}
 
@@ -28,11 +30,29 @@ class Index extends Component {
         />
 
         <Video />
+        <button
+          onClick={() => {
+            let input = document.querySelector("#layout");
+            html2canvas(input, {
+              scale: 0.4,
+              windowHeight: "8000px",
+              windowWidth: "2000px"
+            }).then(canvas => {
+              const imgData = canvas.toDataURL("image/png");
+              const jspdf = require("jspdf");
+              const pdf = new jspdf();
+              pdf.addImage(imgData, "PNG", 0, 0);
+              pdf.save("download.pdf");
+            });
+          }}
+        >
+          CLICK ME
+        </button>
 
         <About />
 
         <HomeTracker
-        {...this.props}
+          {...this.props}
           trackNumber={this.props.trackNumber}
           search={this.props.search}
           number={this.props.number}
@@ -46,7 +66,7 @@ class Index extends Component {
           setEmail={this.props.setEmail}
           email={this.props.email}
           checkEntry={this.props.checkEntry}
-          closeAllHandler={this.props.closeAllHandler}          
+          closeAllHandler={this.props.closeAllHandler}
           toggleLandmarks={this.props.toggleLandmarks}
         />
 
