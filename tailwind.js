@@ -491,6 +491,7 @@ module.exports = {
     "10": "2.5rem",
     "12": "3rem",
     "16": "4rem",
+    "20": "5rem",
     "24": "6rem",
     "32": "8rem",
     "48": "12rem",
@@ -524,7 +525,7 @@ module.exports = {
     mainCard: "550px",
     uploadButton: "320px",
     sButton: "634px",
-    imgIndex: "500px",
+    imgCard: "120px",
     hideLeft: "-1400px",
     "10000": "10000px",
     "500": "calc(100vh - 3rem)"
@@ -566,7 +567,9 @@ module.exports = {
     "64": "16rem",
     "100": "100px",
     "200": "200px",
+    "250": "250px",
     "300": "300px",
+    "380": "380px",
     "400": "400px",
     "450": "450px",
     "650": "650px",
@@ -616,6 +619,7 @@ module.exports = {
     "0": "0",
     full: "100%",
     card: '500px',
+    mobileCard: '300px',
     screen: "100vh"
   },
 

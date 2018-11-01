@@ -91,7 +91,7 @@ const Main = props => {
         <div className="inline-flex mt-24 absolute">          
           <button
             style={{ transition: "all 0.5s ease" }}
-            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 text-white text-lg border border-1 border-light-brown px-6 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border uppercase"          
+            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"          
             onClick={() => { 
               props.closeAllHandler();
               props.search(false) 
@@ -113,7 +113,7 @@ const Main = props => {
             ? props.locations[props.currentInformation].anchor
             : [38.927, -6.877]
         }
-        zoom={props.currentInformation != -1 ? 7 : 3}
+        zoom={props.currentInformation != -1 ? 6 : 3}
         maxZoom={11}
         minZoom={3}
         metaWheelZoom={true}

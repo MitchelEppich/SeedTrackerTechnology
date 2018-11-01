@@ -139,7 +139,7 @@ margin: 0;
 
 .landmark-points {
   position: absolute;
-  background-color: rgb(56, 56, 56);
+  background-color: #fff200;
   box-shadow: rgba(0, 0, 0, 0.73) 1px 1px 5px;
   width: 25px;
   height: 25px;
@@ -161,7 +161,7 @@ margin: 0;
 }
 
 .main-message {
-  margin-left: calc-(50vw);
+  // margin-left: calc-(50vw);
   margin-top: calc(50vh);
   padding: 20px;
   background: #fff200;

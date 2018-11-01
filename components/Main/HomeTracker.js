@@ -37,7 +37,7 @@ const HomeTracker = props => {
     <div className="total-center z-50">
       {props.searched == false ? (
         <div
-          style={{ position: "absolute", zIndex: "999999" }}
+          style={{ position: "absolute", zIndex: "9" }}
           className="sm:mx-2 mt-64 absolute w-550 md:w-400 sm:w-300 main-message text-center rounded-lg bg-yellow"
           ref={searchPanel => {
             searchSection = searchPanel;
@@ -54,7 +54,7 @@ const HomeTracker = props => {
             >
             <FontAwesomeIcon icon={faTimes} className="fa-lg hover:text-white" />
             </div>
-          <p className="p-4 mb-4 leading-normal">
+          <p className="p-4 my-2 sm:p-1 leading-normal">
             Enter your email address and your unique tracking number on your
             package of seeds or in the information that was sent to you when you
             made your online purchase.{" "}
@@ -143,7 +143,7 @@ const HomeTracker = props => {
                 Insert here your email to receive a copy:
               </h3>
             </div>
-            <div className="inline-flex px-10 mb-4 w-full sm:w-full md:w-full">
+            <div className="inline-flex px-10 mb-4 w-full sm:p-0 md:p-0 sm:w-full md:w-full">
               <input
               required
                 className="h-10 w-full p-2 sm:w-full md:w-full border-2 border-light-grey p-2"
@@ -177,12 +177,11 @@ const HomeTracker = props => {
             <div className="inline-flex sm:w-full md:w-full">
               <input                
                 className="h-10 w-searchBar sm:w-full md:w-full border-2 border-light-grey p-2"
-                placeholder="Insert here your code: #8454d91"
-                // minLength="3"
+                placeholder="Insert here your code: #8454d91"            
                 type="number"
                 pattern="[0-9]{7}"
                 required="required"
-                maxLength={5}
+                maxLength={7}
                 aria-label="Track number"
                 defaultValue={props.searched ? props.number : ""}
                 id="search"
@@ -215,7 +214,7 @@ const HomeTracker = props => {
             <div className="inline-flex sm:w-full sm:mt-2 md:w-full md:mt-2">
               <button                
                 style={{ transition: "all 0.5s ease" }}
-                className="h-10 bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 ml-1 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border sm:w-full md:w-full"
+                className="h-10 bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 sm:ml-0 md:ml-0  ml-1 font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border sm:w-full md:w-full"
                 type="submit"
               >
                 Search
