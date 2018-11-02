@@ -67,6 +67,7 @@ class Index extends Component {
           toggleCopyright={this.props.toggleCopyright}
           showCopyright={this.props.showCopyright}
           seed={this.props.seed}
+          setInfoTab={this.props.setInfoTab}
         />
 
         {/* <iframe id="stt" className="pin" style={{
@@ -112,6 +113,9 @@ const mapDispatchToProps = dispatch => {
     },
     checkEntry: input => {
       dispatch(actions.checkEntry(input));
+    },
+    setInfoTab: input => {
+      dispatch(actions.setInfoTab(input));
     }
   };
 };

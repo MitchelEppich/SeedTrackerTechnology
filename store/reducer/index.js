@@ -16,6 +16,7 @@ const initialState = {
   currentInformation: -1,
   showCopyright: false,
   showMenuCollapsed: false,
+  infoTab: 0,
   landmarks: {
     spain: {
       name: "Spain",
@@ -148,7 +149,7 @@ const indexReducer = (state = initialState, action) => {
     case actionTypes.SET_EMAIL:
       return updateObject(state, { email: action.input });
     case actionTypes.CHECK_ENTRY:
-      console.log("ENTRY EXISTS", action);
+      // console.log("ENTRY EXISTS", action);
       return updateObject(state, {
         email: action.entry.email,
         trackNumber: action.entry.number,
@@ -157,6 +158,8 @@ const indexReducer = (state = initialState, action) => {
       });
     case actionTypes.RECORD_ENTRY:
       return updateObject(state, { seed: action.seed });
+    case actionTypes.SET_INFO_TAB:
+      return updateObject(state, { infoTab: action.infoTab });
 
     default:
       return state;

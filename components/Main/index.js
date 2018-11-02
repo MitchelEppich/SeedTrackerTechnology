@@ -45,6 +45,7 @@ const Main = props => {
                     props.toggleInfoSection(
                       props.currentInformation == index ? -1 : index
                     );
+                    
                 }}
               />
 
@@ -161,7 +162,7 @@ const Main = props => {
       </div>
 
       {/* BOTTOM BUTTONS */}
-      <div className="absolute pin-b pin-l ml-2">
+      <div className="absolute sm:hidden pin-b pin-l ml-2">
         {props.locations
           ? Object.keys(props.locations)
               .filter(key => {

@@ -31,7 +31,8 @@ const actionTypes = {
   SET_CONTEXT: "SET_CONTEXT",
   SET_EMAIL: "SET_EMAIL",
   RECORD_ENTRY: "RECORD_ENTRY",
-  CHECK_ENTRY: "CHECK_ENTRY"
+  CHECK_ENTRY: "CHECK_ENTRY",
+  SET_INFO_TAB: "SET_INFO_TAB"
 };
 
 const actions = {  
@@ -85,6 +86,12 @@ const actions = {
     return {
       type: actionTypes.SET_LOCATIONS,
       input: input
+    };
+  },
+  setInfoTab: input => {
+    return {
+      type: actionTypes.SET_INFO_TAB,
+      infoTab: input
     };
   },
   checkEntry: input => {
