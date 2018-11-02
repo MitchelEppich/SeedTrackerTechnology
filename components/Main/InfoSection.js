@@ -33,7 +33,7 @@ const InfoSection = props => {
             {/* NOT SMART */}
 
              {props.currentInformation == 0 ?
-            <div className="flex mb-2 justify-between">
+            <div className="flex mb-2 justify-between cursor-pointer">
                 <div className="inline-flex p-2 text-center" onClick={()=>{
                     props.setInfoTab(0)
                 }}>Producer</div>
@@ -49,7 +49,7 @@ const InfoSection = props => {
             </div> : null }
 
             {props.currentInformation == 1 ?
-            <div className="flex mb-2 justify-between">
+            <div className="flex mb-2 justify-between cursor-pointer">
                 <div className="inline-flex p-2 text-center" onClick={()=>{
                     props.setInfoTab(0)
                 }}>Company</div>
@@ -65,7 +65,7 @@ const InfoSection = props => {
             </div> : null }
 
             {props.currentInformation == 2 ?
-            <div className="flex mb-2 justify-between">
+            <div className="flex mb-2 justify-between cursor-pointer">
                 <div className="inline-flex p-2 text-center" onClick={()=>{
                     props.setInfoTab(0)
                 }}>Destination</div>
@@ -238,7 +238,7 @@ const InfoSection = props => {
                     </span> : null }
                     {props.currentInformation == 1 ?  
                     <span className="pb-1 pt-1"> 
-                        <h3 className="pb-1 px-0 uppercase">{marker.name} - Social Media:</h3>
+                        <h3 className="pb-1 px-0 uppercase">Social Media:</h3>
                         <p>
                             <a className="font-bold text-grey-darkest" 
                             href={marker.description.socials.facebook}>Facebook{" "}

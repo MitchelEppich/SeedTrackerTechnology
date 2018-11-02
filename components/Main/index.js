@@ -28,12 +28,12 @@ const Main = props => {
             <Overlay key={index} anchor={marker.anchor} payload={index}>
               <div
                 className="landmark-points"
-                onMouseOver={() => {
-                  props.toggleLandmarks(index);
-                }}
-                onMouseOut={() => {
-                  props.toggleLandmarks(-1);
-                }}
+                // onMouseOver={() => {
+                //   props.toggleLandmarks(index);
+                // }}
+                // onMouseOut={() => {
+                //   props.toggleLandmarks(-1);
+                // }}
                 onClick={() => {
                   // console.log(
                   //   props.seed,
@@ -41,10 +41,15 @@ const Main = props => {
                   //   props.number,
                   //   props.context
                   // );
+                  
+                  // props.toggleLandmarks(-1);
                   if (marker.description)
+                 
                     props.toggleInfoSection(
                       props.currentInformation == index ? -1 : index
+                      
                     );
+                    // props.toggleLandmarks(props.currentInformation == index ? -1 : index);
                     
                 }}
               />

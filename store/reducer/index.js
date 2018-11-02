@@ -120,7 +120,8 @@ const indexReducer = (state = initialState, action) => {
       });
     case actionTypes.TOGGLE_INFO_SECTION:
       return updateObject(state, {
-        currentInformation: action.index 
+        currentInformation: action.index, 
+        currentLocation: action.index
       });
     case actionTypes.TOGGLE_LANDMARKS:
       return updateObject(state, {
