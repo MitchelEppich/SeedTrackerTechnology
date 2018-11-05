@@ -22,29 +22,30 @@ const initialState = {
       name: "Spain",
       anchor: [41.24, -4.39],
       type: "producer",
-      description: {       
+      description: {
         dates: {
           depart: "Jun 9",
-          harvest: "Aug 1",          
-        },       
+          harvest: "Aug 1"
+        },
         facts: {
           origin: "Madrid, Spain",
-          effects: "Indica strains are believed to be physically sedating, perfect for relaxing with a movie or as a nightcap before bed.",
-          potency: "90%",
+          effects:
+            "Indica strains are believed to be physically sedating, perfect for relaxing with a movie or as a nightcap before bed.",
+          potency: "90%"
         },
         imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",        
+          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
       }
     },
     cks: {
       name: "Crop King Seeds",
       anchor: [49.268, -122.981],
       type: "company",
-      description: {        
-        dates: {        
+      description: {
+        dates: {
           package: "Aug 2",
           ship: "Aug 9"
-        },        
+        },
         imageUrl:
           "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
         website: "http://www.cropkingseeds.com",
@@ -88,26 +89,27 @@ const initialState = {
       // anchor: [-23.080,-50.449],
       anchor: [43.8, -101.8],
       type: "consumer",
-      description: {        
+      description: {
         address: {
-          street: "Hastings St",          
+          street: "Hastings St",
           city: "Vancouver, BC"
         },
         imageUrl:
           "http://1.bp.blogspot.com/_BaxMlnoKZyY/SXLzZU-fYoI/AAAAAAAABY0/3UmZzmZRpEk/s320/funny-dogs-smoking-cigarette.jpg",
-        email: "doggyhemp@smoke.com",     
+        email: "doggyhemp@smoke.com",
         socials: {
           facebook: "http://www.facebook.com",
           twitter: "http://www.twitter.com",
           instagram: "http://www.instagram.com"
         }
       }
-    },
+    }
   },
   locations: null,
   context: 0,
   email: null,
-  seed: null
+  seed: null,
+  clientInfo: null
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -115,22 +117,16 @@ const indexReducer = (state = initialState, action) => {
     case actionTypes.TRACK_NUMBER:
       return updateObject(state, { number: action.number });
     case actionTypes.SEARCH:
-      return updateObject(state, {
-        searched: action.value
-      });
+      return updateObject(state, { searched: action.value });
     case actionTypes.TOGGLE_INFO_SECTION:
       return updateObject(state, {
-        currentInformation: action.index, 
+        currentInformation: action.index,
         currentLocation: action.index
       });
     case actionTypes.TOGGLE_LANDMARKS:
-      return updateObject(state, {
-        currentLocation: action.index
-      });
+      return updateObject(state, { currentLocation: action.index });
     case actionTypes.TOGGLE_COPYRIGHT:
-      return updateObject(state, {
-        showCopyright: !state.showCopyright
-      });
+      return updateObject(state, { showCopyright: !state.showCopyright });
     case actionTypes.TOGGLE_MENU:
       return updateObject(state, {
         showMenuCollapsed: !state.showMenuCollapsed
@@ -142,9 +138,7 @@ const indexReducer = (state = initialState, action) => {
         searched: true
       });
     case actionTypes.SET_LOCATIONS:
-      return updateObject(state, {
-        locations: action.input
-      });
+      return updateObject(state, { locations: action.input });
     case actionTypes.SET_CONTEXT:
       return updateObject(state, { context: action.input });
     case actionTypes.SET_EMAIL:
@@ -158,7 +152,10 @@ const indexReducer = (state = initialState, action) => {
         seed: action.seed
       });
     case actionTypes.RECORD_ENTRY:
-      return updateObject(state, { seed: action.seed });
+      return updateObject(state, {
+        seed: action.seed,
+        clientInfo: action.clientInfo
+      });
     case actionTypes.SET_INFO_TAB:
       return updateObject(state, { infoTab: action.infoTab });
 

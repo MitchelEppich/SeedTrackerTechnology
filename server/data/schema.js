@@ -19,17 +19,39 @@ type Entry {
   email: String
   number: Int
   context: Int
-  createdAt: String
+  createdAt: String,
+  strain: String,
+  lon: String, 
+  lat: String,
+  dispatchAt: String
 }
 
 input EntryInput {
   email: String
   number: Int
-  context: Int
+  context: Int,
+  lon: String,
+  lat: String,
+  strain: String,
+  dispatchAt: String
+}
+
+type Coordinates {
+  lon: String,
+  lat: String
+}
+
+input CoordinatesInput {
+  street: String,
+  city: String,
+  state: String,
+  country: String,
+  postalcode: String
 }
 
 type Mutation {
-  createEntry(input: EntryInput!): Entry
+  createEntry(input: EntryInput!): Entry,
+  getCoordinates(input: CoordinatesInput!) : Coordinates
 }
 
 `;
