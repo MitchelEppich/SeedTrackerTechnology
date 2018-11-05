@@ -22,9 +22,7 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-                <InfoCard 
-        {...this.props}
-        />
+        <InfoCard {...this.props} />
         <Navbar
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}

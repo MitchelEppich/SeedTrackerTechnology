@@ -19,7 +19,9 @@ const Navbar = props => {
     MsTransform:
       props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
     transition:
-      props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease"
+      props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease",
+    boxShadow: 
+      props.showMenuCollapsed == true ? "rgba(0, 0, 0, 0.28) 0px 2px 3px" : "none"    
   };
 
   return (

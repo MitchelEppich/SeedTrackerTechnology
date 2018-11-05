@@ -1,6 +1,8 @@
 import React from "react"
 
 const InfoCard = props => {
+    let marker = props.landmarks.spain;
+    // console.log(.description)
     return (
         <div 
         hidden
@@ -65,17 +67,18 @@ const InfoCard = props => {
             <hr className="m-2" style={{ backgroundColor: "rgba(103, 112, 117, 0.2)", height: "2px" }} />
             <div className="w-550 inline-flex p-2">                
                 <span className="w-1/3 p-2">
-                    <h4 className="uppercase pb-2">Stats:</h4>
-                    <p>Germination:</p>
+                    <h4 className="uppercase pb-2">Germination:</h4>
+                    
                     <p>30 days:</p>
                     <p>45 days:</p>
                     <p>In House:</p>                                    
                 </span>
                 <span className="w-1/3 p-2">  
                     <h4 className="uppercase pb-2">Dates:</h4>                  
-                    <p>Pack Date:</p>
-                    <p>Harvest Date:</p>
-                    <p>Ship Date:</p>                                                     
+                    <p><span className="font-bold">Pack Date: </span> {marker.description.dates["harvest"]}</p>
+                    <p><span className="font-bold">Harvest Date: </span> {marker.description.dates["harvest"]}
+                    </p>
+                    <p><span className="font-bold">Ship Date: </span> {marker.description.dates["depart"]}</p>                                                     
                 </span>
                 <span className="w-1/3 p-2">
                     <h4 className="uppercase pb-2">Effects:</h4>

@@ -158,7 +158,7 @@ const Main = props => {
           )}
           <FontAwesomeIcon
             icon={faInfoCircle}
-            className="fa-2x h-12 text-grey-darkest cursor-pointer"
+            className="fa-2x h-12 text-yellow cursor-pointer"
             onClick={() => {
               props.toggleCopyright();
             }}
