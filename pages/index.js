@@ -31,34 +31,57 @@ class Index extends Component {
         />
 
         <Video />
+        <button
+          onClick={() => {
+            console.log(this.props.clientInfo);
+          }}
+        >
+          Click me for other reasons!
+        </button>
+        <button
+          onClick={() => {
+            let input = document.querySelector("#layout");
+            html2canvas(input, {
+              scale: 0.4,
+              windowHeight: "8000px",
+              windowWidth: "2000px"
+            }).then(canvas => {
+              const imgData = canvas.toDataURL("image/png");
+              const jspdf = require("jspdf");
+              const pdf = new jspdf();
+              pdf.addImage(imgData, "PNG", 0, 0);
+              pdf.save("download.pdf");
+            });
+          }}
+        >
+          CLICK ME
+        </button>
 
         <About />
         <button
           onClick={() => {
             let input = document.querySelector("#growCard");
-            input.hidden = false
+            input.hidden = false;
             html2canvas(input, {
               scale: 0.9,
               windowHeight: "8000px",
-              windowWidth: "2000px",    
-              removeContainer: false          
+              windowWidth: "2000px",
+              removeContainer: false
             }).then(canvas => {
-              const imgData = canvas.toDataURL("image/png");              
+              const imgData = canvas.toDataURL("image/png");
               const jspdf = require("jspdf");
-              const pdf = new jspdf({
-                format: [131, 173]
-              });  
-                    
+              const pdf = new jspdf({ format: [131, 173] });
+
               pdf.addImage(imgData, "PNG", 0, 0);
               pdf.save("growcard.pdf");
-              input.hidden = true
+              input.hidden = true;
             });
           }}
         >
           CLICK ME
         </button>
         <HomeTracker
-        {...this.props}
+          {...this.props}
           trackNumber={this.props.trackNumber}
           search={this.props.search}
           number={this.props.number}
@@ -72,7 +95,7 @@ class Index extends Component {
           setEmail={this.props.setEmail}
           email={this.props.email}
           checkEntry={this.props.checkEntry}
-          closeAllHandler={this.props.closeAllHandler}          
+          closeAllHandler={this.props.closeAllHandler}
           toggleLandmarks={this.props.toggleLandmarks}
         />
 
@@ -95,9 +118,7 @@ class Index extends Component {
           seed={this.props.seed}
           setInfoTab={this.props.setInfoTab}
         />
-        <InfoCard 
-        {...this.props}
-        />
+        <InfoCard {...this.props} />
 
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
