@@ -10,12 +10,15 @@ import { makePromise, execute } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import fetch from "node-fetch";
 
+import axios from "axios";
+import moment from "moment";
+
 // const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
 // const uri = "http://192.168.0.43:3000/graphql";
 
-// const uri = "http://localhost:3000/graphql";
+const uri = "http://localhost:3000/graphql";
 
-const uri = "http://192.168.0.27:3000/graphql";
+// const uri = "http://192.168.0.27:3000/graphql";
 
 const imports = {};
 
@@ -31,10 +34,11 @@ const actionTypes = {
   SET_CONTEXT: "SET_CONTEXT",
   SET_EMAIL: "SET_EMAIL",
   RECORD_ENTRY: "RECORD_ENTRY",
-  CHECK_ENTRY: "CHECK_ENTRY"
+  CHECK_ENTRY: "CHECK_ENTRY",
+  SET_INFO_TAB: "SET_INFO_TAB"
 };
 
-const actions = {  
+const actions = {
   trackNumber: number => {
     return {
       type: actionTypes.TRACK_NUMBER,
@@ -87,6 +91,12 @@ const actions = {
       input: input
     };
   },
+  setInfoTab: input => {
+    return {
+      type: actionTypes.SET_INFO_TAB,
+      infoTab: input
+    };
+  },
   checkEntry: input => {
     return dispatch => {
       const link = new HttpLink({ uri, fetch: fetch });
@@ -113,20 +123,67 @@ const actions = {
   },
   recordEntry: input => {
     return dispatch => {
-      const link = new HttpLink({ uri, fetch: fetch });
-      const operation = {
-        query: mutation.recordEntry,
-        variables: { ...input }
-      };
+      axios
+        .get(`https://www.cksoti.com/getcustomerorderdetail/${input.number}`)
+        .then(res => {
+          let data = res.data;
+          let info = {};
+          let tags = [
+            "productname",
+            "ShipAddress",
+            "ShipCity",
+            "ShipState",
+            "ShipCountry",
+            "ShipZipCode",
+            "DispatchDate"
+          ];
+          for (let tag of tags) {
+            info[tag] = data.split(`<${tag}>`)[1];
+          }
 
-      makePromise(execute(link, operation))
-        .then(data => {
-          dispatch({
-            type: actionTypes.RECORD_ENTRY,
-            seed: data.data.createEntry._id
+          let link = new HttpLink({ uri, fetch: fetch });
+          let operation = {
+            query: mutation.getCoordinates,
+            variables: {
+              postalcode: info.ShipZipCode,
+              street: info.ShipAddress,
+              city: info.ShipCity,
+              country: info.ShipCountry,
+              state: info.ShipState
+            }
+          };
+
+          makePromise(execute(link, operation)).then(data => {
+            let coords = data.data.getCoordinates;
+
+            info = {
+              sttNumber: input.number,
+              strain: info.productname
+                .split("-")[1]
+                .split("(")[0]
+                .replace("Seeds", "")
+                .trim(),
+              dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
+              ...coords
+            };
+
+            link = new HttpLink({ uri, fetch: fetch });
+            operation = {
+              query: mutation.recordEntry,
+              variables: { ...input, ...info }
+            };
+
+            makePromise(execute(link, operation))
+              .then(data => {
+                dispatch({
+                  type: actionTypes.RECORD_ENTRY,
+                  seed: data.data.createEntry._id,
+                  clientInfo: info
+                });
+              })
+              .catch(error => console.log(error));
           });
-        })
-        .catch(error => console.log(error));
+        });
     };
   }
 };
@@ -140,22 +197,69 @@ const query = {
         number
         context
         createdAt
+        lat
+        lon
+        dispatchAt
+        strain
       }
     }
   `
 };
 
 const mutation = {
+  getCoordinates: gql`
+    mutation(
+      $postalcode: String
+      $street: String
+      $city: String
+      $country: String
+      $state: String
+    ) {
+      getCoordinates(
+        input: {
+          postalcode: $postalcode
+          street: $street
+          city: $city
+          country: $country
+          state: $state
+        }
+      ) {
+        lon
+        lat
+      }
+    }
+  `,
   recordEntry: gql`
-    mutation($email: String!, $number: Int!, $context: Int!) {
+    mutation(
+      $email: String!
+      $number: Int!
+      $context: Int!
+      $strain: String!
+      $lat: String!
+      $lon: String!
+      $dispatchAt: String!
+    ) {
       createEntry(
-        input: { email: $email, number: $number, context: $context }
+        input: {
+          email: $email
+          number: $number
+          context: $context
+          lon: $lon
+          lat: $lat
+          strain: $strain
+          dispatchAt: $dispatchAt
+        }
       ) {
         _id
         email
         number
         context
         createdAt
+        lon
+        lat
+        strain
+        dispatchAt
+        strain
       }
     }
   `

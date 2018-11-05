@@ -11,6 +11,10 @@ let EntrySchema = Schema({
   email: String,
   number: Number,
   context: Number,
+  strain: String,
+  dispatchAt: String,
+  lon: String,
+  lat: String,
   createdAt: { type: Date, default: new Date() }
 });
 

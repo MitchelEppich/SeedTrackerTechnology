@@ -13,7 +13,7 @@ import HomeTracker from "../components/Main/HomeTracker";
 // import InfoSection from "../components/Main/InfoSection"
 import Video from "../components/Video";
 import About from "../components/Main/About";
-
+import InfoCard from "../components/Main/InfoCard";
 import html2canvas from "html2canvas";
 
 class Index extends Component {
@@ -22,6 +22,7 @@ class Index extends Component {
   render() {
     return (
       <Layout>
+        <InfoCard {...this.props} />
         <Navbar
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
@@ -30,6 +31,13 @@ class Index extends Component {
         />
 
         <Video />
+        <button
+          onClick={() => {
+            console.log(this.props.clientInfo);
+          }}
+        >
+          Click me for other reasons!
+        </button>
         <button
           onClick={() => {
             let input = document.querySelector("#layout");
@@ -50,7 +58,28 @@ class Index extends Component {
         </button>
 
         <About />
+        <button
+          onClick={() => {
+            let input = document.querySelector("#growCard");
+            input.hidden = false;
+            html2canvas(input, {
+              scale: 0.9,
+              windowHeight: "8000px",
+              windowWidth: "2000px",
+              removeContainer: false
+            }).then(canvas => {
+              const imgData = canvas.toDataURL("image/png");
+              const jspdf = require("jspdf");
+              const pdf = new jspdf({ format: [131, 173] });
 
+              pdf.addImage(imgData, "PNG", 0, 0);
+              pdf.save("growcard.pdf");
+              input.hidden = true;
+            });
+          }}
+        >
+          CLICK ME
+        </button>
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}
@@ -87,7 +116,9 @@ class Index extends Component {
           toggleCopyright={this.props.toggleCopyright}
           showCopyright={this.props.showCopyright}
           seed={this.props.seed}
+          setInfoTab={this.props.setInfoTab}
         />
+        <InfoCard {...this.props} />
 
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
@@ -132,6 +163,9 @@ const mapDispatchToProps = dispatch => {
     },
     checkEntry: input => {
       dispatch(actions.checkEntry(input));
+    },
+    setInfoTab: input => {
+      dispatch(actions.setInfoTab(input));
     }
   };
 };
