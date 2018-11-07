@@ -41,6 +41,8 @@ const initialState = {
       name: "Crop King Seeds",
       anchor: [49.268, -122.981],
       type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
       description: {
         dates: {
           package: "Aug 2",
@@ -48,7 +50,7 @@ const initialState = {
         },
         imageUrl:
           "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "http://www.cropkingseeds.com",
+        website: "https://www.cropkingseeds.com",
         socials: {
           facebook: "http://www.facebook.com",
           twitter: "http://www.twitter.com",
@@ -149,7 +151,8 @@ const indexReducer = (state = initialState, action) => {
         email: action.entry.email,
         trackNumber: action.entry.number,
         context: action.entry.context,
-        seed: action.seed
+        seed: action.seed,
+        clientInfo: action.entry
       });
     case actionTypes.RECORD_ENTRY:
       return updateObject(state, {

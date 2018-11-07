@@ -1,23 +1,19 @@
 import React from "react"
 
-const InfoCard = props => {
-    let marker = props.landmarks.spain;
-    // console.log(.description)
+const InfoCard = props => {  
+    // console.log(props.clientInfo)
+   
     return (
         <div 
         hidden
         id="growCard"
-        style={{
-            // marginTop: "50%",
-            position: "absolute",
-            // marginLeft: "auto",
-            // marginRight: "auto",
-            zIndex: '1',
-            // left: "0",
-            // right: "0",
+        style={{            
+            position: "absolute",           
+            zIndex: '1',            
             background: "white",
             width: "550px",
-            height: "725px"
+            height: "725px",
+            fontSize: "14px"
         }}
         className=" m-6 border-grey-light">
         <div style={{
@@ -32,84 +28,92 @@ const InfoCard = props => {
                     
                 </div>
                 <div style={{color:"#ffffff", zIndex: "99999"}} className="w-1/2 text-right">
-                <img 
-                    // style={{ width:  }}
-                    className="text-right mr-2 pt-3" src="../../static/imgs/GrowCardText.png" />
+                <img                     
+                    className="text-right mr-4 pt-3" src="../../static/imgs/GrowCardText.png" />
                 </div>
             </div>   
-            <hr className="m-2" style={{ backgroundColor: "rgba(103, 112, 117, 0.2)", height: "2px" }} />        
-            <div className="w-550 inline-flex p-2 pt-8">
+                 
+            <div className="w-full inline-flex p-2 pt-8">
                 <span className="w-1/3 p-2">
                     <img style={{
                         width: '160px',
-                        height: '160px'
+                        height: '170px'
                     }}
                     className="relative" src="../../static/imgs/female-seeds-pure-ak-feminized.jpeg"/> 
                     <img style={{
-                            marginLeft: "-30px",
-                            marginTop: "-20px"
+                            marginLeft: "-37px",
+                            marginTop: "-32px"
                     }} 
                     className="w-16 h-16 absolute" src="../../static/imgs/cropking-logo.png"/>
                     
                 </span>
-                <span className="w-2/3 p-2 ml-8">
-                <h4 className="uppercase pb-2">Strain Name:</h4>
-                <p>Type:</p>
-                <p>THC:</p>
-                <p>Indica % / Sativa %:</p>
+                <span className="w-2/3 p-2 pl-6">
+                <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">Super Silver Haze</h4>
+                <p className="pl-2"><span className="font-bold">Type: </span>
+                Autoflower Feminized</p>
+                <p className="pl-2">
+                    <span className="font-bold">THC: </span>
+                    12%; CBN 0.30%; CBD 0.80%
+                </p>
+                <p className="pl-2">
+                    <span className="font-bold">Indica: </span>
+                    80%
+                </p>
+                <p className="pl-2">
+                    <span className="font-bold">Sativa: </span>
+                    20%
+                </p>
                 <br/>
-                <p>Average Height:</p>
-                <p>Average Yeild:</p>
-                <p>Average Grow Time:</p>
+                <p className="pl-2">
+                    <span className="font-bold">Average Height: </span>
+                    18 meters
+                </p>
+                <p className="pl-2">
+                    <span className="font-bold">Average Yield: </span>
+                    1500kg
+                </p>
+                <p className="pl-2">
+                    <span className="font-bold">Average Grow Time: </span>
+                    15 years
+                </p>
                     
                 </span>
             </div>
-            <hr className="m-2" style={{ backgroundColor: "rgba(103, 112, 117, 0.2)", height: "2px" }} />
-            <div className="w-550 inline-flex p-2">                
-                <span className="w-1/3 p-2">
-                    <h4 className="uppercase pb-2">Germination:</h4>
+            <hr className="m-2" style={{ backgroundColor: "rgba(0, 0, 0, 0.8)", height: "2px" }} />
+            <div className="w-full inline-flex p-2">                
+                <span className="w-1/2 p-2 text-center">
+                    <h4 className="uppercase pb-2 underline">Germination Tests</h4>
                     
-                    <p>30 days:</p>
-                    <p>45 days:</p>
-                    <p>In House:</p>                                    
-                </span>
-                <span className="w-1/3 p-2">  
-                    <h4 className="uppercase pb-2">Dates:</h4>                  
-                    <p><span className="font-bold">Pack Date: </span> {marker.description.dates["harvest"]}</p>
-                    <p><span className="font-bold">Harvest Date: </span> {marker.description.dates["harvest"]}
+                    <p><span className="font-bold">- 30 days: </span>
+                        91.9%
                     </p>
-                    <p><span className="font-bold">Ship Date: </span> {marker.description.dates["depart"]}</p>                                                     
-                </span>
-                <span className="w-1/3 p-2">
-                    <h4 className="uppercase pb-2">Effects:</h4>
-                    <p>- Drowsy</p>
-                    <p>- Hyper</p>
-                    <p>- Scared</p>
-                    
-                </span>
-            </div>
-            <hr className="m-2" style={{ backgroundColor: "rgba(103, 112, 117, 0.2)", height: "2px" }} />
-            <div className="w-550 inline-flex p-2">
-                <span className="w-1/3 p-2 pt-0">
+                    <p><span className="font-bold">- 45 days: </span>
+                        89.7%
+                    </p>
+                    <p><span className="font-bold">- In House: </span>
+                        82.0%
+                    </p>                                    
+                </span> 
+                <hr className="m-2" style={{ 
+                    backgroundColor:' rgba(90, 90, 90, 0.8)',
+                    height: '90px',
+                    width: '2px' 
+                    }} />               
+                <span className="w-1/2 p-2 text-center">
+                <h4 className="uppercase underline">Visit us at:</h4>
                     <img style={{
-                        width: '130px',
-                        height: '130px'
+                        width: '70px',
+                        height: '70px'
                     }}
-                    className="" src="../../static/imgs/qrcode.png"/>
-                    
+                    className="pt-0 text-center" src="../../static/imgs/qrcode.png"/>                    
                 </span>
-                <span className="w-2/3 p-2">
-                    <h4 className="uppercase pb-2">Company Name:</h4>
-                    <p>Phone:</p>
-                    <p>Address:</p>
-                    <p>Website:</p>
-                </span>
-            </div>
-            
-            <p className="p-2 pt-3 pb-3 text-xs">* Results may vary.</p>
+            </div>                     
+            <span className="font-bold">
+            <p className="p-2 pt-1 pb-2 text-xs bg-black text-yellow">* Results may vary.</p>
+            </span>
 
             </div>
-            <br/><br/><br/><br/><br/><br/><br/><br/>
+            <br/><br/><br/>
         </div>
     )
 }

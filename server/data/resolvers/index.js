@@ -18,9 +18,9 @@ const resolvers = {
       let coords = await new Promise((resolve, reject) => {
         geocoder
           .geocode({
-            postalcode: input.postalcode,
-            street: input.street,
-            city: input.city,
+            // postalcode: input.postalcode,
+            // street: input.street,
+            // city: input.city,
             state: input.state,
             country: input.country
           })

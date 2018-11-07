@@ -178,7 +178,7 @@ const InfoSection = props => {
                   Destination:
                 </h5>
                 <h2 className="text-navy-blue sm:text-lg text-center animate-text">
-                  {marker.name}
+                  {/* {marker.name} */}
                 </h2>
               </span>
             ) : null}
@@ -231,14 +231,14 @@ const InfoSection = props => {
                 <p className="font-bold">
                   Address:{" "}
                   <span className="font-normal">
-                    {marker.description.address.street},{" "}
-                    {marker.description.address.city}
+                    {/* {marker.description.address.street},{" "}
+                    {marker.description.address.city} */}
                   </span>
                 </p>
                 <p className="font-bold">
                   Email:{" "}
                   <span className="font-normal">
-                    {marker.description.email}
+                    {/* {marker.description.email} */}
                   </span>
                 </p>
               </span>
@@ -347,7 +347,7 @@ const InfoSection = props => {
                 <p>
                   <a
                     className="font-bold text-grey-darkest"
-                    href={marker.description.socials.facebook}
+                    // href={marker.description.socials.facebook}
                   >
                     Facebook{" "}
                   </a>
@@ -355,7 +355,7 @@ const InfoSection = props => {
                 <p>
                   <a
                     className="font-bold text-grey-darkest"
-                    href={marker.description.socials.twitter}
+                    // href={marker.description.socials.twitter}
                   >
                     {" "}
                     Twitter{" "}
@@ -364,7 +364,7 @@ const InfoSection = props => {
                 <p>
                   <a
                     className="font-bold text-grey-darkest"
-                    href={marker.description.socials.instagram}
+                    // href={marker.description.socials.instagram}
                   >
                     {" "}
                     Instagram{" "}
@@ -425,7 +425,7 @@ const InfoSection = props => {
       >
         <div className="flex mb-2">
           <span className="w-1/3 sm:w-1/2">
-            {props.currentInformation == 1 || props.currentInformation == 2 ? (
+            {props.currentInformation == 1 ? (
               <img
                 style={{ borderRadius: "15px" }}
                 className="p-2 w-imgCard h-imgCard md:w-32 md:h-32 sm:w-20 sm:h-20"
@@ -459,7 +459,7 @@ const InfoSection = props => {
                 Destination:
               </h5>
               <h2 className="text-navy-blue sm:text-lg text-center animate-text">
-                {marker.name}
+                {/* {marker.name} */}
               </h2>
             </span>
           ) : null}
@@ -522,13 +522,13 @@ const InfoSection = props => {
               <p className="font-bold">
                 Address:{" "}
                 <span className="font-normal">
-                  {marker.description.address.street},{" "}
-                  {marker.description.address.city}
+                  {/* {marker.description.address.street},{" "} */}
+                  {/* {marker.description.address.city} */}
                 </span>
               </p>
               <p className="font-bold">
                 Email:{" "}
-                <span className="font-normal">{marker.description.email}</span>
+                {/* <span className="font-normal">{marker.description.email}</span> */}
               </p>
             </div>
           ) : (

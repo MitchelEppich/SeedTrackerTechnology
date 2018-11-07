@@ -20,8 +20,7 @@ const Navbar = props => {
       props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
     transition:
       props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease",
-    boxShadow: 
-      props.showMenuCollapsed == true ? "rgba(0, 0, 0, 0.28) 0px 2px 3px" : "none"    
+       
   };
 
   return (
@@ -60,7 +59,7 @@ const Navbar = props => {
       </div>
                 
       {/* TOGGLE MOBILE MENU  */}
-      <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden md:hidden  xl:hidden lg:hidden">
+      <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden md:hidden xl:hidden lg:hidden">
         <span
           className="float-right cursor-pointer bg-navbar p-2 pin-t pin-r "
           onClick={() => {

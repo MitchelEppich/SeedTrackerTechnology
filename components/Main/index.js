@@ -27,13 +27,7 @@ const Main = props => {
           return (
             <Overlay key={index} anchor={marker.anchor} payload={index}>
               <div
-                className="landmark-points"
-                // onMouseOver={() => {
-                //   props.toggleLandmarks(index);
-                // }}
-                // onMouseOut={() => {
-                //   props.toggleLandmarks(-1);
-                // }}
+                className="landmark-points"            
                 onClick={() => {
                   // console.log(
                   //   props.seed,
@@ -42,33 +36,17 @@ const Main = props => {
                   //   props.context
                   // );
                   
-                  // props.toggleLandmarks(-1);
-                  if (marker.description)
+                if (marker.description)
                  
                     props.toggleInfoSection(
-                      props.currentInformation == index ? -1 : index
-                      
+                      props.currentInformation == index ? -1 : index                      
                     );
                     // props.toggleLandmarks(props.currentInformation == index ? -1 : index);
                     
                 }}
-              />
+               />
 
-              {/*  LABEL UNDER LANDMARKS                    
-                    
-                    <span style={{
-                        position: 'absolute',                   
-                        color: '#fff200',
-                        fontSize: '19px',
-                        fontWeight: '900',
-                        textShadow: '0 1px 3px #000000',
-                        width: '70px',
-                        borderRadius: '14px',
-                        transform:' translateX(-64.5px) translateY(10.5px)',                 
-                     }}> Step {index + 1}                   
-                     </span> 
-                     
-                     */}
+             
 
               {props.currentLocation == index ? (
                 <div className="info-landmark">
@@ -117,11 +95,11 @@ const Main = props => {
         center={
           props.currentInformation != -1
             ? props.locations[props.currentInformation].anchor
-            : [38.927, -6.877]
+            : [38.927, -56.877]
         }
-        zoom={props.currentInformation != -1 ? 6 : 3}
+        zoom={props.currentInformation != -1 ? 6 : 4}
         maxZoom={11}
-        minZoom={3}
+        minZoom={4}
         metaWheelZoom={true}
         metaWheelZoomWarning={"Keep Pressing Window or CMD button to Scroll"}
       >

@@ -68,33 +68,35 @@ const HomeTracker = props => {
           />
           <form onSubmit={(e) => {
             e.preventDefault()
+
                   props.checkEntry({
                     email: props.email,
                     context: props.context,
                     number: searched.value
-                  });                  
-                  props.search("true"); 
+                  })
+                  .then(res => {
+                    props.search("true"); 
 
-                  // FUNCTION TO FOCUS ON A SPECIFIC POINT                 
-                  // props.toggleInfoSection(
-                  //       props.currentInformation + 1                            
-                  //   )
-                  
-                  firstPoint()
-                  // secondPoint()
-                  // thirdPoint()
-                  
-                  props.setLocations([
-                    props.landmarks.spain,
-                    props.landmarks.cks,
-                    props.landmarks.you,                   
-                    {
-                      name: "null",
-                      anchor: [null, null],
-                      imageUrl:
-                     "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",
-                    }
-                  ]);    
+                    firstPoint()
+  
+                    props.setLocations([
+                      props.landmarks.spain,
+                      props.landmarks.cks,
+                      {
+                        name: "You",
+                        anchor: [parseFloat(res.lat), parseFloat(res.lon)],
+                        imageUrl:
+                       "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",
+                      },
+                      {
+                        name: "null",
+                        anchor: [null, null],
+                        imageUrl:
+                       "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png",
+                      }
+                    ]);  
+                  })               
+  
      
                 }}>
           <div className="w-full pb-4">
@@ -149,9 +151,10 @@ const HomeTracker = props => {
               required
                 className="h-10 w-full p-2 sm:w-full md:w-full border-2 border-light-grey p-2"
                 placeholder="youremail@mail.ca"
+                defaultValue="asdas@asdasd"
                 type="email"
                 aria-label="Enter in your email"
-                defaultValue={props.searched ? props.number : ""}
+                // defaultValue={props.searched ? props.number : ""}
                 id="email"
                 name="email"
                 onChange={e => {
@@ -184,7 +187,8 @@ const HomeTracker = props => {
                 required="required"
                 maxLength={7}
                 aria-label="Track number"
-                defaultValue={props.searched ? props.number : ""}
+                defaultValue="4050202"
+                // defaultValue={props.searched ? props.number : ""}
                 id="search"
                 ref={search => {
                   searched = search;

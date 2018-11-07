@@ -31,34 +31,23 @@ class Index extends Component {
         />
 
         <Video />
-        <button
+        {/* <button
           onClick={() => {
-            console.log(this.props.clientInfo);
+            // console.log(this.props.clientInfo);
+            this.props.checkEntry({
+              email: "asdasd@asdas",
+              context: 1,
+              number: "4050202"
+            }).then(res => {
+              console.log(res)
+            })
           }}
         >
           Click me for other reasons!
-        </button>
-        <button
-          onClick={() => {
-            let input = document.querySelector("#layout");
-            html2canvas(input, {
-              scale: 0.4,
-              windowHeight: "8000px",
-              windowWidth: "2000px"
-            }).then(canvas => {
-              const imgData = canvas.toDataURL("image/png");
-              const jspdf = require("jspdf");
-              const pdf = new jspdf();
-              pdf.addImage(imgData, "PNG", 0, 0);
-              pdf.save("download.pdf");
-            });
-          }}
-        >
-          CLICK ME
-        </button>
+        </button>     */}
 
         <About />
-        <button
+        {/* <button
           onClick={() => {
             let input = document.querySelector("#growCard");
             input.hidden = false;
@@ -79,7 +68,7 @@ class Index extends Component {
           }}
         >
           CLICK ME
-        </button>
+        </button> */}
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}
@@ -162,7 +151,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.setEmail(input));
     },
     checkEntry: input => {
-      dispatch(actions.checkEntry(input));
+      return dispatch(actions.checkEntry(input));
     },
     setInfoTab: input => {
       dispatch(actions.setInfoTab(input));

@@ -104,29 +104,31 @@ const actions = {
         query: query.getEntry,
         variables: { number: input.number }
       };
-
-      makePromise(execute(link, operation))
+      return makePromise(execute(link, operation))
         .then(data => {
           let entry = data.data.entry;
           if (entry == null) {
-            dispatch(actions.recordEntry(input));
+            return dispatch(actions.recordEntry(input));
           } else {
             dispatch({
               type: actionTypes.CHECK_ENTRY,
               entry: entry,
               seed: entry._id
             });
+            console.log(entry)
+            return Promise.resolve(entry)
           }
         })
-        .catch(error => console.log(error));
+        
     };
   },
   recordEntry: input => {
     return dispatch => {
-      axios
+      return axios
         .get(`https://www.cksoti.com/getcustomerorderdetail/${input.number}`)
         .then(res => {
           let data = res.data;
+          console.log(data)
           let info = {};
           let tags = [
             "productname",
@@ -153,7 +155,7 @@ const actions = {
             }
           };
 
-          makePromise(execute(link, operation)).then(data => {
+          return makePromise(execute(link, operation)).then(data => {
             let coords = data.data.getCoordinates;
 
             info = {
@@ -162,6 +164,13 @@ const actions = {
                 .split("-")[1]
                 .split("(")[0]
                 .replace("Seeds", "")
+                .replace("Marijuana", "")
+                .replace("Seed", "")
+                .replace("Auto Flower", "")
+                .replace("Regular", "")
+                .replace("Cannabis", "")
+                .replace("Feminized", "")
+
                 .trim(),
               dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
               ...coords
@@ -175,14 +184,16 @@ const actions = {
 
             makePromise(execute(link, operation))
               .then(data => {
+              
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
                   clientInfo: info
                 });
               })
-              .catch(error => console.log(error));
-          });
+              .catch(error => console.log(error));         
+              return Promise.resolve(info)
+            });
         });
     };
   }
