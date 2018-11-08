@@ -33,18 +33,11 @@ class Index extends Component {
         <Video />
         {/* <button
           onClick={() => {
-            // console.log(this.props.clientInfo);
-            this.props.checkEntry({
-              email: "asdasd@asdas",
-              context: 1,
-              number: "4050202"
-            }).then(res => {
-              console.log(res)
-            })
+            console.log(this.props.strain);
           }}
         >
           Click me for other reasons!
-        </button>     */}
+        </button> */}
 
         <About />
         {/* <button
@@ -84,6 +77,7 @@ class Index extends Component {
           setEmail={this.props.setEmail}
           email={this.props.email}
           checkEntry={this.props.checkEntry}
+          getStrainData={this.props.getStrainData}
           closeAllHandler={this.props.closeAllHandler}
           toggleLandmarks={this.props.toggleLandmarks}
         />
@@ -155,6 +149,9 @@ const mapDispatchToProps = dispatch => {
     },
     setInfoTab: input => {
       dispatch(actions.setInfoTab(input));
+    },
+    getStrainData: input => {
+      return dispatch(actions.getStrainData(input));
     }
   };
 };

@@ -18,25 +18,6 @@ const initialState = {
   showMenuCollapsed: false,
   infoTab: 0,
   landmarks: {
-    spain: {
-      name: "Spain",
-      anchor: [41.24, -4.39],
-      type: "producer",
-      description: {
-        dates: {
-          depart: "Jun 9",
-          harvest: "Aug 1"
-        },
-        facts: {
-          origin: "Madrid, Spain",
-          effects:
-            "Indica strains are believed to be physically sedating, perfect for relaxing with a movie or as a nightcap before bed.",
-          potency: "90%"
-        },
-        imageUrl:
-          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-      }
-    },
     cks: {
       name: "Crop King Seeds",
       anchor: [49.268, -122.981],
@@ -60,31 +41,150 @@ const initialState = {
     },
     swg: {
       name: "Crop King Seeds",
-      anchor: [49.2687, -123.2428]
+      anchor: [49.2687, -123.2428],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     "mjsc.ca": {
       name: "Crop King Seeds",
-      anchor: [49.1887, -123.0812]
+      anchor: [49.1887, -123.0812],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     "mjsc.com": {
       name: "Crop King Seeds",
-      anchor: [49.1887, -123.0812]
+      anchor: [49.1887, -123.0812],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     mjg: {
-      name: "Crop King Seeds",
-      anchor: [49.2332, -122.9931]
+      name: "Mary Janes Garden",
+      anchor: [49.2332, -122.9931],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     bvr: {
       name: "Beaver Seeds",
-      anchor: [49.29173, -123.13522]
+      anchor: [49.29173, -123.13522],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     snm: {
       name: "Sonoma Seeds",
-      anchor: [49.2775, -123.044]
+      anchor: [49.2775, -123.044],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     sfw: {
       name: "Star Flower Seeds",
-      anchor: [49.2728, -123.15233]
+      anchor: [49.2728, -123.15233],
+      type: "company",
+      phone: "(604) 563 0291",
+      email: "info@cropkingseeds.com",
+      description: {
+        dates: {
+          package: "Aug 2",
+          ship: "Aug 9"
+        },
+        imageUrl:
+          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
+        website: "https://www.cropkingseeds.com",
+        socials: {
+          facebook: "http://www.facebook.com",
+          twitter: "http://www.twitter.com",
+          instagram: "http://www.instagram.com"
+        }
+      }
     },
     you: {
       name: "YOU",
@@ -111,7 +211,8 @@ const initialState = {
   context: 0,
   email: null,
   seed: null,
-  clientInfo: null
+  clientInfo: null,
+  strain: null
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -161,6 +262,8 @@ const indexReducer = (state = initialState, action) => {
       });
     case actionTypes.SET_INFO_TAB:
       return updateObject(state, { infoTab: action.infoTab });
+    case actionTypes.GET_STRAIN_DATA:
+      return updateObject(state, { strain: action.strain });
 
     default:
       return state;

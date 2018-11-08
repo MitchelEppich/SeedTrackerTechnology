@@ -35,6 +35,7 @@ const actionTypes = {
   SET_EMAIL: "SET_EMAIL",
   RECORD_ENTRY: "RECORD_ENTRY",
   CHECK_ENTRY: "CHECK_ENTRY",
+  GET_STRAIN_DATA: "GET_STRAIN_DATA",
   SET_INFO_TAB: "SET_INFO_TAB"
 };
 
@@ -104,22 +105,48 @@ const actions = {
         query: query.getEntry,
         variables: { number: input.number }
       };
-      return makePromise(execute(link, operation))
-        .then(data => {
-          let entry = data.data.entry;
-          if (entry == null) {
-            return dispatch(actions.recordEntry(input));
-          } else {
-            dispatch({
-              type: actionTypes.CHECK_ENTRY,
-              entry: entry,
-              seed: entry._id
-            });
-            console.log(entry)
-            return Promise.resolve(entry)
-          }
-        })
-        
+      return makePromise(execute(link, operation)).then(data => {
+        let entry = data.data.entry;
+        if (entry == null) {
+          return dispatch(actions.recordEntry(input));
+        } else {
+          dispatch({
+            type: actionTypes.CHECK_ENTRY,
+            entry: entry,
+            seed: entry._id
+          });
+          console.log(entry);
+          return Promise.resolve(entry);
+        }
+      });
+    };
+  },
+  getStrainData: input => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: query.getStrain,
+        variables: { strain: input }
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        let seed = data.data.seed;
+        const operation = {
+          query: mutation.getCoordinates,
+          variables: { country: seed.origin }
+        };
+        return makePromise(execute(link, operation)).then(data => {
+          let loc = data.data.getCoordinates;
+          seed = {
+            ...seed,
+            ...loc
+          };
+          dispatch({
+            type: actionTypes.GET_STRAIN_DATA,
+            strain: seed
+          });
+          return Promise.resolve(seed);
+        });
+      });
     };
   },
   recordEntry: input => {
@@ -128,7 +155,7 @@ const actions = {
         .get(`https://www.cksoti.com/getcustomerorderdetail/${input.number}`)
         .then(res => {
           let data = res.data;
-          console.log(data)
+          console.log(data);
           let info = {};
           let tags = [
             "productname",
@@ -166,7 +193,8 @@ const actions = {
                 .replace("Seeds", "")
                 .replace("Marijuana", "")
                 .replace("Seed", "")
-                .replace("Auto Flower", "")
+                .replace("Auto", "")
+                .replace("Flower", "")
                 .replace("Regular", "")
                 .replace("Cannabis", "")
                 .replace("Feminized", "")
@@ -184,22 +212,43 @@ const actions = {
 
             makePromise(execute(link, operation))
               .then(data => {
-              
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
                   clientInfo: info
                 });
               })
-              .catch(error => console.log(error));         
-              return Promise.resolve(info)
-            });
+              .catch(error => console.log(error));
+            return Promise.resolve(info);
+          });
         });
     };
   }
 };
 
 const query = {
+  getStrain: gql`
+    query($strain: String) {
+      seed(input: { strain: $strain }) {
+        _id
+        strain
+        genetic
+        p_thc
+        p_cbd
+        p_cbn
+        p_indica
+        p_sativa
+        p_ruderalis
+        o_yield
+        i_yield
+        grow_time
+        effect
+        origin
+        seed
+        seedFrom
+      }
+    }
+  `,
   getEntry: gql`
     query($number: Int!) {
       entry(input: { number: $number }) {

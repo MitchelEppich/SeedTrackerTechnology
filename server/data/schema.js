@@ -3,9 +3,10 @@ const resolvers = require("./resolvers");
 
 const typeDefs = `
 type Query {
-  sendString: String
   entry(input: EntryInput) : Entry
   allEntries(filter: EntryFilters, cursor: Int, limit: Int): [Entry]!
+  seed(input: SeedInput) : Seed
+  allSeeds: [Seed]!
 }
 
 input EntryFilters {
@@ -36,6 +37,43 @@ input EntryInput {
   dispatchAt: String
 }
 
+type Seed {
+  _id: String
+  strain: String,
+  genetic: Int
+  p_thc: Float
+  p_cbd: Float
+  p_cbn: Float
+  p_indica: Int,
+  p_sativa: Int,
+  p_ruderalis: Int,
+  o_yield: Int,
+  i_yield: Int,
+  grow_time: String,
+  effect: String,
+  origin: String
+  seed: String
+  seedFrom: String
+}
+
+input SeedInput {
+  strain: String,
+  type: Int,
+  p_thc: Float
+  p_cbd: Float
+  p_cbn: Float
+  p_indica: Int,
+  p_sativa: Int,
+  p_ruderalis: Int,
+  o_yield: Int,
+  i_yield: Int,
+  grow_time: String,
+  effect: String,
+  origin: String
+  seed: String
+  seedFrom: String
+}
+
 type Coordinates {
   lon: String,
   lat: String
@@ -52,6 +90,9 @@ input CoordinatesInput {
 type Mutation {
   createEntry(input: EntryInput!): Entry,
   getCoordinates(input: CoordinatesInput!) : Coordinates
+  transitionSeeds: Seed,
+  updateOriginOfSeeds: Seed,
+  refreshSeed(input: SeedInput!): Seed
 }
 
 `;

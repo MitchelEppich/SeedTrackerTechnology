@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { width } from "window-size";
 
+import moment from "moment";
 import gen from "random-seed";
 
 library.add(faTimes, faAngleLeft, faAngleRight);
@@ -16,7 +17,7 @@ const InfoSection = props => {
   let marker = props.locations[props.currentInformation];
   if (marker == null) return <div />;
 
-  let rand = gen.create(props.seed);
+  let rand = gen.create(props.strain.seed);
   let locationAmount = props.locations.length - 1;
 
   return (
@@ -345,29 +346,19 @@ const InfoSection = props => {
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Your Social Media:</h3>
                 <p>
-                  <a
-                    className="font-bold text-grey-darkest"
+                  <a className="font-bold text-grey-darkest">
                     // href={marker.description.socials.facebook}
-                  >
                     Facebook{" "}
                   </a>
                 </p>
                 <p>
-                  <a
-                    className="font-bold text-grey-darkest"
-                    // href={marker.description.socials.twitter}
-                  >
-                    {" "}
-                    Twitter{" "}
+                  <a className="font-bold text-grey-darkest">
+                    // href={marker.description.socials.twitter} Twitter{" "}
                   </a>
                 </p>
                 <p>
-                  <a
-                    className="font-bold text-grey-darkest"
-                    // href={marker.description.socials.instagram}
-                  >
-                    {" "}
-                    Instagram{" "}
+                  <a className="font-bold text-grey-darkest">
+                    // href={marker.description.socials.instagram} Instagram{" "}
                   </a>
                 </p>
               </span>
@@ -418,9 +409,7 @@ const InfoSection = props => {
       {/* PC VERSION: */}
 
       <div
-        style={{
-          borderRadius: "2%"
-        }}
+        style={{ borderRadius: "2%" }}
         className="absolute w-400 min-h-card h-550 sm:hidden pin-b pin-l mb-12 ml-2 z-50 p-2  bg-white z-50 p-2"
       >
         <div className="flex mb-2">
@@ -482,40 +471,48 @@ const InfoSection = props => {
               <p className="font-bold">
                 Departure Date:{" "}
                 <span className="font-normal">
-                  {marker.description.dates["depart"]}
+                  {moment(props.strain.seedFrom)
+                    .subtract(rand.intBetween(48, 52), "days")
+                    .format("DD/MM/YYYY")}
                 </span>{" "}
               </p>
               <p className="font-bold">
                 Harvest Date:{" "}
                 <span className="font-normal">
-                  {marker.description.dates["harvest"]}
+                  {moment(props.strain.seedFrom)
+                    .subtract(rand.intBetween(54, 58), "days")
+                    .format("DD/MM/YYYY")}
                 </span>{" "}
               </p>
             </div>
           ) : (
             <div />
           )}
-
+          {console.log(props.clientInfo.dispatchAt)}
           {props.currentInformation == 1 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Details:</h3>
               <p className="  font-bold">
                 Package Date:{" "}
                 <span className="font-normal">
-                  {marker.description.dates["package"]}
+                  {moment(props.clientInfo.dispatchAt, "DD/MM/YYYY")
+                    .subtract(rand.intBetween(4, 12), "days")
+                    .format("DD/MM/YYYY")}
                 </span>
               </p>
               <p className="  font-bold">
                 Ship Date:{" "}
                 <span className="font-normal">
-                  Approx {marker.description.dates["ship"]}
+                  Approx{" "}
+                  {moment(props.clientInfo.dispatchAt, "DD/MM/YYYY").format(
+                    "DD/MM/YYYY"
+                  )}
                 </span>
               </p>
             </div>
           ) : (
             <div />
           )}
-
           {props.currentInformation == 2 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Your Details:</h3>
@@ -534,7 +531,6 @@ const InfoSection = props => {
           ) : (
             <div />
           )}
-
           <hr
             style={{ backgroundColor: "rgba(21, 21, 21, 0.31)", height: "2px" }}
           />
@@ -562,9 +558,7 @@ const InfoSection = props => {
               <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
               <p className="font-bold">
                 Origin:{" "}
-                <span className="font-normal">
-                  {marker.description.facts.origin}
-                </span>
+                <span className="font-normal">{props.strain.origin}</span>
               </p>
               <p className="font-bold">
                 Effects:{" "}
@@ -582,7 +576,6 @@ const InfoSection = props => {
           ) : (
             <div />
           )}
-
           {props.currentInformation == 1 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Germination Tests:</h3>
@@ -629,7 +622,6 @@ const InfoSection = props => {
           ) : (
             <div />
           )}
-
           {props.currentInformation == 2 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Your Social Media:</h3>
@@ -663,7 +655,6 @@ const InfoSection = props => {
           ) : (
             <div />
           )}
-
           <div className="absolute inline-flex w-400 sm:w-full sm:h-12 sm:pt-1 justify-around pin-b pt-4 pin-l pb-2">
             <FontAwesomeIcon
               icon={faAngleLeft}

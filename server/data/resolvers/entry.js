@@ -13,7 +13,6 @@ const resolvers = {
         .limit(limit || null);
     }
   },
-  Global: {},
   Mutation: {
     createEntry: async (_, { input }) => {
       let entry = new Entry({
