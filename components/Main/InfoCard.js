@@ -1,9 +1,21 @@
 import React from "react"
 
-const InfoCard = props => {  
-    // console.log(props.clientInfo)
+const InfoCard = props => {      
    
+    let typeStrain = () => {
+        if (props.strain.genetic == 0) {
+            return "Feminized"
+        } if (props.strain.genetic == 1) {
+            return "Autoflower Feminized"
+        } if (props.strain.genetic == 2) {
+            return "Regular"  
+        } if (props.strain.genetic == 3) {
+                return "Medical"
+            }
+    }
+
     return (
+        props.strain ? (
         <div 
         hidden
         id="growCard"
@@ -20,6 +32,7 @@ const InfoCard = props => {
             margin: "30px",
             border: "2px solid #e1e2e3",
         }}>
+        {/* {console.log(props.strain)} */}
             <div className="w-full bg-almost-black inline-flex  p-2">
                 <div className="w-1/2 text-left">
                     <img 
@@ -42,39 +55,44 @@ const InfoCard = props => {
                     className="relative" src="../../static/imgs/female-seeds-pure-ak-feminized.jpeg"/> 
                     <img style={{
                             marginLeft: "-37px",
-                            marginTop: "-32px"
+                            marginTop: "-32px",
+                            borderRadius: "50%",
+                            background: "white",
+                            border: "2px solid white",
+                            boxShadow: "rgba(78, 78, 78, 0.25) 1px 1px 5px"
                     }} 
                     className="w-16 h-16 absolute" src="../../static/imgs/cropking-logo.png"/>
                     
                 </span>
                 <span className="w-2/3 p-2 pl-6">
-                <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">Super Silver Haze</h4>
+                <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">{props.strain.strain}</h4>
                 <p className="pl-2"><span className="font-bold">Type: </span>
-                Autoflower Feminized</p>
+                {typeStrain()}
+                </p>
                 <p className="pl-2">
                     <span className="font-bold">THC: </span>
-                    12%; CBN 0.30%; CBD 0.80%
+                    {props.strain.p_thc}%; CBN {props.strain.p_cbn}%; CBD {props.strain.p_cbd}%
                 </p>
                 <p className="pl-2">
                     <span className="font-bold">Indica: </span>
-                    80%
+                    {props.strain.p_indica}%
                 </p>
                 <p className="pl-2">
                     <span className="font-bold">Sativa: </span>
-                    20%
+                    {props.strain.p_sativa}%
                 </p>
-                <br/>
-                <p className="pl-2">
-                    <span className="font-bold">Average Height: </span>
-                    18 meters
-                </p>
+                <br/>                
                 <p className="pl-2">
                     <span className="font-bold">Average Yield: </span>
-                    1500kg
+                    {props.strain.i_yield}g
                 </p>
                 <p className="pl-2">
                     <span className="font-bold">Average Grow Time: </span>
-                    15 years
+                    {props.strain.grow_time} Weeks
+                </p>
+                <p className="pl-2">
+                    <span className="font-bold">Effects: </span>
+                    {props.strain.effect}
                 </p>
                     
                 </span>
@@ -85,13 +103,13 @@ const InfoCard = props => {
                     <h4 className="uppercase pb-2 underline">Germination Tests</h4>
                     
                     <p><span className="font-bold">- 30 days: </span>
-                        91.9%
+                        {props.strain.germ[0]}%
                     </p>
                     <p><span className="font-bold">- 45 days: </span>
-                        89.7%
+                        {props.strain.germ[1]}%
                     </p>
                     <p><span className="font-bold">- In House: </span>
-                        82.0%
+                        {props.strain.germ[2]}%
                     </p>                                    
                 </span> 
                 <hr className="m-2" style={{ 
@@ -114,7 +132,7 @@ const InfoCard = props => {
 
             </div>
             <br/><br/><br/>
-        </div>
+        </div> ) : null
     )
 }
 

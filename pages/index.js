@@ -101,7 +101,6 @@ class Index extends Component {
           seed={this.props.seed}
           setInfoTab={this.props.setInfoTab}
         />
-        <InfoCard {...this.props} />
 
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
@@ -152,7 +151,7 @@ const mapDispatchToProps = dispatch => {
     },
     getStrainData: input => {
       return dispatch(actions.getStrainData(input));
-    }
+    },
   };
 };
 
