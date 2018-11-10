@@ -219,6 +219,8 @@ const indexReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TRACK_NUMBER:
       return updateObject(state, { number: action.number });
+    case actionTypes.SET_GERMINATION_PERCENT:
+      return updateObject(state, { strain: {...state.strain, germ : action.input} });
     case actionTypes.SEARCH:
       return updateObject(state, { searched: action.value });
     case actionTypes.TOGGLE_INFO_SECTION:

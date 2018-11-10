@@ -20,6 +20,10 @@ const InfoSection = props => {
   let rand = gen.create(props.strain.seed);
   let locationAmount = props.locations.length - 1;
 
+  // console.log("test", props.strain)
+
+// console.log("tesste", props.clientInfo.email)
+
   return (
     <div>
       <div
@@ -33,8 +37,7 @@ const InfoSection = props => {
         }}
         className="absolute w-400 pin-b md:hidden lg:hidden xl:hidden xxl:hidden mb-6 ml-2 sm:mx-0 z-50 p-2 sm:w-7/8 sm:h-250 sm:text-sm bg-white z-50 p-2"
       >
-        {/* NOT SMART */}
-
+     
         {props.currentInformation == 0 ? (
           <div className="flex mb-2 justify-between cursor-pointer">
             <div
@@ -104,7 +107,7 @@ const InfoSection = props => {
                 props.setInfoTab(3);
               }}
             >
-              Social
+              Contact
             </div>
           </div>
         ) : null}
@@ -179,7 +182,7 @@ const InfoSection = props => {
                   Destination:
                 </h5>
                 <h2 className="text-navy-blue sm:text-lg text-center animate-text">
-                  {/* {marker.name} */}
+                  {marker.name}
                 </h2>
               </span>
             ) : null}
@@ -196,13 +199,17 @@ const InfoSection = props => {
                 <p className="font-bold">
                   Departure Date:{" "}
                   <span className="font-normal">
-                    {marker.description.dates["depart"]}
+                    {moment(props.strain.seedFrom)
+                    .subtract(rand.intBetween(48, 52), "days")
+                    .format("DD/MM/YYYY")}
                   </span>{" "}
                 </p>
                 <p className="font-bold">
                   Harvest Date:{" "}
                   <span className="font-normal">
-                    {marker.description.dates["harvest"]}
+                  {moment(props.strain.seedFrom)
+                    .subtract(rand.intBetween(54, 58), "days")
+                    .format("DD/MM/YYYY")}
                   </span>{" "}
                 </p>
               </span>
@@ -214,13 +221,17 @@ const InfoSection = props => {
                 <p className="  font-bold">
                   Package Date:{" "}
                   <span className="font-normal">
-                    {marker.description.dates["package"]}
+                  {moment(props.clientInfo.dispatchAt, "DD/MM/YYYY")
+                    .subtract(rand.intBetween(4, 12), "days")
+                    .format("DD/MM/YYYY")}
                   </span>
                 </p>
                 <p className="  font-bold">
                   Ship Date:{" "}
                   <span className="font-normal">
-                    Approx {marker.description.dates["ship"]}
+                    Approx {moment(props.clientInfo.dispatchAt, "DD/MM/YYYY").format(
+                    "DD/MM/YYYY"
+                  )}
                   </span>
                 </p>
               </span>
@@ -230,16 +241,15 @@ const InfoSection = props => {
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Your Details:</h3>
                 <p className="font-bold">
-                  Address:{" "}
+                Email:{" "}
                   <span className="font-normal">
-                    {/* {marker.description.address.street},{" "}
-                    {marker.description.address.city} */}
+                  {props.clientInfo.email}
                   </span>
                 </p>
                 <p className="font-bold">
-                  Email:{" "}
+                STT Number:{" "}
                   <span className="font-normal">
-                    {/* {marker.description.email} */}
+                  {props.clientInfo.number}
                   </span>
                 </p>
               </span>
@@ -257,13 +267,13 @@ const InfoSection = props => {
                 <p className="font-bold">
                   30 days:{" "}
                   <span className="font-normal">
-                    {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
+                    {props.strain.germ[0]}%
                   </span>
                 </p>
                 <p className="font-bold">
                   45 days:{" "}
                   <span className="font-normal">
-                    {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
+                    {props.strain.germ[1]}%
                   </span>
                 </p>
               </span>
@@ -275,7 +285,7 @@ const InfoSection = props => {
                 <p className="font-bold">
                   In house:{" "}
                   <span className="font-normal">
-                    {`${rand.floatBetween(84, 95).toFixed(1)}%`}
+                    {props.strain.germ[2]}%
                   </span>
                 </p>
               </span>
@@ -291,34 +301,40 @@ const InfoSection = props => {
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
                 <p className="font-bold">
+                Strain:{" "}
+                  <span className="font-normal">
+                    {props.strain.strain}
+                  </span>
+                </p>
+                <p className="font-bold">
                   Origin:{" "}
                   <span className="font-normal">
-                    {marker.description.facts.origin}
+                    {props.strain.origin}
                   </span>
                 </p>
                 <p className="font-bold">
                   Effects:{" "}
                   <span className="font-normal">
-                    {marker.description.facts.effects}
+                    {props.strain.effect}
                   </span>
                 </p>
                 <p className="font-bold">
                   Potency:{" "}
                   <span className="font-normal">
-                    {`${rand.floatBetween(84, 93).toFixed(1)}%`}
+                  {props.strain.potency}%
                   </span>
                 </p>
               </span>
             ) : null}
             {props.currentInformation == 1 ? (
               <span className="pb-1 pt-1">
-                <h3 className="pb-1 px-0 uppercase">Social Media:</h3>
+                <h3 className="pb-1 px-0 uppercase">Contact:</h3>
                 <p>
                   <a
                     className="font-bold text-grey-darkest"
                     href={marker.description.socials.facebook}
                   >
-                    Facebook{" "}
+                    Website:{" "} <span className="font-normal">{marker.description.website}</span>
                   </a>
                 </p>
                 <p>
@@ -327,7 +343,7 @@ const InfoSection = props => {
                     href={marker.description.socials.twitter}
                   >
                     {" "}
-                    Twitter{" "}
+                    Phone: {" "} <span className="font-normal">{marker.phone}</span>
                   </a>
                 </p>
                 <p>
@@ -336,31 +352,17 @@ const InfoSection = props => {
                     href={marker.description.socials.instagram}
                   >
                     {" "}
-                    Instagram{" "}
-                  </a>
+                    Email: <span className="font-normal">{marker.phone}</span>
+                  </a>                  
                 </p>
               </span>
             ) : null}
 
             {props.currentInformation == 2 ? (
               <span className="pb-1 pt-1">
-                <h3 className="pb-1 px-0 uppercase">Your Social Media:</h3>
-                <p>
-                  <a className="font-bold text-grey-darkest">
-                    // href={marker.description.socials.facebook}
-                    Facebook{" "}
-                  </a>
-                </p>
-                <p>
-                  <a className="font-bold text-grey-darkest">
-                    // href={marker.description.socials.twitter} Twitter{" "}
-                  </a>
-                </p>
-                <p>
-                  <a className="font-bold text-grey-darkest">
-                    // href={marker.description.socials.instagram} Instagram{" "}
-                  </a>
-                </p>
+               <p className="text-center px-2 mb-2 ">Valuable information to make sure you have the best possible genetics!</p>    
+            <p className="text-center px-2 mb-2">Make sure all your seeds have an authentic STT Number before your purchase to ensure you recieve quality seeds!</p>  
+            <h3 className="pb-1 px-2 text-center uppercase">Thank you for using Seed Tracker Technology!</h3>   
               </span>
             ) : null}
           </div>
@@ -406,7 +408,13 @@ const InfoSection = props => {
         </div>
       </div>
 
-      {/* PC VERSION: */}
+
+
+
+
+      {/* ===================
+          PC VERSION: 
+      ====================*/}
 
       <div
         style={{ borderRadius: "2%" }}
@@ -448,7 +456,7 @@ const InfoSection = props => {
                 Destination:
               </h5>
               <h2 className="text-navy-blue sm:text-lg text-center animate-text">
-                {/* {marker.name} */}
+                {marker.name}
               </h2>
             </span>
           ) : null}
@@ -468,7 +476,7 @@ const InfoSection = props => {
           {props.currentInformation == 0 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Details:</h3>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 Departure Date:{" "}
                 <span className="font-normal">
                   {moment(props.strain.seedFrom)
@@ -476,7 +484,7 @@ const InfoSection = props => {
                     .format("DD/MM/YYYY")}
                 </span>{" "}
               </p>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 Harvest Date:{" "}
                 <span className="font-normal">
                   {moment(props.strain.seedFrom)
@@ -488,11 +496,11 @@ const InfoSection = props => {
           ) : (
             <div />
           )}
-          {console.log(props.clientInfo.dispatchAt)}
+    
           {props.currentInformation == 1 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Details:</h3>
-              <p className="  font-bold">
+              <p className="  font-bold pl-2">
                 Package Date:{" "}
                 <span className="font-normal">
                   {moment(props.clientInfo.dispatchAt, "DD/MM/YYYY")
@@ -500,7 +508,7 @@ const InfoSection = props => {
                     .format("DD/MM/YYYY")}
                 </span>
               </p>
-              <p className="  font-bold">
+              <p className="font-bold pl-2">
                 Ship Date:{" "}
                 <span className="font-normal">
                   Approx{" "}
@@ -516,16 +524,14 @@ const InfoSection = props => {
           {props.currentInformation == 2 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Your Details:</h3>
-              <p className="font-bold">
-                Address:{" "}
-                <span className="font-normal">
-                  {/* {marker.description.address.street},{" "} */}
-                  {/* {marker.description.address.city} */}
-                </span>
-              </p>
-              <p className="font-bold">
+              
+              <p className="font-bold pl-2">
                 Email:{" "}
-                {/* <span className="font-normal">{marker.description.email}</span> */}
+                <span className="font-normal">{props.clientInfo.email}</span>
+              </p>
+              <p className="font-bold pl-2">
+                STT Number:{" "}
+                <span className="font-normal">{props.clientInfo.number}</span>
               </p>
             </div>
           ) : (
@@ -537,16 +543,16 @@ const InfoSection = props => {
           {props.currentInformation == 0 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Germination Tests:</h3>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 30 days:{" "}
                 <span className="font-normal">
-                  {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
+                {props.strain.germ[0]}%
                 </span>
               </p>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 45 days:{" "}
                 <span className="font-normal">
-                  {`${rand.floatBetween(89.0, 94.9).toFixed(1)}%`}
+                {props.strain.germ[1]}%
                 </span>
               </p>
               <hr
@@ -556,20 +562,24 @@ const InfoSection = props => {
                 }}
               />
               <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
+                Strain:{" "}
+                <span className="font-normal">{props.strain.strain}</span>
+              </p>
+              <p className="font-bold pl-2">
                 Origin:{" "}
                 <span className="font-normal">{props.strain.origin}</span>
               </p>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 Effects:{" "}
                 <span className="font-normal">
-                  {marker.description.facts.effects}
+                  {props.strain.effect}
                 </span>
               </p>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 Potency:{" "}
                 <span className="font-normal">
-                  {`${rand.floatBetween(84, 93).toFixed(1)}%`}
+                {props.strain.potency}%
                 </span>
               </p>
             </div>
@@ -579,10 +589,10 @@ const InfoSection = props => {
           {props.currentInformation == 1 ? (
             <div className="pb-1 pt-1">
               <h3 className="pb-1 px-0 uppercase">Germination Tests:</h3>
-              <p className="font-bold">
+              <p className="font-bold pl-2">
                 In house:{" "}
                 <span className="font-normal">
-                  {`${rand.floatBetween(84, 95).toFixed(1)}%`}
+                {props.strain.germ[2]}%
                 </span>
               </p>
               <hr
@@ -591,66 +601,34 @@ const InfoSection = props => {
                   height: "2px"
                 }}
               />
-              <h3 className="pb-1 px-0 uppercase">Social Media:</h3>
-              <p>
+              <h3 className="pb-1 px-0 uppercase">Contact:</h3>
+              <p className="pl-2">
                 <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.facebook}
+                  className="font-bold"
+                  href={marker.description.website}
+                  target="blank"
                 >
-                  Facebook{" "}
+                  Website: <span className="font-normal">{marker.description.website}</span>
                 </a>
               </p>
-              <p>
-                <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.twitter}
-                >
-                  {" "}
-                  Twitter{" "}
-                </a>
+              <p className="pl-2">
+                    <span className="font-bold">Phone: </span>
+                    {marker.phone}
               </p>
-              <p>
-                <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.instagram}
-                >
-                  {" "}
-                  Instagram{" "}
-                </a>
+              <p className="pl-2">
+                    <span className="font-bold">Email: </span>
+                    {marker.email}
               </p>
+              
             </div>
           ) : (
             <div />
           )}
           {props.currentInformation == 2 ? (
-            <div className="pb-1 pt-1">
-              <h3 className="pb-1 px-0 uppercase">Your Social Media:</h3>
-              <p>
-                <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.facebook}
-                >
-                  Facebook{" "}
-                </a>
-              </p>
-              <p>
-                <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.twitter}
-                >
-                  {" "}
-                  Twitter{" "}
-                </a>
-              </p>
-              <p>
-                <a
-                  className="font-bold text-grey-darkest"
-                  href={marker.description.socials.instagram}
-                >
-                  {" "}
-                  Instagram{" "}
-                </a>
-              </p>
+            <div className="mt-4 pt-1">
+            <p className="text-center px-12 mb-6 ">Valuable information to make sure you have the best possible genetics!</p>    
+            <p className="text-center px-12 mb-8">Make sure all your seeds have an authentic STT Number before your purchase to ensure you recieve quality seeds!</p>  
+            <h3 className="pb-1 px-12 text-center uppercase">Thank you for using Seed Tracker Technology!</h3>           
             </div>
           ) : (
             <div />

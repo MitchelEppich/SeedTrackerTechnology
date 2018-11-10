@@ -1,4 +1,6 @@
 import React from "react";
+import html2canvas from "html2canvas";
+import InfoCard from "../Main/InfoCard"
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,6 +18,25 @@ const HomeTracker = props => {
   let firstPoint = () => {
     setTimeout(function() {
       props.toggleInfoSection(props.currentInformation + 1);
+
+        // Create growcard
+let input = document.querySelector("#growCard");             
+input.hidden = false;      
+html2canvas(input, {
+  scale: 0.9,
+  windowHeight: "8000px",
+  windowWidth: "2000px",             
+}).then(canvas => {
+  const imgData = canvas.toDataURL("image/png");
+  const jspdf = require("jspdf");
+  const pdf = new jspdf({ format: [131, 173] });
+
+  pdf.addImage(imgData, "PNG", 0, 0);
+  pdf.save("growcard.pdf");
+  input.hidden = true;
+
+});
+
     }, 4000);
   };
   // function secondPoint() {
@@ -71,7 +92,8 @@ const HomeTracker = props => {
           />
           <form
             onSubmit={e => {
-              e.preventDefault();
+              e.preventDefault();             
+          
 
               props
                 .checkEntry({
@@ -116,7 +138,7 @@ const HomeTracker = props => {
                         break;
                     }
 
-                    console.log(company);
+                    
 
                     props.setLocations([
                       {
@@ -126,7 +148,7 @@ const HomeTracker = props => {
                         description: {
                           facts: {
                             effects:
-                              "Indica strains are believed to be physically sedating, perfect for relaxing with a movie or as a nightcap before bed.",
+                              "",
                             potency: "90%"
                           },
                           imageUrl:
@@ -137,15 +159,19 @@ const HomeTracker = props => {
                       {
                         name: "You",
                         anchor: [parseFloat(res.lat), parseFloat(res.lon)],
-                        imageUrl:
+                        description : {
+                          imageUrl:
                           "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                      },
+                      }
+                    },
                       {
                         name: "null",
                         anchor: [null, null],
-                        imageUrl:
+                        description : {
+                          imageUrl:
                           "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
                       }
+                    }
                     ]);
                   });
                 });

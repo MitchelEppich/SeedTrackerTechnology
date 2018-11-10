@@ -12,6 +12,7 @@ import fetch from "node-fetch";
 
 import axios from "axios";
 import moment from "moment";
+import gen from "random-seed";
 
 // const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
 // const uri = "http://192.168.0.43:3000/graphql";
@@ -37,7 +38,7 @@ const actionTypes = {
   RECORD_ENTRY: "RECORD_ENTRY",
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
-  SET_INFO_TAB: "SET_INFO_TAB"
+  SET_INFO_TAB: "SET_INFO_TAB",
 };
 
 const actions = {
@@ -137,9 +138,22 @@ const actions = {
         };
         return makePromise(execute(link, operation)).then(data => {
           let loc = data.data.getCoordinates;
+
+          console.log(seed)
+          // Set germination percents
+          let rand = gen.create(seed.seed);
+          let germ = [
+            `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
+            `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
+            `${rand.floatBetween(84, 95).toFixed(1)}`
+          ]
+          let potency = `${rand.floatBetween(84, 93).toFixed(1)}`
+
           seed = {
             ...seed,
-            ...loc
+            ...loc,
+            germ: germ,
+            potency: potency
           };
           dispatch({
             type: actionTypes.GET_STRAIN_DATA,
