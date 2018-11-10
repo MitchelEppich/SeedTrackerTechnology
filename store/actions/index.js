@@ -16,9 +16,10 @@ import moment from "moment";
 // const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
 // const uri = "http://192.168.0.43:3000/graphql";
 
-const uri = "http://localhost:3000/graphql";
-
 // const uri = "http://192.168.0.27:3000/graphql";
+
+// const uri = "http://localhost:3000/graphql";
+const uri = "http://159.89.125.131:3000/graphql";
 
 const imports = {};
 
