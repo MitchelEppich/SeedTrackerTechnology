@@ -103,7 +103,8 @@ const initialState = {
       }
     },
     mjg: {
-      name: "Mary Janes Garden",
+      name: "Crop King Seeds",
+      // name: "Mary Janes Garden",
       anchor: [49.2332, -122.9931],
       type: "company",
       phone: "(604) 563 0291",

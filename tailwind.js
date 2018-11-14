@@ -183,11 +183,13 @@ module.exports = {
     // md: "768px",
     // lg: "992px",
     // xl: "1200px"
-    sm: { min: "200px", max: "767px" },
+    xs: { min: "200px", max: "456px" },
+    sm: { min: "457px", max: "767px" },
     md: { min: "768px", max: "991px" },
     lg: { min: "992px", max: "1249px" },
     xl: { min: "1250px", max: "1599px" },
-    xxl: { min: "1600px", max: "2999px" }
+    xxl: { min: "1600px", max: "2099px" },
+    xxxl: { min: "2100px", max: "3999px" },
   },
 
   /*
@@ -515,6 +517,7 @@ module.exports = {
     screen: "100vw",
     "100": "100px",
     "200": "200px",
+    "250": "250px",
     "300": "300px",
     "400": "400px",
     "450": "450px",
@@ -525,7 +528,7 @@ module.exports = {
     mainCard: "550px",
     uploadButton: "320px",
     sButton: "634px",
-    imgCard: "120px",
+    imgCard: "90px",
     hideLeft: "-1400px",
     "10000": "10000px",
     "500": "calc(100vh - 3rem)"
@@ -574,6 +577,7 @@ module.exports = {
     "400": "400px",
     "450": "450px",
     "650": "650px",
+    imgCard: "90px",
     halfscreen: "940px",
     full: "100%",
     screen: "100vh",

@@ -14,8 +14,20 @@ const InfoCard = props => {
             }
     }
 
+
+    let averageYield = () => {
+        if (props.strain != null) {
+            let avgYield = (props.strain.i_yield + props.strain.o_yield) / 2
+            return avgYield;
+        }  else { 
+            null
+        } 
+    };
+
+
+
     return (
-        props.strain ? (
+        props.strain ? (         
         <div 
         hidden
         id="growCard"
@@ -27,13 +39,14 @@ const InfoCard = props => {
             height: "725px",
             fontSize: "14px"
         }}
-        className=" m-6 border-grey-light">
+        className="m-6 border-grey-light">
         <div style={{
             margin: "30px",
             border: "2px solid #e1e2e3",
         }}>
+      
         {/* {console.log(props.strain)} */}
-            <div className="w-full bg-almost-black inline-flex  p-2">
+            <div className="w-full bg-grey inline-flex p-2">
                 <div className="w-1/2 text-left">
                     <img 
                     style={{ width: '160px' }}
@@ -65,73 +78,89 @@ const InfoCard = props => {
                     
                 </span>
                 <span className="w-2/3 p-2 pl-6">
-                <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">{props.strain.strain}</h4>
-                <p className="pl-2"><span className="font-bold">Type: </span>
-                {typeStrain()}
-                </p>
-                <p className="pl-2">
-                    <span className="font-bold">THC: </span>
-                    {props.strain.p_thc}%; CBN {props.strain.p_cbn}%; CBD {props.strain.p_cbd}%
-                </p>
-                <p className="pl-2">
-                    <span className="font-bold">Indica: </span>
-                    {props.strain.p_indica}%
-                </p>
-                <p className="pl-2">
-                    <span className="font-bold">Sativa: </span>
-                    {props.strain.p_sativa}%
-                </p>
-                <br/>                
-                <p className="pl-2">
-                    <span className="font-bold">Average Yield: </span>
-                    {props.strain.i_yield}g
-                </p>
-                <p className="pl-2">
-                    <span className="font-bold">Average Grow Time: </span>
-                    {props.strain.grow_time} Weeks
-                </p>
-                <p className="pl-2">
-                    <span className="font-bold">Effects: </span>
-                    {props.strain.effect}
-                </p>
-                    
+                    <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">{props.strain.strain}</h4>
+                    <p className="pl-2"><span className="font-bold">Type: </span>
+                    {typeStrain()}
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">Origin: </span>
+                        {props.strain.origin}
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">THC: </span>
+                        {props.strain.p_thc}%; {props.strain.p_cbn != null ? <span>CBN {props.strain.p_cbn}%;</span> : null } CBD {props.strain.p_cbd}%
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">Indica: </span>
+                        {props.strain.p_indica}%
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">Sativa: </span>
+                        {props.strain.p_sativa}%
+                    </p>
+                    {props.strain.p_ruderalis != null ?
+                    <p className="pl-2">
+                        <span className="font-bold">Ruderalis: </span>
+                        {props.strain.p_ruderalis}%
+                    </p> : null }                               
+                    <p className="pl-2">
+                        <span className="font-bold">Average Yield: </span>
+                        {averageYield()}g
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">Average Grow Time: </span>
+                        {props.strain.grow_time} Weeks
+                    </p>
+                    <p className="pl-2">
+                        <span className="font-bold">Effects: </span>
+                        {props.strain.effect}
+                    </p>                    
                 </span>
             </div>
-            <hr className="m-2" style={{ backgroundColor: "rgba(0, 0, 0, 0.8)", height: "2px" }} />
+            <hr className="m-2" 
+            style={{ 
+                backgroundColor: "rgba(0, 0, 0, 0.8)", 
+                height: "2px" }} 
+            />
             <div className="w-full inline-flex p-2">                
-                <span className="w-1/2 p-2 text-center">
-                    <h4 className="uppercase pb-2 underline">Germination Tests</h4>
-                    
-                    <p><span className="font-bold">- 30 days: </span>
+                <span className="w-1/2 p-2">
+                    <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">Germination Tests</h4>                    
+                    <p>
+                        <span className="font-bold ml-2">30 days: </span>
                         {props.strain.germ[0]}%
                     </p>
-                    <p><span className="font-bold">- 45 days: </span>
+                    <p>
+                        <span className="font-bold ml-2">45 days: </span>
                         {props.strain.germ[1]}%
                     </p>
-                    <p><span className="font-bold">- In House: </span>
+                    <p>
+                        <span className="font-bold ml-2">In House: </span>
                         {props.strain.germ[2]}%
                     </p>                                    
                 </span> 
-                <hr className="m-2" style={{ 
+                <hr 
+                className="m-2" 
+                style={{ 
                     backgroundColor:' rgba(90, 90, 90, 0.8)',
                     height: '90px',
                     width: '2px' 
-                    }} />               
+                }} 
+                />               
                 <span className="w-1/2 p-2 text-center">
-                <h4 className="uppercase underline">Visit us at:</h4>
+                <h4 className="uppercase underline text-md mb-1">Visit us at</h4>
                     <img style={{
-                        width: '70px',
-                        height: '70px'
+                        width: '67px',
+                        height: '67px'
                     }}
-                    className="pt-0 text-center" src="../../static/imgs/qrcode.png"/>                    
+                    className="pt-0 text-center" src="../../static/imgs/qrcode.png"/>
+                                   
                 </span>
             </div>                     
-            <span className="font-bold">
-            <p className="p-2 pt-1 pb-2 text-xs bg-black text-yellow">* Results may vary.</p>
+            <span className="">
+            <p className="p-2 pt-1 pl-4 pb-2 text-xs bg-grey text-yellow">* Results may vary.</p>
             </span>
 
-            </div>
-            <br/><br/><br/>
+            </div>            
         </div> ) : null
     )
 }

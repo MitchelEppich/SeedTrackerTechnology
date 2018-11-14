@@ -24,8 +24,12 @@ const Navbar = props => {
   };
 
   return (
-    <div className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50">
-      <div className="inline-flex w-1/3 sm:w-2/3 pl-8 sm:pl-2 sm:ml-0">       
+    <div 
+    style={{
+      zIndex:"99999999"
+    }}
+    className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50">
+      <div className="inline-flex w-1/3 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0">       
         <a href="/">
           <img 
             className="cursor-pointer "
@@ -58,8 +62,11 @@ const Navbar = props => {
         </ul>
       </div>
                 
+
+
+                
       {/* TOGGLE MOBILE MENU  */}
-      <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden md:hidden xl:hidden lg:hidden">
+      <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden xxxl:hidden md:hidden xl:hidden lg:hidden">
         <span
           className="float-right cursor-pointer bg-navbar p-2 pin-t pin-r "
           onClick={() => {
@@ -68,44 +75,44 @@ const Navbar = props => {
         >
           <FontAwesomeIcon
             icon={faBars}
-            className="fa-2x xxl:hidden xl:hidden lg:hidden md:hidden text-white"
+            className="fa-2x xxl:hidden xl:hidden lg:hidden md:hidden text-yellow"
           />
         </span>
       </div>
       {props.showMenuCollapsed == true ? (
         <div
           style={styleDropMenu}
-          className="absolute pin-t mt-20 bg-grey-darkest xxl:hidden xl:hidden lg:hidden md:hidden w-full"
+          className="absolute pin-t mt-20 bg-grey-darkest xxl:hidden xl:hidden lg:hidden md:hidden w-full shadow-md"
         >
           <ul className="w-full mt-2  ml-0 pl-0">
-            <AnchorLink className="text-white" href="#video">
+            <AnchorLink className="" href="#video">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 Home
               </li>
             </AnchorLink>
-            <AnchorLink className="text-white" href="#about">
+            <AnchorLink className="" href="#about">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 About
               </li>
             </AnchorLink>
-            <AnchorLink className="text-white" href="#video">
+            <AnchorLink className="" href="#video">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 How To Use
               </li>
             </AnchorLink>
-            <AnchorLink className="text-white" href="#stt">
+            <AnchorLink className="" href="#stt">
               <li
                 style={{ display: "block" }}
-                className="text-white mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
                 STT
               </li>
