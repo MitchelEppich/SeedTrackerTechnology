@@ -14,13 +14,8 @@ import axios from "axios";
 import moment from "moment";
 import gen from "random-seed";
 
-// const uri = `https://growreel-dev.herokuapp.com:443/graphql`;
-// const uri = "http://192.168.0.43:3000/graphql";
-
-// const uri = "http://192.168.0.27:3000/graphql";
-
-// const uri = "http://localhost:3000/graphql";
-const uri = "http://159.89.125.131:3000/graphql";
+const uri = "http://localhost:3000/graphql";
+// const uri = "http://159.89.125.131:3000/graphql";
 
 const imports = {};
 
@@ -38,7 +33,7 @@ const actionTypes = {
   RECORD_ENTRY: "RECORD_ENTRY",
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
-  SET_INFO_TAB: "SET_INFO_TAB",
+  SET_INFO_TAB: "SET_INFO_TAB"
 };
 
 const actions = {
@@ -146,8 +141,8 @@ const actions = {
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
             `${rand.floatBetween(84, 95).toFixed(1)}`
-          ]
-          let potency = `${rand.floatBetween(84, 93).toFixed(1)}`
+          ];
+          let potency = `${rand.floatBetween(84, 93).toFixed(1)}`;
 
           seed = {
             ...seed,

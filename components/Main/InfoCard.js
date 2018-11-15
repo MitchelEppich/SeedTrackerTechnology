@@ -54,8 +54,10 @@ const InfoCard = props => {
                     
                 </div>
                 <div style={{color:"#ffffff", zIndex: "99999"}} className="w-1/2 text-right">
-                <img                     
-                    className="text-right mr-4 pt-3" src="../../static/imgs/GrowCardText.png" />
+               
+                <img    
+                    style={{height: "32px"}}                 
+                    className="text-right mr-4 pt-2" src="../../static/imgs/GrowCardText.png" />
                 </div>
             </div>   
                  

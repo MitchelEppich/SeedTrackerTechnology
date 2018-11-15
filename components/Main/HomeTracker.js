@@ -19,28 +19,24 @@ const HomeTracker = props => {
     setTimeout(function() {
       props.toggleInfoSection(props.currentInformation + 1);
 
-        // Create growcard
-let input = document.querySelector("#growCard");             
-input.hidden = false;      
-html2canvas(input, {
-  scale: 0.9,
-  windowHeight: "8000px",
-  windowWidth: "2000px",             
-}).then(canvas => {
-  const imgData = canvas.toDataURL("image/png");
-  const jspdf = require("jspdf");
-  // const pdf = new jspdf({ format: 'letter' });
-  const pdf = new jspdf({ format: [131, 173] });
-  
-
-  pdf.addImage(imgData, "PNG", 0, 0);
-  pdf.save("growcard.pdf");
-  input.hidden = true;
-
-});
-
-    }, 4000);
+      // Create growcard
+      let input = document.querySelector("#growCard");             
+        input.hidden = false;      
+        html2canvas(input, {
+          scale: 0.9,
+          windowHeight: "8000px",
+          windowWidth: "2000px",             
+        }).then(canvas => {
+          const imgData = canvas.toDataURL("image/png");
+          const jspdf = require("jspdf");
+          const pdf = new jspdf({ format: [131, 173] });  
+        pdf.addImage(imgData, "PNG", 0, 0);
+        pdf.save("growcard.pdf");
+        input.hidden = true;
+        });
+        }, 4000);
   };
+
   // function secondPoint() {
   //   setTimeout(
   //     function() {
@@ -48,6 +44,7 @@ html2canvas(input, {
   //     props.currentInformation + 2
   //     )}, 4000);
   // }
+
   // function thirdPoint() {
   //   setTimeout(
   //     function() {
@@ -67,7 +64,7 @@ html2canvas(input, {
           }}
         >
           <h2 className="text-grey-darkest sm:text-xl xs:text-lg text-xxl uppercase">
-            Track your Seed
+            Track your Seeds
           </h2>
           <div
             className="cursor-pointer text-grey-darkest absolute pin-r pin-t text-center mr-4 mt-4 h-10 w-10 pt-2 hover:bg-grey-darkest hover:text-white float-right xs:mt-3 xs:mr-1"
@@ -94,9 +91,7 @@ html2canvas(input, {
           />
           <form
             onSubmit={e => {
-              e.preventDefault();             
-          
-
+              e.preventDefault();   
               props
                 .checkEntry({
                   email: props.email,
@@ -139,9 +134,7 @@ html2canvas(input, {
                         company = "sfw";
                         break;
                     }
-
-                    
-
+                 
                     props.setLocations([
                       {
                         name: data.origin,
@@ -254,7 +247,7 @@ html2canvas(input, {
                 }}
               />
 
-              <div className="p-2">
+              <div className="p-2 sm:p-0 xs:p-0">
                 <h3 className="text-grey-darkest sm:text-sm xs:text-sm p-2 uppercase">
                   Tracking number:
                 </h3>
