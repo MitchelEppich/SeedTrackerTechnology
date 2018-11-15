@@ -65,7 +65,11 @@ const Line = ({ mapState: {center, width, height, zoom }, latLngToPixel, coordsA
             motionPath: `path('${path}')`,
             offsetPath: `path('${path}')`,            
             animation: `move ${4}s linear forwards`,
-            transform:"scale(0.06) translateX(-50px) translateY(-250px)",          
+            transform:"scale(0.06) translateX(-50px) translateY(-250px)", 
+            WebkitTransform:"scale(0.06) translateX(-50px) translateY(-250px)",
+            OTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
+            MozTransform:"scale(0.06) translateX(-50px) translateY(-250px)",
+            MsTransform:"scale(0.06) translateX(-50px) translateY(-250px)",
            }}>
         </path>              
     

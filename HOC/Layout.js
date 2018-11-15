@@ -20,7 +20,7 @@ class Layout extends Component {
 
   render() {
     return (
-      <div className="w-full" id="layout">
+      <div className="w-full bg-black" id="layout">
         {this.props.children}
       </div>
     );

@@ -21,6 +21,7 @@
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "css-loader": "^1.0.0",
+    "detect-browser": "^3.0.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "file-loader": "^2.0.0",
@@ -67,7 +68,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server",
     "build": "next build",
-    "start": "node server",
+    "start": "NODE_ENV=production && node server",
     "analyze": "cross-env ANALYZE=1 next build"
   },
   "author": "",

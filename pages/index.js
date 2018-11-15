@@ -10,18 +10,21 @@ import Layout from "../HOC/Layout";
 import Navbar from "../components/Navbar";
 import Main from "../components/Main";
 import HomeTracker from "../components/Main/HomeTracker";
-// import InfoSection from "../components/Main/InfoSection"
 import Video from "../components/Video";
 import About from "../components/Main/About";
 import InfoCard from "../components/Main/InfoCard";
 import html2canvas from "html2canvas";
+
+import NotSupported from "../components/NotSupported";
 
 class Index extends Component {
   componentDidMount() {}
 
   render() {
     return (
+      this.props.supportedBrowser ? (
       <Layout>
+        
         <InfoCard 
           {...this.props}
           checkEntry={this.props.checkEntry}
@@ -74,11 +77,19 @@ class Index extends Component {
           setInfoTab={this.props.setInfoTab}
         />
 
+        <InfoCard 
+          {...this.props}
+          checkEntry={this.props.checkEntry}
+          getStrainData={this.props.getStrainData}
+        />
+
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
           width: '99vw'
         }} src={`http://192.168.0.27:3000/stt`}></iframe>       */}
-      </Layout>
+      </Layout> ) 
+
+      : <NotSupported /> 
     );
   }
 }

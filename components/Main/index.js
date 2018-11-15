@@ -28,26 +28,13 @@ const Main = props => {
             <Overlay key={index} anchor={marker.anchor} payload={index}>
               <div
                 className="landmark-points"            
-                onClick={() => {
-                  // console.log(
-                  //   props.seed,
-                  //   props.email,
-                  //   props.number,
-                  //   props.context
-                  // );
-                  
+                onClick={() => {      
                 if (marker.description)
-                 
                     props.toggleInfoSection(
-                      props.currentInformation == index ? -1 : index                      
-                    );
-                    // props.toggleLandmarks(props.currentInformation == index ? -1 : index);
-                    
+                      props.currentInformation == index ? -1 : index   
+                    );                    
                 }}
                />
-
-             
-
               {props.currentLocation == index ? (
                 <div className="info-landmark">
                   <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
@@ -97,7 +84,7 @@ const Main = props => {
             ? props.locations[props.currentInformation].anchor
             : [38.927, -11.877]
         }
-        zoom={props.currentInformation != -1 ? 5 : 3}
+        zoom={props.currentInformation != -1 ? 4 : 3}
         maxZoom={11}
         minZoom={3}
         metaWheelZoom={true}

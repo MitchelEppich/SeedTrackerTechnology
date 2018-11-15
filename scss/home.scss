@@ -229,14 +229,6 @@ margin: 0;
   align-items: center;
 }
 
-.h1-title {
-  font-size: 50px;
-  color: #57490a;
-  opacity: 0.7;
-  font-weight: 600;
-  text-shadow: 2px 2px 16px #ffeb3b;  
-}
-
 .info-popup {
   width: 400px;
   box-shadow: 0px 4px 13px rgba(19, 17, 17, 0.48);
@@ -270,6 +262,7 @@ margin: 0;
   border-top: 13px solid rgba(62, 20, 20, 0);
 }
 
+
 .checkbox {
   height: 25px;
   width: 25px;
@@ -281,6 +274,37 @@ margin: 0;
 
 .checkbox:checked {
   background-color: #b8b8b8;
+}
+
+
+// BROWSER NOT SUPPORTED SECTION // 
+.browsers-list {
+  display: inline-block;
+  // cursor: url("../static/imgs/airplane-cursor1.png");
+}
+
+.logo-browsers {
+  width: 80px;
+  height: auto;
+  margin: 20px;
+  text-align: center;
+}
+
+.browser-item {
+  width: 120px;
+  transform: scale(1);
+  transition: transform 0.5s ease;
+  display: inline-flex;
+  -webkit-filter: grayscale(1);
+  filter: grayscale(1);
+}
+
+.browser-item:hover {
+  transform: scale(1.08);
+  transition: transform 0.5s ease;
+  -webkit-filter: grayscale(0);
+  filter: grayscale(0);
+ 
 }
 
 

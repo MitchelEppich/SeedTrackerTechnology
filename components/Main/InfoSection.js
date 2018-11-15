@@ -60,7 +60,11 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
       >
      
         {props.currentInformation == 0 ? (
-          <div className="flex my-1 bg-grey text-yellow justify-between cursor-pointer">
+          <div style={{
+             borderTopLeftRadius: "3px",
+             borderTopRightRadius: "3px",
+
+          }} className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer">
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
               onClick={() => {
@@ -75,7 +79,7 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                 props.setInfoTab(1);
               }}
             >
-              Detail
+              Details
             </div>
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
@@ -98,7 +102,11 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
 
 
         {props.currentInformation == 1 ? (
-          <div className="flex my-1 bg-grey text-yellow justify-between cursor-pointer">
+          <div style={{
+             borderTopLeftRadius: "3px",
+             borderTopRightRadius: "3px",
+
+          }} className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer">
             <div
               className="inline-flex py-2 px-1 text-center uppercase hover:bg-yellow hover:text-black"
               onClick={() => {
@@ -113,7 +121,7 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                 props.setInfoTab(1);
               }}
             >
-              Detail
+              Details
             </div>
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
@@ -135,7 +143,11 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
         ) : null}
 
         {props.currentInformation == 2 ? (
-          <div className="flex my-1 bg-grey text-yellow justify-between cursor-pointer">
+          <div style={{
+             borderTopLeftRadius: "3px",
+             borderTopRightRadius: "3px",
+
+          }} className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer">
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
               onClick={() => {
@@ -150,7 +162,7 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                 props.setInfoTab(1);
               }}
             >
-              Detail
+              Details
             </div>
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
@@ -158,7 +170,7 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                 props.setInfoTab(3);
               }}
             >
-              Social
+              More
             </div>
           </div>
         ) : null}
@@ -331,6 +343,37 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                   </span>
                 </p>
                 <p className="font-bold ml-2">
+                  THC:{" "}
+                  <span className="font-normal">
+                  {props.strain.p_thc}%; {props.strain.p_cbn != null ? <span>CBN {props.strain.p_cbn}%;</span> : null } CBD {props.strain.p_cbd}%
+                  </span>
+                </p>
+                <p className="font-bold ml-2">
+                  Indica:{" "}
+                  <span className="font-normal">
+                    {props.strain.p_indica}%
+                  </span>
+                </p>
+                <p className="font-bold ml-2">
+                  Sativa:{" "}
+                  <span className="font-normal">
+                    {props.strain.p_sativa}%
+                  </span>
+                </p>
+                {props.strain.p_ruderalis != null ?
+                  <p className="font-bold ml-2">  
+                    Ruderalis:{" "}
+                    <span className="font-normal"> 
+                    {props.strain.p_ruderalis}%
+                    </span>
+                  </p> : null }
+                <p className="font-bold ml-2">
+                  Average Yield:{" "}
+                  <span className="font-normal">
+                  {averageYield}g
+                  </span>
+                </p>
+                <p className="font-bold ml-2">
                   Effects:{" "}
                   <span className="font-normal">
                     {props.strain.effect}
@@ -343,7 +386,8 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                   </span>
                 </p>
               </span>
-            ) : null}
+            ) : null} 
+            {/* {console.log(props.strain)} */}
             {props.currentInformation == 1 ? (
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Contact:</h3>
@@ -387,14 +431,21 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
         ) : null}
         {/* SOCIAL MEDIA TAB END */}
 
-        <hr
+        {/* <hr
           style={{ backgroundColor: "rgba(21, 21, 21, 0.31)", height: "2px" }}
-        />
+        /> */}
 
-        <div className="absolute inline-flex w-400 sm:w-full sm:h-12 sm:pt-1  xs:w-full xs:h-12 xs:pt-1 justify-around pin-b pt-4 pin-l pb-2">
+        <div style={{
+            width: "96%",
+            height: "35px",
+            margin: "8px",
+            borderBottomLeftRadius: "3px",
+            borderBottomRightRadius: "3px",
+            }} 
+            className="absolute inline-flex sm:w-full justify-around bg-grey text-white pin-b pin-l">
           <FontAwesomeIcon
             icon={faAngleLeft}
-            className="fa-3x text-almost-transparent hover:text-grey-darkest cursor-pointer animate-icons"
+            className="fa-2x text-white hover:text-grey-darkest mt-1 cursor-pointer animate-icons"
             onClick={() => {
               if (props.currentInformation - 1 >= 0) {
                 props.toggleInfoSection(props.currentInformation - 1);
@@ -404,17 +455,16 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
             }}
           />
           <div
-            style={{
-              color: "#b7ae07",
-              borderLeft: "2px solid rgba(0, 0, 0, 0.23)",
-              height: "30px",
+            style={{            
+              borderLeft: "2px solid rgba(255, 255, 255, 0.69)",
+              height: "20px",
               width: "3px",
               marginTop: "9px"
             }}
           />
           <FontAwesomeIcon
             icon={faAngleRight}
-            className="fa-3x text-almost-transparent hover:text-grey-darkest cursor-pointer animate-icons"
+            className="fa-2x text-white hover:text-grey-darkest mt-1 cursor-pointer animate-icons"
             onClick={() => {
               if (props.currentInformation + 1 < locationAmount) {
                 props.toggleInfoSection(props.currentInformation + 1);
