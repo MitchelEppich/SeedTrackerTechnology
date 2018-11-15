@@ -50,9 +50,9 @@ const Main = props => {
 
               {props.currentLocation == index ? (
                 <div className="info-landmark">
-                  <h3 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
+                  <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
                     {marker.name}
-                  </h3>
+                  </h4>
                   <div className="mx-auto arrow-down" />
                 </div>
               ) : null}
@@ -75,7 +75,7 @@ const Main = props => {
         <div className="inline-flex mt-24 absolute">          
           <button
             style={{ transition: "all 0.5s ease" }}
-            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"          
+            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 py-2 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"          
             onClick={() => { 
               props.closeAllHandler();
               props.search(false) 
@@ -95,11 +95,11 @@ const Main = props => {
         center={
           props.currentInformation != -1
             ? props.locations[props.currentInformation].anchor
-            : [38.927, -56.877]
+            : [38.927, -11.877]
         }
-        zoom={props.currentInformation != -1 ? 6 : 4}
+        zoom={props.currentInformation != -1 ? 5 : 3}
         maxZoom={11}
-        minZoom={4}
+        minZoom={3}
         metaWheelZoom={true}
         metaWheelZoomWarning={"Keep Pressing Window or CMD button to Scroll"}
       >
@@ -124,7 +124,7 @@ const Main = props => {
         <div className="inline-flex h-12">
           {props.showCopyright == true ? (
             <div className="inline-flex">
-              <div className="bg-grey-darkest w-200 h-12">
+              <div className="bg-black rounded w-200 h-12">
                 <h4 className="text-center p-2 py-4 mr-1 text-sm text-white">
                   © Copyright 2018 | SST
                 </h4>
@@ -145,7 +145,7 @@ const Main = props => {
       </div>
 
       {/* BOTTOM BUTTONS */}
-      <div className="absolute sm:hidden pin-b pin-l ml-2">
+      <div className="absolute pin-b pin-l ml-2">
         {props.locations
           ? Object.keys(props.locations)
               .filter(key => {

@@ -117,7 +117,7 @@ const actions = {
             entry: entry,
             seed: entry._id
           });
-          console.log(entry);
+          // console.log(entry);
           return Promise.resolve(entry);
         }
       });
@@ -139,7 +139,7 @@ const actions = {
         return makePromise(execute(link, operation)).then(data => {
           let loc = data.data.getCoordinates;
 
-          console.log(seed)
+          // console.log(seed)
           // Set germination percents
           let rand = gen.create(seed.seed);
           let germ = [

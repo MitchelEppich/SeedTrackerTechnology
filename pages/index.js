@@ -22,46 +22,19 @@ class Index extends Component {
   render() {
     return (
       <Layout>
-        <InfoCard {...this.props} />
+        <InfoCard 
+          {...this.props}
+          checkEntry={this.props.checkEntry}
+          getStrainData={this.props.getStrainData}
+        />
         <Navbar
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
           showMenuCollapsed={this.props.showMenuCollapsed}
           toggleMenu={this.props.toggleMenu}
         />
-
         <Video />
-        {/* <button
-          onClick={() => {
-            console.log(this.props.strain);
-          }}
-        >
-          Click me for other reasons!
-        </button> */}
-
-        <About />
-        {/* <button
-          onClick={() => {
-            let input = document.querySelector("#growCard");
-            input.hidden = false;
-            html2canvas(input, {
-              scale: 0.9,
-              windowHeight: "8000px",
-              windowWidth: "2000px",
-              removeContainer: false
-            }).then(canvas => {
-              const imgData = canvas.toDataURL("image/png");
-              const jspdf = require("jspdf");
-              const pdf = new jspdf({ format: [131, 173] });
-
-              pdf.addImage(imgData, "PNG", 0, 0);
-              pdf.save("growcard.pdf");
-              input.hidden = true;
-            });
-          }}
-        >
-          CLICK ME
-        </button> */}
+        <About />        
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}
@@ -81,7 +54,6 @@ class Index extends Component {
           closeAllHandler={this.props.closeAllHandler}
           toggleLandmarks={this.props.toggleLandmarks}
         />
-
         <Main
           {...this.props}
           trackNumber={this.props.trackNumber}

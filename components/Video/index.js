@@ -10,6 +10,7 @@ const Video = () => {
             </div>  
             <div>
                 <video className="w-full h-full overflow-hidden" autoPlay loop>            
+                    {/* <source src="../../static/video/stt.mp4" type="video/mp4"></source> */}
                     <source src="../../static/video/marijuana-video.mp4" type="video/mp4"></source>
                     {/* <source src="../../static/video/mainvideo.mp4" type="video/mp4"></source> */}
                 </video>
