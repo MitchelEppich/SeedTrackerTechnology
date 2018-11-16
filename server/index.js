@@ -52,7 +52,6 @@ app
     //   app.render(req, res, "/", {});
     // });
 
-
     server.use(
       "/graphql",
       bodyParser.json(),

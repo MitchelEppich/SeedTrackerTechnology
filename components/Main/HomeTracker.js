@@ -1,6 +1,6 @@
 import React from "react";
 import html2canvas from "html2canvas";
-import InfoCard from "../Main/InfoCard"
+import InfoCard from "../Main/InfoCard";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -20,21 +20,21 @@ const HomeTracker = props => {
       props.toggleInfoSection(props.currentInformation + 1);
 
       // Create growcard
-      let input = document.querySelector("#growCard");             
-        input.hidden = false;      
-        html2canvas(input, {
-          scale: 0.9,
-          windowHeight: "8000px",
-          windowWidth: "2000px",             
-        }).then(canvas => {
-          const imgData = canvas.toDataURL("image/png");
-          const jspdf = require("jspdf");
-          const pdf = new jspdf({ format: [131, 173] });  
+      let input = document.querySelector("#growCard");
+      input.hidden = false;
+      html2canvas(input, {
+        scale: 0.9,
+        windowHeight: "8000px",
+        windowWidth: "2000px"
+      }).then(canvas => {
+        const imgData = canvas.toDataURL("image/png");
+        const jspdf = require("jspdf");
+        const pdf = new jspdf({ format: [131, 173] });
         pdf.addImage(imgData, "PNG", 0, 0);
         pdf.save("growcard.pdf");
         input.hidden = true;
-        });
-        }, 4000);
+      });
+    }, 4000);
   };
 
   // function secondPoint() {
@@ -91,50 +91,58 @@ const HomeTracker = props => {
           />
           <form
             onSubmit={e => {
-              e.preventDefault();   
-              props
-                .checkEntry({
-                  email: props.email,
-                  context: props.context,
-                  number: searched.value
-                })
-                .then(res => {
-                  props.getStrainData(res.strain).then(data => {
+              e.preventDefault();
+              let res = props.checkEntry({
+                email: props.email,
+                context: props.context,
+                number: searched.value
+              });
+              if (res == null) return;
+              res.then(res => {
+                if (res == null) return;
+                console.log(res);
+                props
+                  .getStrainData({
+                    strain: res.strain,
+                    dispatchAt: res.dispatchAt
+                  })
+                  .then(data => {
                     props.search("true");
 
                     firstPoint();
 
                     let company;
-                    switch (Math.round(res.number / 1000000)) {
-                      case 1:
+                    let number = res.number || res.sttNumber;
+
+                    switch (number.toString()[0]) {
+                      case "1":
                         company = "mjsc.com";
                         break;
-                      case 2:
+                      case "2":
                         company = "cks";
                         break;
-                      case 3:
+                      case "3":
                         company = "mjsc.ca";
                         break;
-                      case 4:
+                      case "4":
                         company = "mjg";
                         break;
-                      case 5:
+                      case "5":
                         company = "swg";
                         break;
-                      case 6:
+                      case "6":
                         company = "cks";
                         break;
-                      case 7:
+                      case "7":
                         company = "bvr";
                         break;
-                      case 8:
+                      case "8":
                         company = "snm";
                         break;
-                      case 9:
+                      case "9":
                         company = "sfw";
                         break;
                     }
-                 
                     props.setLocations([
                       {
                         name: data.origin,
@@ -142,8 +150,7 @@ const HomeTracker = props => {
                         type: "producer",
                         description: {
                           facts: {
-                            effects:
-                              "",
+                            effects: "",
                             potency: "90%"
                           },
                           imageUrl:
@@ -154,22 +161,22 @@ const HomeTracker = props => {
                       {
                         name: "You",
                         anchor: [parseFloat(res.lat), parseFloat(res.lon)],
-                        description : {
+                        description: {
                           imageUrl:
-                          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                      }
-                    },
+                            "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                        }
+                      },
                       {
                         name: "null",
                         anchor: [null, null],
-                        description : {
+                        description: {
                           imageUrl:
-                          "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                            "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                        }
                       }
-                    }
                     ]);
                   });
-                });
+              });
             }}
           >
             <div className="w-full pb-4 xs:pb-1">

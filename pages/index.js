@@ -21,11 +21,9 @@ class Index extends Component {
   componentDidMount() {}
 
   render() {
-    return (
-      this.props.supportedBrowser ? (
+    return this.props.supportedBrowser ? (
       <Layout>
-        
-        <InfoCard 
+        <InfoCard
           {...this.props}
           checkEntry={this.props.checkEntry}
           getStrainData={this.props.getStrainData}
@@ -37,7 +35,7 @@ class Index extends Component {
           toggleMenu={this.props.toggleMenu}
         />
         <Video />
-        <About />        
+        <About />
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}
@@ -77,7 +75,7 @@ class Index extends Component {
           setInfoTab={this.props.setInfoTab}
         />
 
-        <InfoCard 
+        <InfoCard
           {...this.props}
           checkEntry={this.props.checkEntry}
           getStrainData={this.props.getStrainData}
@@ -87,9 +85,9 @@ class Index extends Component {
           height: "90vh",
           width: '99vw'
         }} src={`http://192.168.0.27:3000/stt`}></iframe>       */}
-      </Layout> ) 
-
-      : <NotSupported /> 
+      </Layout>
+    ) : (
+      <NotSupported />
     );
   }
 }
@@ -135,6 +133,9 @@ const mapDispatchToProps = dispatch => {
     getStrainData: input => {
       return dispatch(actions.getStrainData(input));
     },
+    togglePath: value => {
+      return dispatch(actions.togglePath(value));
+    }
   };
 };
 

@@ -17,6 +17,7 @@ const initialState = {
   showCopyright: false,
   showMenuCollapsed: false,
   infoTab: 0,
+  error: null,
   landmarks: {
     cks: {
       name: "Crop King Seeds",
@@ -220,8 +221,12 @@ const indexReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TRACK_NUMBER:
       return updateObject(state, { number: action.number });
+    case actionTypes.SET_ERROR:
+      return updateObject(state, { error: action.error });
     case actionTypes.SET_GERMINATION_PERCENT:
-      return updateObject(state, { strain: {...state.strain, germ : action.input} });
+      return updateObject(state, {
+        strain: { ...state.strain, germ: action.input }
+      });
     case actionTypes.SEARCH:
       return updateObject(state, { searched: action.value });
     case actionTypes.TOGGLE_INFO_SECTION:

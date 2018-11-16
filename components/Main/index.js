@@ -9,7 +9,7 @@ import {
   faInfo,
   faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
-import Map from "pigeon-maps";
+import Map from "../Map/pigeon-maps";
 import Overlay from "pigeon-overlay";
 import Line from "../Map/Line";
 import InfoSection from "../Main/InfoSection";
@@ -23,18 +23,17 @@ const Main = props => {
     markers != null
       ? markers.map((marker, index) => {
           if (index == markers.length - 1) return null;
-
           return (
             <Overlay key={index} anchor={marker.anchor} payload={index}>
               <div
-                className="landmark-points"            
-                onClick={() => {      
-                if (marker.description)
+                className="landmark-points"
+                onClick={() => {
+                  if (marker.description)
                     props.toggleInfoSection(
-                      props.currentInformation == index ? -1 : index   
-                    );                    
+                      props.currentInformation == index ? -1 : index
+                    );
                 }}
-               />
+              />
               {props.currentLocation == index ? (
                 <div className="info-landmark">
                   <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
@@ -52,20 +51,26 @@ const Main = props => {
     <div
       id="stt"
       style={{
-        height: "100vh",
+        height: "91.5vh",
         overflowY: "hidden",
         overflowX: "hidden",
         position: "relative"
       }}
     >
+      {props.error != null ? (
+        <div className="bg-red">
+          <p className="text-center text-white p-1">{props.error}</p>
+        </div>
+      ) : null}
       {props.searched ? (
-        <div className="inline-flex mt-24 absolute">          
+        <div className="inline-flex mt-4 absolute">
           <button
             style={{ transition: "all 0.5s ease" }}
-            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 py-2 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"          
-            onClick={() => { 
+            className="h-10 bg-grey-darkest inline-flex z-40 ml-4 py-2 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"
+            onClick={() => {
               props.closeAllHandler();
-              props.search(false) 
+              props.search(false);
+              props.setLocations(null);
             }}
           >
             Search Again
@@ -80,7 +85,9 @@ const Main = props => {
         limitBounds="edge"
         animateMaxScreens={9}
         center={
-          props.currentInformation != -1
+          props.locations == null
+            ? [0, 0]
+            : props.currentInformation != -1
             ? props.locations[props.currentInformation].anchor
             : [38.927, -11.877]
         }
@@ -97,14 +104,8 @@ const Main = props => {
         ) : null}
       </Map>
 
-
       {/* SHOW INFO SECTION */}
-      {props.currentInformation != -1 
-      ? 
-      <InfoSection {...props} /> 
-      : null
-      }
-
+      {props.currentInformation != -1 ? <InfoSection {...props} /> : null}
 
       {/* COPYRIGHT ICON */}
       <div className="absolute inline-flex pin-b pin-r mb-6 mr-4">
@@ -159,8 +160,6 @@ const Main = props => {
               })
           : null}
       </div>
-  
-      
     </div>
   );
 };
