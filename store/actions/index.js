@@ -33,7 +33,8 @@ const actionTypes = {
   RECORD_ENTRY: "RECORD_ENTRY",
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
-  SET_INFO_TAB: "SET_INFO_TAB"
+  SET_INFO_TAB: "SET_INFO_TAB",
+  SET_ERROR: "SET_ERROR"
 };
 
 const actions = {
@@ -97,6 +98,17 @@ const actions = {
   },
   checkEntry: input => {
     return dispatch => {
+      if (input.number.toString()[0] == "0") {
+        dispatch(
+          actions.setError(
+            "Invalid STT Number",
+            input.email,
+            input.number,
+            input.context
+          )
+        );
+        return;
+      }
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getEntry,
@@ -118,13 +130,31 @@ const actions = {
       });
     };
   },
+  setError: (error, email, number, context) => {
+    return dispatch => {
+      console.log(error, email, number, context);
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: mutation.recordError,
+        variables: { email: email, number: number.toString(), context: context }
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        dispatch({
+          type: actionTypes.SET_ERROR,
+          error: error
+        });
+      });
+    };
+  },
   getStrainData: input => {
     return dispatch => {
+      console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getStrain,
-        variables: { strain: input }
+        variables: { strain: input.strain }
       };
+
       return makePromise(execute(link, operation)).then(data => {
         let seed = data.data.seed;
         const operation = {
@@ -142,12 +172,28 @@ const actions = {
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
             `${rand.floatBetween(84, 95).toFixed(1)}`
           ];
+
+          let date = [
+            `${moment(input.dispatchAt, "DD/MM/YYYY")
+              .subtract(rand.intBetween(58, 64), "days")
+              .format("DD/MM/YYYY")}`,
+            `${moment(input.dispatchAt, "DD/MM/YYYY") // Harvest Date
+              .subtract(rand.intBetween(14, 28), "days")
+              .format("DD/MM/YYYY")}`,
+            `${moment(input.dispatchAt, "DD/MM/YYYY") // Depart Date
+              .subtract(rand.intBetween(4, 12), "days")
+              .format("DD/MM/YYYY")}`,
+            `${
+              input.dispatchAt // Package Date
+            }`
+          ]; // Ship Date
           let potency = `${rand.floatBetween(84, 93).toFixed(1)}`;
 
           seed = {
             ...seed,
             ...loc,
             germ: germ,
+            date: date,
             potency: potency
           };
           dispatch({
@@ -178,6 +224,28 @@ const actions = {
           ];
           for (let tag of tags) {
             info[tag] = data.split(`<${tag}>`)[1];
+            if (info[tag] == "0000-00-00 00:00:00") {
+              dispatch(
+                actions.setError(
+                  "Invalid Dispatch",
+                  input.email,
+                  input.number,
+                  input.context
+                )
+              );
+              return;
+            }
+            if (info[tag] == null) {
+              dispatch(
+                actions.setError(
+                  "Information Not Found",
+                  input.email,
+                  input.number,
+                  input.context
+                )
+              );
+              return;
+            }
           }
 
           let link = new HttpLink({ uri, fetch: fetch });
@@ -195,11 +263,18 @@ const actions = {
           return makePromise(execute(link, operation)).then(data => {
             let coords = data.data.getCoordinates;
 
+            console.log("get Coords", data);
+
             info = {
               sttNumber: input.number,
               strain: info.productname
-                .split("-")[1]
-                .split("(")[0]
+                .split(info.productname.indexOf("-") == -1 ? undefined : "-")
+                [
+                  info.productname.indexOf("-") == -1 ||
+                  info.productname.indexOf("-") > 10
+                    ? 0
+                    : 1
+                ].split("(")[0]
                 .replace("Seeds", "")
                 .replace("Marijuana", "")
                 .replace("Seed", "")
@@ -208,13 +283,17 @@ const actions = {
                 .replace("Regular", "")
                 .replace("Cannabis", "")
                 .replace("Feminized", "")
-
+                .replace("Fem", "")
+                .replace("Auto", "")
                 .trim(),
               dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
               ...coords
             };
 
+            console.log(info);
+
             link = new HttpLink({ uri, fetch: fetch });
+
             operation = {
               query: mutation.recordEntry,
               variables: { ...input, ...info }
@@ -222,6 +301,7 @@ const actions = {
 
             makePromise(execute(link, operation))
               .then(data => {
+                console.log(data.data.createEntry, info);
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
@@ -277,6 +357,15 @@ const query = {
 };
 
 const mutation = {
+  recordError: gql`
+    mutation($email: String, $context: Int, $number: String) {
+      createError(
+        input: { email: $email, context: $context, number: $number }
+      ) {
+        _id
+      }
+    }
+  `,
   getCoordinates: gql`
     mutation(
       $postalcode: String

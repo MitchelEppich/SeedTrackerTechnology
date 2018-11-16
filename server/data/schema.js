@@ -7,12 +7,28 @@ type Query {
   allEntries(filter: EntryFilters, cursor: Int, limit: Int): [Entry]!
   seed(input: SeedInput) : Seed
   allSeeds: [Seed]!
+  error(input: ErrorInput) : Error
+  allErrors: [Error]!
 }
 
 input EntryFilters {
   OR: [EntryFilters!]
   date_of: String
   context_of: Int
+}
+
+type Error {
+  _id: String
+  email: String
+  number: String
+  context: Int
+  createdAt: String
+}
+
+input ErrorInput {
+  email: String
+  number: String
+  context: Int
 }
 
 type Entry {
@@ -88,7 +104,8 @@ input CoordinatesInput {
 }
 
 type Mutation {
-  createEntry(input: EntryInput!): Entry,
+  createEntry(input: EntryInput!): Entry
+  createError(input: ErrorInput!): Error
   getCoordinates(input: CoordinatesInput!) : Coordinates
   transitionSeeds: Seed,
   updateOriginOfSeeds: Seed,

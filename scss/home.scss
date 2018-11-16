@@ -73,13 +73,13 @@ li {
 }
 
 // HIDE NUMBER INPUT SPINNERS
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
--webkit-appearance: none;
-margin: 0;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.menu-item { 
+.menu-item {
   transition: all 0.35s ease;
   font-size: 20px;
   font-family: "Novecentowide-DemiBold";
@@ -91,7 +91,7 @@ margin: 0;
 }
 
 .path {
-  fill: none;  
+  fill: none;
   stroke-linecap: butt;
   stroke-miterlimit: 1;
   stroke-width: 6px;
@@ -166,8 +166,7 @@ margin: 0;
   margin: calc(100vw - 100%);
   margin: -webkit-calc(100vw - 100%);
   margin: -moz-calc(100vw - 100%);
-  top: 170px;
-  
+  top: 120px;
 
   padding: 20px;
   background: #fff200;
@@ -262,7 +261,6 @@ margin: 0;
   border-top: 13px solid rgba(62, 20, 20, 0);
 }
 
-
 .checkbox {
   height: 25px;
   width: 25px;
@@ -276,8 +274,7 @@ margin: 0;
   background-color: #b8b8b8;
 }
 
-
-// BROWSER NOT SUPPORTED SECTION // 
+// BROWSER NOT SUPPORTED SECTION //
 .browsers-list {
   display: inline-block;
   // cursor: url("../static/imgs/airplane-cursor1.png");
@@ -304,16 +301,12 @@ margin: 0;
   transition: transform 0.5s ease;
   -webkit-filter: grayscale(0);
   filter: grayscale(0);
- 
 }
 
-
-
-
 @media screen and (max-width: 456px) {
-  .main-message { 
+  .main-message {
     top: 40px;
-    width: 80% !important;    
+    width: 80% !important;
     padding: 20px;
     z-index: 9999;
     background: #fff200;
