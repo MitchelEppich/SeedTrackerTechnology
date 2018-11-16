@@ -227,14 +227,6 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Details:</h3>
                 <p className="font-bold ml-2">
-                  Departure Date:{" "}
-                  <span className="font-normal">
-                    {moment(props.strain.seedFrom)
-                    .subtract(rand.intBetween(48, 52), "days")
-                    .format("DD/MM/YYYY")}
-                  </span>{" "}
-                </p>
-                <p className="font-bold ml-2">
                   Harvest Date:{" "}
                   <span className="font-normal">
                   {moment(props.strain.seedFrom)
@@ -242,6 +234,15 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                     .format("DD/MM/YYYY")}
                   </span>{" "}
                 </p>
+                <p className="font-bold ml-2">
+                  Departure Date:{" "}
+                  <span className="font-normal">
+                    {moment(props.strain.seedFrom)
+                    .subtract(rand.intBetween(48, 52), "days")
+                    .format("DD/MM/YYYY")}
+                  </span>{" "}
+                </p>
+                
               </span>
             ) : null}
 
@@ -620,14 +621,6 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
               <div className="pb-3 pt-1">
                 <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">Details:</h3>
                 <p className="font-bold pl-2">
-                  Departure Date:{" "}
-                  <span className="font-normal">
-                    {moment(props.strain.seedFrom)
-                      .subtract(rand.intBetween(48, 52), "days")
-                      .format("DD/MM/YYYY")}
-                  </span>{" "}
-                </p>
-                <p className="font-bold pl-2">
                   Harvest Date:{" "}
                   <span className="font-normal">
                     {moment(props.strain.seedFrom)
@@ -635,6 +628,15 @@ let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
                       .format("DD/MM/YYYY")}
                   </span>{" "}
                 </p>
+                <p className="font-bold pl-2">
+                  Departure Date:{" "}
+                  <span className="font-normal">
+                    {moment(props.strain.seedFrom)
+                      .subtract(rand.intBetween(48, 52), "days")
+                      .format("DD/MM/YYYY")}
+                  </span>{" "}
+                </p>
+                
               </div>  
             </div>
           ) : (
