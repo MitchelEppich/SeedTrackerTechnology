@@ -9,7 +9,7 @@ import {
   faInfo,
   faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
-import Map from "pigeon-maps";
+import Map from "../Map/pigeon-maps";
 import Overlay from "pigeon-overlay";
 import Line from "../Map/Line";
 import InfoSection from "../Main/InfoSection";
