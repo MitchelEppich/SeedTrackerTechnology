@@ -255,11 +255,11 @@ const InfoSection = props => {
                 <h3 className="pb-1 px-0 uppercase">Your Details:</h3>
                 <p className="font-bold ml-2">
                   Email:{" "}
-                  <span className="font-normal">{props.clientInfo.email}</span>
+                  <span className="font-normal">{props.email}</span>
                 </p>
                 <p className="font-bold ml-2">
                   STT Number:{" "}
-                  <span className="font-normal">{props.clientInfo.number}</span>
+                  <span className="font-normal">{props.number}</span>
                 </p>
               </span>
             ) : null}
@@ -665,11 +665,11 @@ const InfoSection = props => {
 
                 <p className="font-bold pl-2">
                   Email:{" "}
-                  <span className="font-normal">{props.clientInfo.email}</span>
+                  <span className="font-normal">{props.email}</span>
                 </p>
                 <p className="font-bold pl-2">
                   STT Number:{" "}
-                  <span className="font-normal">{props.clientInfo.number}</span>
+                  <span className="font-normal">{props.number}</span>
                 </p>
               </div>
 
@@ -729,6 +729,7 @@ const InfoSection = props => {
                 }
               }}
             />
+            {console.log("tetetete", props.email, props.number)}
           </div>
         </div>
       </div>
