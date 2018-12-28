@@ -27,13 +27,13 @@ class Index extends Component {
           {...this.props}
           checkEntry={this.props.checkEntry}
           getStrainData={this.props.getStrainData}
-        />{" "}
+        />
         <Navbar
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
           showMenuCollapsed={this.props.showMenuCollapsed}
           toggleMenu={this.props.toggleMenu}
-        />{" "}
+        />
         <Video
           toggleMuteVideo={this.props.toggleMuteVideo}
           videoMuted={this.props.videoMuted}

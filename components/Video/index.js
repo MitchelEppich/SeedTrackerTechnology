@@ -7,7 +7,7 @@ import { faVolumeMute, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 const Video = props => {
   return (
-    <div id="video" style={{ background: "#202020" }} className=" relative">
+    <div id="video" style={{ background: "#202020" }} className="">
       <div
         style={{ marginTop: "80px", marginLeft: "12%", marginBottom: "-3px" }}
       >
@@ -21,13 +21,9 @@ const Video = props => {
             e.target.muted = !e.target.muted;
             props.toggleMuteVideo({ value: e.target.muted });
           }}
-          style={{ width: "90%" }}
+          style={{ width: "90%", height: "100%" }}
         >
-          {}
-          {/* {screen.innerWidth > 650 ? (          */}
           <source src="../../static/video/stt_1920.mp4" type="video/mp4" />
-          {/* ):            
-                    (<source src="../../static/video/stt_360.mp4" type="video/mp4"></source>) } */}
         </video>
         <div
           style={{ marginRight: "185px" }}
@@ -36,7 +32,7 @@ const Video = props => {
           <div style={{ color: "#202020" }} className="w-12 h-12 text-center">
             <FontAwesomeIcon
               icon={props.videoMuted ? faVolumeMute : faVolumeUp}
-              className="fa-2x mt-2"
+              className="fa-2x mt-24 cursor-pointer"
             />
           </div>
         </div>
