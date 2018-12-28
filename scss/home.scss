@@ -160,14 +160,11 @@ input[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
-.main-message {
-  // margin-left: calc-(50vw);
-  // margin-top: calc(50vh);
+.main-message { 
   margin: calc(100vw - 100%);
   margin: -webkit-calc(100vw - 100%);
   margin: -moz-calc(100vw - 100%);
   top: 120px;
-
   padding: 20px;
   background: #fff200;
   color: #161616;

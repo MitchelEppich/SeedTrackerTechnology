@@ -96,6 +96,8 @@ let colors = {
   "green-lighter": "#a2f5bf",
   "green-lightest": "#e3fcec",
 
+  "green-new": "#005f43",
+
   "teal-darkest": "#0d3331",
   "teal-darker": "#20504f",
   "teal-dark": "#38a89d",
@@ -111,6 +113,8 @@ let colors = {
   "blue-light": "#6cb2eb",
   "blue-lighter": "#bcdefa",
   "blue-lightest": "#eff8ff",
+
+  "blue-new": "#215177",
 
   "navy-blue": "#031a28",
   "transparent-blue": "rgba(3, 26, 40, 0.5)",
