@@ -9,9 +9,9 @@ import {
 
 const Video = () => {
   return (
-    <div id="video" style={{background: "#202020"}} className=" relative">
+    <div id="video" style={{background: "#202020"}} className="">
       <div
-        style={{ marginTop: "60px", marginLeft: "12%", marginBottom: "-3px" }}
+        style={{ marginTop: "80px", marginLeft: "12%", marginBottom: "-3px" }}
       >
         <video
           className="overflow-hidden"
@@ -22,17 +22,16 @@ const Video = () => {
           onClick={e => {
             e.target.muted = !e.target.muted;
           }}
-          style={{ width: "90%" }}
+          style={{ width: "90%", height: "100%" }}
         >
-          {}
-          {/* {screen.innerWidth > 650 ? (          */}
+          
+          
           <source src="../../static/video/stt_1920.mp4" type="video/mp4" />
-          {/* ):            
-                    (<source src="../../static/video/stt_360.mp4" type="video/mp4"></source>) } */}
+         
         </video>
         <div style={{ marginRight: "185px" }} className="pin-r pin-t absolute mt-4">
             <div style={{color: "#202020"}} className="w-12 h-12 text-center">
-              <FontAwesomeIcon icon={faVolumeMute} className="fa-2x mt-2" />
+              <FontAwesomeIcon icon={faVolumeMute} className="fa-2x mt-24 cursor-pointer" />
             </div>
         </div>
       </div>
