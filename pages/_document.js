@@ -2,11 +2,11 @@ import Document, { Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps }
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
   }
-  componentDidUpdate(){
-    console.log("DOC", this.props)
+  componentDidUpdate() {
+    console.log("DOC", this.props);
   }
 
   render() {
@@ -20,9 +20,8 @@ export default class MyDocument extends Document {
             key="viewport"
           />
           <link rel="stylesheet" href="/_next/static/style.css" />
-         
         </Head>
-        <body>
+        <body id="body">
           <Main />
           <NextScript />
         </body>

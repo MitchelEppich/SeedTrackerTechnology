@@ -15,7 +15,7 @@ import moment from "moment";
 import gen from "random-seed";
 
 const uri = "http://localhost:3000/graphql";
-// const uri = "http://159.89.125.131:3000/graphql";
+// const uri = "http://seedtracker.com:3000/graphql";
 
 const imports = {};
 
