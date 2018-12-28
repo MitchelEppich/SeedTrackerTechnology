@@ -1,13 +1,17 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faVolumeMute
+} from "@fortawesome/free-solid-svg-icons";
 
 // let screen = window.innerWidth;
 // console.log("test", screen )
 
 const Video = () => {
   return (
-    <div id="video" style={{}} className="bg-yellow">
+    <div id="video" style={{background: "#202020"}} className=" relative">
       <div
-        style={{ marginTop: "80px", marginLeft: "12%", marginBottom: "-3px" }}
+        style={{ marginTop: "60px", marginLeft: "12%", marginBottom: "-3px" }}
       >
         <video
           className="overflow-hidden"
@@ -18,7 +22,7 @@ const Video = () => {
           onClick={e => {
             e.target.muted = !e.target.muted;
           }}
-          style={{ width: "85%" }}
+          style={{ width: "90%" }}
         >
           {}
           {/* {screen.innerWidth > 650 ? (          */}
@@ -26,7 +30,11 @@ const Video = () => {
           {/* ):            
                     (<source src="../../static/video/stt_360.mp4" type="video/mp4"></source>) } */}
         </video>
-        <div style={{ position: "absolute" }}>MUTED</div>
+        <div style={{ marginRight: "185px" }} className="pin-r pin-t absolute mt-4">
+            <div style={{color: "#202020"}} className="w-12 h-12 text-center">
+              <FontAwesomeIcon icon={faVolumeMute} className="fa-2x mt-2" />
+            </div>
+        </div>
       </div>
     </div>
   );
