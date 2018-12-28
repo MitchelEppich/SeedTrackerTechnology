@@ -122,6 +122,9 @@ const mapDispatchToProps = dispatch => {
     setContext: input => {
       dispatch(actions.setContext(input));
     },
+    setError: (error, email, number, context) => {
+      dispatch(actions.setError(error, email, number, context));
+    },
     setEmail: input => {
       dispatch(actions.setEmail(input));
     },

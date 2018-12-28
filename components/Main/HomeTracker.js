@@ -100,11 +100,21 @@ const HomeTracker = props => {
               if (res == null) return;
               res.then(res => {
                 if (res == null) return;
-                console.log(res);
+                if (!["5", "6", "7", "8"].includes(res.number.toString()[0])) {
+                  props.setError(
+                    "Sorry, this number is yet to be supported. . . try again later.",
+                    props.email,
+                    res.number,
+                    res.context
+                  );
+                  return;
+                }
                 props
                   .getStrainData({
                     strain: res.strain,
-                    dispatchAt: res.dispatchAt
+                    dispatchAt: res.dispatchAt,
+                    context: res.context,
+                    country: res.country
                   })
                   .then(data => {
                     props.search("true");
@@ -119,7 +129,7 @@ const HomeTracker = props => {
                         company = "mjsc.com";
                         break;
                       case "2":
-                        company = "cks";
+                        company = "";
                         break;
                       case "3":
                         company = "mjsc.ca";
@@ -143,6 +153,14 @@ const HomeTracker = props => {
                         company = "sfw";
                         break;
                     }
+                    let companyLocation = props.landmarks[company];
+                    if (
+                      ["usa", "united states"].includes(
+                        res.country.toLowerCase()
+                      )
+                    )
+                      companyLocation.anchor = companyLocation.usAnchor;
+
                     props.setLocations([
                       {
                         name: data.origin,
@@ -157,7 +175,7 @@ const HomeTracker = props => {
                             "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
                         }
                       },
-                      props.landmarks[company],
+                      companyLocation,
                       {
                         name: "You",
                         anchor: [parseFloat(res.lat), parseFloat(res.lon)],

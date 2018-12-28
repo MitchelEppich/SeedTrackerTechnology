@@ -15,7 +15,8 @@ let EntrySchema = Schema({
   dispatchAt: String,
   lon: String,
   lat: String,
-  createdAt: { type: Date, default: new Date() }
+  createdAt: { type: Date, default: new Date() },
+  country: String
 });
 
 module.exports = EntrySchema;

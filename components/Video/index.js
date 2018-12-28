@@ -1,11 +1,13 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faVolumeMute, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 // let screen = window.innerWidth;
 // console.log("test", screen )
 
 const Video = props => {
   return (
-    <div id="video" style={{}} className="bg-yellow">
+    <div id="video" style={{ background: "#202020" }} className=" relative">
       <div
         style={{ marginTop: "80px", marginLeft: "12%", marginBottom: "-3px" }}
       >
@@ -19,7 +21,7 @@ const Video = props => {
             e.target.muted = !e.target.muted;
             props.toggleMuteVideo({ value: e.target.muted });
           }}
-          style={{ width: "85%" }}
+          style={{ width: "90%" }}
         >
           {}
           {/* {screen.innerWidth > 650 ? (          */}
@@ -27,8 +29,16 @@ const Video = props => {
           {/* ):            
                     (<source src="../../static/video/stt_360.mp4" type="video/mp4"></source>) } */}
         </video>
-        <div style={{ position: "absolute" }}>
-          {props.videoMuted ? "MUTED" : "Not"}
+        <div
+          style={{ marginRight: "185px" }}
+          className="pin-r pin-t absolute mt-4"
+        >
+          <div style={{ color: "#202020" }} className="w-12 h-12 text-center">
+            <FontAwesomeIcon
+              icon={props.videoMuted ? faVolumeMute : faVolumeUp}
+              className="fa-2x mt-2"
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -41,6 +41,7 @@ type Entry {
   lon: String, 
   lat: String,
   dispatchAt: String
+  country: String
 }
 
 input EntryInput {
@@ -51,6 +52,7 @@ input EntryInput {
   lat: String,
   strain: String,
   dispatchAt: String
+  country: String
 }
 
 type Seed {

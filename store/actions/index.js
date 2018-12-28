@@ -155,7 +155,6 @@ const actions = {
   },
   getStrainData: input => {
     return dispatch => {
-      console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getStrain,
@@ -201,7 +200,9 @@ const actions = {
             ...loc,
             germ: germ,
             date: date,
-            potency: potency
+            potency: potency,
+            context: input.context,
+            country: input.country
           };
           dispatch({
             type: actionTypes.GET_STRAIN_DATA,
@@ -218,7 +219,6 @@ const actions = {
         .get(`https://www.cksoti.com/getcustomerorderdetail/${input.number}`)
         .then(res => {
           let data = res.data;
-          console.log(data);
           let info = {};
           let tags = [
             "productname",
@@ -270,10 +270,9 @@ const actions = {
           return makePromise(execute(link, operation)).then(data => {
             let coords = data.data.getCoordinates;
 
-            console.log("get Coords", data);
-
             info = {
               sttNumber: input.number,
+              country: info.ShipCountry,
               strain: info.productname
                 .split(info.productname.indexOf("-") == -1 ? undefined : "-")
                 [
@@ -297,8 +296,6 @@ const actions = {
               ...coords
             };
 
-            console.log(info);
-
             link = new HttpLink({ uri, fetch: fetch });
 
             operation = {
@@ -308,7 +305,6 @@ const actions = {
 
             makePromise(execute(link, operation))
               .then(data => {
-                console.log(data.data.createEntry, info);
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
@@ -358,6 +354,7 @@ const query = {
         lon
         dispatchAt
         strain
+        country
       }
     }
   `
@@ -404,6 +401,7 @@ const mutation = {
       $lat: String!
       $lon: String!
       $dispatchAt: String!
+      $country: String!
     ) {
       createEntry(
         input: {
@@ -414,6 +412,7 @@ const mutation = {
           lat: $lat
           strain: $strain
           dispatchAt: $dispatchAt
+          country: $country
         }
       ) {
         _id
@@ -426,6 +425,7 @@ const mutation = {
         strain
         dispatchAt
         strain
+        country
       }
     }
   `
