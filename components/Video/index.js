@@ -3,7 +3,7 @@ import React from "react";
 // let screen = window.innerWidth;
 // console.log("test", screen )
 
-const Video = () => {
+const Video = props => {
   return (
     <div id="video" style={{}} className="bg-yellow">
       <div
@@ -17,6 +17,7 @@ const Video = () => {
           autoPlay
           onClick={e => {
             e.target.muted = !e.target.muted;
+            props.toggleMuteVideo({ value: e.target.muted });
           }}
           style={{ width: "85%" }}
         >
@@ -26,7 +27,9 @@ const Video = () => {
           {/* ):            
                     (<source src="../../static/video/stt_360.mp4" type="video/mp4"></source>) } */}
         </video>
-        <div style={{ position: "absolute" }}>MUTED</div>
+        <div style={{ position: "absolute" }}>
+          {props.videoMuted ? "MUTED" : "Not"}
+        </div>
       </div>
     </div>
   );

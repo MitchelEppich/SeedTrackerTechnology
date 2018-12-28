@@ -27,15 +27,18 @@ class Index extends Component {
           {...this.props}
           checkEntry={this.props.checkEntry}
           getStrainData={this.props.getStrainData}
-        /> */}
+        />{" "}
         <Navbar
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
           showMenuCollapsed={this.props.showMenuCollapsed}
           toggleMenu={this.props.toggleMenu}
-        /> */}
-         <Video />
-        <About /> 
+        />{" "}
+        <Video
+          toggleMuteVideo={this.props.toggleMuteVideo}
+          videoMuted={this.props.videoMuted}
+        />
+        <About />
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}
@@ -74,13 +77,11 @@ class Index extends Component {
           seed={this.props.seed}
           setInfoTab={this.props.setInfoTab}
         />
-
         <InfoCard
           {...this.props}
           checkEntry={this.props.checkEntry}
           getStrainData={this.props.getStrainData}
         />
-
         {/* <iframe id="stt" className="pin" style={{
           height: "90vh",
           width: '99vw'
@@ -135,6 +136,9 @@ const mapDispatchToProps = dispatch => {
     },
     togglePath: value => {
       return dispatch(actions.togglePath(value));
+    },
+    toggleMuteVideo: input => {
+      return dispatch(actions.toggleMuteVideo(input));
     }
   };
 };

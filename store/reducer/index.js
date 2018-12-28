@@ -214,7 +214,8 @@ const initialState = {
   email: null,
   seed: null,
   clientInfo: null,
-  strain: null
+  strain: null,
+  videoMuted: true
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -223,6 +224,8 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, { number: action.number });
     case actionTypes.SET_ERROR:
       return updateObject(state, { error: action.error });
+    case actionTypes.MUTE_VIDEO:
+      return updateObject(state, { videoMuted: action.input });
     case actionTypes.SET_GERMINATION_PERCENT:
       return updateObject(state, {
         strain: { ...state.strain, germ: action.input }

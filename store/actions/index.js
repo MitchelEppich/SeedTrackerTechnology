@@ -34,7 +34,8 @@ const actionTypes = {
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
   SET_INFO_TAB: "SET_INFO_TAB",
-  SET_ERROR: "SET_ERROR"
+  SET_ERROR: "SET_ERROR",
+  MUTE_VIDEO: "MUTE_VIDEO"
 };
 
 const actions = {
@@ -48,6 +49,12 @@ const actions = {
     return {
       type: actionTypes.SEARCH,
       value: value
+    };
+  },
+  toggleMuteVideo: input => {
+    return {
+      type: actionTypes.MUTE_VIDEO,
+      input: input.value
     };
   },
   setContext: input => {
