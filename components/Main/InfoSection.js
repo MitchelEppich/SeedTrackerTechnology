@@ -729,7 +729,7 @@ const InfoSection = props => {
                 }
               }}
             />
-            {console.log("tetetete", props.email, props.number)}
+            {/* {console.log("tetetete", props.email, props.number)} */}
           </div>
         </div>
       </div>

@@ -14,8 +14,8 @@ import axios from "axios";
 import moment from "moment";
 import gen from "random-seed";
 
-const uri = "http://localhost:3000/graphql";
-// const uri = "http://seedtracker.com:3000/graphql";
+// const uri = "http://localhost:3000/graphql";
+const uri = "http://seedtracker.com:80/graphql";
 
 const imports = {};
 
@@ -139,7 +139,7 @@ const actions = {
   },
   setError: (error, email, number, context) => {
     return dispatch => {
-      console.log(error, email, number, context);
+      // console.log(error, email, number, context);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: mutation.recordError,

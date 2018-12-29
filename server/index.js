@@ -25,8 +25,8 @@ const endpointURL = "/graphql";
 const endpointIRL = "/graphiql";
 const subscriptionsPath = "/subscriptions";
 
-const subscriptionsEndpoint = `ws://localhost:${port}${subscriptionsPath}`;
-// const subscriptionsEndpoint = `ws://seedtracker.com:${port}${subscriptionsPath}`;
+// const subscriptionsEndpoint = `ws://localhost:${port}${subscriptionsPath}`;
+const subscriptionsEndpoint = `ws://seedtracker.com:${port}${subscriptionsPath}`;
 
 mongoose.Promise = global.Promise;
 mongoose.connect(
