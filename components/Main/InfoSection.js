@@ -20,10 +20,8 @@ const InfoSection = props => {
   let rand = gen.create(props.strain.seed);
   let locationAmount = props.locations.length - 1;
 
-  // console.log("test", props.strain)
-
   // console.log("tesste", props.clientInfo.email)
-
+  // console.log(props.strain);
   // STT NUMBERS:
   // 4540720
   // 4521242
@@ -112,14 +110,16 @@ const InfoSection = props => {
             >
               Company
             </div>
-            <div
-              className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
-              onClick={() => {
-                props.setInfoTab(1);
-              }}
-            >
-              Details
-            </div>
+            {props.strain.context != 1 ? (
+              <div
+                className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
+                onClick={() => {
+                  props.setInfoTab(1);
+                }}
+              >
+                Details
+              </div>
+            ) : null}
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
               onClick={() => {
@@ -219,7 +219,7 @@ const InfoSection = props => {
         {/* DETAILS TAB */}
         {props.infoTab == 1 ? (
           <div className="flex h-140 px-2">
-            {props.currentInformation == 0 ? (
+            {props.currentInformation == 0 && props.strain.context != 1 ? (
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Details:</h3>
                 <p className="font-bold ml-2">
@@ -230,11 +230,10 @@ const InfoSection = props => {
                   Departure Date:{" "}
                   <span className="font-normal">{props.strain.date[1]}</span>{" "}
                 </p>
-                
               </span>
             ) : null}
 
-            {props.currentInformation == 1 ? (
+            {props.currentInformation == 1 && props.strain.context != 1 ? (
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Details:</h3>
                 <p className=" ml-2  font-bold">
@@ -254,8 +253,7 @@ const InfoSection = props => {
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Your Details:</h3>
                 <p className="font-bold ml-2">
-                  Email:{" "}
-                  <span className="font-normal">{props.email}</span>
+                  Email: <span className="font-normal">{props.email}</span>
                 </p>
                 <p className="font-bold ml-2">
                   STT Number:{" "}
@@ -615,22 +613,25 @@ const InfoSection = props => {
                 In house:{" "}
                 <span className="font-normal">{props.strain.germ[2]}%</span>
               </p>
-
-              <div className="pb-3 pt-2">
-                <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
-                  Details:
-                </h3>
-                <p className="font-bold pl-2">
-                  Package Date:{" "}
-                  <span className="font-normal">{props.strain.date[2]}</span>
-                </p>
-                <p className="font-bold pl-2">
-                  Ship Date:{" "}
-                  <span className="font-normal">
-                    Approx {props.strain.date[3]}
-                  </span>
-                </p>
-              </div>
+              {props.strain.context != 1 ? (
+                <div className="pb-3 pt-2">
+                  <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
+                    Details:
+                  </h3>
+                  <p className="font-bold pl-2">
+                    Package Date:{" "}
+                    <span className="font-normal">{props.strain.date[2]}</span>
+                  </p>
+                  <p className="font-bold pl-2">
+                    Ship Date:{" "}
+                    <span className="font-normal">
+                      Approx {props.strain.date[3]}
+                    </span>
+                  </p>
+                </div>
+              ) : (
+                <div className="pb-3 pt-2" />
+              )}
 
               <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1  ">
                 Contact:
@@ -664,8 +665,7 @@ const InfoSection = props => {
                 </h3>
 
                 <p className="font-bold pl-2">
-                  Email:{" "}
-                  <span className="font-normal">{props.email}</span>
+                  Email: <span className="font-normal">{props.email}</span>
                 </p>
                 <p className="font-bold pl-2">
                   STT Number:{" "}
@@ -729,7 +729,7 @@ const InfoSection = props => {
                 }
               }}
             />
-            {console.log("tetetete", props.email, props.number)}
+            {/* {console.log("tetetete", props.email, props.number)} */}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
     return { ...initialProps };
   }
   componentDidUpdate() {
-    console.log("DOC", this.props);
+    // console.log("DOC", this.props);
   }
 
   render() {

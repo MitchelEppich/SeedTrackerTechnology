@@ -22,8 +22,10 @@ const initialState = {
     cks: {
       name: "Crop King Seeds",
       anchor: [49.268, -122.981],
+      usAnchor: [34.787, -119.443],
       type: "company",
       phone: "(604) 563 0291",
+      usPhone: "+1 (844) 276-7546",
       email: "info@cropkingseeds.com",
       description: {
         dates: {
@@ -41,19 +43,20 @@ const initialState = {
       }
     },
     swg: {
-      name: "Crop King Seeds",
+      name: "SunWest Genetics",
       anchor: [49.2687, -123.2428],
+      usAnchor: [34.787, -119.443],
       type: "company",
-      phone: "(604) 563 0291",
-      email: "info@cropkingseeds.com",
+      phone: "+1 (800) 805-7835",
+      email: "info@sunwestgenetics.com",
       description: {
         dates: {
           package: "Aug 2",
           ship: "Aug 9"
         },
         imageUrl:
-          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "https://www.cropkingseeds.com",
+          "https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwidpuba08PfAhXiq1QKHbAkCY8QjRx6BAgBEAU&url=https%3A%2F%2Fwww.sunwestgenetics.com%2F&psig=AOvVaw0uRA16zBhLDgtIf4uHMctW&ust=1546125294006034",
+        website: "https://www.sunwestgenetics.com",
         socials: {
           facebook: "http://www.facebook.com",
           twitter: "http://www.twitter.com",
@@ -62,8 +65,10 @@ const initialState = {
       }
     },
     "mjsc.ca": {
-      name: "Crop King Seeds",
+      // NOT READY
+      name: "Mary Janes Seeds Canada",
       anchor: [49.1887, -123.0812],
+      usAnchor: [34.787, -119.443],
       type: "company",
       phone: "(604) 563 0291",
       email: "info@cropkingseeds.com",
@@ -83,8 +88,10 @@ const initialState = {
       }
     },
     "mjsc.com": {
-      name: "Crop King Seeds",
+      // NOT READY
+      name: "Mary Jane Seeds",
       anchor: [49.1887, -123.0812],
+      usAnchor: [34.787, -119.443],
       type: "company",
       phone: "(604) 563 0291",
       email: "info@cropkingseeds.com",
@@ -104,9 +111,11 @@ const initialState = {
       }
     },
     mjg: {
+      // NOT READY
       name: "Crop King Seeds",
       // name: "Mary Janes Garden",
       anchor: [49.2332, -122.9931],
+      usAnchor: [34.787, -119.443],
       type: "company",
       phone: "(604) 563 0291",
       email: "info@cropkingseeds.com",
@@ -128,17 +137,18 @@ const initialState = {
     bvr: {
       name: "Beaver Seeds",
       anchor: [49.29173, -123.13522],
+      usAnchor: [34.787, -119.443],
       type: "company",
-      phone: "(604) 563 0291",
-      email: "info@cropkingseeds.com",
+      phone: "Visit Website",
+      email: "info@beaverseeds.ca",
       description: {
         dates: {
           package: "Aug 2",
           ship: "Aug 9"
         },
         imageUrl:
-          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "https://www.cropkingseeds.com",
+          "https://www.google.ca/imgres?imgurl=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F412388918193967104%2FwsqJ9Cfp_400x400.png&imgrefurl=https%3A%2F%2Ftwitter.com%2Fbeaverseeds&docid=ss4FvcrXYdEddM&tbnid=27b4DtjO2P0iiM%3A&vet=10ahUKEwjkkL_l1MPfAhVcGTQIHerVAfwQMwg7KAEwAQ..i&w=400&h=400&client=opera&bih=939&biw=1880&q=beaver%20seeds&ved=0ahUKEwjkkL_l1MPfAhVcGTQIHerVAfwQMwg7KAEwAQ&iact=mrc&uact=8",
+        website: "https://www.beaverseeds.ca",
         socials: {
           facebook: "http://www.facebook.com",
           twitter: "http://www.twitter.com",
@@ -149,17 +159,18 @@ const initialState = {
     snm: {
       name: "Sonoma Seeds",
       anchor: [49.2775, -123.044],
+      usAnchor: [34.787, -119.443],
       type: "company",
-      phone: "(604) 563 0291",
-      email: "info@cropkingseeds.com",
+      phone: "+1 (855) 766-6627",
+      email: "info@sonomaseeds.com",
       description: {
         dates: {
           package: "Aug 2",
           ship: "Aug 9"
         },
         imageUrl:
-          "http://www.marijuanaseedscenter.com/wp-content/uploads/2016/05/crop-king-seeds-logo-283x300.png",
-        website: "https://www.cropkingseeds.com",
+          "https://www.google.ca/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjklbWf1cPfAhXHFzQIHW-HCkcQjRx6BAgBEAU&url=https%3A%2F%2Fwww.pinterest.com%2Fsonomaseeds%2F&psig=AOvVaw04YCdDvO8M4CmYE4NBHi_B&ust=1546125708761202",
+        website: "https://www.sonomaseeds.com",
         socials: {
           facebook: "http://www.facebook.com",
           twitter: "http://www.twitter.com",
@@ -168,8 +179,10 @@ const initialState = {
       }
     },
     sfw: {
+      // NOT READY
       name: "Star Flower Seeds",
       anchor: [49.2728, -123.15233],
+      usAnchor: [34.787, -119.443],
       type: "company",
       phone: "(604) 563 0291",
       email: "info@cropkingseeds.com",
@@ -214,7 +227,8 @@ const initialState = {
   email: null,
   seed: null,
   clientInfo: null,
-  strain: null
+  strain: null,
+  videoMuted: true
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -223,6 +237,8 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, { number: action.number });
     case actionTypes.SET_ERROR:
       return updateObject(state, { error: action.error });
+    case actionTypes.MUTE_VIDEO:
+      return updateObject(state, { videoMuted: action.input });
     case actionTypes.SET_GERMINATION_PERCENT:
       return updateObject(state, {
         strain: { ...state.strain, germ: action.input }

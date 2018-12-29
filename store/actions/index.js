@@ -15,7 +15,7 @@ import moment from "moment";
 import gen from "random-seed";
 
 const uri = "http://localhost:3000/graphql";
-// const uri = "http://seedtracker.com:3000/graphql";
+// const uri = "http://seedtracker.com:80/graphql";
 
 const imports = {};
 
@@ -34,7 +34,8 @@ const actionTypes = {
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
   SET_INFO_TAB: "SET_INFO_TAB",
-  SET_ERROR: "SET_ERROR"
+  SET_ERROR: "SET_ERROR",
+  MUTE_VIDEO: "MUTE_VIDEO"
 };
 
 const actions = {
@@ -48,6 +49,12 @@ const actions = {
     return {
       type: actionTypes.SEARCH,
       value: value
+    };
+  },
+  toggleMuteVideo: input => {
+    return {
+      type: actionTypes.MUTE_VIDEO,
+      input: input.value
     };
   },
   setContext: input => {
@@ -132,7 +139,7 @@ const actions = {
   },
   setError: (error, email, number, context) => {
     return dispatch => {
-      console.log(error, email, number, context);
+      // console.log(error, email, number, context);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: mutation.recordError,
@@ -148,7 +155,6 @@ const actions = {
   },
   getStrainData: input => {
     return dispatch => {
-      console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getStrain,
@@ -194,7 +200,9 @@ const actions = {
             ...loc,
             germ: germ,
             date: date,
-            potency: potency
+            potency: potency,
+            context: input.context,
+            country: input.country
           };
           dispatch({
             type: actionTypes.GET_STRAIN_DATA,
@@ -211,7 +219,6 @@ const actions = {
         .get(`https://www.cksoti.com/getcustomerorderdetail/${input.number}`)
         .then(res => {
           let data = res.data;
-          console.log(data);
           let info = {};
           let tags = [
             "productname",
@@ -263,10 +270,9 @@ const actions = {
           return makePromise(execute(link, operation)).then(data => {
             let coords = data.data.getCoordinates;
 
-            console.log("get Coords", data);
-
             info = {
               sttNumber: input.number,
+              country: info.ShipCountry,
               strain: info.productname
                 .split(info.productname.indexOf("-") == -1 ? undefined : "-")
                 [
@@ -290,8 +296,6 @@ const actions = {
               ...coords
             };
 
-            console.log(info);
-
             link = new HttpLink({ uri, fetch: fetch });
 
             operation = {
@@ -301,7 +305,6 @@ const actions = {
 
             makePromise(execute(link, operation))
               .then(data => {
-                console.log(data.data.createEntry, info);
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
@@ -351,6 +354,7 @@ const query = {
         lon
         dispatchAt
         strain
+        country
       }
     }
   `
@@ -397,6 +401,7 @@ const mutation = {
       $lat: String!
       $lon: String!
       $dispatchAt: String!
+      $country: String!
     ) {
       createEntry(
         input: {
@@ -407,6 +412,7 @@ const mutation = {
           lat: $lat
           strain: $strain
           dispatchAt: $dispatchAt
+          country: $country
         }
       ) {
         _id
@@ -419,6 +425,7 @@ const mutation = {
         strain
         dispatchAt
         strain
+        country
       }
     }
   `

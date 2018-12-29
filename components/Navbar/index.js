@@ -19,23 +19,22 @@ const Navbar = props => {
     MsTransform:
       props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
     transition:
-      props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease",
-       
+      props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease"
   };
 
   return (
-    <div 
-    style={{
-      zIndex:"99999999"
-    }}
-    className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50">
-      <div className="inline-flex w-1/3 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0">       
+    <div
+      style={{ zIndex: "99999999" }}
+      className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50"
+    >
+      <div className="inline-flex w-1/3 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
         <a href="/">
-          <img 
-            className="cursor-pointer "
-            src="../../static/imgs/logo2.png"
-          />
+          <img className="cursor-pointer " src="../../static/imgs/logo2.png" />
         </a>
+        {/* BETA TAG */}
+        <div className="bg-yellow text-black text-2xl h-10 ml-2 mt-1 p-2 rounded-sm sm:text-sm sm:h-6 sm:items-center sm:p-1 md:text-sm md:h-6 md:items-center md:p-1 pt-1 sm:mt-0 xs:text-sm xs:h-6 xs:items-center xs:p-1 ">
+          BETA
+        </div>
       </div>
       <div className="inline-flex justify-end w-2/3 pr-8 xl:pr-16 xxl:pr-32 pin-r sm:hidden xs:hidden">
         <ul className="inline-flex justify-end">
@@ -61,10 +60,7 @@ const Navbar = props => {
           </li>
         </ul>
       </div>
-                
 
-
-                
       {/* TOGGLE MOBILE MENU  */}
       <div className="w-1/3 float-right pin-t pin-r pr-4 xxl:hidden xxxl:hidden md:hidden xl:hidden lg:hidden">
         <span

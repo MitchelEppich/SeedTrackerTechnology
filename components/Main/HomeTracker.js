@@ -100,11 +100,21 @@ const HomeTracker = props => {
               if (res == null) return;
               res.then(res => {
                 if (res == null) return;
-                console.log(res);
+                if (!["5", "6", "7", "8"].includes(res.number.toString()[0])) {
+                  props.setError(
+                    "Sorry, this number is yet to be supported. . . try again later.",
+                    props.email,
+                    res.number,
+                    res.context
+                  );
+                  return;
+                }
                 props
                   .getStrainData({
                     strain: res.strain,
-                    dispatchAt: res.dispatchAt
+                    dispatchAt: res.dispatchAt,
+                    context: res.context,
+                    country: res.country
                   })
                   .then(data => {
                     props.search("true");
@@ -119,7 +129,7 @@ const HomeTracker = props => {
                         company = "mjsc.com";
                         break;
                       case "2":
-                        company = "cks";
+                        company = "";
                         break;
                       case "3":
                         company = "mjsc.ca";
@@ -143,6 +153,14 @@ const HomeTracker = props => {
                         company = "sfw";
                         break;
                     }
+                    let companyLocation = props.landmarks[company];
+                    if (
+                      ["usa", "united states"].includes(
+                        res.country.toLowerCase()
+                      )
+                    )
+                      companyLocation.anchor = companyLocation.usAnchor;
+
                     props.setLocations([
                       {
                         name: data.origin,
@@ -157,7 +175,7 @@ const HomeTracker = props => {
                             "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
                         }
                       },
-                      props.landmarks[company],
+                      companyLocation,
                       {
                         name: "You",
                         anchor: [parseFloat(res.lat), parseFloat(res.lon)],
@@ -230,8 +248,7 @@ const HomeTracker = props => {
                 <input
                   required
                   className="h-10 w-full p-2 sm:w-full md:w-full border-2 border-light-grey p-2 xs:w-full"
-                  placeholder="youremail@mail.ca"
-                  defaultValue="youremail@mail.ca"
+                  placeholder="Enter your email . . ."
                   type="email"
                   aria-label="Enter in your email"
                   // defaultValue={props.searched ? props.number : ""}
@@ -262,13 +279,12 @@ const HomeTracker = props => {
               <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-0 xs:px-0 md:w-full">
                 <input
                   className="h-10 xs:w-full sm:w-full md:w-full w-full border-2 border-light-grey p-2"
-                  placeholder="Insert here your code: #8454d91"
+                  placeholder="Insert here your code: 2449043"
                   type="number"
                   pattern="[0-9]{7}"
                   required="required"
                   maxLength={7}
                   aria-label="Track number"
-                  defaultValue="4050202"
                   // defaultValue={props.searched ? props.number : ""}
                   id="search"
                   ref={search => {
