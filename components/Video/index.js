@@ -31,7 +31,7 @@ const Video = () => {
         </video>
         <div style={{ marginRight: "185px" }} className="pin-r pin-t absolute mt-4">
             <div style={{color: "#202020"}} className="w-12 h-12 text-center">
-              <FontAwesomeIcon icon={faVolumeMute} className="fa-2x mt-24 cursor-pointer" />
+              <FontAwesomeIcon icon={faVolumeMute} className="fa-2x mt-24 cursor-pointer hover:text-grey-light" />
             </div>
         </div>
       </div>
