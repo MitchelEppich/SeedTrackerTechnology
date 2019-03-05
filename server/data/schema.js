@@ -1,12 +1,13 @@
 const { makeExecutableSchema } = require("graphql-tools");
 const resolvers = require("./resolvers");
 
+// seed(input: SeedInput) : Seed
+// allSeeds: [Seed]!
 const typeDefs = `
 type Query {
   entry(input: EntryInput) : Entry
   allEntries(filter: EntryFilters, cursor: Int, limit: Int): [Entry]!
-  seed(input: SeedInput) : Seed
-  allSeeds: [Seed]!
+  strain(input: StrainInput): Strain
   error(input: ErrorInput) : Error
   allErrors: [Error]!
 }
@@ -37,7 +38,9 @@ type Entry {
   number: Int
   context: Int
   createdAt: String,
-  strain: String,
+  sttId: String,
+  sotiId: String,
+  company: String
   lon: String, 
   lat: String,
   dispatchAt: String
@@ -50,46 +53,11 @@ input EntryInput {
   context: Int,
   lon: String,
   lat: String,
-  strain: String,
+  sotiId: String,
+  sttId: String
+  company: String
   dispatchAt: String
   country: String
-}
-
-type Seed {
-  _id: String
-  strain: String,
-  genetic: Int
-  p_thc: Float
-  p_cbd: Float
-  p_cbn: Float
-  p_indica: Int,
-  p_sativa: Int,
-  p_ruderalis: Int,
-  o_yield: Int,
-  i_yield: Int,
-  grow_time: String,
-  effect: String,
-  origin: String
-  seed: String
-  seedFrom: String
-}
-
-input SeedInput {
-  strain: String,
-  type: Int,
-  p_thc: Float
-  p_cbd: Float
-  p_cbn: Float
-  p_indica: Int,
-  p_sativa: Int,
-  p_ruderalis: Int,
-  o_yield: Int,
-  i_yield: Int,
-  grow_time: String,
-  effect: String,
-  origin: String
-  seed: String
-  seedFrom: String
 }
 
 type Coordinates {
@@ -105,16 +73,79 @@ input CoordinatesInput {
   postalcode: String
 }
 
+type Strain {
+  _id: String
+  company: String,
+  name: String,
+  price: [Int],
+  description: String,
+  effect: [Int],
+  yield: [Int],
+  genetic: Int,
+  flowerTime: [Int],
+  difficulty: Int,
+  indica: Float,
+  sativa: Float,
+  ruderalis: Float,
+  type: Int,
+  environment: Int,
+  relations: [String],
+  pThc: [Float],
+  pCbd: [Float],
+  pCbn: [Float],
+  sotiId: String,
+  country: [Int],
+  sttId: String,
+  releaseDate: String,
+  isFeatured: Boolean
+    seed: String,
+  seedFrom:String
+}
+
+input StrainInput {
+  company: String,
+  name: String,
+  price: [Int],
+  description: String,
+  effect: [Int],
+  yield: [Int],
+  genetic: Int,
+  flowerTime: [Int],
+  difficulty: Int,
+  indica: Float,
+  sativa: Float,
+  ruderalis: Float,
+  type: Int,
+  environment: Int,
+  relations: [String],
+  pThc: [Float],
+  pCbd: [Float],
+  pCbn: [Float],
+  sotiId: String,
+  country: [Int],
+  sttId: String,
+  releaseDate: String,
+  isFeatured: Boolean
+}
+
+input batchInput {
+  json: String
+}
+
 type Mutation {
   createEntry(input: EntryInput!): Entry
+  createTesterEntry(input: EntryInput!): Entry
   createError(input: ErrorInput!): Error
   getCoordinates(input: CoordinatesInput!) : Coordinates
-  transitionSeeds: Seed,
-  updateOriginOfSeeds: Seed,
-  refreshSeed(input: SeedInput!): Seed
+  
+  refreshSeed(input: StrainInput): Strain
+  createStrain(input: StrainInput): Strain
+  batchCreateStrain(input: batchInput): String
 }
 
 `;
+// transitionSeeds: Seed,
+// updateOriginOfSeeds: Seed,
 
 const schema = makeExecutableSchema({
   typeDefs,

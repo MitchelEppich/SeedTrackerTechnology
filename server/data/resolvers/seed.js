@@ -45,7 +45,7 @@ const resolvers = {
     }
   },
   Mutation: {
-    refreshSeed: async (_, { input }) => {
+    refreshSeedOld: async (_, { input }) => {
       input.seed["seed"] = ID();
       input.seed["seedFrom"] = new Date();
       await input.seed.save();

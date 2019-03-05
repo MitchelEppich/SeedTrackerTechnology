@@ -1,6 +1,7 @@
 const EntryResolvers = require("./entry");
 const ErrorResolvers = require("./error");
 const SeedResolvers = require("./seed");
+const StrainResolvers = require("./strain");
 
 const NodeGeocoder = require("node-geocoder");
 
@@ -13,13 +14,15 @@ let geocoder = NodeGeocoder(options);
 const resolvers = {
   Query: {
     ...EntryResolvers.Query,
-    ...SeedResolvers.Query,
-    ...ErrorResolvers.Query
+    // ...SeedResolvers.Query,
+    ...ErrorResolvers.Query,
+    ...StrainResolvers.Query
   },
   Mutation: {
     ...EntryResolvers.Mutation,
-    ...SeedResolvers.Mutation,
+    // ...SeedResolvers.Mutation,
     ...ErrorResolvers.Mutation,
+    ...StrainResolvers.Mutation,
     getCoordinates: async (_, { input }) => {
       let coords = await new Promise((resolve, reject) => {
         geocoder

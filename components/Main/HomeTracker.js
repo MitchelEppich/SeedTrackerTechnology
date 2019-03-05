@@ -97,10 +97,12 @@ const HomeTracker = props => {
                 context: props.context,
                 number: searched.value
               });
+              console.log(res);
               if (res == null) return;
               res.then(res => {
+                console.log(res);
                 if (res == null) return;
-                if (!["5", "6", "7", "8"].includes(res.number.toString()[0])) {
+                if (!["4", "6"].includes(res.number.toString()[0])) {
                   props.setError(
                     "Sorry, this number is yet to be supported. . . try again later.",
                     props.email,
@@ -109,9 +111,11 @@ const HomeTracker = props => {
                   );
                   return;
                 }
+                console.log("BEFORE", res);
                 props
                   .getStrainData({
-                    strain: res.strain,
+                    sttId: res.sttId,
+                    company: res.company,
                     dispatchAt: res.dispatchAt,
                     context: res.context,
                     country: res.country

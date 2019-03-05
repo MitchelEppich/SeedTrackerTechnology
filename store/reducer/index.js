@@ -279,6 +279,14 @@ const indexReducer = (state = initialState, action) => {
         seed: action.seed,
         clientInfo: action.entry
       });
+    case actionTypes.CREATE_TESTER_ENTRY:
+      return updateObject(state, {
+        email: action.entry.email,
+        trackNumber: action.entry.number,
+        context: action.entry.context,
+        seed: action.seed,
+        clientInfo: action.entry
+      });
     case actionTypes.RECORD_ENTRY:
       return updateObject(state, {
         seed: action.seed,

@@ -14,6 +14,8 @@ import axios from "axios";
 import moment from "moment";
 import gen from "random-seed";
 
+const { inferStrainData } = require("../utilities/strain");
+
 const uri = "http://localhost:3000/graphql";
 // const uri = "http://seedtracker.com:80/graphql";
 
@@ -35,7 +37,8 @@ const actionTypes = {
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
   SET_INFO_TAB: "SET_INFO_TAB",
   SET_ERROR: "SET_ERROR",
-  MUTE_VIDEO: "MUTE_VIDEO"
+  MUTE_VIDEO: "MUTE_VIDEO",
+  CREATE_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY"
 };
 
 const actions = {
@@ -116,24 +119,47 @@ const actions = {
         );
         return;
       }
+
+      if (parseInt(input.number.slice(3)) == 0)
+        return dispatch(actions.createTesterEntry(input));
+
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getEntry,
         variables: { number: input.number }
       };
-      return makePromise(execute(link, operation)).then(data => {
+      return makePromise(execute(link, operation)).then(async data => {
         let entry = data.data.entry;
+
         if (entry == null) {
-          return dispatch(actions.recordEntry(input));
+          return await dispatch(actions.recordEntry(input));
         } else {
           dispatch({
             type: actionTypes.CHECK_ENTRY,
             entry: entry,
             seed: entry._id
           });
-          // console.log(entry);
+
           return Promise.resolve(entry);
         }
+      });
+    };
+  },
+  createTesterEntry: input => {
+    return dispatch => {
+      // console.log(error, email, number, context);
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: mutation.createTesterEntry,
+        variables: { ...input }
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        let entry = data.data.createTesterEntry;
+        dispatch({
+          type: actionTypes.CREATE_TESTER_ENTRY,
+          entry,
+          seed: "Tester Seed"
+        });
       });
     };
   },
@@ -162,17 +188,17 @@ const actions = {
       };
 
       return makePromise(execute(link, operation)).then(data => {
-        let seed = data.data.seed;
+        let strain = inferStrainData(data.data.strain);
+
         const operation = {
           query: mutation.getCoordinates,
-          variables: { country: seed.origin }
+          variables: { country: strain.aCountry[0] }
         };
         return makePromise(execute(link, operation)).then(data => {
           let loc = data.data.getCoordinates;
 
-          // console.log(seed)
           // Set germination percents
-          let rand = gen.create(seed.seed);
+          let rand = gen.create(strain.seed);
           let germ = [
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
@@ -195,8 +221,8 @@ const actions = {
           ]; // Ship Date
           let potency = `${rand.floatBetween(84, 93).toFixed(1)}`;
 
-          seed = {
-            ...seed,
+          strain = {
+            ...strain,
             ...loc,
             germ: germ,
             date: date,
@@ -206,9 +232,9 @@ const actions = {
           };
           dispatch({
             type: actionTypes.GET_STRAIN_DATA,
-            strain: seed
+            strain
           });
-          return Promise.resolve(seed);
+          return Promise.resolve(strain);
         });
       });
     };
@@ -273,25 +299,8 @@ const actions = {
             info = {
               sttNumber: input.number,
               country: info.ShipCountry,
-              strain: info.productname
-                .split(info.productname.indexOf("-") == -1 ? undefined : "-")
-                [
-                  info.productname.indexOf("-") == -1 ||
-                  info.productname.indexOf("-") > 10
-                    ? 0
-                    : 1
-                ].split("(")[0]
-                .replace("Seeds", "")
-                .replace("Marijuana", "")
-                .replace("Seed", "")
-                .replace("Auto", "")
-                .replace("Flower", "")
-                .replace("Regular", "")
-                .replace("Cannabis", "")
-                .replace("Feminized", "")
-                .replace("Fem", "")
-                .replace("Auto", "")
-                .trim(),
+              sotiId: info.productname.slice(0, 3),
+              company: companies[input.number[0]],
               dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
               ...coords
             };
@@ -303,42 +312,48 @@ const actions = {
               variables: { ...input, ...info }
             };
 
-            makePromise(execute(link, operation))
+            return makePromise(execute(link, operation))
               .then(data => {
+                let _info = data.data.createEntry;
+
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
                   seed: data.data.createEntry._id,
                   clientInfo: info
                 });
+                return Promise.resolve(_info);
               })
               .catch(error => console.log(error));
-            return Promise.resolve(info);
           });
         });
     };
   }
 };
 
+let companies = {
+  6: "cropkingseeds.com",
+  4: "maryjanesgarden.com"
+};
+
 const query = {
   getStrain: gql`
-    query($strain: String) {
-      seed(input: { strain: $strain }) {
+    query($sttId: String, $company: String) {
+      strain(input: { sttId: $sttId, company: $company }) {
         _id
-        strain
-        genetic
-        p_thc
-        p_cbd
-        p_cbn
-        p_indica
-        p_sativa
-        p_ruderalis
-        o_yield
-        i_yield
-        grow_time
+        name
+        flowerTime
         effect
-        origin
+        country
+        indica
+        sativa
+        ruderalis
+        yield
+        pThc
+        pCbd
+        pCbn
+        genetic
+        type
         seed
-        seedFrom
       }
     }
   `,
@@ -352,8 +367,10 @@ const query = {
         createdAt
         lat
         lon
+        sttId
+        sotiId
+        company
         dispatchAt
-        strain
         country
       }
     }
@@ -397,11 +414,12 @@ const mutation = {
       $email: String!
       $number: Int!
       $context: Int!
-      $strain: String!
+      $sotiId: String!
       $lat: String!
       $lon: String!
       $dispatchAt: String!
       $country: String!
+      $company: String!
     ) {
       createEntry(
         input: {
@@ -410,7 +428,8 @@ const mutation = {
           context: $context
           lon: $lon
           lat: $lat
-          strain: $strain
+          sotiId: $sotiId
+          company: $company
           dispatchAt: $dispatchAt
           country: $country
         }
@@ -422,9 +441,9 @@ const mutation = {
         createdAt
         lon
         lat
-        strain
+        company
+        sttId
         dispatchAt
-        strain
         country
       }
     }

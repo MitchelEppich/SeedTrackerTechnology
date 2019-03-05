@@ -1,4 +1,4 @@
-const { Entry } = require("../../models");
+const { Entry, Strain } = require("../../models");
 
 const resolvers = {
   Query: {
@@ -15,13 +15,22 @@ const resolvers = {
   },
   Mutation: {
     createEntry: async (_, { input }) => {
+      let sttId = (await Strain.findOne({
+        sotiId: input.sotiId,
+        company: input.company
+      })).sttId;
       let entry = new Entry({
-        ...input
+        ...input,
+        sttId
       });
 
-      await entry.save();
+      entry.save();
 
       return entry.toObject();
+    },
+    createTesterEntry: async (_, { input }) => {
+      // let entry = new Entry({});
+      console.log(input);
     }
   }
 };

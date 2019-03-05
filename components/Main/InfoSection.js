@@ -27,22 +27,22 @@ const InfoSection = props => {
   // 4521242
   // 4013420
 
-  let typeStrain = () => {
-    if (props.strain.genetic == 0) {
-      return "Feminized";
-    }
-    if (props.strain.genetic == 1) {
-      return "Autoflower Feminized";
-    }
-    if (props.strain.genetic == 2) {
-      return "Regular";
-    }
-    if (props.strain.genetic == 3) {
-      return "Medical";
-    }
-  };
+  // let typeStrain = () => {
+  //   if (props.strain.genetic == 0) {
+  //     return "Feminized";
+  //   }
+  //   if (props.strain.genetic == 1) {
+  //     return "Autoflower Feminized";
+  //   }
+  //   if (props.strain.genetic == 2) {
+  //     return "Regular";
+  //   }
+  //   if (props.strain.genetic == 3) {
+  //     return "Medical";
+  //   }
+  // };
 
-  let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
+  // let averageYield = (props.strain.i_yield + props.strain.o_yield) / 2;
 
   return (
     <div>
@@ -303,41 +303,41 @@ const InfoSection = props => {
                 <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
                 <p className="font-bold ml-2">
                   Strain:{" "}
-                  <span className="font-normal">{props.strain.strain}</span>
+                  <span className="font-normal">{props.strain.name}</span>
                 </p>
                 <p className="font-bold ml-2">
                   Origin:{" "}
-                  <span className="font-normal">{props.strain.origin}</span>
+                  <span className="font-normal">{props.strain.country}</span>
                 </p>
                 <p className="font-bold ml-2">
                   THC:{" "}
                   <span className="font-normal">
-                    {props.strain.p_thc}%;{" "}
-                    {props.strain.p_cbn != null ? (
-                      <span>CBN {props.strain.p_cbn}%;</span>
+                    {props.strain.pThc[0]}%;{" "}
+                    {props.strain.pCbn[0] != null ? (
+                      <span>CBN {props.strain.pCbn[0]}%;</span>
                     ) : null}{" "}
-                    CBD {props.strain.p_cbd}%
+                    CBD {props.strain.pCbd[0]}%
                   </span>
                 </p>
                 <p className="font-bold ml-2">
                   Indica:{" "}
-                  <span className="font-normal">{props.strain.p_indica}%</span>
+                  <span className="font-normal">{props.strain.indica}%</span>
                 </p>
                 <p className="font-bold ml-2">
                   Sativa:{" "}
-                  <span className="font-normal">{props.strain.p_sativa}%</span>
+                  <span className="font-normal">{props.strain.sativa}%</span>
                 </p>
-                {props.strain.p_ruderalis != null ? (
+                {props.strain.ruderalis != null ? (
                   <p className="font-bold ml-2">
                     Ruderalis:{" "}
                     <span className="font-normal">
-                      {props.strain.p_ruderalis}%
+                      {props.strain.ruderalis}%
                     </span>
                   </p>
                 ) : null}
                 <p className="font-bold ml-2">
                   Average Yield:{" "}
-                  <span className="font-normal">{averageYield}g</span>
+                  <span className="font-normal">{props.strain.avgYield}g</span>
                 </p>
                 <p className="font-bold ml-2">
                   Effects:{" "}
@@ -531,46 +531,45 @@ const InfoSection = props => {
                 </h3>
                 <p className="font-bold pl-2">
                   Strain:{" "}
-                  <span className="font-normal">{props.strain.strain}</span>
+                  <span className="font-normal">{props.strain.name}</span>
                 </p>
                 <p className="font-bold pl-2">
-                  Type: <span className="font-normal">{typeStrain()}</span>
+                  Type:{" "}
+                  <span className="font-normal">{props.strain.genetic}</span>
                 </p>
                 <p className="font-bold pl-2">
                   THC:{" "}
                   <span className="font-normal">
-                    {props.strain.p_thc}%;{" "}
-                    {props.strain.p_cbn != null ? (
-                      <span>CBN {props.strain.p_cbn}%;</span>
+                    {props.strain.pThc[0]}%;{" "}
+                    {props.strain.pCbn[0] != null ? (
+                      <span>CBN {props.strain.pCbn[0]}%;</span>
                     ) : null}{" "}
-                    CBD {props.strain.p_cbd}%
+                    CBD {props.strain.pCbd[0]}%
                   </span>
                 </p>
                 <p className="font-bold pl-2">
                   Indica:{" "}
-                  <span className="font-normal">{props.strain.p_indica}%</span>
+                  <span className="font-normal">{props.strain.indica}%</span>
                 </p>
                 <p className="font-bold pl-2">
                   Sativa:{" "}
-                  <span className="font-normal">{props.strain.p_sativa}%</span>
+                  <span className="font-normal">{props.strain.sativa}%</span>
                 </p>
-                {props.strain.p_ruderalis != null ? (
+                {props.strain.ruderalis != null ? (
                   <p className="font-bold pl-2">
                     Ruderalis:{" "}
                     <span className="font-normal">
-                      {props.strain.p_ruderalis}%
+                      {props.strain.ruderalis}%
                     </span>
                   </p>
                 ) : null}
                 <p className="font-bold pl-2">
                   Average Yield:{" "}
-                  <span className="font-normal">{averageYield}g</span>
+                  <span className="font-normal">{props.strain.avgYield}g</span>
                 </p>
                 <p className="font-bold pl-2">
                   Average Grow Time:{" "}
-                  <span className="font-normal">
-                    {props.strain.grow_time} weeks
-                  </span>
+                  <span className="font-normal">{props.strain.flowerTime}</span>
                 </p>
               </div>
               <div className="pb-3">
