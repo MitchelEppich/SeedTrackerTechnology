@@ -25,36 +25,39 @@ const Navbar = props => {
   return (
     <div
       style={{ zIndex: "99999999" }}
-      className="w-full h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50"
+      className="w-full h-24 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50"
     >
-      <div className="inline-flex w-1/3 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
+      <div className="inline-flex w-2/5 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
         <a href="/">
-          <img className="cursor-pointer " src="../../static/imgs/logo2.png" />
+          <img
+            className="cursor-pointer pl-24"
+            src="../../static/imgs/logo2.png"
+          />
         </a>
         {/* BETA TAG */}
         <div className="bg-yellow text-black text-2xl h-10 ml-2 mt-1 p-2 rounded-sm sm:text-sm sm:h-6 sm:items-center sm:p-1 md:text-sm md:h-6 md:items-center md:p-1 pt-1 sm:mt-0 xs:text-sm xs:h-6 xs:items-center xs:p-1 ">
           BETA
         </div>
       </div>
-      <div className="inline-flex justify-end w-2/3 pr-8 xl:pr-16 xxl:pr-32 pin-r sm:hidden xs:hidden">
+      <div className="inline-flex justify-end w-3/5 pr-8 xl:pr-16 xxl:pr-32 pin-r sm:hidden xs:hidden">
         <ul className="inline-flex justify-end">
-          <li className="menu-item md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
-            <AnchorLink className="menu-item text-yellow" href="#video">
+          <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
+            <AnchorLink className="menu-item" href="#video">
               Home
             </AnchorLink>
           </li>
-          <li className="menu-item md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
-            <AnchorLink className="menu-item text-yellow" href="#about">
+          <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
+            <AnchorLink className="menu-item" href="#about">
               About
             </AnchorLink>
           </li>
-          <li className="menu-item md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
-            <AnchorLink className="menu-item text-yellow" href="#video">
+          <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
+            <AnchorLink className="menu-item" href="#video">
               How To Use
             </AnchorLink>
           </li>
-          <li className="menu-item md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
-            <AnchorLink className="menu-item text-yellow" href="#stt">
+          <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
+            <AnchorLink className="menu-item" href="#stt">
               STT
             </AnchorLink>
           </li>

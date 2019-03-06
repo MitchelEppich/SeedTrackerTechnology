@@ -51,12 +51,16 @@ const Main = props => {
     <div
       id="stt"
       style={{
-        height: "91.5vh",
-        overflowY: "hidden",
-        overflowX: "hidden",
+        height: "90.5vh",
+        overflow: "hidden",
         position: "relative"
       }}
     >
+      <div className="bg-yellow w-full">
+        <h2 className="uppercase text-center p-4 md:text-xxl sm:text-lg xs:text-sm text-grey text-xxl">
+          Track now your Seed
+        </h2>
+      </div>
       {props.error != null ? (
         <div className="bg-red">
           <p className="text-center text-white p-1">{props.error}</p>

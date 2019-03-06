@@ -16,6 +16,7 @@ import InfoCard from "../components/Main/InfoCard";
 import html2canvas from "html2canvas";
 
 import NotSupported from "../components/NotSupported";
+import Newsletter from "../components/Main/newsletter";
 
 class Index extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class Index extends Component {
           videoMuted={this.props.videoMuted}
         />
         <About />
+        <Newsletter {...this.props} />
         <HomeTracker
           {...this.props}
           trackNumber={this.props.trackNumber}

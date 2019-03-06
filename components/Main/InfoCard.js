@@ -47,7 +47,6 @@ const InfoCard = props => {
           border: "2px solid #e1e2e3"
         }}
       >
-        {/* {console.log(props.strain)} */}
         <div className="w-full bg-grey inline-flex p-2">
           <div className="w-1/2 text-left">
             <img
