@@ -90,115 +90,164 @@ const HomeTracker = props => {
             }}
           />
           <form
-            onSubmit={e => {
+            onSubmit={async e => {
               e.preventDefault();
-              let res = props.checkEntry({
+              // Get Entry
+              let entry = await props.checkEntry({
                 email: props.email,
                 context: props.context,
-                number: searched.value
+                number: searched.value,
+                websites: props.companySttWebsiteList
               });
-              console.log(res);
-              if (res == null) return;
-              res.then(res => {
-                console.log(res);
-                if (res == null) return;
-                if (!["4", "6"].includes(res.number.toString()[0])) {
-                  props.setError(
-                    "Sorry, this number is yet to be supported. . . try again later.",
-                    props.email,
-                    res.number,
-                    res.context
-                  );
-                  return;
+
+              if (entry == null) return;
+              // Entry is not supported yet
+              if (!["4", "6"].includes(entry.number.toString()[0])) {
+                props.setError(
+                  "Sorry, this number is yet to be supported. . . try again later.",
+                  props.email,
+                  entry.number,
+                  entry.context
+                );
+                return;
+              }
+
+              // Get Strain data
+              let strain = await props.getStrainData({
+                sttId: entry.sttId,
+                website: entry.website,
+                dispatchAt: entry.dispatchAt,
+                context: entry.context,
+                country: entry.country,
+                seed: entry.seed
+              });
+
+              props.search("true");
+
+              firstPoint();
+
+              console.log("Made it to this section", strain, entry);
+
+              let producerLocation = {
+                name: strain.country,
+                anchor: [parseFloat(strain.lat), parseFloat(strain.lon)],
+                type: "producer",
+                description: {
+                  facts: {
+                    effects: "",
+                    potency: "80%"
+                  },
+                  imageUrl:
+                    "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
                 }
-                console.log("BEFORE", res);
-                props
-                  .getStrainData({
-                    sttId: res.sttId,
-                    company: res.company,
-                    dispatchAt: res.dispatchAt,
-                    context: res.context,
-                    country: res.country
-                  })
-                  .then(data => {
-                    props.search("true");
+              };
 
-                    firstPoint();
-
-                    let company;
-                    let number = res.number || res.sttNumber;
-
-                    switch (number.toString()[0]) {
-                      case "1":
-                        company = "mjsc.com";
-                        break;
-                      case "2":
-                        company = "";
-                        break;
-                      case "3":
-                        company = "mjsc.ca";
-                        break;
-                      case "4":
-                        company = "mjg";
-                        break;
-                      case "5":
-                        company = "swg";
-                        break;
-                      case "6":
-                        company = "cks";
-                        break;
-                      case "7":
-                        company = "bvr";
-                        break;
-                      case "8":
-                        company = "snm";
-                        break;
-                      case "9":
-                        company = "sfw";
-                        break;
+              if (entry.context == 2) {
+                // Tester code
+                props.setLocations([
+                  producerLocation,
+                  {
+                    name: "null",
+                    anchor: [null, null],
+                    description: {
+                      imageUrl:
+                        "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
                     }
-                    let companyLocation = props.landmarks[company];
-                    if (
-                      ["usa", "united states"].includes(
-                        res.country.toLowerCase()
-                      )
-                    )
-                      companyLocation.anchor = companyLocation.usAnchor;
+                  }
+                ]);
+              } else {
+                // Get company
+                let company = await props.getCompany({
+                  website: entry.website,
+                  country: entry.country.toLowerCase()
+                });
 
-                    props.setLocations([
-                      {
-                        name: data.origin,
-                        anchor: [parseFloat(data.lat), parseFloat(data.lon)],
-                        type: "producer",
-                        description: {
-                          facts: {
-                            effects: "",
-                            potency: "90%"
-                          },
-                          imageUrl:
-                            "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                        }
-                      },
-                      companyLocation,
-                      {
-                        name: "You",
-                        anchor: [parseFloat(res.lat), parseFloat(res.lon)],
-                        description: {
-                          imageUrl:
-                            "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                        }
-                      },
-                      {
-                        name: "null",
-                        anchor: [null, null],
-                        description: {
-                          imageUrl:
-                            "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                        }
+                let companyLocation = {
+                  name: company.name,
+                  anchor: [
+                    parseFloat(company.location[0]),
+                    parseFloat(company.location[1])
+                  ],
+                  type: "company",
+                  description: {
+                    imageUrl: company.image,
+                    website: company.website,
+                    social: (() => {
+                      let obj = {};
+                      for (let url of company.mediaUrls) {
+                        obj[url.split(".")[1]] = url;
                       }
-                    ]);
-                  });
-              });
+                      return obj;
+                    })()
+                  }
+                };
+
+                let customerLocation = {
+                  name: "You",
+                  anchor: [parseFloat(entry.lat), parseFloat(entry.lon)],
+                  description: {
+                    imageUrl:
+                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                  }
+                };
+
+                props.setLocations([
+                  producerLocation,
+                  companyLocation,
+                  customerLocation,
+                  {
+                    name: "null",
+                    anchor: [null, null],
+                    description: {
+                      imageUrl:
+                        "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                    }
+                  }
+                ]);
+              }
+
+              console.log(company);
+
+              // let companyLocation = props.landmarks[company];
+              // if (
+              //   ["usa", "united states"].includes(
+              //     res.country.toLowerCase()
+              //   )
+              // )
+              //   companyLocation.anchor = companyLocation.usAnchor;
+
+              props.setLocations([
+                {
+                  name: data.origin,
+                  anchor: [parseFloat(data.lat), parseFloat(data.lon)],
+                  type: "producer",
+                  description: {
+                    facts: {
+                      effects: "",
+                      potency: "90%"
+                    },
+                    imageUrl:
+                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                  }
+                },
+                companyLocation,
+                {
+                  name: "You",
+                  anchor: [parseFloat(res.lat), parseFloat(res.lon)],
+                  description: {
+                    imageUrl:
+                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                  }
+                },
+                {
+                  name: "null",
+                  anchor: [null, null],
+                  description: {
+                    imageUrl:
+                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+                  }
+                }
+              ]);
             }}
           >
             <div className="w-full pb-4 xs:pb-1">

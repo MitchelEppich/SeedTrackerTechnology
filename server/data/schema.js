@@ -10,6 +10,13 @@ type Query {
   strain(input: StrainInput): Strain
   error(input: ErrorInput) : Error
   allErrors: [Error]!
+
+  getCompanyWebsitesRefToStt: String  
+
+  getEmailList: [String]
+
+  company(input: CompanyInput): Company
+  allCompanies: [Company]
 }
 
 input EntryFilters {
@@ -40,11 +47,12 @@ type Entry {
   createdAt: String,
   sttId: String,
   sotiId: String,
-  company: String
+  website: String
   lon: String, 
   lat: String,
   dispatchAt: String
   country: String
+  seed:String
 }
 
 input EntryInput {
@@ -55,9 +63,10 @@ input EntryInput {
   lat: String,
   sotiId: String,
   sttId: String
-  company: String
+  website: String
   dispatchAt: String
   country: String
+  seed: String
 }
 
 type Coordinates {
@@ -75,7 +84,8 @@ input CoordinatesInput {
 
 type Strain {
   _id: String
-  company: String,
+  company: [String],
+  website: [String],
   name: String,
   price: [Int],
   description: String,
@@ -103,7 +113,9 @@ type Strain {
 }
 
 input StrainInput {
-  company: String,
+  company: [String]
+  website: [String]
+  website: String
   name: String,
   price: [Int],
   description: String,
@@ -132,12 +144,41 @@ input batchInput {
   json: String
 }
 
+type Company {
+  _id: String
+    name: String,
+  website: String,
+  location: [Float],
+  country: String,
+  phone: String,
+  email: String,
+  mediaUrls: [String],
+  image: String,
+  sttId: String
+}
+
+input CompanyInput {
+    name: String,
+  website: String,
+  location: [Float],
+  country: String,
+  phone: String,
+  email: String,
+  mediaUrls: [String],
+  image: String,
+  sttId: String
+}
+
 type Mutation {
   createEntry(input: EntryInput!): Entry
   createTesterEntry(input: EntryInput!): Entry
   createError(input: ErrorInput!): Error
   getCoordinates(input: CoordinatesInput!) : Coordinates
   
+  createCompany(input: CompanyInput): Company
+
+  batchStrainEdit: String
+
   refreshSeed(input: StrainInput): Strain
   createStrain(input: StrainInput): Strain
   batchCreateStrain(input: batchInput): String

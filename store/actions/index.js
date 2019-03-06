@@ -38,7 +38,9 @@ const actionTypes = {
   SET_INFO_TAB: "SET_INFO_TAB",
   SET_ERROR: "SET_ERROR",
   MUTE_VIDEO: "MUTE_VIDEO",
-  CREATE_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY"
+  CHECK_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY",
+  GET_COMPANY: "GET_COMPANY",
+  GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST"
 };
 
 const actions = {
@@ -108,6 +110,7 @@ const actions = {
   },
   checkEntry: input => {
     return dispatch => {
+      console.log(input);
       if (input.number.toString()[0] == "0") {
         dispatch(
           actions.setError(
@@ -121,7 +124,7 @@ const actions = {
       }
 
       if (parseInt(input.number.slice(3)) == 0)
-        return dispatch(actions.createTesterEntry(input));
+        return dispatch(actions.checkTesterEntry(input));
 
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
@@ -145,21 +148,40 @@ const actions = {
       });
     };
   },
-  createTesterEntry: input => {
+  checkTesterEntry: input => {
     return dispatch => {
-      // console.log(error, email, number, context);
+      let website = input.websites[input.number[0]];
+
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
-        query: mutation.createTesterEntry,
+        query: query.getEntry,
+        variables: { number: input.number, email: input.email, website }
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        let _entry = data.data.entry;
+        dispatch({
+          type: actionTypes.CHECK_TESTER_ENTRY,
+          entry: _entry
+        });
+        return Promise.resolve(_entry);
+      });
+    };
+  },
+  getCompany: input => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: query.getCompany,
         variables: { ...input }
       };
       return makePromise(execute(link, operation)).then(data => {
-        let entry = data.data.createTesterEntry;
+        let _company = data.data.company;
+        console.log(data, input);
         dispatch({
-          type: actionTypes.CREATE_TESTER_ENTRY,
-          entry,
-          seed: "Tester Seed"
+          type: actionTypes.GET_COMPANY,
+          input: _company
         });
+        return Promise.resolve(_company);
       });
     };
   },
@@ -181,14 +203,17 @@ const actions = {
   },
   getStrainData: input => {
     return dispatch => {
+      console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getStrain,
-        variables: { strain: input.strain }
+        variables: { sttId: input.sttId, website: input.website }
       };
 
       return makePromise(execute(link, operation)).then(data => {
         let strain = inferStrainData(data.data.strain);
+
+        console.log(strain);
 
         const operation = {
           query: mutation.getCoordinates,
@@ -198,7 +223,7 @@ const actions = {
           let loc = data.data.getCoordinates;
 
           // Set germination percents
-          let rand = gen.create(strain.seed);
+          let rand = gen.create(input.seed);
           let germ = [
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
             `${rand.floatBetween(89.0, 94.9).toFixed(1)}`,
@@ -235,6 +260,21 @@ const actions = {
             strain
           });
           return Promise.resolve(strain);
+        });
+      });
+    };
+  },
+  getCompanyRefSttList: () => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: query.getWebsiteRefSttList
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        let list = JSON.parse(data.data.getCompanyWebsitesRefToStt);
+        dispatch({
+          type: actionTypes.GET_COMPANY_REF_STT_LIST,
+          input: list
         });
       });
     };
@@ -300,7 +340,7 @@ const actions = {
               sttNumber: input.number,
               country: info.ShipCountry,
               sotiId: info.productname.slice(0, 3),
-              company: companies[input.number[0]],
+              website: input.websites[input.number[0]],
               dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
               ...coords
             };
@@ -318,8 +358,7 @@ const actions = {
 
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
-                  seed: data.data.createEntry._id,
-                  clientInfo: info
+                  entry: _info
                 });
                 return Promise.resolve(_info);
               })
@@ -330,15 +369,15 @@ const actions = {
   }
 };
 
-let companies = {
-  6: "cropkingseeds.com",
-  4: "maryjanesgarden.com"
-};
-
 const query = {
+  getWebsiteRefSttList: gql`
+    query {
+      getCompanyWebsitesRefToStt
+    }
+  `,
   getStrain: gql`
-    query($sttId: String, $company: String) {
-      strain(input: { sttId: $sttId, company: $company }) {
+    query($sttId: String, $website: String) {
+      strain(input: { sttId: $sttId, website: $website }) {
         _id
         name
         flowerTime
@@ -354,24 +393,42 @@ const query = {
         genetic
         type
         seed
+        website
+      }
+    }
+  `,
+  getCompany: gql`
+    query($website: String, $country: String) {
+      company(input: { website: $website, country: $country }) {
+        _id
+        name
+        website
+        country
+        phone
+        email
+        image
+        location
+        mediaUrls
+        sttId
       }
     }
   `,
   getEntry: gql`
-    query($number: Int!) {
-      entry(input: { number: $number }) {
+    query($email: String, $number: Int, $website: String) {
+      entry(input: { email: $email, number: $number, website: $website }) {
         _id
         email
         number
         context
         createdAt
-        lat
-        lon
         sttId
         sotiId
-        company
+        website
+        lon
+        lat
         dispatchAt
         country
+        seed
       }
     }
   `
@@ -384,6 +441,42 @@ const mutation = {
         input: { email: $email, context: $context, number: $number }
       ) {
         _id
+      }
+    }
+  `,
+  createCompany: gql`
+    mutation(
+      $name: String
+      $website: String
+      $location: [Float]
+      $country: String
+      $phone: String
+      $email: String
+      $mediaUrls: [String]
+      $image: String
+      $sttId: String
+    ) {
+      createCompany(
+        input: {
+          name: $name
+          website: $website
+          location: $location
+          country: $country
+          phone: $phone
+          email: $email
+          mediaUrls: $mediaUrls
+          image: $image
+          sttId: $sttId
+        }
+      ) {
+        _id
+        name
+        website
+        country
+        phone
+        email
+        image
+        sttId
       }
     }
   `,
@@ -419,7 +512,7 @@ const mutation = {
       $lon: String!
       $dispatchAt: String!
       $country: String!
-      $company: String!
+      $website: String!
     ) {
       createEntry(
         input: {
@@ -429,7 +522,7 @@ const mutation = {
           lon: $lon
           lat: $lat
           sotiId: $sotiId
-          company: $company
+          website: $website
           dispatchAt: $dispatchAt
           country: $country
         }
@@ -441,10 +534,11 @@ const mutation = {
         createdAt
         lon
         lat
-        company
+        website
         sttId
         dispatchAt
         country
+        seed
       }
     }
   `

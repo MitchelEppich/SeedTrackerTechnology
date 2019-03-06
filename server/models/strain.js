@@ -6,7 +6,8 @@ const Schema = mongoose.Schema;
 // SCHEMAS
 // -----------------------
 let StrainSchema = Schema({
-  company: String,
+  company: [String],
+  website: [String],
   name: String,
   price: [Number],
   description: String,
