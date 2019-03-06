@@ -51,6 +51,7 @@ let colors = {
   "almost-transparent": "rgba(30, 30, 30, 0.5)",
   "almost-white": "rgba(255, 255, 255, 0.7)",
   "almost-black": "rgba(0,0,0,0.9)",
+  "almost-grey": "rgba(16, 16, 16, 0.9)",
 
   black: "#000",
   "grey-darkest": "#383838",
@@ -62,7 +63,8 @@ let colors = {
   "grey-lightest": "#f8fafc",
   white: "#ffffff",
 
-  navbar: "rgba(34, 34, 34, 0.93)",
+  navbar: "#0f1214",
+  // navbar: "rgba(34, 34, 34, 0.93)",
 
   "red-darkest": "#3b0d0c",
   "red-darker": "#621b18",
@@ -106,7 +108,7 @@ let colors = {
   "teal-lighter": "#a0f0ed",
   "teal-lightest": "#e8fffe",
 
-  "blue-darkest": "#12283a",
+  "blue-darkest": "#0e1112",
   "blue-darker": "#1c3d5a",
   "blue-dark": "#2779bd",
   blue: "#3490dc",
@@ -193,7 +195,7 @@ module.exports = {
     lg: { min: "992px", max: "1249px" },
     xl: { min: "1250px", max: "1599px" },
     xxl: { min: "1600px", max: "2099px" },
-    xxxl: { min: "2100px", max: "3999px" },
+    xxxl: { min: "2100px", max: "3999px" }
   },
 
   /*
@@ -525,7 +527,9 @@ module.exports = {
     "300": "300px",
     "400": "400px",
     "450": "450px",
+    "500px": "500px",
     "550": "550px",
+    "600": "600px",
     logo: "100px",
     container: "1080px",
     searchBar: "325px",
@@ -580,6 +584,7 @@ module.exports = {
     "380": "380px",
     "400": "400px",
     "450": "450px",
+    "500px": "500px",
     "650": "650px",
     imgCard: "90px",
     halfscreen: "940px",
@@ -627,8 +632,8 @@ module.exports = {
   minHeight: {
     "0": "0",
     full: "100%",
-    card: '500px',
-    mobileCard: '300px',
+    card: "500px",
+    mobileCard: "300px",
     screen: "100vh"
   },
 

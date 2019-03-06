@@ -64,7 +64,7 @@ const HomeTracker = props => {
           }}
         >
           <h2 className="text-grey-darkest sm:text-xl xs:text-lg text-xxl uppercase">
-            Track your Seeds
+            Seed Tracker
           </h2>
           <div
             className="cursor-pointer text-grey-darkest absolute pin-r pin-t text-center mr-4 mt-4 h-10 w-10 pt-2 hover:bg-grey-darkest hover:text-white float-right xs:mt-3 xs:mr-1"
@@ -252,7 +252,7 @@ const HomeTracker = props => {
                 <input
                   required
                   className="h-10 w-full p-2 sm:w-full md:w-full border-2 border-light-grey p-2 xs:w-full"
-                  placeholder="Enter your email . . ."
+                  placeholder="Enter your email..."
                   type="email"
                   aria-label="Enter in your email"
                   // defaultValue={props.searched ? props.number : ""}
@@ -283,7 +283,7 @@ const HomeTracker = props => {
               <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-0 xs:px-0 md:w-full">
                 <input
                   className="h-10 xs:w-full sm:w-full md:w-full w-full border-2 border-light-grey p-2"
-                  placeholder="Insert here your code: 2449043"
+                  placeholder="Insert here your code..."
                   type="number"
                   pattern="[0-9]{7}"
                   required="required"
@@ -318,11 +318,10 @@ const HomeTracker = props => {
               </div>
               <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-0 xs:px-0 mt-2 ">
                 <button
-                  style={{ transition: "all 0.5s ease" }}
-                  className="h-10 bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0  font-bold hover:bg-grey-light hover:text-grey-darkest hover:border-transparent hover:border sm:w-full md:w-full  xs:w-full w-full"
+                  className="h-10 slow bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0  font-bold hover:bg-grey-dark hover:text-white hover:border-transparent hover:border sm:w-full md:w-full  xs:w-full w-full"
                   type="submit"
                 >
-                  Search
+                  Track my Seeds
                 </button>
               </div>
             </div>

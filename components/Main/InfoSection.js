@@ -299,7 +299,7 @@ const InfoSection = props => {
         {props.infoTab == 3 ? (
           <div className="flex h-140 px-2">
             {props.currentInformation == 0 ? (
-              <span className="pb-1 pt-1">
+              <div className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Facts on Seeds:</h3>
                 <p className="font-bold ml-2">
                   Strain:{" "}
@@ -347,9 +347,8 @@ const InfoSection = props => {
                   Potency:{" "}
                   <span className="font-normal">{props.strain.potency}%</span>
                 </p>
-              </span>
+              </div>
             ) : null}
-            {/* {console.log(props.strain)} */}
             {props.currentInformation == 1 ? (
               <span className="pb-1 pt-1">
                 <h3 className="pb-1 px-0 uppercase">Contact:</h3>
@@ -461,11 +460,10 @@ const InfoSection = props => {
       >
         <div
           style={{
-            minHeight: "112px",
             borderTopLeftRadius: "8px",
             borderTopRightRadius: "8px"
           }}
-          className="text-white flex bg-grey mb-2"
+          className="text-white flex mb-2"
         >
           <span className="w-1/3 sm:w-1/2">
             {props.currentInformation == 1 ? (
@@ -482,18 +480,18 @@ const InfoSection = props => {
             ) : null}
           </span>
           {props.currentInformation == 0 ? (
-            <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-              <h5 className="mt-6 text-white sm:text-lg text-center">
+            <span className="w-2/3 p-2 sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
                 Producer:
               </h5>
-              <h3 className="bg-grey text-yellow uppercase p-1 sm:text-lg my-2 text-center animate-text">
+              <h3 className="bg-grey-light text-yellow uppercase p-1 sm:text-lg my-2 text-center animate-text">
                 {marker.name}
               </h3>
             </span>
           ) : null}
           {props.currentInformation == 1 ? (
             <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-              <h5 className="mt-6 text-white sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
                 Company:
               </h5>
               <h3 className="bg-grey text-yellow uppercase p-1 sm:text-lg my-2 text-center animate-text">
@@ -503,7 +501,7 @@ const InfoSection = props => {
           ) : null}
           {props.currentInformation == 2 ? (
             <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
-              <h5 className="mt-6 text-white sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
                 Destination:
               </h5>
               <h3 className="bg-grey text-yellow uppercase p-1 sm:text-lg my-2 text-center animate-text">
@@ -526,51 +524,82 @@ const InfoSection = props => {
           {props.currentInformation == 0 ? (
             <div className="pb-3">
               <div className="pb-3">
-                <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
+                <h3 className="px-2 bg-grey-light text-grey uppercase p-1 mb-1 ">
                   Facts on Seeds:
                 </h3>
-                <p className="font-bold pl-2">
-                  Strain:{" "}
-                  <span className="font-normal">{props.strain.name}</span>
-                </p>
-                <p className="font-bold pl-2">
-                  Type:{" "}
-                  <span className="font-normal">{props.strain.genetic}</span>
-                </p>
-                <p className="font-bold pl-2">
-                  THC:{" "}
-                  <span className="font-normal">
-                    {props.strain.pThc[0]}%;{" "}
-                    {props.strain.pCbn[0] != null ? (
-                      <span>CBN {props.strain.pCbn[0]}%;</span>
-                    ) : null}{" "}
-                    CBD {props.strain.pCbd[0]}%
-                  </span>
-                </p>
-                <p className="font-bold pl-2">
-                  Indica:{" "}
-                  <span className="font-normal">{props.strain.indica}%</span>
-                </p>
-                <p className="font-bold pl-2">
-                  Sativa:{" "}
-                  <span className="font-normal">{props.strain.sativa}%</span>
-                </p>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Strain: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.name}</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Type: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.genetic}</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">THC: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">
+                      {props.strain.pThc[0]}%;{" "}
+                      {props.strain.pCbn[0] != null ? (
+                        <span>CBN {props.strain.pCbn[0]}%;</span>
+                      ) : null}{" "}
+                      CBD {props.strain.pCbd[0]}%
+                    </p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Indica: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.indica}%</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Sativa: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.sativa}%</p>
+                  </div>
+                </div>
                 {props.strain.ruderalis != null ? (
-                  <p className="font-bold pl-2">
-                    Ruderalis:{" "}
-                    <span className="font-normal">
-                      {props.strain.ruderalis}%
-                    </span>
-                  </p>
+                  <div className="inline-flex w-full">
+                    <div className="w-2/5">
+                      <p className="font-bold pl-2">Ruderalis: </p>
+                    </div>
+                    <div className="w-3/5">
+                      <p className="font-normal">{props.strain.ruderalis}%</p>
+                    </div>
+                  </div>
                 ) : null}
-                <p className="font-bold pl-2">
-                  Average Yield:{" "}
-                  <span className="font-normal">{props.strain.avgYield}g</span>
-                </p>
-                <p className="font-bold pl-2">
-                  Average Grow Time:{" "}
-                  <span className="font-normal">{props.strain.flowerTime}</span>
-                </p>
+
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Average Yield: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.avgYield}g</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2">Average Grow Time: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.flowerTime}</p>
+                  </div>
+                </div>
               </div>
               <div className="pb-3">
                 <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
