@@ -5,7 +5,9 @@ const moment = require("moment");
 const resolvers = {
   Query: {
     strain: async (_, { input }) => {
+      console.log(input);
       let strain = await Strain.findOne(input);
+      console.log(strain);
       if (
         strain.seed == null ||
         moment(strain.seedFrom).diff(moment(), "months") >= 6
@@ -23,6 +25,12 @@ const resolvers = {
     // }
   },
   Mutation: {
+    batchStrainEdit: async _ => {
+      let strains = await Strain.find({});
+
+      for (let strain of strains) {
+      }
+    },
     refreshSeed: async (_, { input }) => {
       let _strain = input.strain;
       _strain.seed = ID();

@@ -2,8 +2,15 @@ const { Entry, Strain } = require("../../models");
 
 const resolvers = {
   Query: {
-    entry: (_, { input }) => {
-      return Entry.findOne(input);
+    entry: async (_, { input }) => {
+      let entry = await Entry.findOne(input);
+
+      if (entry == null && parseInt(input.number.toString().slice(3)) == 0) {
+        // This is a tester
+        return await resolvers.Mutation.createTesterEntry(null, { input });
+      }
+
+      return entry;
     },
     allEntries: (_, { filter, cursor, limit }) => {
       let query = filter ? { $or: entryFilters(filter) } : {};
@@ -15,13 +22,16 @@ const resolvers = {
   },
   Mutation: {
     createEntry: async (_, { input }) => {
-      let sttId = (await Strain.findOne({
+      let strain = await Strain.findOne({
         sotiId: input.sotiId,
-        company: input.company
-      })).sttId;
+        website: input.website
+      });
+      let sttId = strain.sttId;
+      let seed = strain.seed;
       let entry = new Entry({
         ...input,
-        sttId
+        sttId,
+        seed
       });
 
       entry.save();
@@ -29,8 +39,23 @@ const resolvers = {
       return entry.toObject();
     },
     createTesterEntry: async (_, { input }) => {
-      // let entry = new Entry({});
-      console.log(input);
+      let sttId = input.number.toString().slice(1, 3);
+      let strain = await Strain.findOne({
+        sttId,
+        website: input.website
+      });
+
+      let seed = strain.seed;
+      let entry = new Entry({
+        ...input,
+        context: 2, // Context 3 for tester
+        sttId,
+        seed
+      });
+
+      entry.save();
+
+      return entry.toObject();
     }
   }
 };

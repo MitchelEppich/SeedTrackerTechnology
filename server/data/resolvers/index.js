@@ -2,8 +2,11 @@ const EntryResolvers = require("./entry");
 const ErrorResolvers = require("./error");
 const SeedResolvers = require("./seed");
 const StrainResolvers = require("./strain");
+const CompanyResolvers = require("./company");
 
 const NodeGeocoder = require("node-geocoder");
+
+const { Entry, Error } = require("../../models");
 
 let options = {
   provider: "openstreetmap"
@@ -16,13 +19,20 @@ const resolvers = {
     ...EntryResolvers.Query,
     // ...SeedResolvers.Query,
     ...ErrorResolvers.Query,
-    ...StrainResolvers.Query
+    ...CompanyResolvers.Query,
+    ...StrainResolvers.Query,
+    getEmailList: async (_, { input }) => {
+      let errorEmails = (await Error.find({})).map(a => a.email);
+      let entryEmails = (await Entry.find({})).map(a => a.email);
+      return [...new Set(errorEmails.concat(...entryEmails))];
+    }
   },
   Mutation: {
     ...EntryResolvers.Mutation,
     // ...SeedResolvers.Mutation,
     ...ErrorResolvers.Mutation,
     ...StrainResolvers.Mutation,
+    ...CompanyResolvers.Mutation,
     getCoordinates: async (_, { input }) => {
       let coords = await new Promise((resolve, reject) => {
         geocoder

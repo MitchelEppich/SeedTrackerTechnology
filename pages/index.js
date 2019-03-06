@@ -19,7 +19,9 @@ import NotSupported from "../components/NotSupported";
 import Newsletter from "../components/Main/newsletter";
 
 class Index extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getCompanyRefSttList();
+  }
 
   render() {
     return this.props.supportedBrowser ? (
@@ -59,6 +61,7 @@ class Index extends Component {
           getStrainData={this.props.getStrainData}
           closeAllHandler={this.props.closeAllHandler}
           toggleLandmarks={this.props.toggleLandmarks}
+          getCompany={this.props.getCompany}
         />
         <Main
           {...this.props}
@@ -139,8 +142,14 @@ const mapDispatchToProps = dispatch => {
     getStrainData: input => {
       return dispatch(actions.getStrainData(input));
     },
+    getCompany: input => {
+      return dispatch(actions.getCompany(input));
+    },
     togglePath: value => {
       return dispatch(actions.togglePath(value));
+    },
+    getCompanyRefSttList: () => {
+      return dispatch(actions.getCompanyRefSttList());
     },
     toggleMuteVideo: input => {
       return dispatch(actions.toggleMuteVideo(input));
