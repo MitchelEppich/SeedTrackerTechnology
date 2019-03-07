@@ -24,13 +24,13 @@ const Navbar = props => {
 
   return (
     <div
-      style={{ zIndex: "99999999" }}
+      style={{ zIndex: "99999999", background: "#1c1e20" }}
       className="w-full h-24 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50"
     >
       <div className="inline-flex w-2/5 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
         <a href="/">
           <img
-            className="cursor-pointer pl-24"
+            className="cursor-pointer pl-24 lg:pl-10 xl:pl-10 md:pl-4 sm:pl-4 xs:pl-4 lg:pl-4"
             src="../../static/imgs/logo2.png"
           />
         </a>
@@ -40,7 +40,7 @@ const Navbar = props => {
         </div>
       </div>
       <div className="inline-flex justify-end w-3/5 pr-8 xl:pr-16 xxl:pr-32 pin-r sm:hidden xs:hidden">
-        <ul className="inline-flex justify-end">
+        <ul className="inline-flex text-xl md:text-lg justify-end">
           <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
             <AnchorLink className="menu-item" href="#video">
               Home

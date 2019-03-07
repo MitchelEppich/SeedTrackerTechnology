@@ -54,7 +54,7 @@
   font-display: swap;
 }
 
-/* CUSTOM CSS */
+// DEFAULT CSS
 .body,
 html {
   font-family: "DINPro-Medium";
@@ -72,29 +72,94 @@ li {
   transition: all 0.5s cubic-bezier(0.87, 0.52, 0, 0.52);
 }
 
-.slow {
-  transition: all 0.2s ease;
+.checkbox {
+  height: 22px;
+  width: 22px;
+  margin-right: 5px;
+  background-color: #eee;
+  border-radius: 50%;
+  vertical-align: text-top;
 }
 
-// HIDE NUMBER INPUT SPINNERS
+.checkbox:checked {
+  background-color: #b8b8b8;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
+// END DEFAULT CSS
+///////////////////
+
+// GENERAL ELEMENTS
+.link-title {
+  text-align: center;
+  font-size: 30px;
+  display: block;
+  text-decoration: underline;
+}
+
+.button-index {
+  bottom: 0;
+  padding: 5px;
+  border: 1px solid #cecece;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+.animate-icons {
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.animate-icons:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+}
+
+.animate-text {
+  transform: scale(1);
+  transition: all 0.5s ease;
+}
+
+.animate-text:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+}
+
+.total-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slow {
+  transition: all 0.2s ease;
+}
+
+// GENERAL ELEMENTS
+/////////////////////
+
+// HEADER
 .menu-item {
   transition: all 0.35s ease;
-  font-size: 20px;
+  // font-size: 20px;
   color: #ffffff;
   font-family: "Novecentowide-DemiBold";
 }
 
 .menu-item:hover {
   transition: all 0.3s ease;
-  color: #616161;
+  color: #fff200;
 }
 
+// END HEADER
+///////////////////
+
+// ANIMATION MAP
 .path {
   fill: none;
   stroke-linecap: butt;
@@ -107,7 +172,6 @@ input[type="number"]::-webkit-outer-spin-button {
     stroke-dashoffset: 0;
   }
 }
-
 .marker {
   animation: move 10s linear forwards;
 }
@@ -160,23 +224,31 @@ input[type="number"]::-webkit-outer-spin-button {
   transform: scale(1.09) translateX(-12.5px) translateY(-12.5px);
 }
 
-.imgs-home {
-  width: 500px;
-  height: auto;
+.overlay {
+  background: rgba(0, 0, 0, 0.65);
+  height: 100%;
+  width: 100%;
+  float: left;
+  overflow: hidden;
 }
 
+// END ANIMATION MAP
+////////////////////
+
+// SCREEN SEED TRACKER
 .main-message {
   margin: calc(100vw - 100%);
   margin: -webkit-calc(100vw - 100%);
   margin: -moz-calc(100vw - 100%);
   top: 120px;
-  padding: 20px;
-  background: #ffffff;
-  // background: #fff200;
+  // padding: 20px;
+  background: #dae1e7;
   color: #161616;
 }
-// ABOUT SECTION
+// END SCREEN SEED TRACKER
+//////////////////
 
+// ABOUT SECTION
 .about-section {
   background: #383838;
   padding: 120px 5px;
@@ -194,55 +266,7 @@ input[type="number"]::-webkit-outer-spin-button {
 // END ABOUT SECTION
 /////////////////////////
 
-.overlay {
-  background: rgba(0, 0, 0, 0.65);
-  height: 100%;
-  width: 100%;
-  float: left;
-  overflow: hidden;
-}
-
-.link-title {
-  text-align: center;
-  font-size: 30px;
-  display: block;
-  text-decoration: underline;
-}
-
-.button-index {
-  bottom: 0;
-  padding: 5px;
-  border: 1px solid #cecece;
-  font-size: 15px;
-  text-transform: uppercase;
-}
-
-.animate-icons {
-  transform: scale(1);
-  transition: all 0.5s ease;
-}
-
-.animate-icons:hover {
-  transform: scale(1.15);
-  transition: all 0.5s ease;
-}
-
-.animate-text {
-  transform: scale(1);
-  transition: all 0.5s ease;
-}
-
-.animate-text:hover {
-  transform: scale(1.05);
-  transition: all 0.5s ease;
-}
-
-.total-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
+// INFO CARDS
 .info-popup {
   width: 400px;
   box-shadow: 0px 4px 13px rgba(19, 17, 17, 0.48);
@@ -276,23 +300,12 @@ input[type="number"]::-webkit-outer-spin-button {
   border-top: 13px solid rgba(62, 20, 20, 0);
 }
 
-.checkbox {
-  height: 25px;
-  width: 25px;
-  margin-right: 5px;
-  background-color: #eee;
-  border-radius: 50%;
-  vertical-align: text-top;
-}
-
-.checkbox:checked {
-  background-color: #b8b8b8;
-}
+// END INFO CARDS
+////////////////////
 
 // BROWSER NOT SUPPORTED SECTION //
 .browsers-list {
   display: inline-block;
-  // cursor: url("../static/imgs/airplane-cursor1.png");
 }
 
 .logo-browsers {
@@ -318,6 +331,8 @@ input[type="number"]::-webkit-outer-spin-button {
   filter: grayscale(0);
 }
 
+// MEDIA QUERIES
+
 @media screen and (max-width: 456px) {
   .main-message {
     top: 40px;
@@ -328,3 +343,6 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #161616;
   }
 }
+
+// END MEDIA QUERIES
+/////////////////////

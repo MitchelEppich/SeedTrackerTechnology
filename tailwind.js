@@ -48,7 +48,7 @@ let colors = {
   "dark-grey": "#252525",
   transparent: "transparent",
   "semi-transparent": "rgba(250, 250, 250, 0.2)",
-  "almost-transparent": "rgba(30, 30, 30, 0.5)",
+  "almost-transparent": "rgba(51, 51, 51, 0.35)",
   "almost-white": "rgba(255, 255, 255, 0.7)",
   "almost-black": "rgba(0,0,0,0.9)",
   "almost-grey": "rgba(16, 16, 16, 0.9)",
@@ -284,6 +284,7 @@ module.exports = {
     big: "3rem",
     "2xl": "1.5rem", // 24px
     "3xl": "1.875rem", // 30px
+    "3/5xl": "2.5rem", // 30px
     "4xl": "3.5rem", // 36px
     "5xl": "5rem", // 48px
     "6xl": "6rem"
@@ -530,6 +531,10 @@ module.exports = {
     "500px": "500px",
     "550": "550px",
     "600": "600px",
+    "700": "700px",
+    "800": "800px",
+    "900": "900px",
+    "1000": "1000px",
     logo: "100px",
     container: "1080px",
     searchBar: "325px",
@@ -539,7 +544,9 @@ module.exports = {
     imgCard: "90px",
     hideLeft: "-1400px",
     "10000": "10000px",
-    "500": "calc(100vh - 3rem)"
+    "500": "calc(100vh - 3rem)",
+    "3col": "30.5%",
+    "2col": "46.5%"
   },
 
   /*
@@ -586,6 +593,10 @@ module.exports = {
     "450": "450px",
     "500px": "500px",
     "650": "650px",
+    "700": "700px",
+    "800": "800px",
+    "900": "900px",
+    "1000": "1000px",
     imgCard: "90px",
     halfscreen: "940px",
     full: "100%",
@@ -632,7 +643,7 @@ module.exports = {
   minHeight: {
     "0": "0",
     full: "100%",
-    card: "500px",
+    card: "600px",
     mobileCard: "300px",
     screen: "100vh"
   },

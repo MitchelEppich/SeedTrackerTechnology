@@ -24,9 +24,9 @@ const About = props => {
   return (
     <div
       id="about"
-      className="w-full relative pb-24 md:py-12 sm:py-12 xs:py-12 bg-white text-center text-grey"
+      className="w-full relative pb-24 bg-white text-center text-grey"
     >
-      <div className="inline-flex sm:inline-block sm:text-center xs:inline-block xs:text-center w-full pt-24 bg-blue-darkest">
+      <div className="inline-flex sm:inline-block sm:text-center xs:inline-block xs:text-center w-full pt-16 bg-blue-darkest">
         <div className="bg-yellow w-full inline-flex flex justify-center">
           <h2 className="uppercase p-4 md:text-xxl sm:text-lg xs:text-sm text-xxxl">
             About Seed Tracker Technology
@@ -37,7 +37,7 @@ const About = props => {
           </div>{" "}
         </div>
       </div>
-      <p className="sm:px-2 px-12 inline-flex leading-normal mt-8 w-4/5 xs:px-2 text-center text-center">
+      <p className="px-2 xxl:px-12 xxxl:px-12 inline-flex leading-normal mt-8 w-4/5 lg:w-7/8 md:w-7/8 sm:w-7/8 text-justify">
         Seed Tracker Technology is built for growers, by growers. We offer all
         our amazing brands the information that their customers want and need to
         become successful growers. STT is an industry leader in reliablity,
@@ -49,10 +49,10 @@ const About = props => {
         with the information they need to succeed look no further than Seed
         Tracker Technology.
       </p>
-      <div className="px-12 sm:px-2 md:inline-flex lg:inline-flex xl:inline-flex xxl:inline-flex xxxl:inline-flex sm:w-full sm:flex xs:w-full mt-12 w-4/5 justify-around">
-        <div className="w-300 xs:mt-4 xs:w-full flex items-center justify-center flex-col shadow-md relative">
+      <div className="px-2 md:px-6 sm:px-12 xs:px-6 xxl:px-12 xxxl:px-12 md:inline-flex lg:inline-flex xl:inline-flex xxl:inline-flex xxxl:inline-flex sm:flex-col  xs:flex-col mt-12 w-4/5 lg:w-7/8 md:w-full sm:w-full xs:w-full justify-around">
+        <div className="w-300 lg:w-250 md:w-200 animate-icons xs:mt-4 xs:w-full sm:w-full sm:my-4 flex items-center justify-center flex-col shadow-md relative">
           <div
-            style={{ background: "url('../../static/imgs/feature-img-2.jpg')" }}
+            style={{ background: "url('../../static/imgs/feature-img-2.jpg')", backgroundSize: "cover" }}
             className="h-48 w-full justify-center flex text-white items-center relative"
           >
             {" "}
@@ -76,9 +76,9 @@ const About = props => {
             velit nulla ullamco.
           </p>
         </div>
-        <div className="w-300 xs:mt-4 xs:w-full flex items-center justify-center flex-col shadow-md relative">
+        <div className="w-300 lg:w-250 md:w-200 animate-icons xs:mt-4 xs:w-full sm:w-full sm:my-4 flex items-center justify-center flex-col shadow-md relative">
           <div
-            style={{ background: "url('../../static/imgs/feature-img-3.jpg')" }}
+            style={{ background: "url('../../static/imgs/feature-img-3.jpg')", backgroundSize: "cover" }}
             className="h-48 w-full justify-center flex text-white items-center relative"
           >
             {" "}
@@ -101,9 +101,9 @@ const About = props => {
             velit nulla ullamco.
           </p>
         </div>
-        <div className="w-300 xs:mt-4 xs:w-full flex items-center justify-center flex-col shadow-md relative">
+        <div className="w-300 lg:w-250 md:w-200 animate-icons xs:mt-4 xs:w-full sm:w-full sm:my-4 flex items-center justify-center flex-col shadow-md relative">
           <div
-            style={{ background: "url('../../static/imgs/feature-img-1.jpg')" }}
+            style={{ background: "url('../../static/imgs/feature-img-1.jpg')", backgroundSize: "cover" }}
             className="h-48 w-full justify-center flex text-white items-center relative"
           >
             {""}

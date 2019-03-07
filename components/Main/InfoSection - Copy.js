@@ -4,11 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,
   faAngleLeft,
-  faAngleRight,
-  faTree,
-  faPlaneDeparture,
-  faPlane,
-  faBoxOpen
+  faAngleRight
 } from "@fortawesome/free-solid-svg-icons";
 import { width } from "window-size";
 
@@ -59,7 +55,7 @@ const InfoSection = props => {
           left: "0",
           right: "0"
         }}
-        className="absolute w-400 pin-b md:hidden lg:hidden xl:hidden xxl:hidden mb-12 ml-2 sm:mx-0 z-50 sm:w-7/8 sm:h-250 xs:h-250 xs:w-7/8 xs:text-sm sm:text-sm bg-white z-50 "
+        className="absolute w-400 pin-b md:hidden lg:hidden xl:hidden xxl:hidden mb-12 ml-2 sm:mx-0 z-50 p-2 sm:w-7/8 sm:h-250 xs:h-250 xs:w-7/8 xs:text-sm sm:text-sm bg-white z-50 p-2"
       >
         {props.currentInformation == 0 ? (
           <div
@@ -460,7 +456,7 @@ const InfoSection = props => {
 
       <div
         // style={{ borderRadius: "2%" }}
-        className="absolute text-sm w-400 min-h-card h-550 sm:hidden xs:hidden pin-b pin-l mb-12 ml-2 z-50 bg-white z-50"
+        className="absolute text-sm w-400 min-h-card h-550 sm:hidden xs:hidden pin-b pin-l mb-12 ml-2 z-50 p-2 bg-white z-50 p-2"
       >
         <div
           style={{
@@ -469,7 +465,7 @@ const InfoSection = props => {
           }}
           className="text-white flex mb-2"
         >
-          {/* <span className="w-1/3 sm:w-1/2">
+          <span className="w-1/3 sm:w-1/2">
             {props.currentInformation == 1 ? (
               <img
                 style={{
@@ -482,39 +478,40 @@ const InfoSection = props => {
                 src={marker.description.imageUrl}
               />
             ) : null}
-          </span> */}
+          </span>
           {props.currentInformation == 0 ? (
-            <div className="w-full p-2 sm:text-lg text-center">
-              <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
+            <span className="w-2/3 p-2 sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
                 Producer:
               </h5>
-              <h3 className="text-grey text-2xl uppercase p-1 sm:text-lg my-1 text-center animate-text">
+              <h3 className="text-grey uppercase p-1 sm:text-lg my-2 text-center animate-text">
                 {marker.name}
               </h3>
-            </div>
+            </span>
           ) : null}
           {props.currentInformation == 1 ? (
-            <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
-              <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
-                Company Seller:
+            <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
+                Company:
               </h5>
-              <h3 className="text-grey text-2xl uppercase p-1 sm:text-lg my-1 text-center animate-text">
+              <h3 className="text-grey uppercase p-1 sm:text-lg my-2 text-center animate-text">
                 {marker.name}
               </h3>
-            </div>
+            </span>
           ) : null}
           {props.currentInformation == 2 ? (
-            <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
-              <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
+            <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
+              <h5 className="mt-6 text-grey sm:text-lg text-center">
                 Destination:
               </h5>
-              <h3 className="text-grey text-2xl uppercase p-1 sm:text-lg my-1 text-center animate-text">
+              <h3 className="text-grey uppercase p-1 sm:text-lg my-2 text-center animate-text">
                 {marker.name}
               </h3>
-            </div>
+            </span>
           ) : null}
           <div
-            className="absolute pin-r pin-t cursor-pointer text-center h-10 w-10 py-3 hover:bg-grey hover:text-white float-right text-grey mr-1 mt-1"
+            style={{ borderRadius: "5px" }}
+            className="cursor-pointer text-center h-10 w-10 py-3 hover:bg-grey-darkest hover:text-white float-right text-grey"
             onClick={() => {
               props.closeAllHandler();
             }}
@@ -522,385 +519,211 @@ const InfoSection = props => {
             <FontAwesomeIcon icon={faTimes} className="fa-lg" />
           </div>
         </div>
+        {/* {console.log("teste", props.strain)} */}
         <div className="px-0">
           {props.currentInformation == 0 ? (
-            <div className="pb-3 px-1">
-              <div className="pb-1 bg-white">
-                <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                  Facts on Seeds
+            <div className="pb-3">
+              <div className="pb-1 bg-grey-light">
+                <h3 className="px-2 text-grey uppercase p-1 mb-1 ">
+                  Facts on Seeds:
                 </h3>
-                <div className="flex flex-wrap justify-around">
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Strain:</p>
+                <div className="inline-flex w-full bg-white p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">Strain: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.name}</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">Type: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.genetic}</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full bg-white p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">THC: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">
+                      {props.strain.pThc[0]}%;{" "}
+                      {props.strain.pCbn[0] != null ? (
+                        <span>CBN {props.strain.pCbn[0]}%;</span>
+                      ) : null}{" "}
+                      CBD {props.strain.pCbd[0]}%
+                    </p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">Indica: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.indica}%</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full bg-white p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">Sativa: </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.sativa}%</p>
+                  </div>
+                </div>
+                {props.strain.ruderalis != null ? (
+                  <div className="inline-flex w-full p-1">
+                    <div className="w-2/5">
+                      <p className="font-bold pl-2 uppercase">Ruderalis: </p>
                     </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">{props.strain.name}</p>
+                    <div className="w-3/5">
+                      <p className="font-normal">{props.strain.ruderalis}%</p>
                     </div>
                   </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Type:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">{props.strain.genetic}</p>
-                    </div>
-                  </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">THC:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">
-                        {props.strain.pThc[0]} %
-                      </p>
-                    </div>
-                  </div>
-                  {props.strain.pCbn[0] != null ? (
-                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                      <div className="w-full bg-grey-light text-grey p-1">
-                        <p className="font-bold uppercase">CBN:</p>
-                      </div>
-                      <div className="w-full">
-                        <p className="font-normal p-1">
-                          {props.strain.pCbn[0]}%
-                        </p>
-                      </div>
-                    </div>
-                  ) : null}
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">CBD:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">{props.strain.pCbd[0]}%</p>
-                    </div>
-                  </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Indica:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">{props.strain.indica}%</p>
-                    </div>
-                  </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Sativa:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">{props.strain.sativa}%</p>
-                    </div>
-                  </div>
-                  {props.strain.ruderalis != null &&
-                  props.strain.ruderalis != 0 ? (
-                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                      <div className="w-full bg-grey-light text-grey p-1">
-                        <p className="font-bold uppercase">Ruderalis:</p>
-                      </div>
-                      <div className="w-full">
-                        <p className="font-normal p-2">
-                          {props.strain.ruderalis}%
-                        </p>
-                      </div>
-                    </div>
-                  ) : null}
+                ) : null}
 
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Avg. Yield:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">
-                        {props.strain.avgYield}g
-                      </p>
-                    </div>
+                <div className="inline-flex w-full bg-white p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">Avg. Yield: </p>
                   </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Flower Time:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">
-                        {props.strain.flowerTime}
-                      </p>
-                    </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.avgYield}g</p>
+                  </div>
+                </div>
+                <div className="inline-flex w-full p-1">
+                  <div className="w-2/5">
+                    <p className="font-bold pl-2 uppercase">
+                      Avg. Flower Time:{" "}
+                    </p>
+                  </div>
+                  <div className="w-3/5">
+                    <p className="font-normal">{props.strain.flowerTime}</p>
                   </div>
                 </div>
               </div>
-              <div className="mt-1 pb-2">
-                <h3 className="px-2 text-grey uppercase bg-yellow-dark p-1 mb-1 text-center">
-                  Germination Tests
+              <div className="mt-2 bg-grey-light pb-2">
+                <h3 className="px-2 text-white uppercase bg-grey p-1 mb-1 text-center">
+                  Germination Tests:
                 </h3>
                 <div className="inline-flex w-full">
-                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold text-center uppercase">
-                        30 days:{" "}
-                      </p>
+                  <div className="inline-flex w-1/2 bg-white rounded p-2 mx-2 mt-2">
+                    <div className="w-2/5">
+                      <p className="font-bold pl-2">30 days: </p>
                     </div>
-                    <div className="w-full mt-2 inline-flex">
-                      <div className="w-4/5 p-2">
-                        <div
-                          style={{
-                            width: "100%",
-                            background: "#cecece",
-                            height: "15px"
-                          }}
-                          className="w-4/5 relative rounded"
-                        >
-                          <p
-                            style={{
-                              width: props.strain.germ[0] + "%",
-                              background: "#404042",
-                              height: "15px"
-                            }}
-                            className="w-full rounded absolute"
-                          />
-                        </div>
-                      </div>
-                      <div className="ml-1">
-                        <p className="font-normal p-2">
-                          {props.strain.germ[0]}%
-                        </p>
-                      </div>
+                    <div className="w-3/5">
+                      <p className="font-normal">{props.strain.germ[0]}%</p>
                     </div>
                   </div>
-                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold text-center uppercase">
-                        45 days:{" "}
-                      </p>
+                  <div className="inline-flex w-1/2 bg-white rounded p-2 mx-2 mt-2">
+                    <div className="w-2/5">
+                      <p className="font-bold pl-2">45 days: </p>
                     </div>
-                    <div className="w-full mt-2 inline-flex">
-                      <div className="w-4/5 p-2">
-                        <div
-                          style={{
-                            width: "100%",
-                            background: "#cecece",
-                            height: "15px"
-                          }}
-                          className="w-4/5 relative rounded"
-                        >
-                          <p
-                            style={{
-                              width: props.strain.germ[1] + "%",
-                              background: "#404042",
-                              height: "15px"
-                            }}
-                            className="w-full rounded absolute"
-                          />
-                        </div>
-                      </div>
-                      <div className="ml-1">
-                        <p className="font-normal p-2">
-                          {props.strain.germ[1]}%
-                        </p>
-                      </div>
+                    <div className="w-3/5">
+                      <p className="font-normal">{props.strain.germ[1]}%</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="pb-3 pt-1 mt-1">
-                <h3 className="px-2 bg-yellow-dark text-grey text-center uppercase p-1 mb-1 ">
-                  Details
+              <div className="pb-3 pt-1 mt-2">
+                <h3 className="px-2 bg-grey-light text-grey uppercase p-1 mb-1 ">
+                  Details:
                 </h3>
-                <div className="inline-flex w-full">
-                  <div className="w-10 pl-4 justify-center flex items-center">
-                    <FontAwesomeIcon icon={faTree} className="fa-lg ml-1" />
-                  </div>
-                  <div className="inline-flex w-full">
-                    <div className="w-2/5">
-                      <p className="font-bold pl-1">Harvest Date: </p>
-                    </div>
-                    <div className="w-3/5">
-                      <p className="font-normal">{props.strain.date[0]}</p>{" "}
-                    </div>
-                  </div>
-                </div>
-                <div className="inline-flex w-full mt-1">
-                  <div className="w-10 pl-4 justify-center flex items-center">
-                    <FontAwesomeIcon
-                      icon={faPlaneDeparture}
-                      className="fa-lg pl-1"
-                    />{" "}
-                  </div>
-                  <div className="inline-flex w-full">
-                    <div className="w-2/5">
-                      <p className="font-bold pl-1">Departure Date: </p>
-                    </div>
-                    <div className="w-3/5">
-                      <p className="font-normal">{props.strain.date[1]}</p>{" "}
-                    </div>
-                  </div>
-                </div>
+                <p className="font-bold pl-2">
+                  Harvest Date:{" "}
+                  <span className="font-normal">{props.strain.date[0]}</span>{" "}
+                </p>
+                <p className="font-bold pl-2">
+                  Departure Date:{" "}
+                  <span className="font-normal">{props.strain.date[1]}</span>{" "}
+                </p>
               </div>
             </div>
           ) : (
             <div />
           )}
           {props.currentInformation == 1 ? (
-            <div className="pb-3 px-1">
-              <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                Germination Tests
+            <div className="pb-3">
+              <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
+                Germination Tests:
               </h3>
-              <div className="w-4/5 mx-auto bg-white rounded mx-2 mt-2 shadow">
-                <div className="w-full bg-grey-light text-grey p-1">
-                  <p className="font-bold text-center uppercase">In house: </p>
-                </div>
-                <div className="w-full mt-2 inline-flex">
-                  <div className="w-4/5 p-2">
-                    <div
-                      style={{
-                        width: "100%",
-                        background: "#cecece",
-                        height: "15px"
-                      }}
-                      className="w-4/5 relative rounded"
-                    >
-                      <p
-                        style={{
-                          width: props.strain.germ[2] + "%",
-                          background: "#404042",
-                          height: "15px"
-                        }}
-                        className="w-full rounded absolute"
-                      />
-                    </div>
-                  </div>
-                  <div className="ml-1">
-                    <p className="font-normal p-2">{props.strain.germ[2]}%</p>
-                  </div>
-                </div>
-              </div>
-
+              <p className="font-bold pl-2">
+                In house:{" "}
+                <span className="font-normal">{props.strain.germ[2]}%</span>
+              </p>
               {props.strain.context != 1 ? (
-                <div className="pb-3 pt-2 mt-2">
-                  <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                    Details
+                <div className="pb-3 pt-2">
+                  <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
+                    Details:
                   </h3>
-                  <div className="inline-flex w-full mt-1">
-                    <div className="w-10 pl-4 justify-center flex items-center">
-                      <FontAwesomeIcon
-                        icon={faBoxOpen}
-                        className="fa-lg pl-1"
-                      />{" "}
-                    </div>
-                    <div className="inline-flex w-full">
-                      <div className="w-1/3">
-                        <p className="font-bold pl-1">Package Date: </p>
-                      </div>
-                      <div className="w-2/3">
-                        <p className="font-normal pl-1">
-                          {props.strain.date[2]}
-                        </p>{" "}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="inline-flex w-full mt-1">
-                    <div className="w-10 pl-4 justify-center flex items-center">
-                      <FontAwesomeIcon icon={faPlane} className="fa-lg pl-1" />{" "}
-                    </div>
-                    <div className="inline-flex w-full">
-                      <div className="w-1/3">
-                        <p className="font-bold pl-1">Ship Date: </p>
-                      </div>
-                      <div className="w-2/3">
-                        <p className="font-normal pl-1">
-                          Approx. {props.strain.date[3]}
-                        </p>{" "}
-                      </div>
-                    </div>
-                  </div>
+                  <p className="font-bold pl-2">
+                    Package Date:{" "}
+                    <span className="font-normal">{props.strain.date[2]}</span>
+                  </p>
+                  <p className="font-bold pl-2">
+                    Ship Date:{" "}
+                    <span className="font-normal">
+                      Approx {props.strain.date[3]}
+                    </span>
+                  </p>
                 </div>
               ) : (
                 <div className="pb-3 pt-2" />
               )}
-              <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 mt-2">
-                Get in Touch
-              </h3>
 
-              <div className="w-full">
-                <div className="px-4 inline-flex bg-grey-light w-full">
-                  <div className="w-1/5 text-grey p-1">
-                    <p className="font-bold uppercase">Website:</p>
-                  </div>
-                  <div className="w-4/5 p-1">
-                    <a
-                      href={marker.description.website}
-                      target="blank"
-                      className="text-grey"
-                    >
-                      http://www.{marker.description.website}
-                    </a>
-                  </div>
-                </div>
-                <div className="px-4 inline-flex bg-white w-full">
-                  <div className="w-1/5 text-grey p-1">
-                    <p className="font-bold uppercase">Phone:</p>
-                  </div>
-                  <div className="w-4/5 p-1 text-grey">
-                    <a
-                      href={`tel:${marker.description.website}`}
-                      className="text-grey"
-                    >
-                      {marker.phone}
-                    </a>
-                  </div>
-                </div>
-                <div className="px-4 inline-flex bg-grey-light w-full">
-                  <div className="w-1/5 text-grey p-1">
-                    <p className="font-bold uppercase">Email:</p>
-                  </div>
-                  <div className="w-4/5 p-1 text-grey">
-                    <a href={`mailto: ${marker.email}`}>{marker.email}</a>
-                  </div>
-                </div>
-              </div>
+              <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1  ">
+                Contact:
+              </h3>
+              <p className="pl-2 font-bold">
+                Website:
+                <a href={marker.description.website} target="blank">
+                  <span className="font-normal">
+                    {" "}
+                    {marker.description.website}
+                  </span>
+                </a>
+              </p>
+              <p className="pl-2">
+                <span className="font-bold">Phone: </span>
+                {marker.phone}
+              </p>
+              <p className="pl-2">
+                <span className="font-bold">Email: </span>
+                <a href={`mailto: ${marker.email}`}>{marker.email}</a>
+              </p>
             </div>
           ) : (
             <div />
           )}
           {props.currentInformation == 2 ? (
             <div className="">
-              <div className="pb-3 px-1">
-                <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                  Your Details
+              <div className="pb-3">
+                <h3 className="px-2 bg-grey text-yellow uppercase p-1 mb-1 ">
+                  Your Details:
                 </h3>
 
-                <div>
-                  <div className="px-4 inline-flex bg-grey-light w-full">
-                    <div className="w-2/5 text-grey p-1">
-                      <p className="font-bold uppercase">Email:</p>
-                    </div>
-                    <div className="w-3/5 p-1 text-grey">
-                      <p>{props.email}</p>
-                    </div>
-                  </div>
-                  <div className="px-4 inline-flex bg-white w-full">
-                    <div className="w-2/5 text-grey p-1">
-                      <p className="font-bold uppercase">STT Number:</p>
-                    </div>
-                    <div className="w-3/5 p-1 text-grey">
-                      <p>{props.number}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="mt-32">
-                <p className="text-center px-12 mb-6 mt-12">
-                  Valuable information to make sure you have the best possible
-                  genetics!
+                <p className="font-bold pl-2">
+                  Email: <span className="font-normal">{props.email}</span>
                 </p>
-                <p className="text-center px-12 mb-8">
-                  Make sure all your seeds have an authentic STT Number before
-                  your purchase to ensure you recieve quality seeds!
+                <p className="font-bold pl-2">
+                  STT Number:{" "}
+                  <span className="font-normal">{props.number}</span>
                 </p>
-                <h3 className="pb-1 px-12 text-center uppercase">
-                  Thank you for using Seed Tracker Technology!
-                </h3>
               </div>
+
+              <p className="text-center px-12 mb-6 mt-12">
+                Valuable information to make sure you have the best possible
+                genetics!
+              </p>
+              <p className="text-center px-12 mb-8">
+                Make sure all your seeds have an authentic STT Number before
+                your purchase to ensure you recieve quality seeds!
+              </p>
+              <h3 className="pb-1 px-12 text-center uppercase">
+                Thank you for using Seed Tracker Technology!
+              </h3>
             </div>
           ) : (
             <div />
