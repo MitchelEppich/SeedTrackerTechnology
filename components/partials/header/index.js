@@ -6,7 +6,7 @@ import AnchorLink from "react-anchor-link-smooth-scroll";
 
 library.add(faBars);
 
-const Navbar = props => {
+const header = props => {
   let styleDropMenu = {
     transform:
       props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
@@ -127,4 +127,4 @@ const Navbar = props => {
   );
 };
 
-export default Navbar;
+export default header;

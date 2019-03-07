@@ -13,6 +13,9 @@ import DevTools from "../store/DevTools";
 import { connect } from "react-redux";
 import actions from "../store/actions";
 
+import Header from "../components/partials/header";
+import Footer from "../components/partials/footer";
+
 class Layout extends Component {
   componentDidMount() {}
 
@@ -21,7 +24,9 @@ class Layout extends Component {
   render() {
     return (
       <div className="w-full h-full" id="layout">
+        <Header {...this.props} />
         {this.props.children}
+        <Footer {...this.props} />
       </div>
     );
   }

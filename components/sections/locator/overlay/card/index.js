@@ -17,7 +17,7 @@ import gen from "random-seed";
 
 library.add(faTimes, faAngleLeft, faAngleRight);
 
-const InfoSection = props => {
+const card = props => {
   let marker = props.locations[props.currentInformation];
   if (marker == null) return <div />;
 
@@ -953,4 +953,4 @@ const InfoSection = props => {
   );
 };
 
-export default InfoSection;
+export default card;

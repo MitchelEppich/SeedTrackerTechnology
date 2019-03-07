@@ -1,5 +1,4 @@
 import React from "react";
-import HomeTracker from "../Main/HomeTracker";
 import ReactDOM from "react-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,14 +8,14 @@ import {
   faInfo,
   faInfoCircle
 } from "@fortawesome/free-solid-svg-icons";
-import Map from "../Map/pigeon-maps";
-import Overlay from "pigeon-overlay";
-import Line from "../Map/Line";
-import InfoSection from "../Main/InfoSection";
+import PigeonMap from "../../../extensions/pigeon/map";
+import PigeonLine from "../../../extensions/pigeon/line";
+import PigeonOverlay from "pigeon-overlay";
+import Card from "../overlay/card";
 
 library.add(faPlus, faMinus, faInfo);
 
-const Main = props => {
+const map = props => {
   let markers = props.locations;
 
   const showMarkers =
@@ -24,7 +23,7 @@ const Main = props => {
       ? markers.map((marker, index) => {
           if (index == markers.length - 1) return null;
           return (
-            <Overlay key={index} anchor={marker.anchor} payload={index}>
+            <PigeonOverlay key={index} anchor={marker.anchor} payload={index}>
               <div
                 className="landmark-points"
                 onClick={() => {
@@ -49,7 +48,7 @@ const Main = props => {
                   <div className="mx-auto arrow-down" />
                 </div>
               ) : null}
-            </Overlay>
+            </PigeonOverlay>
           );
         })
       : null;
@@ -92,7 +91,7 @@ const Main = props => {
       )}
 
       {/* MAP API */}
-      <Map
+      <PigeonMap
         limitBounds="edge"
         animateMaxScreens={9}
         center={
@@ -113,12 +112,12 @@ const Main = props => {
         {showMarkers}
 
         {markers != null ? (
-          <Line coordsArray={markers.map(marker => marker.anchor)} />
+          <PigeonLine coordsArray={markers.map(marker => marker.anchor)} />
         ) : null}
-      </Map>
+      </PigeonMap>
 
       {/* SHOW INFO SECTION */}
-      {props.currentInformation != -1 ? <InfoSection {...props} /> : null}
+      {props.currentInformation != -1 ? <Card {...props} /> : null}
 
       {/* COPYRIGHT ICON */}
       <div className="absolute inline-flex pin-b pin-r mb-6 mr-4">
@@ -180,4 +179,4 @@ const Main = props => {
   );
 };
 
-export default Main;
+export default map;
