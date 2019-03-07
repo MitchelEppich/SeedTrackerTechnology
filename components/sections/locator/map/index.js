@@ -33,6 +33,13 @@ const map = props => {
                     );
                 }}
               />
+              <div className="lds-ripple">
+                <div />
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
               {props.currentLocation == index ? (
                 <div className="info-landmark">
                   <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
@@ -153,7 +160,7 @@ const map = props => {
                 return (
                   <button
                     style={{ transition: "all 0.5s ease" }}
-                    className="bg-grey-darkest m-2 p-2 text-white hover:bg-grey-light hover:text-grey-darkest active:bg-green active:text-white "
+                    className="bg-grey-darkest m-2 p-2 text-white hover:bg-grey-light hover:text-grey-darkest active:bg-green uppercase active:text-white "
                     key={key}
                     onClick={() => {
                       props.toggleInfoSection(
