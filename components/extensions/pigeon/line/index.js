@@ -1,6 +1,6 @@
 import React from "react";
 
-const Line = ({
+const line = ({
   mapState: { center, width, height, zoom },
   latLngToPixel,
   coordsArray,
@@ -85,4 +85,4 @@ const Line = ({
   );
 };
 
-export default Line;
+export default line;

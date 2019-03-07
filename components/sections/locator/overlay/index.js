@@ -1,6 +1,6 @@
 import React from "react";
 import html2canvas from "html2canvas";
-import InfoCard from "../Main/InfoCard";
+import Card from "./card";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,7 +11,7 @@ import {
 
 library.add(faTimes, faAngleLeft, faAngleRight);
 
-const HomeTracker = props => {
+const overlay = props => {
   let searched = null;
   let searchSection = null;
 
@@ -384,4 +384,4 @@ const HomeTracker = props => {
   );
 };
 
-export default HomeTracker;
+export default overlay;

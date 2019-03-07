@@ -1,6 +1,6 @@
 import React from "react";
 
-const InfoCard = props => {
+const handout = props => {
   console.log(props.strain);
 
   let typeStrain = () => {
@@ -193,4 +193,4 @@ const InfoCard = props => {
   ) : null;
 };
 
-export default InfoCard;
+export default handout;
