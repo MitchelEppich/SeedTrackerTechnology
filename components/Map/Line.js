@@ -78,9 +78,9 @@ const Line = ({
 
   return (
     <div>
-      <svg width={width} height={height} style={{ top: 0, left: 0 }}>
+      {/* <svg width={width} height={height} style={{ top: 0, left: 0 }}>
         {pathObj}
-      </svg>
+      </svg> */}
     </div>
   );
 };

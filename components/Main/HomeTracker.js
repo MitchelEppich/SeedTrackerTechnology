@@ -74,19 +74,12 @@ const HomeTracker = props => {
           >
             <FontAwesomeIcon icon={faTimes} className="fa-lg" />
           </div>
-          <p className="p-4 my-2 sm:p-1 leading-normal text-justify xs:text-sm xs:p-1">
+          <p className="p-4 px-10 my-2 sm:p-1 leading-normal text-justify xs:text-sm xs:p-1">
             Enter your email address and your unique tracking number on your
             package of seeds or in the information that was sent to you when you
             made your online purchase.{" "}
           </p>
 
-          {/* <hr
-            style={{
-              backgroundColor: "rgb(242, 208, 36)",
-              height: "10px",
-              marginTop: "15px"
-            }}
-          /> */}
           <form
             onSubmit={async e => {
               e.preventDefault();
@@ -248,8 +241,8 @@ const HomeTracker = props => {
               ]);
             }}
           >
-            <div className="w-full pb-4 xs:pb-1 bg-grey-light">
-              <div className="border-b-4 border-white pb-6">
+            <div className="w-full pb-4 xs:pb-1 bg-white">
+              <div className="border-b-4 border-grey-lightest pb-6">
                 <div className="xs:p-0">
                   <h3 className="p-2 sm:text-sm xs:text-sm xs:p-0 xs:mb-4 uppercase text-xs text-grey-dark font-normal">
                     Please, select one of the options:
@@ -285,14 +278,7 @@ const HomeTracker = props => {
                 </div>
               </div>
 
-              {/* <hr
-                style={{
-                  backgroundColor: "rgb(242, 208, 36)",
-                  height: "10px",
-                  marginTop: "15px"
-                }}
-              /> */}
-              <div className="border-b-4 border-white pb-6">
+              <div className="border-b-4 border-grey-lightest pb-6">
                 <div className="p-2">
                   <h3 className="text-grey-dark font-normal sm:text-sm p-2 uppercase xs:text-sm xs:p-0 xs:mb-2 text-xs">
                     Insert your email to receive your Grow Card:
@@ -318,14 +304,7 @@ const HomeTracker = props => {
                 </div>
               </div>
 
-              {/* <hr
-                style={{
-                  backgroundColor: "rgb(242, 208, 36)",
-                  height: "10px",
-                  marginTop: "15px"
-                }}
-              /> */}
-              <div className="border-b-4 border-white pb-6">
+              <div className="border-b-4 border-grey-lightest pb-6">
                 <div className="p-2 sm:p-0 xs:p-0">
                   <h3 className="text-grey-dark font-normal sm:text-sm xs:text-sm p-2 uppercase text-xs ">
                     Enter your STT Number:
