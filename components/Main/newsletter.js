@@ -1,6 +1,6 @@
 const Newsletter = props => {
   return (
-    <div className="bg-grey-light w-full py-10">
+    <div className="bg-grey-light w-full pb-10 pt-6">
       <div className="w-full mb-4">
         <h2 className="uppercase text-center p-4 md:text-xxl sm:text-lg xs:text-sm text-xxxl">
           Subscribe to our Newsletter

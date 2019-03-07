@@ -58,37 +58,35 @@ const HomeTracker = props => {
       {props.searched == false ? (
         <div
           style={{ position: "absolute", zIndex: "9" }}
-          className="ml-0 mt-64 w-550 sm:w-400 xs:w-250 main-message sm:m-0 xs:m-0 text-center rounded-lg bg-yellow"
+          className="ml-0 mt-64 w-450 sm:w-400 xs:w-250 main-message shadow-lg sm:m-0 xs:m-0 text-center"
           ref={searchPanel => {
             searchSection = searchPanel;
           }}
         >
-          <h2 className="text-grey-darkest sm:text-xl xs:text-lg text-xxl uppercase">
+          <h2 className="text-grey-darkest mt-4 sm:text-xl xs:text-lg text-xxl uppercase">
             Seed Tracker
           </h2>
           <div
-            className="cursor-pointer text-grey-darkest absolute pin-r pin-t text-center mr-4 mt-4 h-10 w-10 pt-2 hover:bg-grey-darkest hover:text-white float-right xs:mt-3 xs:mr-1"
+            className="cursor-pointer absolute pin-r pin-t text-center mr-4 mt-4 h-10 w-10 pt-2 bg-grey-darkest hover:text-white hover:bg-grey text-white float-right xs:mt-3 xs:mr-1"
             onClick={() => {
               props.closeAllHandler();
             }}
           >
-            <FontAwesomeIcon
-              icon={faTimes}
-              className="fa-lg hover:text-white"
-            />
+            <FontAwesomeIcon icon={faTimes} className="fa-lg" />
           </div>
-          <p className="p-4 my-2 sm:p-1 leading-normal xs:text-sm xs:p-1">
+          <p className="p-4 my-2 sm:p-1 leading-normal text-justify xs:text-sm xs:p-1">
             Enter your email address and your unique tracking number on your
             package of seeds or in the information that was sent to you when you
             made your online purchase.{" "}
           </p>
 
-          <hr
+          {/* <hr
             style={{
-              backgroundColor: "rgba(103, 112, 117, 0.2)",
-              height: "2px"
+              backgroundColor: "rgb(242, 208, 36)",
+              height: "10px",
+              marginTop: "15px"
             }}
-          />
+          /> */}
           <form
             onSubmit={async e => {
               e.preventDefault();
@@ -250,124 +248,129 @@ const HomeTracker = props => {
               ]);
             }}
           >
-            <div className="w-full pb-4 xs:pb-1">
-              <div className="p-2 xs:p-0">
-                <h3 className="text-grey-darkest sm:text-sm xs:text-sm xs:p-0 xs:mb-4 p-2 uppercase">
-                  Please, select one option:
-                </h3>
-              </div>
-              <div className="block flex w-300 sm:w-200 xs:w-200 mx-auto text-center h-10 xs:h-6 justify-around xs:text-sm">
-                <div className="uppercase">
-                  <label className="h-12 text-grey-darkest">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      checked={props.context == 0}
-                      onChange={() => {
-                        props.setContext(0);
-                      }}
-                    />
-                    Online
-                  </label>
+            <div className="w-full pb-4 xs:pb-1 bg-grey-light">
+              <div className="border-b-4 border-white pb-6">
+                <div className="xs:p-0">
+                  <h3 className="p-2 sm:text-sm xs:text-sm xs:p-0 xs:mb-4 uppercase text-xs text-grey-dark font-normal">
+                    Please, select one of the options:
+                  </h3>
                 </div>
-                <div className="uppercase">
-                  <label className="h-12 text-grey-darkest">
-                    <input
-                      type="checkbox"
-                      className="checkbox"
-                      checked={props.context == 1}
-                      onChange={() => {
-                        props.setContext(1);
-                      }}
-                    />
-                    Store
-                  </label>
+                <div className="block flex mt-2 w-300 sm:w-200 xs:w-200 mx-auto text-center xs:h-6 justify-between text-base xs:text-sm">
+                  <div className="uppercase">
+                    <label className="h-12 text-base text-grey-darkest">
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        checked={props.context == 0}
+                        onChange={() => {
+                          props.setContext(0);
+                        }}
+                      />
+                      Online
+                    </label>
+                  </div>
+                  <div className="uppercase">
+                    <label className="h-12 text-grey-darkest">
+                      <input
+                        type="checkbox"
+                        className="checkbox"
+                        checked={props.context == 1}
+                        onChange={() => {
+                          props.setContext(1);
+                        }}
+                      />
+                      Store
+                    </label>
+                  </div>
                 </div>
               </div>
 
-              <hr
+              {/* <hr
                 style={{
-                  backgroundColor: "rgba(103, 112, 117, 0.2)",
-                  height: "2px"
+                  backgroundColor: "rgb(242, 208, 36)",
+                  height: "10px",
+                  marginTop: "15px"
                 }}
-              />
-
-              <div className="p-2">
-                <h3 className="text-grey-darkest sm:text-sm p-2 uppercase xs:text-sm xs:p-0 xs:mb-2">
-                  Insert your email to receive your Grow Card:
-                </h3>
+              /> */}
+              <div className="border-b-4 border-white pb-6">
+                <div className="p-2">
+                  <h3 className="text-grey-dark font-normal sm:text-sm p-2 uppercase xs:text-sm xs:p-0 xs:mb-2 text-xs">
+                    Insert your email to receive your Grow Card:
+                  </h3>
+                </div>
+                <div className="inline-flex px-10 w-full sm:p-0 sm:w-full md:w-full xs:w-full px-12 sm:px-0 xs:px-0 xs:mb-1">
+                  <input
+                    required
+                    className="h-10 w-full p-2 sm:w-full md:w-full border-light-grey p-2 xs:w-full shadow"
+                    placeholder="Enter your email..."
+                    type="email"
+                    aria-label="Enter in your email"
+                    // defaultValue={props.searched ? props.number : ""}
+                    id="email"
+                    name="email"
+                    onChange={e => {
+                      let input = e.target.value;
+                      if (input.length != 0) {
+                        props.setEmail(input);
+                      }
+                    }}
+                  />
+                </div>
               </div>
-              <div className="inline-flex px-10 mb-4 w-full sm:p-0 sm:w-full md:w-full xs:w-full px-12 sm:px-0 xs:px-0 xs:mb-1">
-                <input
-                  required
-                  className="h-10 w-full p-2 sm:w-full md:w-full border-2 border-light-grey p-2 xs:w-full"
-                  placeholder="Enter your email..."
-                  type="email"
-                  aria-label="Enter in your email"
-                  // defaultValue={props.searched ? props.number : ""}
-                  id="email"
-                  name="email"
-                  onChange={e => {
-                    let input = e.target.value;
-                    if (input.length != 0) {
-                      props.setEmail(input);
-                    }
-                  }}
-                />
-              </div>
 
-              <hr
+              {/* <hr
                 style={{
-                  backgroundColor: "rgba(103, 112, 117, 0.2)",
-                  height: "2px",
-                  margin: "5px"
+                  backgroundColor: "rgb(242, 208, 36)",
+                  height: "10px",
+                  marginTop: "15px"
                 }}
-              />
+              /> */}
+              <div className="border-b-4 border-white pb-6">
+                <div className="p-2 sm:p-0 xs:p-0">
+                  <h3 className="text-grey-dark font-normal sm:text-sm xs:text-sm p-2 uppercase text-xs ">
+                    Enter your STT Number:
+                  </h3>
+                </div>
+                <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-0 xs:px-0 md:w-full">
+                  <input
+                    className="h-10 xs:w-full sm:w-full md:w-full w-full border-light-grey shadow p-2"
+                    placeholder="Insert here your 7 digits code..."
+                    type="number"
+                    pattern="[0-9]{7}"
+                    required="required"
+                    maxLength={7}
+                    aria-label="Track number"
+                    // defaultValue={props.searched ? props.number : ""}
+                    id="search"
+                    ref={search => {
+                      searched = search;
+                    }}
+                    name="search"
+                    onChange={e => {
+                      let inp = e.target;
+                      inp.setCustomValidity("");
+                      let input = e.target.value;
 
-              <div className="p-2 sm:p-0 xs:p-0">
-                <h3 className="text-grey-darkest sm:text-sm xs:text-sm p-2 uppercase">
-                  Tracking number:
-                </h3>
+                      if (input.length < 7) {
+                        inp.setCustomValidity(
+                          "Forgot some numbers? Authentic STT numbers has 7 digits."
+                        );
+                      }
+                      if (input.length > 7) {
+                        // inp.setCustomValidity("Extra numbers! Authentic STT numbers has 7 digits.")
+                        input = e.target.value = input.substring(0, 7);
+                      }
+
+                      if (input.length != 0) {
+                        props.trackNumber(input);
+                      }
+                    }}
+                  />
+                </div>
               </div>
-              <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-0 xs:px-0 md:w-full">
-                <input
-                  className="h-10 xs:w-full sm:w-full md:w-full w-full border-2 border-light-grey p-2"
-                  placeholder="Insert here your code..."
-                  type="number"
-                  pattern="[0-9]{7}"
-                  required="required"
-                  maxLength={7}
-                  aria-label="Track number"
-                  // defaultValue={props.searched ? props.number : ""}
-                  id="search"
-                  ref={search => {
-                    searched = search;
-                  }}
-                  name="search"
-                  onChange={e => {
-                    let inp = e.target;
-                    inp.setCustomValidity("");
-                    let input = e.target.value;
-
-                    if (input.length < 7) {
-                      inp.setCustomValidity(
-                        "Forgot some numbers? Authentic STT numbers has 7 digits."
-                      );
-                    }
-                    if (input.length > 7) {
-                      // inp.setCustomValidity("Extra numbers! Authentic STT numbers has 7 digits.")
-                      input = e.target.value = input.substring(0, 7);
-                    }
-
-                    if (input.length != 0) {
-                      props.trackNumber(input);
-                    }
-                  }}
-                />
-              </div>
-              <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-0 xs:px-0 mt-2 ">
+              <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-0 xs:px-0 mt-6">
                 <button
-                  className="h-10 slow bg-grey-darkest text-white text-md border border-light-blue uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0  font-bold hover:bg-grey-dark hover:text-white hover:border-transparent hover:border sm:w-full md:w-full  xs:w-full w-full"
+                  className="h-10 slow bg-yellow-dark text-grey text-md uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0 font-bold hover:bg-grey hover:text-white sm:w-full md:w-full xs:w-full w-full"
                   type="submit"
                 >
                   Track my Seeds

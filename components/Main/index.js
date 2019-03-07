@@ -63,7 +63,7 @@ const Main = props => {
       </div>
       {props.error != null ? (
         <div className="bg-red">
-          <p className="text-center text-white p-1">{props.error}</p>
+          <p className="text-center text-white font-bold p-2">{props.error}</p>
         </div>
       ) : null}
       {props.searched ? (
@@ -99,7 +99,7 @@ const Main = props => {
         maxZoom={11}
         minZoom={3}
         metaWheelZoom={true}
-        metaWheelZoomWarning={"Keep Pressing Window or CMD button to Scroll"}
+        metaWheelZoomWarning={"Keep Pressing Window key or CMD button to Scroll"}
       >
         {showMarkers}
 
@@ -129,6 +129,9 @@ const Main = props => {
           <FontAwesomeIcon
             icon={faInfoCircle}
             className="fa-2x h-12 text-yellow cursor-pointer"
+            onMouseEnter={() => {
+              props.toggleCopyright();
+            }}
             onClick={() => {
               props.toggleCopyright();
             }}
