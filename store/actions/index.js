@@ -213,8 +213,6 @@ const actions = {
       return makePromise(execute(link, operation)).then(data => {
         let strain = inferStrainData(data.data.strain);
 
-        console.log(strain);
-
         const operation = {
           query: mutation.getCoordinates,
           variables: { country: strain.aCountry[0] }
@@ -249,11 +247,10 @@ const actions = {
           strain = {
             ...strain,
             ...loc,
-            germ: germ,
-            date: date,
-            potency: potency,
-            context: input.context,
-            country: input.country
+            germ,
+            date,
+            potency,
+            context: input.context
           };
           dispatch({
             type: actionTypes.GET_STRAIN_DATA,
