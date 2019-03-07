@@ -32,6 +32,7 @@ class Index extends Component {
           getStrainData={this.props.getStrainData}
         />
         <Navbar
+          {...this.props}
           toggleInfoSection={this.props.toggleInfoSection}
           showInfoSection={this.props.showInfoSection}
           showMenuCollapsed={this.props.showMenuCollapsed}
