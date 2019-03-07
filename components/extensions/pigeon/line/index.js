@@ -75,12 +75,15 @@ const line = ({
       />
     </g>
   );
+  console.log("here", coordsArray);
 
   return (
     <div>
-      {/* <svg width={width} height={height} style={{ top: 0, left: 0 }}>
-        {pathObj}
-      </svg> */}
+      {props.clientInfo.context != null && props.clientInfo.context != 2 ? (
+        <svg width={width} height={height} style={{ top: 0, left: 0 }}>
+          {pathObj}
+        </svg>
+      ) : null}
     </div>
   );
 };

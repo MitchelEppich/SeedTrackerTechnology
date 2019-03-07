@@ -523,6 +523,8 @@ module.exports = {
     full: "100%",
     screen: "100vw",
     "100": "100px",
+    "125": "125px",
+    "150": "150px",
     "200": "200px",
     "250": "250px",
     "300": "300px",
@@ -643,7 +645,7 @@ module.exports = {
   minHeight: {
     "0": "0",
     full: "100%",
-    card: "600px",
+    card: "660px",
     mobileCard: "300px",
     screen: "100vh"
   },

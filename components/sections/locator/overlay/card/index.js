@@ -14,6 +14,8 @@ import { width } from "window-size";
 
 import moment from "moment";
 import gen from "random-seed";
+import PercentageStrainGraphs from "./percentageStrainGraphs";
+import StrainInfoGraphs from "./strainInfoGraphs";
 
 library.add(faTimes, faAngleLeft, faAngleRight);
 
@@ -63,7 +65,10 @@ const card = props => {
       >
         {props.currentInformation == 0 ? (
           <div
-            style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}
+            style={{
+              borderTopLeftRadius: "3px",
+              borderTopRightRadius: "3px"
+            }}
             className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer"
           >
             <div
@@ -72,7 +77,7 @@ const card = props => {
                 props.setInfoTab(0);
               }}
             >
-              Producer
+              Origin
             </div>
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
@@ -103,7 +108,10 @@ const card = props => {
 
         {props.currentInformation == 1 ? (
           <div
-            style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}
+            style={{
+              borderTopLeftRadius: "3px",
+              borderTopRightRadius: "3px"
+            }}
             className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer"
           >
             <div
@@ -145,7 +153,10 @@ const card = props => {
 
         {props.currentInformation == 2 ? (
           <div
-            style={{ borderTopLeftRadius: "3px", borderTopRightRadius: "3px" }}
+            style={{
+              borderTopLeftRadius: "3px",
+              borderTopRightRadius: "3px"
+            }}
             className="flex mb-1 bg-grey text-yellow justify-between cursor-pointer"
           >
             <div
@@ -188,7 +199,7 @@ const card = props => {
             {props.currentInformation == 0 ? (
               <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
                 <h5 className="text-navy-blue sm:text-lg text-center">
-                  Producer:
+                  Origin:
                 </h5>
                 <h3 className="my-2 text-yellow bg-grey sm:text-lg text-center uppercase p-1  animate-text">
                   {" "}
@@ -486,7 +497,7 @@ const card = props => {
           {props.currentInformation == 0 ? (
             <div className="w-full p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
-                Producer:
+                Origin:
               </h5>
               <h3 className="text-grey text-2xl uppercase p-1 sm:text-lg my-1 text-center animate-text">
                 {marker.name}
@@ -527,17 +538,20 @@ const card = props => {
             <div className="pb-3 px-1">
               <div className="pb-1 bg-white">
                 <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                  Facts on Seeds
+                  {props.strain.name}
                 </h3>
+                {/* <div className="text-center my-2 font-bold uppercase bg-grey-light p-2">
+                  {props.strain.name}
+                </div> */}
                 <div className="flex flex-wrap justify-around">
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                  {/* <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
                     <div className="w-full bg-grey-light text-grey p-1">
                       <p className="font-bold uppercase">Strain:</p>
                     </div>
                     <div className="w-full">
                       <p className="font-normal p-1">{props.strain.name}</p>
                     </div>
-                  </div>
+                  </div> */}
                   <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
                     <div className="w-full bg-grey-light text-grey p-1">
                       <p className="font-bold uppercase">Type:</p>
@@ -546,66 +560,6 @@ const card = props => {
                       <p className="font-normal p-1">{props.strain.genetic}</p>
                     </div>
                   </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">THC:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">
-                        {props.strain.pThc[0]} %
-                      </p>
-                    </div>
-                  </div>
-                  {props.strain.pCbn[0] != null ? (
-                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                      <div className="w-full bg-grey-light text-grey p-1">
-                        <p className="font-bold uppercase">CBN:</p>
-                      </div>
-                      <div className="w-full">
-                        <p className="font-normal p-1">
-                          {props.strain.pCbn[0]}%
-                        </p>
-                      </div>
-                    </div>
-                  ) : null}
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">CBD:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-1">{props.strain.pCbd[0]}%</p>
-                    </div>
-                  </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Indica:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">{props.strain.indica}%</p>
-                    </div>
-                  </div>
-                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                    <div className="w-full bg-grey-light text-grey p-1">
-                      <p className="font-bold uppercase">Sativa:</p>
-                    </div>
-                    <div className="w-full">
-                      <p className="font-normal p-2">{props.strain.sativa}%</p>
-                    </div>
-                  </div>
-                  {props.strain.ruderalis != null &&
-                  props.strain.ruderalis != 0 ? (
-                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
-                      <div className="w-full bg-grey-light text-grey p-1">
-                        <p className="font-bold uppercase">Ruderalis:</p>
-                      </div>
-                      <div className="w-full">
-                        <p className="font-normal p-2">
-                          {props.strain.ruderalis}%
-                        </p>
-                      </div>
-                    </div>
-                  ) : null}
-
                   <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
                     <div className="w-full bg-grey-light text-grey p-1">
                       <p className="font-bold uppercase">Avg. Yield:</p>
@@ -626,6 +580,99 @@ const card = props => {
                       </p>
                     </div>
                   </div>
+                  <div className="w-full px-2 my-1 bg-grey-lightest">
+                    <p className="font-bold text-center uppercase bg-grey-light p-1">
+                      Levels:
+                    </p>
+                    <div className="inline-flex w-full flex justify-around">
+                      <div style={{ width: "135px" }} className="p-4 w-150">
+                        {" "}
+                        <StrainInfoGraphs {...props} />
+                      </div>
+                      <div className="w-150 p-4 mt-4">
+                        <p
+                          style={{ background: "#546e79" }}
+                          className="font-normal p-1 text-white mt-1"
+                        >
+                          TCH: {props.strain.pThc[0]} %
+                        </p>
+                        <p
+                          style={{ background: "#d0d0d0" }}
+                          className="font-normal p-1 mt-1"
+                        >
+                          CBN: {props.strain.pCbn[0]}%
+                        </p>
+                        <p
+                          style={{ background: "#33434e" }}
+                          className="font-normal p-1 text-white mt-1"
+                        >
+                          CBD: {props.strain.pCbd[0]}%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  {/* <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">THC:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-1">
+                        {props.strain.pThc[0]} %
+                      </p>
+                    </div>
+                  </div> */}
+                  {/* {props.strain.pCbn[0] != null ? (
+                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                      <div className="w-full bg-grey-light text-grey p-1">
+                        <p className="font-bold uppercase">CBN:</p>
+                      </div>
+                      <div className="w-full">
+                        <p className="font-normal p-1">
+                          {props.strain.pCbn[0]}%
+                        </p>
+                      </div>
+                    </div>
+                  ) : null} */}
+                  {/* <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">CBD:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-1">{props.strain.pCbd[0]}%</p>
+                    </div>
+                  </div> */}
+                  {/* <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">Indica:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-2">{props.strain.indica}%</p>
+                    </div>
+                  </div> */}
+                  <div className="w-full">
+                    <PercentageStrainGraphs {...props} />
+                  </div>
+                  {/* <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">Sativa:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-2">{props.strain.sativa}%</p>
+                    </div>
+                  </div> */}
+                  {/* {props.strain.ruderalis != null &&
+                  props.strain.ruderalis != 0 ? (
+                    <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                      <div className="w-full bg-grey-light text-grey p-1">
+                        <p className="font-bold uppercase">Ruderalis:</p>
+                      </div>
+                      <div className="w-full">
+                        <p className="font-normal p-2">
+                          {props.strain.ruderalis}%
+                        </p>
+                      </div>
+                    </div>
+                  ) : null} */}
                 </div>
               </div>
               <div className="mt-1 pb-2">
@@ -633,6 +680,39 @@ const card = props => {
                   Germination Tests
                 </h3>
                 <div className="inline-flex w-full">
+                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold text-center uppercase">
+                        Indoor:{" "}
+                      </p>
+                    </div>
+                    <div className="w-full mt-2 inline-flex">
+                      <div className="w-4/5 p-2">
+                        <div
+                          style={{
+                            width: "100%",
+                            background: "#cecece",
+                            height: "15px"
+                          }}
+                          className="w-4/5 relative rounded"
+                        >
+                          <p
+                            style={{
+                              width: props.strain.germ[2] + "%",
+                              background: "#404042",
+                              height: "15px"
+                            }}
+                            className="w-full rounded absolute"
+                          />
+                        </div>
+                      </div>
+                      <div className="ml-1">
+                        <p className="font-normal p-2">
+                          {props.strain.germ[2]}%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                   <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
                     <div className="w-full bg-grey-light text-grey p-1">
                       <p className="font-bold text-center uppercase">
@@ -702,40 +782,42 @@ const card = props => {
                 </div>
               </div>
 
-              <div className="pb-3 pt-1 mt-1">
-                <h3 className="px-2 bg-yellow-dark text-grey text-center uppercase p-1 mb-1 ">
-                  Details
-                </h3>
-                <div className="inline-flex w-full">
-                  <div className="w-10 pl-4 justify-center flex items-center">
-                    <FontAwesomeIcon icon={faTree} className="fa-lg ml-1" />
-                  </div>
+              {props.clientInfo.context != 2 ? (
+                <div className="pb-3 pt-1 mt-1">
+                  <h3 className="px-2 bg-yellow-dark text-grey text-center uppercase p-1 mb-1 ">
+                    Details
+                  </h3>
                   <div className="inline-flex w-full">
-                    <div className="w-2/5">
-                      <p className="font-bold pl-1">Harvest Date: </p>
+                    <div className="w-10 pl-4 justify-center flex items-center">
+                      <FontAwesomeIcon icon={faTree} className="fa-lg ml-1" />
                     </div>
-                    <div className="w-3/5">
-                      <p className="font-normal">{props.strain.date[0]}</p>{" "}
+                    <div className="inline-flex w-full">
+                      <div className="w-2/5">
+                        <p className="font-bold pl-1">Harvest Date: </p>
+                      </div>
+                      <div className="w-3/5">
+                        <p className="font-normal">{props.strain.date[0]}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inline-flex w-full mt-1">
+                    <div className="w-10 pl-4 justify-center flex items-center">
+                      <FontAwesomeIcon
+                        icon={faPlaneDeparture}
+                        className="fa-lg pl-1"
+                      />{" "}
+                    </div>
+                    <div className="inline-flex w-full">
+                      <div className="w-2/5">
+                        <p className="font-bold pl-1">Departure Date: </p>
+                      </div>
+                      <div className="w-3/5">
+                        <p className="font-normal">{props.strain.date[1]}</p>{" "}
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="inline-flex w-full mt-1">
-                  <div className="w-10 pl-4 justify-center flex items-center">
-                    <FontAwesomeIcon
-                      icon={faPlaneDeparture}
-                      className="fa-lg pl-1"
-                    />{" "}
-                  </div>
-                  <div className="inline-flex w-full">
-                    <div className="w-2/5">
-                      <p className="font-bold pl-1">Departure Date: </p>
-                    </div>
-                    <div className="w-3/5">
-                      <p className="font-normal">{props.strain.date[1]}</p>{" "}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              ) : null}
             </div>
           ) : (
             <div />

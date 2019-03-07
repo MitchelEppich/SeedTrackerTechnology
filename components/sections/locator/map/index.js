@@ -33,13 +33,16 @@ const map = props => {
                     );
                 }}
               />
-              <div className="lds-ripple ">
-                <div />
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
+              {props.clientInfo.context != null &&
+              props.clientInfo.context == 2 ? (
+                <div className="lds-ripple ">
+                  <div />
+                  <div />
+                  <div />
+                  <div />
+                  <div />
+                </div>
+              ) : null}
               {props.currentLocation == index ? (
                 <div className="info-landmark">
                   <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
@@ -112,7 +115,10 @@ const map = props => {
         {showMarkers}
 
         {markers != null ? (
-          <PigeonLine coordsArray={markers.map(marker => marker.anchor)} />
+          <PigeonLine
+            {...props}
+            coordsArray={markers.map(marker => marker.anchor)}
+          />
         ) : null}
       </PigeonMap>
 
@@ -137,9 +143,6 @@ const map = props => {
           <FontAwesomeIcon
             icon={faInfoCircle}
             className="fa-2x h-12 text-yellow cursor-pointer"
-            onMouseEnter={() => {
-              props.toggleCopyright();
-            }}
             onClick={() => {
               props.toggleCopyright();
             }}
