@@ -33,7 +33,7 @@ const map = props => {
                     );
                 }}
               />
-              <div className="lds-ripple">
+              <div className="lds-ripple ">
                 <div />
                 <div />
                 <div />
