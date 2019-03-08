@@ -132,8 +132,7 @@ const map = props => {
 
       {/* MAP API */}
       <PigeonMap
-        limitBounds="edge"
-        animateMaxScreens={9}
+        animateMaxScreens={3}
         center={
           props.locations == null
             ? [0, 0]
@@ -141,13 +140,11 @@ const map = props => {
             ? props.locations[props.currentInformation].anchor
             : [38.927, -11.877]
         }
-        zoom={props.currentInformation != -1 ? 4 : 3}
-        maxZoom={11}
+        zoom={3}
+        maxZoom={3}
         minZoom={3}
         metaWheelZoom={true}
-        metaWheelZoomWarning={
-          "Keep Pressing Window key or CMD button to Scroll"
-        }
+        metaWheelZoomWarning={""}
       >
         {showMarkers()}
         {showMarkerLines()}

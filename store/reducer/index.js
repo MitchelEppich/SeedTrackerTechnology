@@ -81,6 +81,8 @@ const indexReducer = (state = initialState, action) => {
         seed: action.entry.seed,
         clientInfo: action.entry
       });
+    case actionTypes.SUBSCRIBE_TO_NEWSLETTER:
+      return updateObject(state, {});
     case actionTypes.CHECK_TESTER_ENTRY:
       return updateObject(state, {
         email: action.entry.email,

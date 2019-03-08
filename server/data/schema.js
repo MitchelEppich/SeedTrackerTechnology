@@ -55,6 +55,10 @@ type Entry {
   seed:String
 }
 
+input EmailInput {
+  email: String
+}
+
 input EntryInput {
   email: String
   number: Int
@@ -180,6 +184,9 @@ type Mutation {
   createCompany(input: CompanyInput): Company
 
   batchStrainEdit: String
+
+  sendEmail(input: EmailInput): String
+  subscribeToNewsletter(input: EmailInput): String
 
   refreshSeed(input: StrainInput): Strain
   createStrain(input: StrainInput): Strain

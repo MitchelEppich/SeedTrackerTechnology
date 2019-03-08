@@ -40,7 +40,8 @@ const actionTypes = {
   MUTE_VIDEO: "MUTE_VIDEO",
   CHECK_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY",
   GET_COMPANY: "GET_COMPANY",
-  GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST"
+  GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST",
+  SUBSCRIBE_TO_NEWSLETTER: "SUBSCRIBE_TO_NEWSLETTER"
 };
 
 const actions = {
@@ -280,6 +281,20 @@ const actions = {
       });
     };
   },
+  subscribeToNewsletter: input => {
+    return dispatch => {
+      const link = new HttpLink({ uri, fetch: fetch });
+      const operation = {
+        query: mutation.subscribeToNewsletter,
+        variables: { ...input }
+      };
+      return makePromise(execute(link, operation)).then(data => {
+        dispatch({
+          type: actionTypes.SUBSCRIBE_TO_NEWSLETTER
+        });
+      });
+    };
+  },
   recordEntry: input => {
     return dispatch => {
       return axios
@@ -447,6 +462,11 @@ const query = {
 };
 
 const mutation = {
+  subscribeToNewsletter: gql`
+    mutation($email: String) {
+      subscribeToNewsletter(input: { email: $email })
+    }
+  `,
   recordError: gql`
     mutation($email: String, $context: Int, $number: String) {
       createError(

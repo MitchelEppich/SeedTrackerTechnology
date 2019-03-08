@@ -53,13 +53,8 @@ const header = props => {
             </AnchorLink>
           </li>
           <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
-            <AnchorLink className="menu-item" href="#video">
-              How To Use
-            </AnchorLink>
-          </li>
-          <li className=" md:p-2 p-4 xs:p-2 sm:p-2 ml-2 text-yellow font-bold uppercase cursor-pointer">
             <AnchorLink className="menu-item" href="#stt">
-              STT
+              Track
             </AnchorLink>
           </li>
         </ul>
@@ -101,20 +96,12 @@ const header = props => {
                 About
               </li>
             </AnchorLink>
-            <AnchorLink className="" href="#video">
-              <li
-                style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
-              >
-                How To Use
-              </li>
-            </AnchorLink>
             <AnchorLink className="" href="#stt">
               <li
                 style={{ display: "block" }}
                 className="text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
               >
-                STT
+                Track
               </li>
             </AnchorLink>
           </ul>

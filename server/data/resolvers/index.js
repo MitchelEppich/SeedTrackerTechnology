@@ -6,7 +6,10 @@ const CompanyResolvers = require("./company");
 
 const NodeGeocoder = require("node-geocoder");
 
-const { Entry, Error } = require("../../models");
+const { Entry, Error, Email } = require("../../models");
+
+const request = require("request-promise");
+const emailTemplates = require("../emails");
 
 let options = {
   provider: "openstreetmap"
@@ -55,6 +58,49 @@ const resolvers = {
         coords.push({ lon: _coords.longitude, lat: _coords.latitude });
       }
       return { coords };
+    },
+    subscribeToNewsletter: async (_, { input }) => {
+      let email = new Email({
+        ...input
+      });
+
+      email.save();
+
+      return input.email + " has been subscribed to the newsletter!";
+    },
+    sendEmail: async (_, { input }) => {
+      let transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+          user: "growreel.noreply@gmail.com",
+          pass: "etydthavvvnkdqxf"
+        }
+      });
+      let mailOptions = emailTemplates.contact({
+        ...input
+      });
+
+      request(options)
+        .then(function(parsedBody) {
+          // POST succeeded...
+          transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+              // Do nothing
+            }
+          });
+        })
+        .catch(function(err) {
+          // POST failed...
+          console.log(err);
+        });
+
+      // switch (input.type) {
+      //   case "contact":
+      //     mailOptions = emailTemplates.contact({
+      //       ...input,
+      //     });
+      //     break;
+      // }
     }
   }
 };
