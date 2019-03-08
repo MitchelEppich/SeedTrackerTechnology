@@ -71,6 +71,9 @@ const mapDispatchToProps = dispatch => {
     setEmail: input => {
       dispatch(actions.setEmail(input));
     },
+    setUserInput: input => {
+      dispatch(actions.setUserInput(input));
+    },
     checkEntry: input => {
       return dispatch(actions.checkEntry(input));
     },

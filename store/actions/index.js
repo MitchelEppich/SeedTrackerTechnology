@@ -41,7 +41,8 @@ const actionTypes = {
   CHECK_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY",
   GET_COMPANY: "GET_COMPANY",
   GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST",
-  SUBSCRIBE_TO_NEWSLETTER: "SUBSCRIBE_TO_NEWSLETTER"
+  SUBSCRIBE_TO_NEWSLETTER: "SUBSCRIBE_TO_NEWSLETTER",
+  SET_USER_INPUT: "SET_USER_INPUT"
 };
 
 const actions = {
@@ -68,6 +69,19 @@ const actions = {
   },
   setEmail: input => {
     return { type: actionTypes.SET_EMAIL, input: input };
+  },
+  setUserInput: input => {
+    console.log("actions", input);
+    let _userInput = input.userInput;
+    let _key = input.key;
+    let _value = input.value;
+    if (_key != null) _userInput[_key] = _value;
+
+    if (input.clear) _userInput = {};
+    return {
+      type: actionTypes.SET_USER_INPUT,
+      input: _userInput
+    };
   },
   toggleInfoSection: index => {
     return {

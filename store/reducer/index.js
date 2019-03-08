@@ -26,7 +26,8 @@ const initialState = {
   strain: null,
   videoMuted: true,
   company: null,
-  companySttWebsiteList: null
+  companySttWebsiteList: null,
+  userInput: {}
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -70,6 +71,11 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, { context: action.input });
     case actionTypes.SET_EMAIL:
       return updateObject(state, { email: action.input });
+    case actionTypes.SET_USER_INPUT:
+      console.log("reducer", action);
+      return updateObject(state, {
+        userInput: action.input
+      });
     case actionTypes.GET_COMPANY:
       return updateObject(state, { company: action.input });
     case actionTypes.CHECK_ENTRY:
