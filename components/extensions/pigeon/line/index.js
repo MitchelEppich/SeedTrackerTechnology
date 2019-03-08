@@ -11,7 +11,7 @@ const line = ({
     return null;
   }
 
-  console.log(props);
+  let _delay = props.delay;
 
   let point;
   let path;
@@ -28,9 +28,6 @@ const line = ({
 
   let adjust = zoom == 4 ? 2900 : 500 + 2100 * Math.pow(2, zoom - 4);
 
-  let delay = Math.random() * 11;
-  console.log(delay);
-
   let pathObj = (
     <g>
       {/* The path */}
@@ -40,7 +37,7 @@ const line = ({
         d={path}
         style={{
           animation: `dash ${4}s linear forwards`,
-          animationDelay: `${delay}s`,
+          animationDelay: `${_delay}s`,
           strokeDasharray: adjust,
           strokeDashoffset: adjust,
           stroke: "rgba(181, 181, 181, 0.76)",
@@ -55,12 +52,12 @@ const line = ({
           motionPath: `path('${path}')`,
           offsetPath: `path('${path}')`,
           animation: `move ${4}s linear forwards`,
-          animationDelay: `${delay}s`,
-          transform: "scale(0.06) translateX(-50px) translateY(-250px)",
-          WebkitTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
-          OTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
-          MozTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
-          MsTransform: "scale(0.06) translateX(-50px) translateY(-250px)"
+          animationDelay: `${_delay}s`,
+          transform: "scale(0) translateX(-50px) translateY(-250px)",
+          WebkitTransform: "scale(0) translateX(-50px) translateY(-250px)",
+          OTransform: "scale(0) translateX(-50px) translateY(-250px)",
+          MozTransform: "scale(0) translateX(-50px) translateY(-250px)",
+          MsTransform: "scale(0) translateX(-50px) translateY(-250px)"
         }}
       />
     </g>

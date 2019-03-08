@@ -75,13 +75,21 @@ const map = props => {
     })();
 
     let arr = [];
-    for (let i = 0; i < _orgins; i++) {
+    let i;
+    for (i = 0; i < _orgins; i++) {
       let _arr = [];
       _arr.push(markers[i].anchor);
       _arr.push(markers.slice(-2)[0].anchor);
-      _arr.push(markers.slice(-2)[1].anchor);
-      arr.push(<PigeonLine coordsArray={_arr} key={i} {...props} />);
+      arr.push(<PigeonLine coordsArray={_arr} key={i} delay={i} {...props} />);
     }
+    arr.push(
+      <PigeonLine
+        coordsArray={[markers.slice(-2)[0].anchor, markers.slice(-2)[1].anchor]}
+        key={"Last"}
+        delay={4 + i - 1}
+        {...props}
+      />
+    );
     return arr;
   };
 
