@@ -38,8 +38,6 @@ const resolvers = {
       let _state = input.state;
       let _isCustomer = input.isCustomer;
 
-      console.log(input);
-
       let coords = [];
       let locs = _country == null ? [_state] : _country;
       for (let loc of locs) {

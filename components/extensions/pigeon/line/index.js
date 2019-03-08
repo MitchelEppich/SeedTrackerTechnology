@@ -11,6 +11,8 @@ const line = ({
     return null;
   }
 
+  console.log(props);
+
   let point;
   let path;
 
@@ -26,6 +28,9 @@ const line = ({
 
   let adjust = zoom == 4 ? 2900 : 500 + 2100 * Math.pow(2, zoom - 4);
 
+  let delay = Math.random() * 11;
+  console.log(delay);
+
   let pathObj = (
     <g>
       {/* The path */}
@@ -35,6 +40,7 @@ const line = ({
         d={path}
         style={{
           animation: `dash ${4}s linear forwards`,
+          animationDelay: `${delay}s`,
           strokeDasharray: adjust,
           strokeDashoffset: adjust,
           stroke: "rgba(181, 181, 181, 0.76)",
@@ -49,6 +55,7 @@ const line = ({
           motionPath: `path('${path}')`,
           offsetPath: `path('${path}')`,
           animation: `move ${4}s linear forwards`,
+          animationDelay: `${delay}s`,
           transform: "scale(0.06) translateX(-50px) translateY(-250px)",
           WebkitTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
           OTransform: "scale(0.06) translateX(-50px) translateY(-250px)",
@@ -61,14 +68,16 @@ const line = ({
 
   return (
     <div className="pin-t absolute">
-      <svg
-        width={width}
-        height={height}
-        key={props.key}
-        style={{ top: 0, left: 0 }}
-      >
-        {pathObj}
-      </svg>
+      {props.clientInfo.context != null && props.clientInfo.context != 2 ? (
+        <svg
+          width={width}
+          height={height}
+          key={props.key}
+          style={{ top: 0, left: 0 }}
+        >
+          {pathObj}
+        </svg>
+      ) : null}
     </div>
   );
 };
