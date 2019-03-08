@@ -11,14 +11,12 @@ import {
 import PigeonMap from "../../../extensions/pigeon/map";
 import PigeonLine from "../../../extensions/pigeon/line";
 import PigeonOverlay from "pigeon-overlay";
-import Card from "../overlay/card";
+import Card from "../overlay/card/index";
 
 library.add(faPlus, faMinus, faInfo);
 
 const map = props => {
   let markers = props.locations;
-
-  console.log(markers, props);
 
   let showMarkers = () => {
     if (markers == null) return <div />;

@@ -74,7 +74,7 @@ const overlay = props => {
           >
             <FontAwesomeIcon icon={faTimes} className="fa-lg" />
           </div>
-          <p className="p-4 px-10 my-2 sm:p-1 leading-normal text-justify xs:text-sm xs:p-1">
+          <p className="p-4 px-10 my-2 sm:px-4 leading-normal text-justify xs:text-sm xs:p-1">
             Enter your email address and your unique tracking number on your
             package of seeds or in the information that was sent to you when you
             made your online purchase.{" "}
@@ -178,15 +178,26 @@ const overlay = props => {
             }}
           >
             <div className="w-full pb-4 xs:pb-1 bg-white">
-              <div className="border-b-4 border-grey-lightest pb-6">
+              <div className="pb-3">
                 <div className="xs:p-0">
+                  <p className="w-full opacity-50 font-bold text-sm uppercase bg-grey-light p-1">
+                    Step 1:
+                  </p>
                   <h3 className="p-2 sm:text-sm xs:text-sm xs:p-0 xs:mb-4 uppercase text-xs text-grey-dark font-normal">
                     Please, select one of the options:
                   </h3>
                 </div>
-                <div className="block flex mt-2 w-300 sm:w-200 xs:w-200 mx-auto text-center xs:h-6 justify-between text-base xs:text-sm">
-                  <div className="uppercase">
-                    <label className="h-12 text-base text-grey-darkest">
+                <div className="block flex mt-2 w-full px-12 sm:px-4 xs:px-4 mx-auto text-center xs:h-6 justify-center text-base xs:text-sm">
+                  <div className="uppercase mr-2 w-1/2">
+                    <p
+                      onClick={() => {
+                        props.setContext(0);
+                      }}
+                      className="p-2 px-6 font-bold bg-white slow cursor-pointer hover:bg-yellow-dark shadow"
+                    >
+                      Online
+                    </p>
+                    {/* <label className="h-12 text-base text-grey-darkest">
                       <input
                         type="checkbox"
                         className="checkbox"
@@ -196,10 +207,19 @@ const overlay = props => {
                         }}
                       />
                       Online
-                    </label>
+                    </label> */}
                   </div>
-                  <div className="uppercase">
-                    <label className="h-12 text-grey-darkest">
+                  <div className="uppercase ml-2 w-1/2">
+                    <p
+                      onClick={() => {
+                        props.setContext(1);
+                      }}
+                      className="p-2 px-6 font-bold bg-white slow cursor-pointer hover:bg-yellow-dark shadow"
+                    >
+                      Store
+                    </p>
+
+                    {/* <label className="h-12 text-grey-darkest">
                       <input
                         type="checkbox"
                         className="checkbox"
@@ -209,22 +229,25 @@ const overlay = props => {
                         }}
                       />
                       Store
-                    </label>
+                    </label> */}
                   </div>
                 </div>
               </div>
 
-              <div className="border-b-4 border-grey-lightest pb-6">
+              <div className="border-b-4 border-grey-lightest pb-3">
                 <div className="p-2">
+                  <p className="w-full opacity-50 text-sm uppercase font-bold bg-grey-light p-1">
+                    Step 2:
+                  </p>
                   <h3 className="text-grey-dark font-normal sm:text-sm p-2 uppercase xs:text-sm xs:p-0 xs:mb-2 text-xs">
                     Insert your email to receive your Grow Card:
                   </h3>
                 </div>
-                <div className="inline-flex px-10 w-full sm:p-0 sm:w-full md:w-full xs:w-full px-12 sm:px-0 xs:px-0 xs:mb-1">
+                <div className="inline-flex w-full sm:p-0 sm:w-full md:w-full xs:w-full px-12 sm:px-4 xs:px-4 xs:mb-1">
                   <input
                     required
-                    className="h-10 w-full p-2 sm:w-full md:w-full border-light-grey p-2 xs:w-full shadow"
-                    placeholder="Enter your email..."
+                    className="h-10 w-full p-2 sm:w-full md:w-full text-sm text-center border-light-grey p-2 xs:w-full shadow-md"
+                    placeholder="Email Address..."
                     type="email"
                     aria-label="Enter in your email"
                     // defaultValue={props.searched ? props.number : ""}
@@ -240,16 +263,19 @@ const overlay = props => {
                 </div>
               </div>
 
-              <div className="border-b-4 border-grey-lightest pb-6">
+              <div className="pb-3">
                 <div className="p-2 sm:p-0 xs:p-0">
+                  <p className="w-full opacity-50 text-sm uppercase font-bold bg-grey-light p-1">
+                    Step 3:
+                  </p>
                   <h3 className="text-grey-dark font-normal sm:text-sm xs:text-sm p-2 uppercase text-xs ">
                     Enter your STT Number:
                   </h3>
                 </div>
-                <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-0 xs:px-0 md:w-full">
+                <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-4 xs:px-4 md:w-full">
                   <input
-                    className="h-10 xs:w-full sm:w-full md:w-full w-full border-light-grey shadow p-2"
-                    placeholder="Insert here your 7 digits code..."
+                    className="h-10 xs:w-full sm:w-full text-sm text-center md:w-full w-full border-light-grey shadow-md p-2"
+                    placeholder="STT Number (7 digits)...."
                     type="number"
                     pattern="[0-9]{7}"
                     required="required"
@@ -283,7 +309,7 @@ const overlay = props => {
                   />
                 </div>
               </div>
-              <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-0 xs:px-0 mt-6">
+              <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-4 xs:px-4 mt-2">
                 <button
                   className="h-10 slow bg-yellow-dark text-grey text-md uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0 font-bold hover:bg-grey hover:text-white sm:w-full md:w-full xs:w-full w-full"
                   type="submit"

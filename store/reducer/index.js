@@ -26,13 +26,16 @@ const initialState = {
   strain: null,
   videoMuted: true,
   company: null,
-  companySttWebsiteList: null
+  companySttWebsiteList: null,
+  mediaSize: "xl"
 };
 
 const indexReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TRACK_NUMBER:
       return updateObject(state, { number: action.number });
+    case actionTypes.SET_MEDIA_SIZE:
+      return updateObject(state, { mediaSize: action.input });
     case actionTypes.SET_ERROR:
       return updateObject(state, { error: action.error });
     case actionTypes.GET_COMPANY_REF_STT_LIST:

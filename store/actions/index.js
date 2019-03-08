@@ -40,7 +40,8 @@ const actionTypes = {
   MUTE_VIDEO: "MUTE_VIDEO",
   CHECK_TESTER_ENTRY: "CREATE_NEW_TESTER_ENTRY",
   GET_COMPANY: "GET_COMPANY",
-  GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST"
+  GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST",
+  SET_MEDIA_SIZE: "SET_MEDIA_SIZE"
 };
 
 const actions = {
@@ -48,6 +49,12 @@ const actions = {
     return {
       type: actionTypes.TRACK_NUMBER,
       number: number
+    };
+  },
+  setMediaSize: input => {
+    return {
+      type: actionTypes.SET_MEDIA_SIZE,
+      input: input.mediaSize
     };
   },
   search: value => {

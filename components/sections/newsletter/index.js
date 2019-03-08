@@ -5,7 +5,7 @@ const Newsletter = props => {
         <h2 className="uppercase text-center p-4 md:text-xxl sm:text-lg xs:text-sm text-xxxl">
           Subscribe to our Newsletter
         </h2>
-        <p className="text-center">
+        <p className="text-center sm:w-4/5 sm:mx-auto xs:w-4/5 xs:mx-auto">
           Subscribe to get all the latest news, exclusive offers and get a
           chance to win prizes.
         </p>

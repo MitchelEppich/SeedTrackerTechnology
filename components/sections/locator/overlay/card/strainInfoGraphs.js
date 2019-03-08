@@ -2,7 +2,7 @@ import PieChart from "react-minimal-pie-chart";
 
 const StrainInfoGraphs = props => {
   return (
-    <div style={{ width: "120px" }}>
+    <div style={{ width: "100px" }}>
       <PieChart
         data={[
           {

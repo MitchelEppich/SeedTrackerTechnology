@@ -41,6 +41,7 @@ const mapDispatchToProps = dispatch => {
     trackNumber: val => {
       dispatch(actions.trackNumber(val));
     },
+    setMediaSize: input => dispatch(actions.setMediaSize(input)),
     search: val => {
       dispatch(actions.search(val));
     },
