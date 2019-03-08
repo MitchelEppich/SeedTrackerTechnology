@@ -72,7 +72,7 @@ const card = props => {
                 props.setInfoTab(0);
               }}
             >
-              Producer
+              Origin
             </div>
             <div
               className="inline-flex p-2 text-center uppercase hover:bg-yellow hover:text-black"
@@ -188,7 +188,7 @@ const card = props => {
             {props.currentInformation == 0 ? (
               <span className="w-2/3 text-navy-blue p-2 sm:text-lg text-center">
                 <h5 className="text-navy-blue sm:text-lg text-center">
-                  Producer:
+                  Origin:
                 </h5>
                 <h3 className="my-2 text-yellow bg-grey sm:text-lg text-center uppercase p-1  animate-text">
                   {" "}
@@ -486,7 +486,7 @@ const card = props => {
           {props.currentInformation == 0 ? (
             <div className="w-full p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
-                Producer:
+                Origin:
               </h5>
               <h3 className="text-grey text-2xl uppercase p-1 sm:text-lg my-1 text-center animate-text">
                 {marker.name}

@@ -211,14 +211,18 @@ const actions = {
       };
 
       return makePromise(execute(link, operation)).then(data => {
-        let strain = inferStrainData(data.data.strain);
+        let strain = inferStrainData(data.data.strain, {
+          excludeGenetic: true
+        });
 
         const operation = {
           query: mutation.getCoordinates,
-          variables: { country: strain.aCountry[0] }
+          variables: { country: strain.aCountry }
         };
         return makePromise(execute(link, operation)).then(data => {
+          console.log(data);
           let loc = data.data.getCoordinates;
+          console.log(loc);
 
           // Set germination percents
           let rand = gen.create(input.seed);
@@ -322,16 +326,16 @@ const actions = {
           let operation = {
             query: mutation.getCoordinates,
             variables: {
-              postalcode: info.ShipZipCode,
-              street: info.ShipAddress,
-              city: info.ShipCity,
-              country: info.ShipCountry,
-              state: info.ShipState
+              country: [info.ShipCountry],
+              state: [info.ShipState],
+              isCustomer: true
             }
           };
 
           return makePromise(execute(link, operation)).then(data => {
-            let coords = data.data.getCoordinates;
+            let coordinates = data.data.getCoordinates;
+            if (coordinates.coords == null || coordinates.coords.length == 0)
+              coordinates = { coords: [{ lon: 0, lat: 0 }] };
 
             info = {
               sttNumber: input.number,
@@ -339,7 +343,7 @@ const actions = {
               sotiId: info.productname.slice(0, 3),
               website: input.websites[input.number[0]],
               dispatchAt: moment(info.DispatchDate).format("DD/MM/YYYY"),
-              ...coords
+              ...coordinates.coords[0]
             };
 
             link = new HttpLink({ uri, fetch: fetch });
@@ -349,9 +353,20 @@ const actions = {
               variables: { ...input, ...info }
             };
 
+            console.log(input, info);
+
             return makePromise(execute(link, operation))
               .then(data => {
                 let _info = data.data.createEntry;
+                if (_info == null)
+                  dispatch(
+                    actions.setError(
+                      "Information Not Found",
+                      input.email,
+                      input.number,
+                      input.context
+                    )
+                  );
 
                 dispatch({
                   type: actionTypes.RECORD_ENTRY,
@@ -478,24 +493,14 @@ const mutation = {
     }
   `,
   getCoordinates: gql`
-    mutation(
-      $postalcode: String
-      $street: String
-      $city: String
-      $country: String
-      $state: String
-    ) {
+    mutation($country: [String], $state: [String], $isCustomer: Boolean) {
       getCoordinates(
-        input: {
-          postalcode: $postalcode
-          street: $street
-          city: $city
-          country: $country
-          state: $state
-        }
+        input: { country: $country, state: $state, isCustomer: $isCustomer }
       ) {
-        lon
-        lat
+        coords {
+          lon
+          lat
+        }
       }
     }
   `,
@@ -505,8 +510,8 @@ const mutation = {
       $number: Int!
       $context: Int!
       $sotiId: String!
-      $lat: String!
-      $lon: String!
+      $lat: Float!
+      $lon: Float!
       $dispatchAt: String!
       $country: String!
       $website: String!

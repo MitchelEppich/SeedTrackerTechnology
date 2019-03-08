@@ -48,8 +48,8 @@ type Entry {
   sttId: String,
   sotiId: String,
   website: String
-  lon: String, 
-  lat: String,
+  lon: Float, 
+  lat: Float,
   dispatchAt: String
   country: String
   seed:String
@@ -59,8 +59,8 @@ input EntryInput {
   email: String
   number: Int
   context: Int,
-  lon: String,
-  lat: String,
+  lon: Float,
+  lat: Float,
   sotiId: String,
   sttId: String
   website: String
@@ -69,17 +69,19 @@ input EntryInput {
   seed: String
 }
 
+type Coord {
+  lon: Float
+  lat: Float
+}
+
 type Coordinates {
-  lon: String,
-  lat: String
+  coords: [Coord]
 }
 
 input CoordinatesInput {
-  street: String,
-  city: String,
-  state: String,
-  country: String,
-  postalcode: String
+  state: [String]
+  country: [String]
+  isCustomer: Boolean
 }
 
 type Strain {

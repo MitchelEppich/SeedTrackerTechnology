@@ -6,44 +6,29 @@ const line = ({
   coordsArray,
   ...props
 }) => {
-  if (coordsArray.length < 2) {
+  let _coordsArray = [...coordsArray];
+  if (_coordsArray.length < 2) {
     return null;
   }
 
-  let pixel = latLngToPixel(coordsArray[0]);
-  let path = "";
-  for (let i = 1; i < coordsArray.length; i++) {
-    let pixel2 = latLngToPixel(coordsArray[i]);
-    if (i == 1) {
-      path = path + `M${pixel[0]},${pixel[1]}`;
-    } else if (i == coordsArray.length) {
-      path = path + `Z${pixel[0]},${pixel[1]}`;
-    } else {
-      path = path + `L${pixel[0]},${pixel[1]}`;
-    }
-    pixel = pixel2;
-  }
-  // let adjust = (coordsArray[0][0]) + (coordsArray[1][0]) + (coordsArray[2][0]) * 300;
-  let adjust = zoom == 4 ? 2900 : 500 + 2100 * Math.pow(2, zoom - 4);
+  let point;
+  let path;
 
-  //TRYING TO FIND THE TOTAL LENGHT
-  // console.log("TOTAL LENGHT: ", ((coordsArray[0][0]) + (coordsArray[1][0]) + (coordsArray[2][0]) ), ((coordsArray[0][0]) + (coordsArray[1][1]) + (coordsArray[2][1]) ), "FIRST PART", coordsArray[0][0], "SECOND PART", coordsArray[1][0], "LAST PART", coordsArray[2][0]  )
+  while (_coordsArray.length != 0) {
+    point = latLngToPixel(_coordsArray.shift());
+
+    // Start of path
+    if (path == null)
+      // Move to start
+      path = `M${point[0]} ${point[1]}`;
+    else path = path + `L${point[0]} ${point[1]}`; // Add line point
+  }
+
+  let adjust = zoom == 4 ? 2900 : 500 + 2100 * Math.pow(2, zoom - 4);
 
   let pathObj = (
     <g>
       {/* The path */}
-      <path
-        fill="transparent"
-        className="path"
-        d={path}
-        style={{
-          animation: `dash ${20}s linear forwards`,
-          strokeDasharray: adjust,
-          strokeDashoffset: adjust,
-          stroke: "rgba(0, 0, 0, 0)"
-        }}
-      />
-
       <path
         fill="transparent"
         className="marker"
@@ -54,10 +39,8 @@ const line = ({
           strokeDashoffset: adjust,
           stroke: "rgba(181, 181, 181, 0.76)",
           strokeWidth: "6px"
-          // motionPath: `path('${path}')`,
         }}
       />
-
       <path
         className="marker"
         fill="#fff200"
@@ -77,10 +60,15 @@ const line = ({
   );
 
   return (
-    <div>
-      {/* <svg width={width} height={height} style={{ top: 0, left: 0 }}>
+    <div className="pin-t absolute">
+      <svg
+        width={width}
+        height={height}
+        key={props.key}
+        style={{ top: 0, left: 0 }}
+      >
         {pathObj}
-      </svg> */}
+      </svg>
     </div>
   );
 };

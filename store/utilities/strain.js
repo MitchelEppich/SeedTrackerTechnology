@@ -1,4 +1,4 @@
-let inferStrainData = strain => {
+let inferStrainData = (strain, options = {}) => {
   let ret = {};
   let _countries = [
     "Canada",
@@ -55,15 +55,24 @@ let inferStrainData = strain => {
   }
 
   // Infer Genetics
-  if (genetic != null) ret.genetic = _genetics[genetic];
+  let _genetic;
+  if (genetic != null) {
+    _genetic = _genetics[genetic];
+    ret.genetic = _genetic;
+  }
 
   // Infer Names
   if (name != null)
     (() => {
       let _name = name;
       _name = _name.replace("Cannabis", "").replace("Seeds", "");
-      if (genetic != "Mix") _name = _name.replace(genetic, "");
-      else _name = _name.replace("Mix", "Mixed");
+
+      if (_genetic != null) {
+        if (_genetic != "Mix" && options.excludeGenetic)
+          _name = _name.replace(_genetic, "");
+        else _name = _name.replace("Mix", "Mixed");
+      }
+      console.log(genetic, _name);
       // if (genetic == "CBD") _name = _name.replace("CB", "");
       ret.name = _name.replace(/\s+/g, " ").trim();
     })();

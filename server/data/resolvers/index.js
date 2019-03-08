@@ -34,27 +34,29 @@ const resolvers = {
     ...StrainResolvers.Mutation,
     ...CompanyResolvers.Mutation,
     getCoordinates: async (_, { input }) => {
-      let coords = await new Promise((resolve, reject) => {
-        geocoder
-          .geocode({
-            // postalcode: input.postalcode,
-            // street: input.street,
-            // city: input.city,
-            state: input.state,
-            country: input.country
-          })
-          .then(res => {
-            resolve(
-              res.map(object => {
-                return {
-                  lon: object.longitude,
-                  lat: object.latitude
-                };
-              })[0]
-            );
-          });
-      });
-      return coords;
+      let _country = input.country;
+      let _state = input.state;
+      let _isCustomer = input.isCustomer;
+
+      console.log(input);
+
+      let coords = [];
+      let locs = _country == null ? [_state] : _country;
+      for (let loc of locs) {
+        if (loc == "Central America") loc = "Costa Rica";
+        let options = {};
+        if (!_isCustomer) {
+          if (_country == null) options.state = loc;
+          else options.country = loc;
+        } else {
+          options.state = _state[0];
+          options.country = _country[0];
+        }
+        let _coords = (await geocoder.geocode(options))[0];
+        if (_coords == null) _coords = { longitude: 0, latitude: 0 };
+        coords.push({ lon: _coords.longitude, lat: _coords.latitude });
+      }
+      return { coords };
     }
   }
 };

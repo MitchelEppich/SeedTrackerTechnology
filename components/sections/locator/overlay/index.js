@@ -93,7 +93,11 @@ const overlay = props => {
 
               if (entry == null) return;
               // Entry is not supported yet
-              if (!["4", "6"].includes(entry.number.toString()[0])) {
+              if (
+                !Object.keys(props.companySttWebsiteList).includes(
+                  entry.number.toString()[0]
+                )
+              ) {
                 props.setError(
                   "Sorry, this number is yet to be supported. . . try again later.",
                   props.email,
@@ -117,35 +121,23 @@ const overlay = props => {
 
               firstPoint();
 
-              console.log("Made it to this section", strain, entry);
-
-              let producerLocation = {
-                name: strain.country,
-                anchor: [parseFloat(strain.lat), parseFloat(strain.lon)],
-                type: "producer",
-                description: {
-                  facts: {
-                    effects: "",
-                    potency: "80%"
-                  },
-                  imageUrl:
-                    "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
+              let originLocation = (() => {
+                let arr = [];
+                let index = 0;
+                for (let loc of strain.coords) {
+                  arr.push({
+                    name: strain.aCountry[index],
+                    anchor: [loc.lat, loc.lon],
+                    type: "origin"
+                  });
+                  index++;
                 }
-              };
+                return arr;
+              })();
 
               if (entry.context == 2) {
                 // Tester code
-                props.setLocations([
-                  producerLocation,
-                  {
-                    name: "null",
-                    anchor: [null, null],
-                    description: {
-                      imageUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                    }
-                  }
-                ]);
+                props.setLocations([...originLocation]);
               } else {
                 // Get company
                 let company = await props.getCompany({
@@ -161,7 +153,6 @@ const overlay = props => {
                   ],
                   type: "company",
                   description: {
-                    imageUrl: company.image,
                     website: company.website,
                     social: (() => {
                       let obj = {};
@@ -175,70 +166,15 @@ const overlay = props => {
 
                 let customerLocation = {
                   name: "You",
-                  anchor: [parseFloat(entry.lat), parseFloat(entry.lon)],
-                  description: {
-                    imageUrl:
-                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                  }
+                  anchor: [parseFloat(entry.lat), parseFloat(entry.lon)]
                 };
 
                 props.setLocations([
-                  producerLocation,
+                  ...originLocation,
                   companyLocation,
-                  customerLocation,
-                  {
-                    name: "null",
-                    anchor: [null, null],
-                    description: {
-                      imageUrl:
-                        "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                    }
-                  }
+                  customerLocation
                 ]);
               }
-
-              console.log(company);
-
-              // let companyLocation = props.landmarks[company];
-              // if (
-              //   ["usa", "united states"].includes(
-              //     res.country.toLowerCase()
-              //   )
-              // )
-              //   companyLocation.anchor = companyLocation.usAnchor;
-
-              props.setLocations([
-                {
-                  name: data.origin,
-                  anchor: [parseFloat(data.lat), parseFloat(data.lon)],
-                  type: "producer",
-                  description: {
-                    facts: {
-                      effects: "",
-                      potency: "90%"
-                    },
-                    imageUrl:
-                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                  }
-                },
-                companyLocation,
-                {
-                  name: "You",
-                  anchor: [parseFloat(res.lat), parseFloat(res.lon)],
-                  description: {
-                    imageUrl:
-                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                  }
-                },
-                {
-                  name: "null",
-                  anchor: [null, null],
-                  description: {
-                    imageUrl:
-                      "https://upload.wikimedia.org/wikipedia/commons/5/59/Empty.png"
-                  }
-                }
-              ]);
             }}
           >
             <div className="w-full pb-4 xs:pb-1 bg-white">
