@@ -1,7 +1,7 @@
 const PercentageStrainGraphs = props => {
   return (
     <div>
-      <div className="w-full p-2 mt-4">
+      <div className="w-full p-2 mt-0">
         <div
           style={{
             width: "100%",
@@ -63,18 +63,18 @@ const PercentageStrainGraphs = props => {
           ) : null}
         </div>
       </div>
-      <div className="w-full px-4 inline-flex mt-6 justify-center">
+      <div className="w-full px-4 inline-flex mt-4 sm:mt-4 xs:mt-4 justify-center text-xs">
         <div className="w-1/3 inline-flex justify-center flex">
           <div style={{ background: "#566d86", width: "18px", height: "18px" }}>
             {""}
           </div>
-          <p className="ml-1">Sativa</p>
+          <p className="ml-1 items-center flex">Sativa</p>
         </div>
         <div className="w-1/3 inline-flex justify-center flex">
           <div style={{ background: "#65b3ac", width: "18px", height: "18px" }}>
             {""}
           </div>
-          <p className="ml-1">Indica</p>
+          <p className="ml-1 items-center flex">Indica</p>
         </div>
         {props.strain.ruderalis != 0 && props.strain.ruderalis != null ? (
           <div className="w-1/3 inline-flex justify-center flex">
@@ -83,7 +83,7 @@ const PercentageStrainGraphs = props => {
             >
               {""}
             </div>
-            <p className="ml-1">Ruderalis</p>
+            <p className="ml-1 items-center flex">Ruderalis</p>
           </div>
         ) : null}
       </div>

@@ -42,7 +42,8 @@ const actionTypes = {
   GET_COMPANY: "GET_COMPANY",
   GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST",
   SUBSCRIBE_TO_NEWSLETTER: "SUBSCRIBE_TO_NEWSLETTER",
-  SET_USER_INPUT: "SET_USER_INPUT"
+  SET_USER_INPUT: "SET_USER_INPUT",
+  SET_MEDIA_SIZE: "SET_MEDIA_SIZE"
 };
 
 const actions = {
@@ -50,6 +51,12 @@ const actions = {
     return {
       type: actionTypes.TRACK_NUMBER,
       number: number
+    };
+  },
+  setMediaSize: input => {
+    return {
+      type: actionTypes.SET_MEDIA_SIZE,
+      input: input.mediaSize
     };
   },
   search: value => {

@@ -1,6 +1,8 @@
 import React from "react";
 
 const handout = props => {
+  // console.log(props.strain);
+
   let typeStrain = () => {
     if (props.strain.genetic == 0) {
       return "Feminized";
