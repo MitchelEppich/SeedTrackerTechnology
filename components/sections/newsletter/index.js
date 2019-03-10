@@ -1,6 +1,5 @@
 const Newsletter = props => {
-  let userInput = props.userInput;
-  console.log(props);
+  let _userInput = props.misc.userInput;
   return (
     <div className="bg-grey-light w-full pb-10 pt-6">
       <div className="w-full mb-4">
@@ -14,26 +13,26 @@ const Newsletter = props => {
       </div>
       <div className="pb-4 w-3/5 mx-auto mt-2">
         <div className="w-full inline-flex mt-6 text-center flex justify-center">
-          {true ? (
+          {!props.misc.subscribed ? (
             <form
               onSubmit={event => {
                 event.preventDefault();
-                // props.subscribeToNewsletter({ email: formData.get("email") });
-                // props.setEmail({ email: null });
+                props.subscribeToNewsletter({
+                  email: _userInput.emailNewsletter
+                });
               }}
             >
               <input
                 type="email"
                 name="email"
-                id="emailNewsletter"
                 aria-label="email"
                 required="required"
                 className="w-400 mr-2 p-3 shadow rounded"
-                value={userInput.emailNewsLetter}
+                id="emailNewsletter"
                 placeholder="Email address"
+                value={_userInput.emailNewsLetter || ""}
                 onChange={e => {
-                  console.log("input", e.target.value);
-                  let userInput = props.userInput;
+                  let userInput = _userInput;
                   let _target = e.target;
                   let key = _target.id;
                   let value = _target.value;
@@ -60,9 +59,7 @@ const Newsletter = props => {
               </button>
             </form>
           ) : (
-            <p className="text-2xl font-bold text-red-light mt-8">
-              Thank you for subscribing!
-            </p>
+            <p className="text-lg font-thin mt-8">Thank you for subscribing!</p>
           )}
         </div>
       </div>

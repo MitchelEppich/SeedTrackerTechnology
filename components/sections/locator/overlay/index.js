@@ -12,12 +12,13 @@ import {
 library.add(faTimes, faAngleLeft, faAngleRight);
 
 const overlay = props => {
-  let searched = null;
+  let _userInput = props.misc.userInput;
+
   let searchSection = null;
 
   let firstPoint = () => {
     setTimeout(function() {
-      props.toggleInfoSection(props.currentInformation + 1);
+      props.toggleInfoSection(props.misc.currentInformation + 1);
 
       // Create growcard
       let input = document.querySelector("#growCard");
@@ -41,7 +42,7 @@ const overlay = props => {
   //   setTimeout(
   //     function() {
   //    props.toggleInfoSection(
-  //     props.currentInformation + 2
+  //     props.misc.currentInformation + 2
   //     )}, 4000);
   // }
 
@@ -49,13 +50,13 @@ const overlay = props => {
   //   setTimeout(
   //     function() {
   //    props.toggleInfoSection(
-  //     props.currentInformation + 3
+  //     props.misc.currentInformation + 3
   //     )}, 7000);
   // }
 
   return (
     <div className="total-center relative z-50">
-      {props.searched == false ? (
+      {props.misc.searched == false ? (
         <div
           style={{ position: "absolute", zIndex: "9" }}
           className="ml-0 mt-64 w-450 sm:w-400 xs:w-250 main-message shadow-lg sm:m-0 xs:m-0 text-center"
@@ -85,22 +86,29 @@ const overlay = props => {
               e.preventDefault();
               // Get Entry
               let entry = await props.checkEntry({
-                email: props.email,
-                context: props.context,
-                number: searched.value,
-                websites: props.companySttWebsiteList
+                email: props.misc.userInput.email,
+                context: props.misc.userInput.context,
+                number: props.misc.userInput.number,
+                websites: props.misc.companySttWebsiteList
               });
+
+              let $userInput = props.misc.userInput;
+              delete $userInput.email;
+              delete $userInput.context;
+              delete $userInput.number;
+
+              props.setUserInput({ userInput: $userInput });
 
               if (entry == null) return;
               // Entry is not supported yet
               if (
-                !Object.keys(props.companySttWebsiteList).includes(
+                !Object.keys(props.misc.companySttWebsiteList).includes(
                   entry.number.toString()[0]
                 )
               ) {
                 props.setError(
                   "Sorry, this number is yet to be supported. . . try again later.",
-                  props.email,
+                  props.misc.email,
                   entry.number,
                   entry.context
                 );
@@ -117,7 +125,7 @@ const overlay = props => {
                 seed: entry.seed
               });
 
-              props.search("true");
+              props.setSearched("true");
 
               firstPoint();
 
@@ -190,31 +198,46 @@ const overlay = props => {
                 <div className="block flex mt-2 w-full px-12 sm:px-4 xs:px-4 mx-auto text-center xs:h-6 justify-center text-base xs:text-sm">
                   <div className="uppercase mr-2 w-1/2">
                     <p
-                      onClick={() => {
-                        props.setContext(0);
+                      id="context"
+                      onClick={e => {
+                        let userInput = props.misc.userInput;
+                        let _target = e.target;
+                        let key = _target.id;
+                        let value = 0;
+                        props.setUserInput({
+                          key,
+                          value,
+                          userInput
+                        });
                       }}
-                      className="p-2 px-6 font-bold bg-white slow cursor-pointer hover:bg-yellow-dark shadow"
+                      className={`p-2 px-6 font-bold slow cursor-pointer shadow ${
+                        _userInput.context == 0
+                          ? "bg-yellow-dark"
+                          : "bg-white hover:bg-yellow-dark"
+                      }`}
                     >
                       Online
                     </p>
-                    {/* <label className="h-12 text-base text-grey-darkest">
-                      <input
-                        type="checkbox"
-                        className="checkbox"
-                        checked={props.context == 0}
-                        onChange={() => {
-                          props.setContext(0);
-                        }}
-                      />
-                      Online
-                    </label> */}
                   </div>
                   <div className="uppercase ml-2 w-1/2">
                     <p
-                      onClick={() => {
-                        props.setContext(1);
+                      id="context"
+                      onClick={e => {
+                        let userInput = props.misc.userInput;
+                        let _target = e.target;
+                        let key = _target.id;
+                        let value = 1;
+                        props.setUserInput({
+                          key,
+                          value,
+                          userInput
+                        });
                       }}
-                      className="p-2 px-6 font-bold bg-white slow cursor-pointer hover:bg-yellow-dark shadow"
+                      className={`p-2 px-6 font-bold slow cursor-pointer shadow ${
+                        _userInput.context == 1
+                          ? "bg-yellow-dark"
+                          : "bg-white hover:bg-yellow-dark"
+                      }`}
                     >
                       Store
                     </p>
@@ -223,7 +246,7 @@ const overlay = props => {
                       <input
                         type="checkbox"
                         className="checkbox"
-                        checked={props.context == 1}
+                        checked={props.misc.context == 1}
                         onChange={() => {
                           props.setContext(1);
                         }}
@@ -250,14 +273,19 @@ const overlay = props => {
                     placeholder="Email Address..."
                     type="email"
                     aria-label="Enter in your email"
-                    // defaultValue={props.searched ? props.number : ""}
                     id="email"
                     name="email"
+                    value={props.misc.userInput.email || ""}
                     onChange={e => {
-                      let input = e.target.value;
-                      if (input.length != 0) {
-                        props.setEmail(input);
-                      }
+                      let userInput = props.misc.userInput;
+                      let _target = e.target;
+                      let key = _target.id;
+                      let value = _target.value;
+                      props.setUserInput({
+                        key,
+                        value,
+                        userInput
+                      });
                     }}
                   />
                 </div>
@@ -281,30 +309,32 @@ const overlay = props => {
                     required="required"
                     maxLength={7}
                     aria-label="Track number"
-                    // defaultValue={props.searched ? props.number : ""}
-                    id="search"
-                    ref={search => {
-                      searched = search;
-                    }}
-                    name="search"
+                    id="number"
+                    name="number"
+                    value={props.misc.userInput.number || ""}
                     onChange={e => {
-                      let inp = e.target;
-                      inp.setCustomValidity("");
-                      let input = e.target.value;
+                      let userInput = props.misc.userInput;
+                      let _target = e.target;
+                      let key = _target.id;
+                      let value = _target.value;
 
-                      if (input.length < 7) {
-                        inp.setCustomValidity(
+                      _target.setCustomValidity("");
+
+                      if (value.length < 7) {
+                        _target.setCustomValidity(
                           "Forgot some numbers? Authentic STT numbers has 7 digits."
                         );
                       }
-                      if (input.length > 7) {
+                      if (value.length > 7) {
                         // inp.setCustomValidity("Extra numbers! Authentic STT numbers has 7 digits.")
-                        input = e.target.value = input.substring(0, 7);
+                        value = _target.value = value.substring(0, 7);
                       }
 
-                      if (input.length != 0) {
-                        props.trackNumber(input);
-                      }
+                      props.setUserInput({
+                        key,
+                        value,
+                        userInput
+                      });
                     }}
                   />
                 </div>

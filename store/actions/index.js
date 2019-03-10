@@ -22,16 +22,12 @@ const uri = "http://localhost:3000/graphql";
 const imports = {};
 
 const actionTypes = {
-  TRACK_NUMBER: "TRACK_NUMBER",
-  SEARCH: "SEARCH",
+  SET_SEARCHED: "SET_SEARCHED",
   TOGGLE_INFO_SECTION: "TOGGLE_INFO_SECTION",
-  TOGGLE_LANDMARKS: "TOGGLE_LANDMARKS",
   CLOSE_ALL: "CLOSE_ALL",
   SET_LOCATIONS: "SET_LOCATIONS",
   TOGGLE_COPYRIGHT: "TOGGLE_COPYRIGHT",
   TOGGLE_MENU: "TOGGLE_MENU",
-  SET_CONTEXT: "SET_CONTEXT",
-  SET_EMAIL: "SET_EMAIL",
   RECORD_ENTRY: "RECORD_ENTRY",
   CHECK_ENTRY: "CHECK_ENTRY",
   GET_STRAIN_DATA: "GET_STRAIN_DATA",
@@ -43,26 +39,27 @@ const actionTypes = {
   GET_COMPANY_REF_STT_LIST: "GET_COMPANY_REF_STT_LIST",
   SUBSCRIBE_TO_NEWSLETTER: "SUBSCRIBE_TO_NEWSLETTER",
   SET_USER_INPUT: "SET_USER_INPUT",
-  SET_MEDIA_SIZE: "SET_MEDIA_SIZE"
+  SET_MEDIA_SIZE: "SET_MEDIA_SIZE",
+  SET_FOCUS_LOCATION: "SET_FOCUS_LOCATION"
 };
 
 const actions = {
-  trackNumber: number => {
-    return {
-      type: actionTypes.TRACK_NUMBER,
-      number: number
-    };
-  },
   setMediaSize: input => {
     return {
       type: actionTypes.SET_MEDIA_SIZE,
       input: input.mediaSize
     };
   },
-  search: value => {
+  setFocusLocation: input => {
     return {
-      type: actionTypes.SEARCH,
-      value: value
+      type: actionTypes.SET_FOCUS_LOCATION,
+      input: input.index
+    };
+  },
+  setSearched: input => {
+    return {
+      type: actionTypes.SET_SEARCHED,
+      value: input
     };
   },
   toggleMuteVideo: input => {
@@ -71,35 +68,21 @@ const actions = {
       input: input.value
     };
   },
-  setContext: input => {
-    return { type: actionTypes.SET_CONTEXT, input: input };
-  },
-  setEmail: input => {
-    return { type: actionTypes.SET_EMAIL, input: input };
-  },
   setUserInput: input => {
-    console.log("actions", input);
     let _userInput = input.userInput;
     let _key = input.key;
     let _value = input.value;
-    if (_key != null) _userInput[_key] = _value;
+    let _overwrite = input.overwrite;
+    let _clear = input.clear;
 
-    if (input.clear) _userInput = {};
+    if (!_overwrite) {
+      if (_key != null) _userInput[_key] = _value;
+      if (_clear) _userInput = {};
+    }
+
     return {
       type: actionTypes.SET_USER_INPUT,
       input: _userInput
-    };
-  },
-  toggleInfoSection: index => {
-    return {
-      type: actionTypes.TOGGLE_INFO_SECTION,
-      index: index
-    };
-  },
-  toggleLandmarks: index => {
-    return {
-      type: actionTypes.TOGGLE_LANDMARKS,
-      index: index
     };
   },
   toggleCopyright: () => {
@@ -304,6 +287,7 @@ const actions = {
   },
   subscribeToNewsletter: input => {
     return dispatch => {
+      console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: mutation.subscribeToNewsletter,

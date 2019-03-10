@@ -9,17 +9,27 @@ library.add(faBars);
 const header = props => {
   let styleDropMenu = {
     transform:
-      props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
+      props.misc.showMenuCollapsed == true
+        ? "translateX(0)"
+        : "translateX(-100px)",
     WebkitTransform:
-      props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
+      props.misc.showMenuCollapsed == true
+        ? "translateX(0)"
+        : "translateX(-100px)",
     OTransform:
-      props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
+      props.misc.showMenuCollapsed == true
+        ? "translateX(0)"
+        : "translateX(-100px)",
     MozTransform:
-      props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
+      props.misc.showMenuCollapsed == true
+        ? "translateX(0)"
+        : "translateX(-100px)",
     MsTransform:
-      props.showMenuCollapsed == true ? "translateX(0)" : "translateX(-100px)",
+      props.misc.showMenuCollapsed == true
+        ? "translateX(0)"
+        : "translateX(-100px)",
     transition:
-      props.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease"
+      props.misc.showMenuCollapsed == true ? "all 0.5s ease" : "all 0.5s ease"
   };
 
   return (
@@ -74,7 +84,7 @@ const header = props => {
           />
         </span>
       </div>
-      {props.showMenuCollapsed == true ? (
+      {props.misc.showMenuCollapsed == true ? (
         <div
           style={styleDropMenu}
           className="absolute pin-t mt-20 bg-grey-darkest xxl:hidden xl:hidden lg:hidden md:hidden w-full shadow-md"

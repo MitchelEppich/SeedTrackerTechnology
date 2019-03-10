@@ -23,8 +23,6 @@ const resolvers = {
         ...input
       });
 
-      console.log(company);
-
       company.save();
 
       return company.toObject();

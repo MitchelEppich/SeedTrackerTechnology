@@ -23,7 +23,7 @@ class Index extends Component {
 
   render() {
     return this.props.supportedBrowser ? (
-      <Layout>
+      <Layout {...this.props}>
         <Handout {...this.props} />
         <Main {...this.props} />
         <About {...this.props} />
@@ -38,64 +38,25 @@ class Index extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    trackNumber: val => {
-      dispatch(actions.trackNumber(val));
-    },
     setMediaSize: input => dispatch(actions.setMediaSize(input)),
-    search: val => {
-      dispatch(actions.search(val));
-    },
-    toggleInfoSection: index => {
-      dispatch(actions.toggleInfoSection(index));
-    },
-    toggleLandmarks: index => {
-      dispatch(actions.toggleLandmarks(index));
-    },
-    toggleCopyright: index => {
-      dispatch(actions.toggleCopyright(index));
-    },
-    toggleMenu: index => {
-      dispatch(actions.toggleMenu(index));
-    },
-    closeAllHandler: input => {
-      dispatch(actions.closeAll(input));
-    },
-    setLocations: input => {
-      dispatch(actions.setLocations(input));
-    },
-    setContext: input => {
-      dispatch(actions.setContext(input));
-    },
-    setError: (error, email, number, context) => {
-      dispatch(actions.setError(error, email, number, context));
-    },
-    setEmail: input => {
-      dispatch(actions.setEmail(input));
-    },
-    setUserInput: input => {
-      dispatch(actions.setUserInput(input));
-    },
-    checkEntry: input => {
-      return dispatch(actions.checkEntry(input));
-    },
-    setInfoTab: input => {
-      dispatch(actions.setInfoTab(input));
-    },
-    getStrainData: input => {
-      return dispatch(actions.getStrainData(input));
-    },
-    getCompany: input => {
-      return dispatch(actions.getCompany(input));
-    },
-    togglePath: value => {
-      return dispatch(actions.togglePath(value));
-    },
-    getCompanyRefSttList: () => {
-      return dispatch(actions.getCompanyRefSttList());
-    },
-    toggleMuteVideo: input => {
-      return dispatch(actions.toggleMuteVideo(input));
-    }
+    setSearched: input => dispatch(actions.setSearched(input)),
+    setFocusLocation: input => dispatch(actions.setFocusLocation(input)),
+    toggleCopyright: index => dispatch(actions.toggleCopyright(index)),
+    toggleMenu: index => dispatch(actions.toggleMenu(index)),
+    closeAllHandler: input => dispatch(actions.closeAll(input)),
+    setLocations: input => dispatch(actions.setLocations(input)),
+    setError: (error, email, number, context) =>
+      dispatch(actions.setError(error, email, number, context)),
+    setUserInput: input => dispatch(actions.setUserInput(input)),
+    checkEntry: input => dispatch(actions.checkEntry(input)),
+    setInfoTab: input => dispatch(actions.setInfoTab(input)),
+    getStrainData: input => dispatch(actions.getStrainData(input)),
+    getCompany: input => dispatch(actions.getCompany(input)),
+    subscribeToNewsletter: input =>
+      dispatch(actions.subscribeToNewsletter(input)),
+    togglePath: value => dispatch(actions.togglePath(value)),
+    getCompanyRefSttList: () => dispatch(actions.getCompanyRefSttList()),
+    toggleMuteVideo: input => dispatch(actions.toggleMuteVideo(input))
   };
 };
 

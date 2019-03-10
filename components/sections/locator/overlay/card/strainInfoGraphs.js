@@ -7,18 +7,18 @@ const StrainInfoGraphs = props => {
         data={[
           {
             title: "THC",
-            value: props.strain.pThc[0],
+            value: props.misc.strain.pThc[0],
             color: "#546e79"
           },
           {
             title: "CBN",
-            value: props.strain.pCbn[0] * 5,
+            value: props.misc.strain.pCbn[0] * 5,
             color: "#d0d0d0"
           },
 
           {
             title: "CBD",
-            value: props.strain.pCbd[0] * 5,
+            value: props.misc.strain.pCbd[0] * 5,
             color: "#33434e"
           }
         ]}

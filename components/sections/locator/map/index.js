@@ -11,50 +11,57 @@ import {
 import PigeonMap from "../../../extensions/pigeon/map";
 import PigeonLine from "../../../extensions/pigeon/line";
 import PigeonOverlay from "pigeon-overlay";
-import Card from "../overlay/card/index";
+import Card from "../overlay/card";
 
 library.add(faPlus, faMinus, faInfo);
 
 const map = props => {
-  let markers = props.locations;
+  let markers = props.misc.locations;
 
   let showMarkers = () => {
     if (markers == null) return <div />;
     let index = 0;
     let arr = [];
     for (let marker of markers) {
+      let $index = index;
       if (marker.name == null) continue;
-      let _key = marker.type + index;
+      let _key = marker.type + $index;
 
       arr.push(
-        <PigeonOverlay key={_key} anchor={marker.anchor} payload={_key}>
+        <PigeonOverlay
+          key={_key}
+          anchor={marker.anchor}
+          payload={_key}
+          className="absolute z-20"
+        >
           <div
-            className="landmark-points"
+            className="landmark-points absolute z-10"
             onClick={() => {
-              props.toggleInfoSection(_key);
+              console.log($index, typeof $index);
+              props.setFocusLocation({
+                index: props.misc.focusLocation == $index ? null : $index
+              });
             }}
           />
-          <div className="lds-ripple">
-            <div />
-            <div />
-            <div />
-            <div />
-            <div />
-          </div>
+          {props.misc.focusLocation == null ||
+          props.misc.focusLocation == $index ? (
+            <div className="lds-ripple">
+              <div />
+              <div />
+              <div />
+              <div />
+              <div />
+            </div>
+          ) : null}
           <div className="info-landmark">
             <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
               {marker.name}
             </h4>
-            <div className="mx-auto arrow-down" />
+            <div
+              className="mx-auto arrow-down absolute z-20"
+              style={{ marginLeft: "89px" }}
+            />
           </div>
-          {/* {props.currentLocation == index ? (
-              <div className="info-landmark">
-                <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
-                  {marker.name}
-                </h4>
-                <div className="mx-auto arrow-down" />
-              </div>
-            ) : null} */}
         </PigeonOverlay>
       );
       index++;
@@ -63,7 +70,9 @@ const map = props => {
   };
 
   let showMarkerLines = () => {
-    if (markers == null || props.clientInfo.context == 2) return <div />;
+    let speed = 3;
+
+    if (markers == null || props.misc.clientInfo.context == 2) return <div />;
     let _orgins = (() => {
       let count = 0;
       for (let mark of markers) {
@@ -78,13 +87,23 @@ const map = props => {
       let _arr = [];
       _arr.push(markers[i].anchor);
       _arr.push(markers.slice(-2)[0].anchor);
-      arr.push(<PigeonLine coordsArray={_arr} key={i} delay={i} {...props} />);
+      arr.push(
+        <PigeonLine
+          coordsArray={_arr}
+          key={i}
+          delay={i}
+          speed={speed}
+          {...props}
+        />
+      );
     }
     arr.push(
       <PigeonLine
+        className="absolute"
         coordsArray={[markers.slice(-2)[0].anchor, markers.slice(-2)[1].anchor]}
         key={"Last"}
-        delay={4 + i - 1}
+        speed={speed}
+        delay={speed + i - 1}
         {...props}
       />
     );
@@ -105,20 +124,23 @@ const map = props => {
           Track now your Seed
         </h2>
       </div>
-      {props.error != null ? (
+      {props.misc.error != null ? (
         <div className="bg-red">
-          <p className="text-center text-white font-bold p-2">{props.error}</p>
+          <p className="text-center text-white font-bold p-2">
+            {props.misc.error}
+          </p>
         </div>
       ) : null}
-      {props.searched ? (
+      {props.misc.searched ? (
         <div className="inline-flex mt-4 absolute">
           <button
             style={{ transition: "all 0.5s ease" }}
             className="h-10 bg-grey-darkest inline-flex z-40 ml-4 py-2 text-white text-lg px-6 font-bold hover:bg-grey-light hover:text-grey-darkest uppercase"
             onClick={() => {
               props.closeAllHandler();
-              props.search(false);
+              props.setSearched(false);
               props.setLocations(null);
+              props.setFocusLocation({ index: null });
             }}
           >
             Search Again
@@ -132,11 +154,9 @@ const map = props => {
       <PigeonMap
         animateMaxScreens={3}
         center={
-          props.locations == null
+          props.misc.focusLocation == null
             ? [0, 0]
-            : props.currentInformation != -1
-            ? props.locations[props.currentInformation].anchor
-            : [38.927, -11.877]
+            : props.misc.locations[props.misc.focusLocation].anchor
         }
         zoom={3}
         maxZoom={3}
@@ -149,12 +169,12 @@ const map = props => {
       </PigeonMap>
 
       {/* SHOW INFO SECTION */}
-      {props.currentInformation != -1 ? <Card {...props} /> : null}
+      {props.misc.focusLocation != null ? <Card {...props} /> : null}
 
       {/* COPYRIGHT ICON */}
       <div className="absolute inline-flex pin-b pin-r mb-6 mr-4">
         <div className="inline-flex h-12">
-          {props.showCopyright == true ? (
+          {props.misc.showCopyright == true ? (
             <div className="inline-flex">
               <div className="bg-black rounded w-200 h-12">
                 <h4 className="text-center p-2 py-4 mr-1 text-sm text-white">
@@ -178,27 +198,29 @@ const map = props => {
 
       {/* BOTTOM BUTTONS */}
       <div className="absolute pin-b pin-l ml-2">
-        {props.locations
-          ? Object.keys(props.locations)
+        {props.misc.locations
+          ? Object.keys(props.misc.locations)
               .filter(key => {
-                if (key >= props.locations.length - 1) return false;
+                if (key >= props.misc.locations.length) return false;
                 return true;
               })
-              .map(key => {
+              .map(index => {
                 // let step = parseInt(key) + 1;
                 return (
                   <button
                     style={{ transition: "all 0.5s ease" }}
                     className="bg-grey-darkest m-2 p-2 text-white hover:bg-grey-light hover:text-grey-darkest active:bg-green uppercase active:text-white "
-                    key={key}
+                    key={index}
                     onClick={() => {
-                      props.toggleInfoSection(
-                        props.currentInformation == key ? -1 : key
-                      );
+                      let $index = parseInt(index);
+                      props.setFocusLocation({
+                        index:
+                          props.misc.focusLocation == $index ? null : $index
+                      });
                     }}
                   >
                     {/* Step {step} - */}
-                    {props.locations[key].name}
+                    {props.misc.locations[index].name}
                   </button>
                 );
               })

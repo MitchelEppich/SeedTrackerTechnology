@@ -1,33 +1,34 @@
 import React from "react";
 
 const handout = props => {
-  // console.log(props.strain);
+  // console.log(props.misc.strain);
 
   let typeStrain = () => {
-    if (props.strain.genetic == 0) {
+    if (props.misc.strain.genetic == 0) {
       return "Feminized";
     }
-    if (props.strain.genetic == 1) {
+    if (props.misc.strain.genetic == 1) {
       return "Autoflower Feminized";
     }
-    if (props.strain.genetic == 2) {
+    if (props.misc.strain.genetic == 2) {
       return "Regular";
     }
-    if (props.strain.genetic == 3) {
+    if (props.misc.strain.genetic == 3) {
       return "Medical";
     }
   };
 
   let averageYield = () => {
-    if (props.strain != null) {
-      let avgYield = (props.strain.i_yield + props.strain.o_yield) / 2;
+    if (props.misc.strain != null) {
+      let avgYield =
+        (props.misc.strain.i_yield + props.misc.strain.o_yield) / 2;
       return avgYield;
     } else {
       null;
     }
   };
 
-  return props.strain ? (
+  return props.misc.strain ? (
     <div
       hidden
       id="growCard"
@@ -92,49 +93,49 @@ const handout = props => {
           </span>
           <span className="w-2/3 p-2 pl-6">
             <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">
-              {props.strain.name}
+              {props.misc.strain.name}
             </h4>
             <p className="pl-2">
               <span className="font-bold">Genetic: </span>
-              {props.strain.genetic}
+              {props.misc.strain.genetic}
             </p>
             <p className="pl-2">
               <span className="font-bold">Origin: </span>
-              {props.strain.country}
+              {props.misc.strain.country}
             </p>
             <p className="pl-2">
               <span className="font-bold">THC: </span>
-              {props.strain.pThc[0]}%;{" "}
-              {props.strain.pCbn[0] != null ? (
-                <span>CBN {props.strain.pCbn[0]}%;</span>
+              {props.misc.strain.pThc[0]}%;{" "}
+              {props.misc.strain.pCbn[0] != null ? (
+                <span>CBN {props.misc.strain.pCbn[0]}%;</span>
               ) : null}{" "}
-              CBD {props.strain.pCbd[0]}%
+              CBD {props.misc.strain.pCbd[0]}%
             </p>
             <p className="pl-2">
               <span className="font-bold">Indica: </span>
-              {props.strain.indica}%
+              {props.misc.strain.indica}%
             </p>
             <p className="pl-2">
               <span className="font-bold">Sativa: </span>
-              {props.strain.sativa}%
+              {props.misc.strain.sativa}%
             </p>
-            {props.strain.ruderalis != null ? (
+            {props.misc.strain.ruderalis != null ? (
               <p className="pl-2">
                 <span className="font-bold">Ruderalis: </span>
-                {props.strain.ruderalis}%
+                {props.misc.strain.ruderalis}%
               </p>
             ) : null}
             <p className="pl-2">
               <span className="font-bold">Average Yield: </span>
-              {props.strain.avgYield}g
+              {props.misc.strain.avgYield}g
             </p>
             <p className="pl-2">
               <span className="font-bold">Average Grow Time: </span>
-              {props.strain.flowerTime}
+              {props.misc.strain.flowerTime}
             </p>
             <p className="pl-2">
               <span className="font-bold">Effects: </span>
-              {props.strain.effect}
+              {props.misc.strain.effect}
             </p>
           </span>
         </div>
@@ -152,15 +153,15 @@ const handout = props => {
             </h4>
             <p>
               <span className="font-bold ml-2">30 days: </span>
-              {props.strain.germ[0]}%
+              {props.misc.strain.germ[0]}%
             </p>
             <p>
               <span className="font-bold ml-2">45 days: </span>
-              {props.strain.germ[1]}%
+              {props.misc.strain.germ[1]}%
             </p>
             <p>
               <span className="font-bold ml-2">In House: </span>
-              {props.strain.germ[2]}%
+              {props.misc.strain.germ[2]}%
             </p>
           </span>
           <hr

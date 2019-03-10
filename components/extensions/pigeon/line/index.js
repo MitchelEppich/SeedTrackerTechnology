@@ -11,6 +11,7 @@ const line = ({
     return null;
   }
 
+  let _speed = props.speed;
   let _delay = props.delay;
 
   let point;
@@ -36,7 +37,7 @@ const line = ({
         className="marker"
         d={path}
         style={{
-          animation: `dash ${4}s linear forwards`,
+          animation: `dash ${_speed}s linear forwards`,
           animationDelay: `${_delay}s`,
           strokeDasharray: adjust,
           strokeDashoffset: adjust,
@@ -51,7 +52,7 @@ const line = ({
         style={{
           motionPath: `path('${path}')`,
           offsetPath: `path('${path}')`,
-          animation: `move ${4}s linear forwards`,
+          animation: `move ${_speed}s linear forwards`,
           animationDelay: `${_delay}s`,
           transform: "scale(0) translateX(-50px) translateY(-250px)",
           WebkitTransform: "scale(0) translateX(-50px) translateY(-250px)",
@@ -65,13 +66,9 @@ const line = ({
 
   return (
     <div className="pin-t absolute">
-      {props.clientInfo.context != null && props.clientInfo.context != 2 ? (
-        <svg
-          width={width}
-          height={height}
-          key={props.key}
-          style={{ top: 0, left: 0 }}
-        >
+      {props.misc.clientInfo.context != null &&
+      props.misc.clientInfo.context != 2 ? (
+        <svg width={width} height={height} style={{ top: 0, left: 0 }}>
           {pathObj}
         </svg>
       ) : null}

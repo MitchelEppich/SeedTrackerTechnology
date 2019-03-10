@@ -28,7 +28,9 @@ const initialState = {
   company: null,
   companySttWebsiteList: null,
   userInput: {},
-  mediaSize: "xl"
+  mediaSize: "xl",
+  subscribed: false,
+  focusLocation: null
 };
 
 const indexReducer = (state = initialState, action) => {
@@ -47,13 +49,10 @@ const indexReducer = (state = initialState, action) => {
       return updateObject(state, {
         strain: { ...state.strain, germ: action.input }
       });
-    case actionTypes.SEARCH:
+    case actionTypes.SET_FOCUS_LOCATION:
+      return updateObject(state, { focusLocation: action.input });
+    case actionTypes.SET_SEARCHED:
       return updateObject(state, { searched: action.value });
-    case actionTypes.TOGGLE_INFO_SECTION:
-      return updateObject(state, {
-        currentInformation: action.index,
-        currentLocation: action.index
-      });
     case actionTypes.TOGGLE_LANDMARKS:
       return updateObject(state, { currentLocation: action.index });
     case actionTypes.TOGGLE_COPYRIGHT:
@@ -91,7 +90,12 @@ const indexReducer = (state = initialState, action) => {
         clientInfo: action.entry
       });
     case actionTypes.SUBSCRIBE_TO_NEWSLETTER:
-      return updateObject(state, {});
+      let _newUserInput = { ...state.userInput };
+      delete _newUserInput.emailNewsletter;
+      return updateObject(state, {
+        subscribed: true,
+        userInput: _newUserInput
+      });
     case actionTypes.CHECK_TESTER_ENTRY:
       return updateObject(state, {
         email: action.entry.email,
@@ -118,6 +122,7 @@ const indexReducer = (state = initialState, action) => {
   }
 };
 
-export default indexReducer;
-// export default combineReducers({
-// });
+// export default indexReducer;
+export default combineReducers({
+  misc: indexReducer
+});

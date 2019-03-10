@@ -12,8 +12,7 @@ const card = props => {
   // 4521242
   // 4013420
 
-  let isSmallMediumOrLargeDevice = ["sm", "md"].includes(props.mediaSize);
-
+  let isSmallMediumOrLargeDevice = ["sm", "md"].includes(props.misc.mediaSize);
   return (
     <div>
       {isSmallMediumOrLargeDevice ? (

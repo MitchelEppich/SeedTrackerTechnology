@@ -5,8 +5,6 @@ component has the navigation bar and the
 login form.*/
 /**************************************/
 
-import "../static/fonts/font-awesome/fontawesome";
-import "../static/fonts/font-awesome/all";
 import "../scss/home.scss";
 import React, { Component } from "react";
 import DevTools from "../store/DevTools";
@@ -25,8 +23,6 @@ class Layout extends Component {
     });
   }
 
-  componentDidUpdate() {}
-
   setMediaSize = () => {
     let mediaSizes = {
       sm: { min: 100, max: 479 },
@@ -41,7 +37,7 @@ class Layout extends Component {
       if (
         _width ==
           Math.max(_mediaSizeDim.min, Math.min(_width, _mediaSizeDim.max)) &&
-        this.props.mediaSize != mediaSize
+        this.props.misc.mediaSize != mediaSize
       ) {
         if (["sm", "md"].includes(mediaSize)) {
           this.props.setMediaSize({ mediaSize: mediaSize });
@@ -55,18 +51,21 @@ class Layout extends Component {
 
   render() {
     return (
-      <div className="w-full h-full" id="layout">
-        <Header {...this.props} />
-        {this.props.children}
-        <Footer {...this.props} />
-      </div>
+      <React.Fragment>
+        <div className="w-full h-full" id="layout">
+          <Header {...this.props} />
+          {this.props.children}
+          <Footer {...this.props} />
+        </div>
+      </React.Fragment>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    setMediaSize: input => dispatch(actions.setMediaSize(input))
+    setMediaSize: input => dispatch(actions.setMediaSize(input)),
+    setUserInput: input => dispatch(actions.setUserInput(input))
   };
 };
 

@@ -37,7 +37,6 @@ const resolvers = {
       return _strain;
     },
     createStrain: async (_, { input }) => {
-      console.log(input);
       let strain = new Strain({
         ...input
       });

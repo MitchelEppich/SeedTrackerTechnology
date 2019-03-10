@@ -22,11 +22,11 @@ import PercentageStrainGraphs from "./percentageStrainGraphs";
 import StrainInfoGraphs from "./strainInfoGraphs";
 
 const MobileCard = props => {
-  let marker = props.locations[props.currentInformation];
+  let marker = props.misc.locations[props.misc.focusLocation];
   if (marker == null) return <div />;
 
-  let rand = gen.create(props.strain.seed);
-  let locationAmount = props.locations.length - 1;
+  let rand = gen.create(props.misc.strain.seed);
+  let locationAmount = props.misc.locations.length;
   return (
     <div
       style={{
@@ -40,16 +40,20 @@ const MobileCard = props => {
       {/* TABS 
     //////////////// ORIGIN ///////////////
     */}
-      {props.currentInformation == 0 ? (
+      {marker.type == "origin" ? (
         <div
           style={{
             borderTopLeftRadius: "3px",
             borderTopRightRadius: "3px"
           }}
-          className="flex mb-1 bg-grey-light text-grey justify-around cursor-pointer"
+          className="flex mb-1 justify-around cursor-pointer"
         >
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 0
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(0);
             }}
@@ -57,7 +61,11 @@ const MobileCard = props => {
             Origin
           </div>
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 1
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(1);
             }}
@@ -65,7 +73,11 @@ const MobileCard = props => {
             Strain
           </div>
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 2
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(2);
             }}
@@ -73,7 +85,11 @@ const MobileCard = props => {
             Tests
           </div>
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 3
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(3);
             }}
@@ -87,7 +103,7 @@ const MobileCard = props => {
     //////////////// COMPANY ///////////////
     */}
 
-      {props.currentInformation == 1 ? (
+      {marker.type == "company" ? (
         <div
           style={{
             borderTopLeftRadius: "3px",
@@ -96,16 +112,24 @@ const MobileCard = props => {
           className="flex mb-1 bg-grey-light text-grey justify-around cursor-pointer"
         >
           <div
-            className="inline-flex py-2 px-1 text-center uppercase hover:bg-yellow hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 0
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(0);
             }}
           >
             Company
           </div>
-          {props.strain.context != 1 ? (
+          {props.misc.strain.context != 1 ? (
             <div
-              className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+              className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+                props.misc.infoTab == 1
+                  ? "bg-yellow-dark text-black"
+                  : "hover:bg-yellow-dark hover:text-black"
+              }`}
               onClick={() => {
                 props.setInfoTab(1);
               }}
@@ -114,7 +138,11 @@ const MobileCard = props => {
             </div>
           ) : null}
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 3
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(3);
             }}
@@ -127,7 +155,7 @@ const MobileCard = props => {
       {/* TABS 
     //////////////// DESTINATION ///////////////
     */}
-      {props.currentInformation == 2 ? (
+      {marker.type == null ? (
         <div
           style={{
             borderTopLeftRadius: "3px",
@@ -136,7 +164,11 @@ const MobileCard = props => {
           className="flex mb-1 bg-grey-light text-grey justify-around cursor-pointer"
         >
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 0
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(0);
             }}
@@ -144,7 +176,11 @@ const MobileCard = props => {
             Destination
           </div>
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 1
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(1);
             }}
@@ -152,7 +188,11 @@ const MobileCard = props => {
             Details
           </div>
           <div
-            className="inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black"
+            className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${
+              props.misc.infoTab == 3
+                ? "bg-yellow-dark text-black"
+                : "hover:bg-yellow-dark hover:text-black"
+            }`}
             onClick={() => {
               props.setInfoTab(3);
             }}
@@ -163,9 +203,9 @@ const MobileCard = props => {
       ) : null}
 
       {/* COMPANY TAB */}
-      {props.infoTab == 0 ? (
+      {props.misc.infoTab == 0 ? (
         <div className="flex h-140 mb-2">
-          {props.currentInformation == 0 ? (
+          {marker.type == "origin" ? (
             <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Origin:
@@ -175,7 +215,7 @@ const MobileCard = props => {
               </p>
             </div>
           ) : null}
-          {props.currentInformation == 1 ? (
+          {marker.type == "company" ? (
             <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Company:
@@ -185,7 +225,7 @@ const MobileCard = props => {
               </p>
             </div>
           ) : null}
-          {props.currentInformation == 2 ? (
+          {marker.type == null ? (
             <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Destination:
@@ -200,9 +240,9 @@ const MobileCard = props => {
       {/* COMPANY TAB END */}
 
       {/* DETAILS TAB */}
-      {props.infoTab == 1 ? (
+      {props.misc.infoTab == 1 ? (
         <div className="flex px-2">
-          {props.currentInformation == 0 && props.strain.context != 1 ? (
+          {marker.type == "origin" && props.misc.strain.context != 1 ? (
             <div className="w-full px-2">
               <p className="p-1 uppercase text-center font-bold bg-yellow-dark">
                 Details
@@ -212,13 +252,13 @@ const MobileCard = props => {
                 <div className="mx-2 w-1/2 shadow">
                   <p className="bg-grey-light p-1 text-center">Name:</p>
                   <p className="font-normal p-1 text-center">
-                    {props.strain.name}
+                    {props.misc.strain.name}
                   </p>
                 </div>
                 <div className="mx-2 w-1/2 shadow">
                   <p className="bg-grey-light p-1 text-center">Type:</p>
                   <p className="font-normal p-1 text-center">
-                    {props.strain.genetic}
+                    {props.misc.strain.genetic}
                   </p>
                 </div>
               </div>
@@ -228,18 +268,18 @@ const MobileCard = props => {
                     Average Yield:
                   </p>
                   <p className="font-normal p-1 text-center">
-                    {props.strain.avgYield}g
+                    {props.misc.strain.avgYield}g
                   </p>
                 </div>
 
                 <div className="mx-2 w-1/2 shadow">
                   <p className="bg-grey-light p-1 text-center">Flower Time:</p>
                   <p className="font-normal p-1 text-center">
-                    {props.strain.flowerTime}
+                    {props.misc.strain.flowerTime}
                   </p>
                 </div>
               </div>
-              {props.clientInfo.context != 2 ? (
+              {props.misc.clientInfo.context != 2 ? (
                 <div className="pb-1 pt-1 mt-4">
                   <div className="inline-flex w-full">
                     <div className="w-10 pl-4 justify-center flex items-center">
@@ -251,7 +291,7 @@ const MobileCard = props => {
                       </div>
                       <div className="w-3/5">
                         <p className="font-normal pl-4">
-                          {props.strain.date[0]}
+                          {props.misc.strain.date[0]}
                         </p>{" "}
                       </div>
                     </div>
@@ -269,7 +309,7 @@ const MobileCard = props => {
                       </div>
                       <div className="w-3/5">
                         <p className="font-normal pl-4">
-                          {props.strain.date[1]}
+                          {props.misc.strain.date[1]}
                         </p>{" "}
                       </div>
                     </div>
@@ -280,7 +320,7 @@ const MobileCard = props => {
           ) : null}
 
           {/* COMPANY INFORMATION - DETAILS */}
-          {props.currentInformation == 1 && props.strain.context != 1 ? (
+          {marker.type == "company" && props.misc.strain.context != 1 ? (
             <div className="pb-1 pt-1 w-full">
               <div className="w-full">
                 <div className="w-full px-2">
@@ -305,7 +345,7 @@ const MobileCard = props => {
                         >
                           <p
                             style={{
-                              width: props.strain.germ[1] + "%",
+                              width: props.misc.strain.germ[1] + "%",
                               background: "#6783a2",
                               height: "15px"
                             }}
@@ -315,7 +355,7 @@ const MobileCard = props => {
                       </div>
                       <div className="ml-1">
                         <p className="font-normal py-1">
-                          {props.strain.germ[2]}%
+                          {props.misc.strain.germ[2]}%
                         </p>
                       </div>
                     </div>
@@ -331,7 +371,9 @@ const MobileCard = props => {
                     <p className="font-bold pl-1">Package Date: </p>
                   </div>
                   <div className="w-3/5">
-                    <p className="font-normal pl-4">{props.strain.date[2]}</p>{" "}
+                    <p className="font-normal pl-4">
+                      {props.misc.strain.date[2]}
+                    </p>{" "}
                   </div>
                 </div>
               </div>
@@ -347,7 +389,9 @@ const MobileCard = props => {
                     <p className="font-bold pl-1">Ship Date: </p>
                   </div>
                   <div className="w-3/5">
-                    <p className="font-normal pl-4">{props.strain.date[3]}</p>{" "}
+                    <p className="font-normal pl-4">
+                      {props.misc.strain.date[3]}
+                    </p>{" "}
                   </div>
                 </div>
               </div>
@@ -355,7 +399,7 @@ const MobileCard = props => {
           ) : null}
           {/* END COMPANY SECTION DETAIL */}
 
-          {props.currentInformation == 2 ? (
+          {marker.type == null ? (
             <div className="w-full px-2">
               <div className="w-full">
                 <p className="font-bold w-full text-center uppercase bg-yellow-dark p-1">
@@ -368,7 +412,7 @@ const MobileCard = props => {
                   <p className="font-bold">Email:</p>
                 </div>
                 <div className="ml-1 w-1/2">
-                  <p className="font-normal py-1">{props.email}</p>
+                  <p className="font-normal py-1">{props.misc.email}</p>
                 </div>
               </div>
               <div className="w-full mt-1 inline-flex">
@@ -378,7 +422,7 @@ const MobileCard = props => {
                   <p className="font-bold">STT Number:</p>
                 </div>
                 <div className="ml-1 w-1/2">
-                  <p className="font-normal py-1">{props.number}</p>
+                  <p className="font-normal py-1">{props.misc.trackNumber}</p>
                 </div>
               </div>
             </div>
@@ -388,9 +432,9 @@ const MobileCard = props => {
       {/* DETAILS TAB END */}
 
       {/* TEST SECTION TAB */}
-      {props.infoTab == 2 ? (
+      {props.misc.infoTab == 2 ? (
         <div className="flex px-2">
-          {props.currentInformation == 0 ? (
+          {marker.type == "origin" ? (
             <div className="pb-2 w-full px-2">
               <p className="font-bold text-center uppercase bg-yellow-dark p-1">
                 Germination Tests
@@ -415,7 +459,7 @@ const MobileCard = props => {
                       >
                         <p
                           style={{
-                            width: props.strain.germ[2] + "%",
+                            width: props.misc.strain.germ[2] + "%",
                             background: "#6783a2",
                             height: "15px"
                           }}
@@ -425,7 +469,7 @@ const MobileCard = props => {
                     </div>
                     <div className="ml-1">
                       <p className="font-normal py-1">
-                        {props.strain.germ[2]}%
+                        {props.misc.strain.germ[2]}%
                       </p>
                     </div>
                   </div>
@@ -446,7 +490,7 @@ const MobileCard = props => {
                       >
                         <p
                           style={{
-                            width: props.strain.germ[0] + "%",
+                            width: props.misc.strain.germ[0] + "%",
                             background: "#4a8882",
                             height: "15px"
                           }}
@@ -456,7 +500,7 @@ const MobileCard = props => {
                     </div>
                     <div className="ml-1">
                       <p className="font-normal py-1">
-                        {props.strain.germ[0]}%
+                        {props.misc.strain.germ[0]}%
                       </p>
                     </div>
                   </div>
@@ -477,7 +521,7 @@ const MobileCard = props => {
                       >
                         <p
                           style={{
-                            width: props.strain.germ[1] + "%",
+                            width: props.misc.strain.germ[1] + "%",
                             background: "#404042",
                             height: "15px"
                           }}
@@ -487,7 +531,7 @@ const MobileCard = props => {
                     </div>
                     <div className="ml-1">
                       <p className="font-normal py-1">
-                        {props.strain.germ[1]}%
+                        {props.misc.strain.germ[1]}%
                       </p>
                     </div>
                   </div>
@@ -500,9 +544,9 @@ const MobileCard = props => {
       {/* TEST SECTION TAB END */}
 
       {/* SOCIAL MEDIA TAB */}
-      {props.infoTab == 3 ? (
+      {props.misc.infoTab == 3 ? (
         <div className="flex px-2">
-          {props.currentInformation == 0 ? (
+          {marker.type == "origin" ? (
             <div className="pb-1 w-full">
               <div className="w-full px-2 bg-grey-lightest">
                 <div>
@@ -521,19 +565,19 @@ const MobileCard = props => {
                         style={{ background: "#546e79" }}
                         className="font-normal p-1 text-white mt-1"
                       >
-                        TCH: {props.strain.pThc[0]} %
+                        TCH: {props.misc.strain.pThc[0]} %
                       </p>
                       <p
                         style={{ background: "#d0d0d0" }}
                         className="font-normal p-1 mt-1"
                       >
-                        CBN: {props.strain.pCbn[0]}%
+                        CBN: {props.misc.strain.pCbn[0]}%
                       </p>
                       <p
                         style={{ background: "#33434e" }}
                         className="font-normal p-1 text-white mt-1"
                       >
-                        CBD: {props.strain.pCbd[0]}%
+                        CBD: {props.misc.strain.pCbd[0]}%
                       </p>
                     </div>
                   </div>
@@ -544,7 +588,7 @@ const MobileCard = props => {
               </div>
             </div>
           ) : null}
-          {props.currentInformation == 1 ? (
+          {marker.type == "company" ? (
             <div className="pb-1 pt-1 w-full px-2">
               <p className="font-bold text-center uppercase bg-yellow-dark p-1">
                 Contact
@@ -559,7 +603,7 @@ const MobileCard = props => {
                       />
                       <a
                         className="font-bold text-grey-darkest"
-                        //   href={marker.description.website}
+                        href={props.misc.company.website}
                       >
                         Website:
                       </a>
@@ -567,7 +611,7 @@ const MobileCard = props => {
                   </div>
                   <div className="w-1/2">
                     website
-                    {/* {marker.description.website} */}
+                    {props.misc.company.website}
                   </div>
                 </div>
               </div>
@@ -581,13 +625,13 @@ const MobileCard = props => {
                       />
                       <a
                         className="font-bold ml-1 text-grey-darkest"
-                        href={`tel:${marker.phone}`}
+                        href={`tel:${props.misc.company.phone}`}
                       >
                         Phone:
                       </a>
                     </p>
                   </div>
-                  <div className="w-1/2">{marker.phone}</div>
+                  <div className="w-1/2">{props.misc.company.phone}</div>
                 </div>
               </div>
               <div className="w-full mt-4 px-2">
@@ -600,19 +644,19 @@ const MobileCard = props => {
                       />
                       <a
                         className="font-bold text-grey-darkest"
-                        href={`mailto: ${marker.email}`}
+                        href={`mailto: ${props.misc.company.email}`}
                       >
                         Email:
                       </a>
                     </p>
                   </div>
-                  <div className="w-1/2">{marker.email}</div>
+                  <div className="w-1/2">{props.misc.company.email}</div>
                 </div>
               </div>
             </div>
           ) : null}
 
-          {props.currentInformation == 2 ? (
+          {marker.type == null ? (
             <span className="pb-1 pt-1">
               <p className="text-center px-2 mb-2 mt-4">
                 Valuable information to make sure you have the best possible
@@ -631,7 +675,7 @@ const MobileCard = props => {
       ) : null}
       {/* SOCIAL MEDIA TAB END */}
 
-      {props.clientInfo.context != 2 ? (
+      {props.misc.clientInfo.context != 2 ? (
         <div
           style={{
             width: "96%",
@@ -646,11 +690,11 @@ const MobileCard = props => {
             icon={faAngleLeft}
             className="fa-2x hover:text-grey-darkest mt-1 cursor-pointer animate-icons"
             onClick={() => {
-              if (props.currentInformation - 1 >= 0) {
-                props.toggleInfoSection(props.currentInformation - 1);
-              } else {
-                props.toggleInfoSection(locationAmount - 1);
-              }
+              let index = props.misc.focusLocation - 1;
+              if (index < 0) index = locationAmount - 1;
+              props.setFocusLocation({
+                index
+              });
             }}
           />
           <div
@@ -665,11 +709,11 @@ const MobileCard = props => {
             icon={faAngleRight}
             className="fa-2x hover:text-grey-darkest mt-1 cursor-pointer animate-icons"
             onClick={() => {
-              if (props.currentInformation + 1 < locationAmount) {
-                props.toggleInfoSection(props.currentInformation + 1);
-              } else {
-                props.toggleInfoSection(0);
-              }
+              let index = props.misc.focusLocation + 1;
+              if (index > locationAmount - 1) index = 0;
+              props.setFocusLocation({
+                index
+              });
             }}
           />
         </div>

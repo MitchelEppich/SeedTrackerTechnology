@@ -22,7 +22,6 @@ const resolvers = {
   },
   Mutation: {
     createEntry: async (_, { input }) => {
-      console.log(input);
       let strain = await Strain.findOne({
         sotiId: input.sotiId,
         website: input.website

@@ -35,7 +35,7 @@ const video = props => {
           className="w-12 h-12 text-center text-white opacity-50"
         >
           <FontAwesomeIcon
-            icon={props.videoMuted ? faVolumeMute : faVolumeUp}
+            icon={props.misc.videoMuted ? faVolumeMute : faVolumeUp}
             className="fa-2x pb-1 cursor-pointer"
           />
         </div>

@@ -22,11 +22,12 @@ import PercentageStrainGraphs from "./percentageStrainGraphs";
 import StrainInfoGraphs from "./strainInfoGraphs";
 
 const DefaultCard = props => {
-  let marker = props.locations[props.currentInformation];
+  let marker = props.misc.locations[props.misc.focusLocation];
+  console.log(marker);
   if (marker == null) return <div />;
 
-  let rand = gen.create(props.strain.seed);
-  let locationAmount = props.locations.length - 1;
+  let rand = gen.create(props.misc.strain.seed);
+  let locationAmount = props.misc.locations.length;
   // STT NUMBERS:
   // 4540720
   // 4521242
@@ -42,7 +43,7 @@ const DefaultCard = props => {
           }}
           className="text-white flex mb-2"
         >
-          {props.currentInformation == 0 ? (
+          {marker.type == "origin" ? (
             <div className="w-full p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Origin:
@@ -52,7 +53,7 @@ const DefaultCard = props => {
               </h3>
             </div>
           ) : null}
-          {props.currentInformation == 1 ? (
+          {marker.type == "company" ? (
             <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Company Seller:
@@ -62,7 +63,7 @@ const DefaultCard = props => {
               </h3>
             </div>
           ) : null}
-          {props.currentInformation == 2 ? (
+          {marker.type == null ? (
             <div className="w-full text-navy-blue p-2 sm:text-lg text-center">
               <h5 className="mt-2 w-100 mx-auto text-grey sm:text-lg text-center border-b-2 border-grey-dark pb-1">
                 Destination:
@@ -75,18 +76,18 @@ const DefaultCard = props => {
           <div
             className="absolute pin-r pin-t cursor-pointer text-center h-10 w-10 py-3 hover:bg-grey hover:text-white float-right text-grey mr-1 mt-1"
             onClick={() => {
-              props.closeAllHandler();
+              props.setFocusLocation({ index: null });
             }}
           >
             <FontAwesomeIcon icon={faTimes} className="fa-lg" />
           </div>
         </div>
         <div className="px-0">
-          {props.currentInformation == 0 ? (
+          {marker.type == "origin" ? (
             <div className="px-1">
               <div className="bg-white">
                 <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
-                  {props.strain.name}
+                  {props.misc.strain.name}
                 </h3>
                 <div className="flex flex-wrap justify-around">
                   <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
@@ -94,7 +95,9 @@ const DefaultCard = props => {
                       <p className="font-bold uppercase">Type:</p>
                     </div>
                     <div className="w-full">
-                      <p className="font-normal p-1">{props.strain.genetic}</p>
+                      <p className="font-normal p-1">
+                        {props.misc.strain.genetic}
+                      </p>
                     </div>
                   </div>
                   <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
@@ -103,7 +106,7 @@ const DefaultCard = props => {
                     </div>
                     <div className="w-full">
                       <p className="font-normal p-2">
-                        {props.strain.avgYield}g
+                        {props.misc.strain.avgYield}g
                       </p>
                     </div>
                   </div>
@@ -113,7 +116,7 @@ const DefaultCard = props => {
                     </div>
                     <div className="w-full">
                       <p className="font-normal p-2">
-                        {props.strain.flowerTime}
+                        {props.misc.strain.flowerTime}
                       </p>
                     </div>
                   </div>
@@ -131,19 +134,19 @@ const DefaultCard = props => {
                           style={{ background: "#546e79" }}
                           className="font-normal p-1 text-white mt-1"
                         >
-                          TCH: {props.strain.pThc[0]} %
+                          TCH: {props.misc.strain.pThc[0]} %
                         </p>
                         <p
                           style={{ background: "#d0d0d0" }}
                           className="font-normal p-1 mt-1"
                         >
-                          CBN: {props.strain.pCbn[0]}%
+                          CBN: {props.misc.strain.pCbn[0]}%
                         </p>
                         <p
                           style={{ background: "#33434e" }}
                           className="font-normal p-1 text-white mt-1"
                         >
-                          CBD: {props.strain.pCbd[0]}%
+                          CBD: {props.misc.strain.pCbd[0]}%
                         </p>
                       </div>
                     </div>
@@ -177,7 +180,7 @@ const DefaultCard = props => {
                         >
                           <p
                             style={{
-                              width: props.strain.germ[2] + "%",
+                              width: props.misc.strain.germ[2] + "%",
                               background: "#6783a2",
                               height: "15px"
                             }}
@@ -187,7 +190,7 @@ const DefaultCard = props => {
                       </div>
                       <div className="ml-1">
                         <p className="font-normal py-1">
-                          {props.strain.germ[2]}%
+                          {props.misc.strain.germ[2]}%
                         </p>
                       </div>
                     </div>
@@ -210,7 +213,7 @@ const DefaultCard = props => {
                         >
                           <p
                             style={{
-                              width: props.strain.germ[0] + "%",
+                              width: props.misc.strain.germ[0] + "%",
                               background: "#4a8882",
                               height: "15px"
                             }}
@@ -220,7 +223,7 @@ const DefaultCard = props => {
                       </div>
                       <div className="ml-1">
                         <p className="font-normal py-1">
-                          {props.strain.germ[0]}%
+                          {props.misc.strain.germ[0]}%
                         </p>
                       </div>
                     </div>
@@ -243,7 +246,7 @@ const DefaultCard = props => {
                         >
                           <p
                             style={{
-                              width: props.strain.germ[1] + "%",
+                              width: props.misc.strain.germ[1] + "%",
                               background: "#404042",
                               height: "15px"
                             }}
@@ -253,7 +256,7 @@ const DefaultCard = props => {
                       </div>
                       <div className="ml-1">
                         <p className="font-normal py-1">
-                          {props.strain.germ[1]}%
+                          {props.misc.strain.germ[1]}%
                         </p>
                       </div>
                     </div>
@@ -261,7 +264,7 @@ const DefaultCard = props => {
                 </div>
               </div>
 
-              {props.clientInfo.context != 2 ? (
+              {props.misc.clientInfo.context != 2 ? (
                 <div className="pb-0 pt-1 mt-1">
                   <h3 className="px-2 bg-yellow-dark text-grey text-center uppercase p-1 mb-1 ">
                     Details
@@ -275,7 +278,9 @@ const DefaultCard = props => {
                         <p className="font-bold pl-1">Harvest Date: </p>
                       </div>
                       <div className="w-3/5">
-                        <p className="font-normal">{props.strain.date[0]}</p>{" "}
+                        <p className="font-normal">
+                          {props.misc.strain.date[0]}
+                        </p>{" "}
                       </div>
                     </div>
                   </div>
@@ -291,7 +296,9 @@ const DefaultCard = props => {
                         <p className="font-bold pl-1">Departure Date: </p>
                       </div>
                       <div className="w-3/5">
-                        <p className="font-normal">{props.strain.date[1]}</p>{" "}
+                        <p className="font-normal">
+                          {props.misc.strain.date[1]}
+                        </p>{" "}
                       </div>
                     </div>
                   </div>
@@ -301,7 +308,7 @@ const DefaultCard = props => {
           ) : (
             <div />
           )}
-          {props.currentInformation == 1 ? (
+          {marker.type == "company" ? (
             <div className="pb-3 px-1">
               <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
                 Germination Tests
@@ -322,7 +329,7 @@ const DefaultCard = props => {
                     >
                       <p
                         style={{
-                          width: props.strain.germ[2] + "%",
+                          width: props.misc.strain.germ[2] + "%",
                           background: "#6783a2",
                           height: "15px"
                         }}
@@ -331,12 +338,14 @@ const DefaultCard = props => {
                     </div>
                   </div>
                   <div className="ml-1">
-                    <p className="font-normal p-2">{props.strain.germ[2]}%</p>
+                    <p className="font-normal p-2">
+                      {props.misc.strain.germ[2]}%
+                    </p>
                   </div>
                 </div>
               </div>
 
-              {props.strain.context != 1 ? (
+              {props.misc.strain.context != 1 ? (
                 <div className="pb-3 pt-2 mt-2">
                   <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
                     Details
@@ -354,7 +363,7 @@ const DefaultCard = props => {
                       </div>
                       <div className="w-2/3">
                         <p className="font-normal pl-1">
-                          {props.strain.date[2]}
+                          {props.misc.strain.date[2]}
                         </p>{" "}
                       </div>
                     </div>
@@ -369,7 +378,7 @@ const DefaultCard = props => {
                       </div>
                       <div className="w-2/3">
                         <p className="font-normal pl-1">
-                          Approx. {props.strain.date[3]}
+                          Approx. {props.misc.strain.date[3]}
                         </p>{" "}
                       </div>
                     </div>
@@ -389,12 +398,11 @@ const DefaultCard = props => {
                   </div>
                   <div className="w-4/5 p-1">
                     <a
-                      // href={marker.description.website}
+                      href={props.misc.company.website}
                       target="blank"
                       className="text-grey"
                     >
-                      http://www.
-                      {/* {marker.description.website} */}
+                      {props.misc.company.website}
                     </a>
                   </div>
                 </div>
@@ -403,8 +411,11 @@ const DefaultCard = props => {
                     <p className="font-bold uppercase">Phone:</p>
                   </div>
                   <div className="w-4/5 p-1 text-grey">
-                    <a href={`tel:${marker.phone}`} className="text-grey">
-                      {marker.phone}
+                    <a
+                      href={`tel:${props.misc.company.phone}`}
+                      className="text-grey"
+                    >
+                      {props.misc.company.phone}
                     </a>
                   </div>
                 </div>
@@ -413,7 +424,9 @@ const DefaultCard = props => {
                     <p className="font-bold uppercase">Email:</p>
                   </div>
                   <div className="w-4/5 p-1 text-grey">
-                    <a href={`mailto: ${marker.email}`}>{marker.email}</a>
+                    <a href={`mailto: ${props.misc.company.email}`}>
+                      {props.misc.company.email}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -421,7 +434,7 @@ const DefaultCard = props => {
           ) : (
             <div />
           )}
-          {props.currentInformation == 2 ? (
+          {marker.type == null ? (
             <div className="">
               <div className="pb-3 px-1">
                 <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
@@ -438,7 +451,7 @@ const DefaultCard = props => {
                       <p className="font-bold uppercase">Email:</p>
                     </div>
                     <div className="w-3/5 p-1 text-grey">
-                      <p>{props.email}</p>
+                      <p>{props.misc.email}</p>
                     </div>
                   </div>
                   <div className="px-4 inline-flex bg-white w-full">
@@ -447,7 +460,7 @@ const DefaultCard = props => {
                       <p className="font-bold">STT Number:</p>
                     </div>
                     <div className="w-3/5 p-1 text-grey">
-                      <p>{props.number}</p>
+                      <p>{props.misc.trackNumber}</p>
                     </div>
                   </div>
                 </div>
@@ -470,7 +483,7 @@ const DefaultCard = props => {
             <div />
           )}
 
-          {props.clientInfo.context != 2 ? (
+          {props.misc.clientInfo.context != 2 ? (
             <div
               style={{
                 // position: "absolute",
@@ -485,11 +498,12 @@ const DefaultCard = props => {
                 icon={faAngleLeft}
                 className="fa-2x text-grey hover:text-grey-darkest cursor-pointer animate-icons"
                 onClick={() => {
-                  if (props.currentInformation - 1 >= 0) {
-                    props.toggleInfoSection(props.currentInformation - 1);
-                  } else {
-                    props.toggleInfoSection(locationAmount - 1);
-                  }
+                  let index = props.misc.focusLocation - 1;
+                  if (index < 0) index = locationAmount - 1;
+
+                  props.setFocusLocation({
+                    index
+                  });
                 }}
               />
               <div
@@ -504,11 +518,11 @@ const DefaultCard = props => {
                 icon={faAngleRight}
                 className="fa-2x text-grey hover:text-grey-darkest cursor-pointer animate-icons"
                 onClick={() => {
-                  if (props.currentInformation + 1 < locationAmount) {
-                    props.toggleInfoSection(props.currentInformation + 1);
-                  } else {
-                    props.toggleInfoSection(0);
-                  }
+                  let index = props.misc.focusLocation + 1;
+                  if (index > locationAmount - 1) index = 0;
+                  props.setFocusLocation({
+                    index
+                  });
                 }}
               />
             </div>
