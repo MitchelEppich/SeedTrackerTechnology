@@ -2,7 +2,7 @@ import React from "react";
 
 const title = props => {
   return (
-    <p className="px-2 xxl:px-12 xxxl:px-12 inline-flex leading-normal mt-8 w-4/5 lg:w-7/8 md:w-7/8 sm:w-7/8 text-justify">
+    <p className="px-2 xxl:px-12 xxxl:px-12 inline-flex leading-normal mt-8 w-4/5 lg:w-7/8 md:w-7/8 sm:w-7/8 text-center">
       Seed Tracker Technology is built for growers, by growers. We offer all our
       amazing brands the information that their customers want and need to
       become successful growers. STT is an industry leader in reliablity,

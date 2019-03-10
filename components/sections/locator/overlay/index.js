@@ -16,26 +16,26 @@ const overlay = props => {
 
   let searchSection = null;
 
-  let firstPoint = () => {
+  let firstPoint = time => {
     setTimeout(function() {
-      props.toggleInfoSection(props.misc.currentInformation + 1);
+      props.setFocusLocation({ index: 0 });
 
-      // Create growcard
-      let input = document.querySelector("#growCard");
-      input.hidden = false;
-      html2canvas(input, {
-        scale: 0.9,
-        windowHeight: "8000px",
-        windowWidth: "2000px"
-      }).then(canvas => {
-        const imgData = canvas.toDataURL("image/png");
-        const jspdf = require("jspdf");
-        const pdf = new jspdf({ format: [131, 173] });
-        pdf.addImage(imgData, "PNG", 0, 0);
-        pdf.save("growcard.pdf");
-        input.hidden = true;
-      });
-    }, 4000);
+      // // Create growcard
+      // let input = document.querySelector("#growCard");
+      // input.hidden = false;
+      // html2canvas(input, {
+      //   scale: 0.9,
+      //   windowHeight: "8000px",
+      //   windowWidth: "2000px"
+      // }).then(canvas => {
+      //   const imgData = canvas.toDataURL("image/png");
+      //   const jspdf = require("jspdf");
+      //   const pdf = new jspdf({ format: [131, 173] });
+      //   pdf.addImage(imgData, "PNG", 0, 0);
+      //   pdf.save("growcard.pdf");
+      //   input.hidden = true;
+      // });
+    }, time);
   };
 
   // function secondPoint() {
@@ -127,7 +127,7 @@ const overlay = props => {
 
               props.setSearched("true");
 
-              firstPoint();
+              firstPoint(entry.context == 2 ? 100 : 4000);
 
               let originLocation = (() => {
                 let arr = [];

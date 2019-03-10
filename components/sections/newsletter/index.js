@@ -30,7 +30,7 @@ const Newsletter = props => {
                 className="w-400 mr-2 p-3 shadow rounded"
                 id="emailNewsletter"
                 placeholder="Email address"
-                value={_userInput.emailNewsLetter || ""}
+                value={_userInput.emailNewsLetter}
                 onChange={e => {
                   let userInput = _userInput;
                   let _target = e.target;

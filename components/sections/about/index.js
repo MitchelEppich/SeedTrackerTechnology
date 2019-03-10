@@ -25,27 +25,21 @@ const About = props => {
           image="../../static/imgs/feature-img-2.jpg"
           icon={faGlobe}
           title="Track your Seeds"
-          text="Ad nulla veniam non anim. Consequat dolore labore anim ipsum
-                cupidatat duis ut sit ex tempor aliquip Lorem duis. Proident sint
-                velit nulla ullamco."
+          text="Get information on when your seeds were harvested and shipped so you can better understand your seeds."
         />
         <Tab
           {...props}
           image="../../static/imgs/feature-img-3.jpg"
           icon={faFlask}
           title="Germination Tests"
-          text="Ad nulla veniam non anim. Consequat dolore labore anim ipsum
-                cupidatat duis ut sit ex tempor aliquip Lorem duis. Proident sint
-                velit nulla ullamco."
+          text="Get all the batch germination tests for your seed so you have a better idea of what your germination rates will be."
         />
         <Tab
           {...props}
           image="../../static/imgs/feature-img-1.jpg"
           icon={faSeedling}
           title="Grow like a Pro!"
-          text="Ad nulla veniam non anim. Consequat dolore labore anim ipsum
-                cupidatat duis ut sit ex tempor aliquip Lorem duis. Proident sint
-                velit nulla ullamco."
+          text="Expand your knowledge and become a better grower with all the information you need at your finger tips."
         />
       </div>
     </div>
