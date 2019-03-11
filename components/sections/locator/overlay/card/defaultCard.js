@@ -92,6 +92,16 @@ const DefaultCard = props => {
                 <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
                   {props.misc.strain.name}
                 </h3>
+                <p className="px-2 text-grey text-center p-1 mb-1 text-xs">
+                  <a
+                    href={`http://${props.misc.company.website}`}
+                    target="_blank"
+                    className="text-grey hover:text-yellow-dark"
+                  >
+                    by{" "}
+                    <span className="uppercase">{props.misc.company.name}</span>
+                  </a>
+                </p>
                 <div className="flex flex-wrap justify-around">
                   <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
                     <div className="w-full bg-grey-light text-grey p-1">
@@ -132,7 +142,7 @@ const DefaultCard = props => {
                         {" "}
                         <StrainInfoGraphs {...props} />
                       </div>
-                      <div className="w-150 p-1 mt-1">
+                      <div className="w-150 p-1 mt-2">
                         <p
                           style={{ background: "#546e79" }}
                           className="font-normal p-1 text-white mt-1"
@@ -489,7 +499,6 @@ const DefaultCard = props => {
           {props.misc.clientInfo.context != 2 ? (
             <div
               style={{
-                // position: "absolute",
                 margin: "8px",
                 width: "96%",
                 borderBottomLeftRadius: "8px",

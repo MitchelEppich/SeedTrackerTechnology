@@ -10,14 +10,17 @@ const PercentageStrainGraphs = props => {
           }}
           className="w-full relative rounded"
         >
+          {/* SATIVA BAR */}
           <p
             style={{
               width: props.misc.strain.sativa * 100 + "%",
               background: "#566d86",
-              height: "18px"
+              height: "18px",
+              transition: "all ease .3s"
             }}
             className="w-full absolute"
           />
+          {/* INDICA BAR */}
           <p
             style={{
               width: props.misc.strain.indica * 100 + "%",
@@ -27,6 +30,7 @@ const PercentageStrainGraphs = props => {
             }}
             className="w-full absolute"
           />
+          {/* RUDERALIS BAR */}
           {props.misc.strain.ruderalis != 0 &&
           props.misc.strain.ruderalis != null ? (
             <p
@@ -42,9 +46,12 @@ const PercentageStrainGraphs = props => {
               className="w-full absolute"
             />
           ) : null}
+          {/* VALUES SECTION */}
+          {/* SATIVA */}
           <p className="w-full rounded absolute mt-5 ml-6 opacity-50">
             {props.misc.strain.sativa * 100 + "%"}
           </p>
+          {/* INDICA */}
           <p
             style={{
               marginLeft: props.misc.strain.sativa * 100 + 20 + "%"
@@ -53,6 +60,7 @@ const PercentageStrainGraphs = props => {
           >
             {props.misc.strain.indica * 100 + "%"}
           </p>
+          {/* RUDERALIS */}
           {props.misc.strain.ruderalis != 0 &&
           props.misc.strain.ruderalis != null ? (
             <p
@@ -69,6 +77,7 @@ const PercentageStrainGraphs = props => {
           ) : null}
         </div>
       </div>
+      {/* LEGENDS SECTION */}
       <div className="w-full px-4 inline-flex mt-4 sm:mt-4 xs:mt-4 justify-center text-xs">
         <div className="w-1/3 inline-flex justify-center flex">
           <div style={{ background: "#566d86", width: "18px", height: "18px" }}>

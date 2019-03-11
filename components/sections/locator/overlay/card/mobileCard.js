@@ -46,7 +46,7 @@ const MobileCard = props => {
             borderTopLeftRadius: "3px",
             borderTopRightRadius: "3px"
           }}
-          className="flex mb-1 justify-around cursor-pointer"
+          className="flex mb-1 justify-around cursor-pointer bg-grey-light"
         >
           <div
             className={`inline-flex p-2 text-center uppercase hover:bg-yellow-dark hover:text-black ${

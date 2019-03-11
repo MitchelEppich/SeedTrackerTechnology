@@ -12,6 +12,7 @@ import PigeonMap from "../../../extensions/pigeon/map";
 import PigeonLine from "../../../extensions/pigeon/line";
 import PigeonOverlay from "pigeon-overlay";
 import Card from "../overlay/card";
+import PopupMessage from "../overlay/popupMessage";
 
 library.add(faPlus, faMinus, faInfo);
 
@@ -51,12 +52,19 @@ const map = props => {
             </div>
           ) : null}
           <div className="info-landmark">
-            <h4 className="text-navy-blue font-bold bg-yellow uppercase text-center p-2">
-              {marker.name}
-            </h4>
+            <div className="text-grey font-bold uppercase text-center p-1 bg-yellow">
+              <p className="text-xs text-center">
+                <small>
+                  {markers[index].type != null
+                    ? markers[index].type
+                    : "Destination"}
+                </small>
+              </p>
+              <p>{marker.name}</p>
+            </div>
             <div
-              className="mx-auto arrow-down absolute z-20"
-              style={{ marginLeft: "89px" }}
+              className="mx-auto arrow-down pin-x absolute z-20"
+              // style={{ marginLeft: "90px" }}
             />
           </div>
         </PigeonOverlay>
@@ -108,14 +116,7 @@ const map = props => {
   };
 
   return (
-    <div
-      id="stt"
-      style={{
-        height: "90.5vh",
-        overflow: "hidden",
-        position: "relative"
-      }}
-    >
+    <div id="stt" className="mapScreen">
       <div className="bg-yellow w-full">
         <h2 className="uppercase text-center p-4 md:text-xxl sm:text-lg xs:text-sm text-grey text-xxl">
           Track now your Seed
@@ -167,6 +168,9 @@ const map = props => {
 
       {/* SHOW INFO SECTION */}
       {props.misc.focusLocation != null ? <Card {...props} /> : null}
+      {props.misc.clientInfo != null && props.misc.clientInfo.context == 2 ? (
+        <PopupMessage {...props} />
+      ) : null}
 
       {/* COPYRIGHT ICON */}
       <div className="absolute inline-flex pin-b pin-r mb-6 mr-4">

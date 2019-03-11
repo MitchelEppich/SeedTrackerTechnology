@@ -33,10 +33,7 @@ const header = props => {
   };
 
   return (
-    <div
-      style={{ zIndex: "99999999", background: "#1c1e20" }}
-      className="w-full h-24 xs:h-20 sm:h-20 bg-navbar pin-t flex flex-wrap items-center shadow-md fixed z-50"
-    >
+    <div className="navbar w-full h-24 xs:h-20 sm:h-20 bg-navbar xs:bg-grey pin-t flex flex-wrap items-center shadow-md fixed z-50">
       <div className="inline-flex w-2/5 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
         {/* <a href="/"> */}
         <div>
@@ -89,13 +86,13 @@ const header = props => {
       {props.misc.showMenuCollapsed == true ? (
         <div
           style={styleDropMenu}
-          className="absolute pin-t mt-20 bg-grey-darkest xxl:hidden xl:hidden lg:hidden md:hidden w-full shadow-md"
+          className="absolute pin-t mt-20 bg-grey xxl:hidden xl:hidden lg:hidden md:hidden w-full shadow-md"
         >
-          <ul className="w-full mt-2  ml-0 pl-0">
+          <ul className="w-full mt-2 ml-0 pl-0">
             <AnchorLink className="" href="#video">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey  hover:text-yellow font-bold uppercase cursor-pointer"
               >
                 Home
               </li>
@@ -103,7 +100,7 @@ const header = props => {
             <AnchorLink className="" href="#about">
               <li
                 style={{ display: "block" }}
-                className="border-semi-transparent border-b-2 text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="border-semi-transparent border-b-2 text-white mt-1 p-4 text-center bg-grey  hover:text-yellow font-bold uppercase cursor-pointer"
               >
                 About
               </li>
@@ -111,7 +108,7 @@ const header = props => {
             <AnchorLink className="" href="#stt">
               <li
                 style={{ display: "block" }}
-                className="text-yellow mt-1 p-4 text-center bg-grey-darkest hover:bg-light-blue hover:text-white font-bold uppercase cursor-pointer"
+                className="text-white mt-1 p-4 text-center bg-grey hover:text-yellow font-bold uppercase cursor-pointer"
               >
                 Track
               </li>

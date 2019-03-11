@@ -193,7 +193,7 @@ const overlay = props => {
             <div className="w-full pb-4 xs:pb-1 bg-white">
               <div className="pb-3">
                 <div className="xs:p-0">
-                  <h3 className="p-2 sm:text-sm xs:text-sm xs:p-0 xs:mb-4 uppercase text-xs text-grey font-normal">
+                  <h3 className="p-2 sm:text-sm xs:text-xs xs:p-0 xs:mb-4 uppercase text-xs text-grey font-normal">
                     Please, select one of the options:
                   </h3>
                 </div>
@@ -261,14 +261,14 @@ const overlay = props => {
 
               <div className="border-b-4 border-grey-lightest pb-3">
                 <div className="p-2">
-                  <h3 className="text-grey font-normal sm:text-sm p-2 uppercase xs:text-sm xs:p-0 xs:mb-2 text-xs">
+                  <h3 className="text-grey font-normal sm:text-sm p-2 uppercase xs:text-xs xs:p-0 xs:mb-2 text-xs">
                     Insert your email to receive your Grow Card:
                   </h3>
                 </div>
                 <div className="inline-flex w-full sm:p-0 sm:w-full md:w-full xs:w-full px-12 sm:px-4 xs:px-4 xs:mb-1">
                   <input
                     required
-                    className="h-10 w-full p-2 sm:w-full md:w-full text-sm text-center border-2 border-grey-light p-2 xs:w-full"
+                    className="h-10 w-full p-2 sm:w-full md:w-full text-sm text-center border border-grey-light p-2 xs:w-full"
                     placeholder="Email Address..."
                     type="email"
                     aria-label="Enter in your email"
@@ -292,13 +292,13 @@ const overlay = props => {
 
               <div className="pb-3">
                 <div className="p-2 sm:p-0 xs:p-0">
-                  <h3 className="text-grey font-normal sm:text-sm xs:text-sm p-2 uppercase text-xs ">
+                  <h3 className="text-grey font-normal sm:text-sm xs:text-xs p-2 uppercase text-xs ">
                     Enter your STT Number:
                   </h3>
                 </div>
                 <div className="inline-block sm:w-full xs:w-full w-full px-12 sm:px-4 xs:px-4 md:w-full">
                   <input
-                    className="h-10 xs:w-full sm:w-full text-sm text-center md:w-full w-full border-2 border-grey-light p-2"
+                    className="h-10 xs:w-full sm:w-full text-sm text-center md:w-full w-full border border-grey-light p-2"
                     placeholder="STT Number (7 digits)...."
                     type="number"
                     pattern="[0-9]{7}"
@@ -337,7 +337,7 @@ const overlay = props => {
               </div>
               <div className="inline-block sm:w-full xs:w-full w-full sm:mt-2 xs:mt-2 md:w-full md:mt-2 px-12 sm:px-4 xs:px-4 mt-2">
                 <button
-                  className="h-10 slow bg-yellow-dark text-grey text-md uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0 font-bold shadow-md hover:bg-grey hover:text-white sm:w-full md:w-full xs:w-full w-full"
+                  className="h-10 slow bg-yellow-dark text-grey text-md uppercase px-5 sm:ml-0 xs:ml-0 md:ml-0 ml-0 font-bold hover:bg-grey hover:text-white sm:w-full md:w-full xs:w-full w-full"
                   type="submit"
                 >
                   Track my Seeds

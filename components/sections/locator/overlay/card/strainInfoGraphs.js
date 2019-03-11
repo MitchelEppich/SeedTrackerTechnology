@@ -26,7 +26,7 @@ const StrainInfoGraphs = props => {
         paddingAngle={5}
         // paddingAngle={1}
         // rounded
-        // animated
+        animate
       />
     </div>
   );

@@ -117,6 +117,7 @@ let colors = {
   "blue-lightest": "#eff8ff",
 
   "blue-new": "#215177",
+  "blue-purple": "rgb(51, 67, 78)",
 
   "navy-blue": "#031a28",
   "transparent-blue": "rgba(3, 26, 40, 0.5)",
