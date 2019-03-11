@@ -48,9 +48,6 @@ const map = props => {
             <div className="lds-ripple">
               <div />
               <div />
-              <div />
-              <div />
-              <div />
             </div>
           ) : null}
           <div className="info-landmark">

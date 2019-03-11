@@ -34,8 +34,8 @@ const DefaultCard = props => {
   // 4013420
 
   return (
-    <div>
-      <div className="absolute text-sm w-400 h-550 pin-b pin-l mb-12 ml-2 z-50 bg-white z-50">
+    <div className="absolute text-sm w-400 pin-b pin-l mb-16 ml-2 z-50 bg-white z-50">
+      <div className="h-full">
         <div
           style={{
             borderTopLeftRadius: "8px",

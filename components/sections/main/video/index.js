@@ -4,9 +4,9 @@ import { faVolumeMute, faVolumeUp } from "@fortawesome/free-solid-svg-icons";
 
 const video = props => {
   return (
-    <div className="absolute pin-r mt-24 lg:mt-32 md:mt-48 sm:mt-48 xs:mt-64 pin-t  mr-24 xl:mr-12 lg:mr-8 md:mr-32 sm:mr-20 xs:mr-12">
+    <div className="absolute pin-r mt-24 lg:mt-32 md:mt-48 sm:mt-48 xs:mt-48 pin-t mr-24 xl:mr-12 lg:mr-8 md:mx-8 sm:mx-6 xs:mx-4 justify-center text-center items-center flex">
       <video
-        className="overflow-hidden xxxl:w-900 xxl:w-900 xl:w-700 lg:w-500px md:w-500px sm:w-400 xs:w-250"
+        className="overflow-hidden xxxl:w-900 xxl:w-900 xl:w-700 lg:w-500px md:w-full sm:w-full xs:w-full"
         loop
         muted
         id="videoTag"

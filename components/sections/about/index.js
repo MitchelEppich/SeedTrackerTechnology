@@ -14,7 +14,7 @@ const About = props => {
   return (
     <div
       id="about"
-      className="w-full relative pb-24 bg-white text-center text-grey"
+      className="w-full relative pb-24 sm:pb-6 xs:pb-6 bg-white text-center text-grey"
     >
       <div style={{ height: "40px", backgroundColor: "#0E1112" }} />
       <Header {...props} />

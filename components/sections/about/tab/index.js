@@ -15,7 +15,7 @@ let iconsAbout = {
 
 const tab = props => {
   return (
-    <div className="w-300 lg:w-250 md:w-200 animate-icons xs:mt-4 xs:w-full sm:w-full sm:my-4 flex items-center justify-center flex-col shadow-md relative">
+    <div className="w-300 lg:w-250 md:w-200 animate-icons xs:mt-8 sm:mt-6 xs:w-full sm:w-full sm:my-4 flex items-center justify-center flex-col shadow-md relative">
       <div
         style={{
           background: "url(" + props.image + ")",
