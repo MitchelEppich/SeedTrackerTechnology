@@ -144,6 +144,11 @@ const overlay = props => {
               })();
 
               if (entry.context == 2) {
+                // Get company
+                let company = await props.getCompany({
+                  website: entry.website
+                });
+
                 // Tester code
                 props.setLocations([...originLocation]);
               } else {

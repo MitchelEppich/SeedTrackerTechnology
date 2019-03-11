@@ -151,7 +151,7 @@ const map = props => {
       <PigeonMap
         animateMaxScreens={3}
         center={
-          props.misc.focusLocation == null
+          props.misc.focusLocation == null || props.misc.locations == null
             ? [0, 0]
             : props.misc.locations[props.misc.focusLocation].anchor
         }

@@ -22,8 +22,11 @@ import PercentageStrainGraphs from "./percentageStrainGraphs";
 import StrainInfoGraphs from "./strainInfoGraphs";
 
 const DefaultCard = props => {
-  let marker = props.misc.locations[props.misc.focusLocation];
-  console.log(marker);
+  let marker =
+    props.misc.locations == null || props.misc.focusLocation == null
+      ? null
+      : props.misc.locations[props.misc.focusLocation];
+
   if (marker == null) return <div />;
 
   let rand = gen.create(props.misc.strain.seed);
