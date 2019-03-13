@@ -9,7 +9,7 @@ const main = props => {
       <div style={{ height: "80px", backgroundColor: "#0E1112" }} />
       <div style={{ background: "#202020" }} className="relative">
         <div
-          className="h-700 lg:h-500px md:h-600 sm:h-550 xs:h-400"
+          className="h-700 xl:h-550 lg:h-500px md:h-600 sm:h-550 xs:h-400"
           style={{
             marginBottom: "-3px",
             overflow: "hidden"

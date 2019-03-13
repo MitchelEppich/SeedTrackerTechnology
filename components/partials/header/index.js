@@ -35,15 +35,15 @@ const header = props => {
   return (
     <div className="navbar w-full h-24 xs:h-20 sm:h-20 bg-navbar xs:bg-grey pin-t flex flex-wrap items-center shadow-md fixed z-50">
       <div className="inline-flex w-2/5 sm:w-2/3 xs:w-2/3 pl-8 sm:pl-2 sm:ml-0 xs:pl-2 xs:ml-0 sm:items-center md:items-center">
-        {/* <a href="/"> */}
-        <div>
-          <img
-            onClick={() => console.log(props)}
-            className="cursor-pointer pl-24 lg:pl-10 xl:pl-10 md:pl-4 sm:pl-4 xs:pl-4 lg:pl-4 xs:h-full xs:w-200 sm:h-full sm:w-200"
-            src="../../static/imgs/logo2.png"
-          />
-        </div>
-        {/* </a> */}
+        <a href="/">
+          <div>
+            <img
+              // onClick={() => console.log(props)}
+              className="cursor-pointer pl-24 lg:pl-10 xl:pl-10 md:pl-4 sm:pl-4 xs:pl-4 lg:pl-4 xs:h-full xs:w-200 sm:h-full sm:w-200"
+              src="../../static/imgs/logo2.png"
+            />
+          </div>
+        </a>
         {/* BETA TAG */}
         <div className="bg-yellow text-black text-2xl h-10 ml-2 mt-1 p-2 rounded-sm sm:text-sm sm:h-6 sm:items-center sm:p-1 md:text-sm md:h-6 md:items-center md:p-1 pt-1 sm:mt-0 xs:text-sm xs:h-6 xs:items-center xs:p-1 ">
           BETA

@@ -601,17 +601,17 @@ const MobileCard = props => {
                         icon={faGlobeAmericas}
                         className="fa-lg mr-1"
                       />
-                      <a
-                        className="font-bold text-grey-darkest"
-                        href={props.misc.company.website}
-                      >
-                        Website:
-                      </a>
+                      <p className="font-bold text-grey-darkest">Website:</p>
                     </p>
                   </div>
                   <div className="w-1/2">
-                    website
-                    {props.misc.company.website}
+                    <a
+                      className="text-grey-darkest"
+                      href={`http://${props.misc.company.website}`}
+                      target="_blank"
+                    >
+                      {props.misc.company.website}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -624,7 +624,7 @@ const MobileCard = props => {
                         className="fa-lg mx-1"
                       />
                       <a
-                        className="font-bold ml-1 text-grey-darkest"
+                        className="font-bold ml-1 text-grey"
                         href={`tel:${props.misc.company.phone}`}
                       >
                         Phone:

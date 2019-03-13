@@ -74,7 +74,7 @@ const indexReducer = (state = initialState, action) => {
     case actionTypes.SET_EMAIL:
       return updateObject(state, { email: action.input });
     case actionTypes.SET_USER_INPUT:
-      console.log("reducer", action);
+      // console.log("reducer", action);
       return updateObject(state, {
         userInput: action.input
       });

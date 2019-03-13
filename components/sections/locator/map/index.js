@@ -38,7 +38,7 @@ const map = props => {
           <div
             className="landmark-points absolute z-10"
             onClick={() => {
-              console.log($index, typeof $index);
+              // console.log($index, typeof $index);
               props.setFocusLocation({
                 index: props.misc.focusLocation == $index ? null : $index
               });
@@ -198,7 +198,7 @@ const map = props => {
       </div>
 
       {/* BOTTOM BUTTONS */}
-      <div className="absolute pin-b pin-l ml-2">
+      <div className="absolute pin-b pin-l ml-2 xs:hidden sm:hidden">
         {props.misc.locations
           ? Object.keys(props.misc.locations)
               .filter(key => {

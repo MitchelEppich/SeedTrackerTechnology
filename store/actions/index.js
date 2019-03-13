@@ -115,7 +115,7 @@ const actions = {
   },
   checkEntry: input => {
     return dispatch => {
-      console.log(input);
+      // console.log(input);
       if (input.number.toString()[0] == "0") {
         dispatch(
           actions.setError(
@@ -181,7 +181,7 @@ const actions = {
       };
       return makePromise(execute(link, operation)).then(data => {
         let _company = data.data.company;
-        console.log(data, input);
+        // console.log(data, input);
         dispatch({
           type: actionTypes.GET_COMPANY,
           input: _company
@@ -208,7 +208,7 @@ const actions = {
   },
   getStrainData: input => {
     return dispatch => {
-      console.log(input);
+      // console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: query.getStrain,
@@ -225,9 +225,9 @@ const actions = {
           variables: { country: strain.aCountry }
         };
         return makePromise(execute(link, operation)).then(data => {
-          console.log(data);
+          // console.log(data);
           let loc = data.data.getCoordinates;
-          console.log(loc);
+          // console.log(loc);
 
           // Set germination percents
           let rand = gen.create(input.seed);
@@ -287,7 +287,7 @@ const actions = {
   },
   subscribeToNewsletter: input => {
     return dispatch => {
-      console.log(input);
+      // console.log(input);
       const link = new HttpLink({ uri, fetch: fetch });
       const operation = {
         query: mutation.subscribeToNewsletter,
@@ -373,7 +373,7 @@ const actions = {
               variables: { ...input, ...info }
             };
 
-            console.log(input, info);
+            // console.log(input, info);
 
             return makePromise(execute(link, operation))
               .then(data => {
