@@ -16,7 +16,7 @@ import gen from "random-seed";
 
 const { inferStrainData } = require("../utilities/strain");
 
-const uri = "http://localhost:3000/graphql";
+const uri = "http://localhost:80/graphql";
 // const uri = "http://seedtracker.com:80/graphql";
 
 const imports = {};
