@@ -147,7 +147,7 @@ const DefaultCard = props => {
                           style={{ background: "#546e79" }}
                           className="font-normal p-1 text-white mt-1"
                         >
-                          TCH: {props.misc.strain.pThc[0]} %
+                          THC: {props.misc.strain.pThc[0]} %
                         </p>
                         <p
                           style={{ background: "#d0d0d0" }}
