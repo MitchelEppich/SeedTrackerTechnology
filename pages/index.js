@@ -24,7 +24,7 @@ class Index extends Component {
   render() {
     return this.props.supportedBrowser ? (
       <Layout {...this.props}>
-        <Handout {...this.props} />
+        {/* <Handout {...this.props} /> */}
         <Main {...this.props} />
         <About {...this.props} />
         <Newsletter {...this.props} />

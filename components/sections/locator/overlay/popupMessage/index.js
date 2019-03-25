@@ -5,7 +5,7 @@ const PopupMessage = props => {
   let _company = props.misc.company;
   if (_company == null) return <div />;
   return (
-    <div className="absolute pin-r pin-t mt-32 mr-12 xs:mr-0 sm:mr-0">
+    <div className="absolute pin-r pin-t mt-32 mr-12 xs:mr-0 sm:mr-0 z-50">
       <div className="w-400 sm:w-7/8 xs:w-7/8 mx-auto bg-white shadow-md">
         <p className="bg-yellow-dark text-center text-lg font-bold uppercase p-2">
           Welcome to Seed Tracker

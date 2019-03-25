@@ -1,197 +1,280 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleLeft,
+  faAngleRight,
+  faTree,
+  faPlaneDeparture,
+  faPlane,
+  faBoxOpen,
+  faEnvelope,
+  faGlobe,
+  faDesktop,
+  faGlobeAmericas,
+  faMobileAlt,
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
+import { width } from "window-size";
+
+import moment from "moment";
+import PercentageStrainGraphs from "../../sections/locator/overlay/card/percentageStrainGraphs";
+import StrainInfoGraphs from "../../sections/locator/overlay/card/strainInfoGraphs";
 
 const handout = props => {
-  // console.log(props.misc.strain);
+  let entry = props.misc.clientInfo;
+  let strain = props.misc.strain;
+  let company = props.misc.company;
 
-  let typeStrain = () => {
-    if (props.misc.strain.genetic == 0) {
-      return "Feminized";
-    }
-    if (props.misc.strain.genetic == 1) {
-      return "Autoflower Feminized";
-    }
-    if (props.misc.strain.genetic == 2) {
-      return "Regular";
-    }
-    if (props.misc.strain.genetic == 3) {
-      return "Medical";
-    }
-  };
+  if (entry == null || strain == null || company == null) return null;
 
-  let averageYield = () => {
-    if (props.misc.strain != null) {
-      let avgYield =
-        (props.misc.strain.i_yield + props.misc.strain.o_yield) / 2;
-      return avgYield;
-    } else {
-      null;
-    }
-  };
+  // console.log(entry, strain, company);
 
-  return props.misc.strain ? (
+  return (
     <div
-      hidden
-      id="growCard"
       style={{
         position: "absolute",
+        left: "0",
+        right: "0",
+        display: "flex",
+        justifyContent: "center",
         zIndex: "1",
         background: "white",
-        width: "550px",
-        height: "725px",
         fontSize: "14px"
       }}
       className="m-6 border-grey-light"
     >
       <div
-        style={{
-          margin: "30px",
-          border: "2px solid #e1e2e3"
-        }}
+        id="growCard"
+        className="text-sm w-400 shadow-md pin-b pin-l pb-4 ml-2 bg-white z-50"
       >
-        <div className="w-full bg-grey inline-flex p-2">
-          <div className="w-1/2 text-left">
-            <img
-              style={{ width: "160px" }}
-              className="text-left p-1"
-              src="../../static/imgs/logo2.png"
-            />
-          </div>
+        <div className="h-full">
           <div
-            style={{ color: "#ffffff", zIndex: "99999" }}
-            className="w-1/2 text-right"
-          >
-            <img
-              style={{ height: "32px" }}
-              className="text-right mr-4 pt-2"
-              src="../../static/imgs/GrowCardText.png"
-            />
+            style={{
+              borderTopLeftRadius: "8px",
+              borderTopRightRadius: "8px"
+            }}
+            className="text-white flex mb-2"
+          />
+          <div className="px-0">
+            <div className="px-1">
+              <div className="bg-white">
+                <h3 className="px-2 text-grey bg-yellow-dark text-center uppercase p-1 mb-1 ">
+                  {strain.name}
+                </h3>
+                <p className="px-2 text-grey text-center p-1 mb-1 text-xs">
+                  <a
+                    href={`http://${company.website}`}
+                    target="_blank"
+                    className="text-grey hover:text-yellow-dark"
+                  >
+                    by <span className="uppercase">{company.website}</span>
+                  </a>
+                </p>
+                <div className="flex flex-wrap justify-around">
+                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">Type:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-1">{strain.genetic}</p>
+                    </div>
+                  </div>
+                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">Avg. Yield:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-2">{strain.avgYield}g</p>
+                    </div>
+                  </div>
+                  <div className="flex-col w-3col bg-grey-lightest shadow text-center my-1">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold uppercase">Flower Time:</p>
+                    </div>
+                    <div className="w-full">
+                      <p className="font-normal p-2">{strain.flowerTime}</p>
+                    </div>
+                  </div>
+                  <div className="w-full px-2 my-1 bg-grey-lightest">
+                    <p className="font-bold text-center uppercase bg-grey-light p-1">
+                      Levels:
+                    </p>
+                    <div className="inline-flex w-full flex justify-around">
+                      <div style={{ width: "115px" }} className="p-2 w-150">
+                        {" "}
+                        <StrainInfoGraphs {...props} />
+                      </div>
+                      <div className="w-150 p-1 mt-2">
+                        <p
+                          style={{ background: "#546e79" }}
+                          className="font-normal p-1 text-white mt-1"
+                        >
+                          THC: {strain.pThc[0]} %
+                        </p>
+                        <p
+                          style={{ background: "#d0d0d0" }}
+                          className="font-normal p-1 mt-1"
+                        >
+                          CBN: {strain.pCbn[0]}%
+                        </p>
+                        <p
+                          style={{ background: "#33434e" }}
+                          className="font-normal p-1 text-white mt-1"
+                        >
+                          CBD: {strain.pCbd[0]}%
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-full">
+                    <PercentageStrainGraphs {...props} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-1 pb-2 mt-6">
+                <h3 className="px-2 text-grey uppercase bg-yellow-dark p-1 mb-1 text-center">
+                  Germination Tests
+                </h3>
+                <div className="inline-flex w-full">
+                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold text-center uppercase">
+                        In House:{" "}
+                      </p>
+                    </div>
+                    <div className="w-full mt-2 inline-flex">
+                      <div className="w-4/5 p-1">
+                        <div
+                          style={{
+                            width: "100%",
+                            background: "#cecece",
+                            height: "15px"
+                          }}
+                          className="w-4/5 relative rounded"
+                        >
+                          <p
+                            style={{
+                              width: strain.germ[2] + "%",
+                              background: "#6783a2",
+                              height: "15px"
+                            }}
+                            className="w-full rounded absolute"
+                          />
+                        </div>
+                      </div>
+                      <div className="ml-1">
+                        <p className="font-normal py-1">{strain.germ[2]}%</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold text-center uppercase">
+                        30 days:{" "}
+                      </p>
+                    </div>
+                    <div className="w-full mt-2 inline-flex">
+                      <div className="w-4/5 p-1">
+                        <div
+                          style={{
+                            width: "100%",
+                            background: "#cecece",
+                            height: "15px"
+                          }}
+                          className="w-4/5 relative rounded"
+                        >
+                          <p
+                            style={{
+                              width: strain.germ[0] + "%",
+                              background: "#4a8882",
+                              height: "15px"
+                            }}
+                            className="w-full rounded absolute"
+                          />
+                        </div>
+                      </div>
+                      <div className="ml-1">
+                        <p className="font-normal py-1">{strain.germ[0]}%</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="w-1/2 bg-white rounded mx-2 mt-2 shadow">
+                    <div className="w-full bg-grey-light text-grey p-1">
+                      <p className="font-bold text-center uppercase">
+                        45 days:{" "}
+                      </p>
+                    </div>
+                    <div className="w-full mt-2 inline-flex">
+                      <div className="w-4/5 p-1">
+                        <div
+                          style={{
+                            width: "100%",
+                            background: "#cecece",
+                            height: "15px"
+                          }}
+                          className="w-4/5 relative rounded"
+                        >
+                          <p
+                            style={{
+                              width: strain.germ[1] + "%",
+                              background: "#404042",
+                              height: "15px"
+                            }}
+                            className="w-full rounded absolute"
+                          />
+                        </div>
+                      </div>
+                      <div className="ml-1">
+                        <p className="font-normal py-1">{strain.germ[1]}%</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {entry.context != 2 ? (
+                <div className="pb-0 pt-1 mt-2">
+                  <h3 className="px-2 bg-yellow-dark text-grey text-center uppercase p-1 mb-1 ">
+                    Details
+                  </h3>
+                  <div className="inline-flex w-full">
+                    <div className="w-10 pl-4 justify-center flex items-center">
+                      <FontAwesomeIcon icon={faTree} className="fa-lg ml-1" />
+                    </div>
+                    <div className="inline-flex w-full">
+                      <div className="w-2/5">
+                        <p className="font-bold pl-1">Harvest Date: </p>
+                      </div>
+                      <div className="w-3/5">
+                        <p className="font-normal">{strain.date[0]}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inline-flex w-full mt-1">
+                    <div className="w-10 pl-4 justify-center flex items-center">
+                      <FontAwesomeIcon
+                        icon={faPlaneDeparture}
+                        className="fa-lg pl-1"
+                      />{" "}
+                    </div>
+                    <div className="inline-flex w-full">
+                      <div className="w-2/5">
+                        <p className="font-bold pl-1">Departure Date: </p>
+                      </div>
+                      <div className="w-3/5">
+                        <p className="font-normal">{strain.date[1]}</p>{" "}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
+            </div>
           </div>
         </div>
-
-        <div className="w-full inline-flex p-2 pt-8">
-          <span className="w-1/3 p-2">
-            <img
-              style={{
-                width: "160px",
-                height: "170px"
-              }}
-              className="relative"
-              src="../../static/imgs/female-seeds-pure-ak-feminized.jpeg"
-            />
-            <img
-              style={{
-                marginLeft: "-37px",
-                marginTop: "-32px",
-                borderRadius: "50%",
-                background: "white",
-                border: "2px solid white",
-                boxShadow: "rgba(78, 78, 78, 0.25) 1px 1px 5px"
-              }}
-              className="w-16 h-16 absolute"
-              src="../../static/imgs/cropking-logo.png"
-            />
-          </span>
-          <span className="w-2/3 p-2 pl-6">
-            <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">
-              {props.misc.strain.name}
-            </h4>
-            <p className="pl-2">
-              <span className="font-bold">Genetic: </span>
-              {props.misc.strain.genetic}
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">Origin: </span>
-              {props.misc.strain.country}
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">THC: </span>
-              {props.misc.strain.pThc[0]}%;{" "}
-              {props.misc.strain.pCbn[0] != null ? (
-                <span>CBN {props.misc.strain.pCbn[0]}%;</span>
-              ) : null}{" "}
-              CBD {props.misc.strain.pCbd[0]}%
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">Indica: </span>
-              {props.misc.strain.indica}%
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">Sativa: </span>
-              {props.misc.strain.sativa}%
-            </p>
-            {props.misc.strain.ruderalis != null ? (
-              <p className="pl-2">
-                <span className="font-bold">Ruderalis: </span>
-                {props.misc.strain.ruderalis}%
-              </p>
-            ) : null}
-            <p className="pl-2">
-              <span className="font-bold">Average Yield: </span>
-              {props.misc.strain.avgYield}g
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">Average Grow Time: </span>
-              {props.misc.strain.flowerTime}
-            </p>
-            <p className="pl-2">
-              <span className="font-bold">Effects: </span>
-              {props.misc.strain.effect}
-            </p>
-          </span>
-        </div>
-        <hr
-          className="m-2"
-          style={{
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
-            height: "2px"
-          }}
-        />
-        <div className="w-full inline-flex p-2">
-          <span className="w-1/2 p-2">
-            <h4 className="uppercase p-2 text-md bg-grey text-yellow mb-2">
-              Germination Tests
-            </h4>
-            <p>
-              <span className="font-bold ml-2">30 days: </span>
-              {props.misc.strain.germ[0]}%
-            </p>
-            <p>
-              <span className="font-bold ml-2">45 days: </span>
-              {props.misc.strain.germ[1]}%
-            </p>
-            <p>
-              <span className="font-bold ml-2">In House: </span>
-              {props.misc.strain.germ[2]}%
-            </p>
-          </span>
-          <hr
-            className="m-2"
-            style={{
-              backgroundColor: "rgba(90, 90, 90, 0.8)",
-              height: "90px",
-              width: "2px"
-            }}
-          />
-          <span className="w-1/2 p-2 text-center">
-            <h4 className="uppercase underline text-md mb-1">Visit us at</h4>
-            <img
-              style={{
-                width: "67px",
-                height: "67px"
-              }}
-              className="pt-0 text-center"
-              src="../../static/imgs/qrcode.png"
-            />
-          </span>
-        </div>
-        <span className="">
-          <p className="p-2 pt-1 pl-4 pb-2 text-xs bg-grey text-yellow">
-            * Results may vary.
-          </p>
-        </span>
       </div>
     </div>
-  ) : null;
+  );
 };
 
 export default handout;

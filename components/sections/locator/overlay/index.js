@@ -23,14 +23,16 @@ const overlay = props => {
       // // Create growcard
       // let input = document.querySelector("#growCard");
       // input.hidden = false;
-      // html2canvas(input, {
-      //   scale: 0.9,
-      //   windowHeight: "8000px",
-      //   windowWidth: "2000px"
-      // }).then(canvas => {
+      // console.log("here", input);
+      // html2canvas(
+      //   input
+      // ).then(canvas => {
+      //   console.log(canvas);
       //   const imgData = canvas.toDataURL("image/png");
       //   const jspdf = require("jspdf");
-      //   const pdf = new jspdf({ format: [131, 173] });
+      //   const pdf = new jspdf({ format: [300, 355] });
+      //   pdf.autoPrint({ variant: "non-conform" });
+      //   // const pdf = new jspdf({ format: [131, 173] });
       //   pdf.addImage(imgData, "PNG", 0, 0);
       //   pdf.save("growcard.pdf");
       //   input.hidden = true;

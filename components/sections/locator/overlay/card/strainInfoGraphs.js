@@ -18,14 +18,15 @@ const StrainInfoGraphs = props => {
 
           {
             title: "CBD",
-            value: props.misc.strain.pCbd[0] * 5,
+            value:
+              props.misc.strain.pCbd[0] > 1.5
+                ? props.misc.strain.pCbd[0] * 2
+                : props.misc.strain.pCbd[0] * 5,
             color: "#33434e"
           }
         ]}
         lineWidth={25}
         paddingAngle={5}
-        // paddingAngle={1}
-        // rounded
         animate
       />
     </div>

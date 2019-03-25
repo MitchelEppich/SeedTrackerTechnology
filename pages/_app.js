@@ -10,7 +10,6 @@ const browser = detect();
 export default withRedux(makeStore)(
   class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
-      console.log(router);
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};

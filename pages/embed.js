@@ -24,7 +24,7 @@ class Embed extends Component {
   render() {
     return this.props.supportedBrowser ? (
       <div>
-        <Handout {...this.props} />
+        {/* <Handout {...this.props} /> */}
         <Locator {...this.props} />
       </div>
     ) : (

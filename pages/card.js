@@ -16,10 +16,34 @@ import Newsletter from "../components/sections/newsletter";
 import Locator from "../components/sections/locator";
 
 import Handout from "../components/extensions/handout";
+import Card from "../components/sections/locator/overlay/card";
 
 class Embed extends Component {
-  componentDidMount() {
+  getData = async () => {
+    let entry = this.props.checkEntry({
+      email: "test@test.com",
+      context: 0,
+      number: "4540720",
+      websites: this.props.misc.companySttWebsiteList
+    });
+    console.log("RESPONSE", entry);
+    this.props.getStrainData({
+      sttId: entry.sttId,
+      website: entry.website,
+      dispatchAt: entry.dispatchAt,
+      context: entry.context,
+      country: entry.country,
+      seed: entry.seed
+    });
+    this.props.getCompany({
+      website: entry.website
+    });
+  };
+
+  async componentDidMount() {
     this.props.getCompanyRefSttList();
+
+    await this.getData();
   }
 
   render() {
