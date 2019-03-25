@@ -48,7 +48,6 @@ const map = props => {
           props.misc.focusLocation == $index ? (
             <div className="lds-ripple">
               <div />
-              <div />
             </div>
           ) : null}
           <div className="info-landmark">
@@ -115,8 +114,19 @@ const map = props => {
     return arr;
   };
 
+  let getYear = () => {
+    let year = new Date();
+    let currentYear = year.getFullYear();
+    return <span>{currentYear}</span>;
+  };
+
   return (
-    <div id="stt" className="mapScreen">
+    <div
+      id="stt"
+      className={`${
+        props.router.route == "/embed" ? "mapEmbedScreen" : "mapScreen"
+      }`}
+    >
       <div className="bg-yellow w-full">
         <h2 className="uppercase text-center p-4 md:text-xxl sm:text-lg xs:text-sm text-grey text-xxl">
           Track now your Seed
@@ -179,7 +189,7 @@ const map = props => {
             <div className="inline-flex">
               <div className="bg-black rounded w-200 h-12">
                 <h4 className="text-center p-2 py-4 mr-1 text-sm text-white">
-                  © Copyright 2018 | SST
+                  © Copyright {getYear()} | SST
                 </h4>
               </div>
               <div className="arrow-right" />

@@ -10,6 +10,7 @@ const browser = detect();
 export default withRedux(makeStore)(
   class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
+      console.log(router);
       const pageProps = Component.getInitialProps
         ? await Component.getInitialProps(ctx)
         : {};
@@ -22,12 +23,9 @@ export default withRedux(makeStore)(
       return { pageProps, isMobile, router };
     }
 
-    componentWillMount() {
-     
-    }
+    componentWillMount() {}
 
-    componentDidMount() {
-    }
+    componentDidMount() {}
 
     render() {
       const { Component, pageProps, store, isMobile, router } = this.props;
@@ -44,11 +42,15 @@ export default withRedux(makeStore)(
         supportedBrowser = false;
       }
 
-
       return (
         <Provider store={store}>
           <Container>
-            <Component {...pageProps} isMobile={isMobile} router={router} supportedBrowser={supportedBrowser} />
+            <Component
+              {...pageProps}
+              isMobile={isMobile}
+              router={router}
+              supportedBrowser={supportedBrowser}
+            />
           </Container>
         </Provider>
       );

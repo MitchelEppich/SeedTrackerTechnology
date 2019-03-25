@@ -167,7 +167,7 @@ const handout = props => {
           <hr
             className="m-2"
             style={{
-              backgroundColor: " rgba(90, 90, 90, 0.8)",
+              backgroundColor: "rgba(90, 90, 90, 0.8)",
               height: "90px",
               width: "2px"
             }}

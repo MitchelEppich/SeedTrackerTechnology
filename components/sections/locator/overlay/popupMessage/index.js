@@ -16,15 +16,15 @@ const PopupMessage = props => {
           working with{" "}
           <span className="capitalize">{props.misc.company.name}</span> to allow
           you, the customer, to be ensured you're receiving a quality product.
-          You can purchase more of this seed at
+          You can purchase more of this seed at{" "}
           <a
+            target="_blank"
             href={`http://${props.misc.company.website}`}
-            className="text-blue-purple hover:text-yellow-dark"
+            className="text-blue-purple hover:text-grey-dark underline text-shadow"
           >
-            <FontAwesomeIcon icon={faExternalLinkAlt} className="mx-1 fa-sm" />
             http://{props.misc.company.website}
+            <FontAwesomeIcon icon={faExternalLinkAlt} className="mx-1 fa-sm" />
           </a>
-          {" ."}
         </p>
         <p
           onClick={() => {
