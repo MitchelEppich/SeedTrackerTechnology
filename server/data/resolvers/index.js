@@ -27,7 +27,10 @@ const resolvers = {
     getEmailList: async (_, { input }) => {
       let errorEmails = (await Error.find({})).map(a => a.email);
       let entryEmails = (await Entry.find({})).map(a => a.email);
-      return [...new Set(errorEmails.concat(...entryEmails))];
+      let newsletterEmails = (await Email.find({})).map(a => a.email);
+      return [
+        ...new Set(errorEmails.concat(...[...entryEmails, ...newsletterEmails]))
+      ];
     }
   },
   Mutation: {
